@@ -19,11 +19,29 @@ st.set_page_config(
 #        "Beskid Żywiecki", "Beskid Wyspowy", "Beskid Sądecki",
 #        "Gorce", "Pieniny"
 
+# Wielka Korona Tatr (WKT) — 14 szczytów ≥8000 stóp z wybitnością ≥100m
+WKT = {
+    "Gerlach (Gerlachovský štít) ⭐WKT",
+    "Łomnica (Lomnický štít) ⭐WKT",
+    "Lodowy Szczyt (Ľadový štít) ⭐WKT",
+    "Durny Szczyt (Pyšný štít) ⭐WKT",
+    "Wysoka (Vysoká) ⭐WKT",
+    "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT",
+    "Kończysty Wierch (Končistá) ⭐WKT",
+    "Baranie Rogi (Baranie rohy) ⭐WKT",
+    "Rysy ⭐WKT",
+    "Krywań (Kriváň) ⭐WKT",
+    "Staroleśny Szczyt (Bradavica) ⭐WKT",
+    "Ganek (Gánok) ⭐WKT",
+    "Sławkowski Szczyt (Slavkovský štít) ⭐WKT",
+    "Pośrednia Grań (Prostredný hrot) ⭐WKT",
+}
+
 SZCZYTY = {
     # ---------- TATRY POLSKIE ----------
     # Współrzędne zweryfikowane wg map topograficznych WIG i OpenTopoMap
-    "Rysy":                               (49.1794, 20.0883, 2499, "Tatry Polskie"),
-    "Giewont":                            (49.2508, 19.9347, 1894, "Tatry Polskie"),
+    "Rysy ⭐WKT":                             (49.1794, 20.0883, 2501, "Tatry Polskie"),   # 9. WKT
+    "Giewont":                            (49.2508, 19.9347,  1894, "Tatry Polskie"),
     "Kasprowy Wierch":                    (49.2317, 19.9817, 1987, "Tatry Polskie"),
     "Świnica":                            (49.2175, 19.9708, 2301, "Tatry Polskie"),
     "Kościelec":                          (49.2297, 20.0272, 2155, "Tatry Polskie"),
@@ -67,29 +85,35 @@ SZCZYTY = {
     "Banikovský štít":                   (49.1969, 19.8183, 2178, "Tatry Zachodnie"),
 
     # ---------- TATRY SŁOWACKIE ----------
-    "Gerlach (Gerlachovský štít)":        (49.1831, 20.1344, 2655, "Tatry Słowackie"),
-    "Łomnica (Lomnický štít)":            (49.1958, 20.2131, 2634, "Tatry Słowackie"),
-    "Kołowy Szczyt (Kolový štít)":        (49.1792, 20.0628, 2418, "Tatry Słowackie"),
-    "Krywań (Kriváň)":                    (49.1758, 19.9944, 2494, "Tatry Słowackie"),
-    "Wysoka (Vysoká)":                    (49.1822, 20.1025, 2560, "Tatry Słowackie"),
-    "Ganek":                              (49.1864, 20.1158, 2462, "Tatry Słowackie"),
-    "Lodowy Szczyt (Ľadový štít)":        (49.1897, 20.1500, 2627, "Tatry Słowackie"),
-    "Żabi Szczyt Niżni (Žabí štít)":      (49.1994, 20.0925, 2253, "Tatry Słowackie"),
-    "Żabi Szczyt Wyżni":                  (49.1978, 20.0889, 2259, "Tatry Słowackie"),
-    "Durny Szczyt (Tupá)":                (49.1769, 20.1325, 2618, "Tatry Słowackie"),
-    "Szeroka Jaworzyńska (Jahňací štít)": (49.1908, 20.1714, 2210, "Tatry Słowackie"),
-    "Mały Kieżmarski Szczyt":             (49.1947, 20.1894, 2513, "Tatry Słowackie"),
-    "Wielki Kieżmarski Szczyt":           (49.1931, 20.2006, 2556, "Tatry Słowackie"),
-    "Sławkowski Szczyt (Slavkovský štít)":(49.1983, 20.1883, 2452, "Tatry Słowackie"),
-    "Bradavica (Staroleśny Szczyt)":      (49.2019, 20.1828, 2476, "Tatry Słowackie"),
-    "Hawrań (Havran)":                    (49.2189, 20.2864, 2152, "Tatry Słowackie"),
-    "Murań (Murán)":                      (49.2158, 20.2761, 2068, "Tatry Słowackie"),
-    "Jagnięcy Szczyt (Baranec)":          (49.1931, 19.8722, 2185, "Tatry Słowackie"),
-    "Wołowiec (Volovec)":                 (49.2089, 20.0408, 2064, "Tatry Słowackie"),
-    "Solisko":                            (49.2183, 19.9717, 2093, "Tatry Słowackie"),
-    "Szatan":                             (49.1944, 20.0489, 2415, "Tatry Słowackie"),
-    "Rysy (słowackie podejście)":         (49.1794, 20.0883, 2499, "Tatry Słowackie"),
-    "Mengusovský štít":                   (49.1908, 20.0803, 2438, "Tatry Słowackie"),
+    # WKT — szczyty Wielkiej Korony Tatr (oznaczone ⭐WKT)
+    "Gerlach (Gerlachovský štít) ⭐WKT":          (49.1831, 20.1344, 2655, "Tatry Słowackie"),
+    "Łomnica (Lomnický štít) ⭐WKT":              (49.1958, 20.2131, 2633, "Tatry Słowackie"),
+    "Lodowy Szczyt (Ľadový štít) ⭐WKT":          (49.1897, 20.1500, 2627, "Tatry Słowackie"),
+    "Durny Szczyt (Pyšný štít) ⭐WKT":            (49.1769, 20.1325, 2621, "Tatry Słowackie"),
+    "Wysoka (Vysoká) ⭐WKT":                      (49.1822, 20.1025, 2558, "Tatry Słowackie"),
+    "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT":   (49.1939, 20.1953, 2557, "Tatry Słowackie"),
+    "Kończysty Wierch (Končistá) ⭐WKT":          (49.1808, 20.0856, 2536, "Tatry Słowackie"),
+    "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.1917, 20.0072, 2530, "Tatry Słowackie"),
+    "Krywań (Kriváň) ⭐WKT":                      (49.1758, 19.9944, 2495, "Tatry Słowackie"),
+    "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.2019, 20.1828, 2489, "Tatry Słowackie"),
+    "Ganek (Gánok) ⭐WKT":                        (49.1864, 20.1158, 2464, "Tatry Słowackie"),
+    "Sławkowski Szczyt (Slavkovský štít) ⭐WKT":  (49.1983, 20.1883, 2452, "Tatry Słowackie"),
+    "Pośrednia Grań (Prostredný hrot) ⭐WKT":     (49.2094, 20.0492, 2439, "Tatry Słowackie"),
+    # Pozostałe szczyty słowackie
+    "Kołowy Szczyt (Kolový štít)":                (49.1792, 20.0628, 2418, "Tatry Słowackie"),
+    "Żabi Szczyt Niżni (Žabí štít)":              (49.1994, 20.0925, 2253, "Tatry Słowackie"),
+    "Żabi Szczyt Wyżni":                          (49.1978, 20.0889, 2259, "Tatry Słowackie"),
+    "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
+    "Mały Kieżmarski Szczyt":                     (49.1947, 20.1894, 2513, "Tatry Słowackie"),
+    "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
+    "Hawrań (Havran)":                            (49.2189, 20.2864, 2152, "Tatry Słowackie"),
+    "Murań (Murán)":                              (49.2158, 20.2761, 2068, "Tatry Słowackie"),
+    "Jagnięcy Szczyt (Baranec)":                  (49.1931, 19.8722, 2185, "Tatry Słowackie"),
+    "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
+    "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
+    "Szatan":                                     (49.1944, 20.0489, 2415, "Tatry Słowackie"),
+    "Rysy (słowackie podejście)":                 (49.1794, 20.0883, 2501, "Tatry Słowackie"),
+    "Mengusovský štít":                           (49.1908, 20.0803, 2438, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
     # ---------- BESKID ŚLĄSKI ----------
