@@ -775,12 +775,12 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:100%; height:200px; background:#07111c; overflow:hidden; }
+  html, body { width:100%; height:205px; background:#07111c; overflow:hidden; margin:0; padding:0; }
 </style></head>
 <body>
-<svg viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet"
+<svg viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid slice"
      xmlns="http://www.w3.org/2000/svg"
-     style="width:100%;height:200px;display:block;">
+     style="position:fixed;top:0;left:0;width:100%;height:205px;display:block;">
 
   <!-- Niebo -->
   <rect width="1000" height="200" fill="#07111c"/>
