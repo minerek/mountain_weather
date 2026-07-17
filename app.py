@@ -17,70 +17,91 @@ st.set_page_config(
 # ============================================================
 st.markdown("""
 <style>
-/* ---- Ogólne ---- */
-[data-testid="stAppViewContainer"] {
-    background-color: #f0f4f8;
+/* ---- Ciemne tlo granatowe ---- */
+[data-testid="stAppViewContainer"], [data-testid="stApp"] {
+    background-color: #0e1e2f !important;
+}
+[data-testid="stHeader"] {
+    background-color: #0a1520 !important;
 }
 [data-testid="stMain"] > div:first-child {
-    padding-top: 0.5rem;
+    padding-top: 0.3rem;
 }
-/* ---- Nagłówki sekcji ---- */
-h1 { font-size: 1.9rem !important; font-weight: 800 !important; color: #1a2a3a !important; }
-h3 { color: #2c4a6e !important; border-bottom: 2px solid #d0dce8; padding-bottom: 4px; margin-top: 1.2rem !important; }
+/* ---- Tekst ogolny ---- */
+body, p, div, span, label {
+    color: #c8ddf0 !important;
+}
+/* ---- Nagłówki ---- */
+h1 { font-size: 1.9rem !important; font-weight: 800 !important; color: #e8f4ff !important; }
+h2 { color: #c8ddf0 !important; }
+h3 { color: #90bce0 !important; border-bottom: 2px solid #1e3a58; padding-bottom: 4px; margin-top: 1.2rem !important; }
+
+/* ---- Banner iframe — pelna szerokosc ---- */
+iframe[title="streamlit_component.v1.html"] {
+    width: 100% !important;
+    border-radius: 10px !important;
+    display: block !important;
+}
 
 /* ---- Karty metryk ---- */
 [data-testid="metric-container"] {
-    background: #ffffff;
-    border: 1px solid #ccd6e0;
+    background: #152436;
+    border: 1px solid #1e3a58;
     border-radius: 10px;
     padding: 12px 16px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
-[data-testid="metric-container"] label { font-size: 0.75rem !important; color: #556677 !important; }
-[data-testid="metric-container"] [data-testid="stMetricValue"] { font-size: 1.25rem !important; font-weight: 700 !important; color: #1a2a3a !important; }
-
-/* ---- Selectbox / multiselect / radio ---- */
-[data-testid="stSelectbox"] > div, [data-testid="stMultiSelect"] > div {
-    background: #ffffff;
-    border-radius: 8px;
+[data-testid="metric-container"] label { font-size: 0.75rem !important; color: #7aaac8 !important; }
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    font-size: 1.25rem !important; font-weight: 700 !important; color: #e0f0ff !important;
 }
 
-/* ---- Radio przyciski ---- */
+/* ---- Selectbox / multiselect ---- */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stMultiSelect"] > div > div {
+    background: #152436 !important;
+    border-color: #1e3a58 !important;
+    color: #c8ddf0 !important;
+    border-radius: 8px !important;
+}
+
+/* ---- Radio ---- */
 [data-testid="stRadio"] > div { gap: 8px; }
 [data-testid="stRadio"] label {
-    background: #ffffff;
-    border: 1px solid #b0c0d0;
+    background: #152436 !important;
+    border: 1px solid #1e3a58 !important;
     border-radius: 6px;
     padding: 4px 14px;
     font-size: 0.88rem;
+    color: #c8ddf0 !important;
 }
 
-/* ---- Przyciski ---- */
+/* ---- Przycisk primary ---- */
 [data-testid="stButton"] > button[kind="primary"] {
-    background: linear-gradient(135deg, #2c6fad, #1a4a7a);
-    color: white;
+    background: linear-gradient(135deg, #2c6fad, #1a4a7a) !important;
+    color: white !important;
     border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     padding: 0.55rem 1.6rem;
     border: none;
-    box-shadow: 0 2px 6px rgba(28,74,122,0.35);
-    transition: transform 0.1s;
-}
-[data-testid="stButton"] > button[kind="primary"]:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(28,74,122,0.4);
+    box-shadow: 0 2px 8px rgba(28,74,122,0.5);
 }
 
 /* ---- Tabela danych ---- */
 [data-testid="stDataFrame"] { border-radius: 8px; overflow: hidden; }
-iframe[title="streamlit_component.v1.html"] { border-radius: 8px; }
 
-/* ---- Info / warning / success ---- */
+/* ---- Alerty ---- */
 [data-testid="stAlert"] { border-radius: 8px; }
 
-/* ---- Sidebar / divider ---- */
-hr { border-color: #c8d8e8 !important; margin: 0.8rem 0 !important; }
+/* ---- Divider ---- */
+hr { border-color: #1e3a58 !important; margin: 0.8rem 0 !important; }
+
+/* ---- Caption / subtext ---- */
+[data-testid="stCaptionContainer"] p { color: #7aaac8 !important; }
+
+/* ---- Dataframe tlo ---- */
+[data-testid="stDataFrame"] table { background: #0e1e2f !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -748,105 +769,99 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:transparent; overflow:hidden; }
+  html, body { width:100%; height:100%; background:#0b1c2e; overflow:hidden; }
 </style></head>
 <body>
-<svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg"
-     style="width:100%;height:160px;display:block;border-radius:10px;">
+<svg viewBox="0 0 1000 160" preserveAspectRatio="xMidYMid slice"
+     xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:150px;display:block;">
 
   <!-- Niebo -->
-  <rect width="900" height="180" fill="#0b1c2e"/>
+  <rect width="1000" height="160" fill="#0b1c2e"/>
 
   <!-- Gwiazdy -->
-  <circle cx="45"  cy="18" r="1.5" fill="#fff" opacity="0.8"/>
-  <circle cx="110" cy="10" r="1.2" fill="#fff" opacity="0.9"/>
-  <circle cx="185" cy="25" r="1.0" fill="#fff" opacity="0.6"/>
-  <circle cx="265" cy="8"  r="1.4" fill="#fff" opacity="0.7"/>
-  <circle cx="350" cy="16" r="1.1" fill="#fff" opacity="0.8"/>
-  <circle cx="475" cy="7"  r="1.3" fill="#fff" opacity="0.7"/>
-  <circle cx="555" cy="20" r="1.0" fill="#fff" opacity="0.6"/>
-  <circle cx="638" cy="12" r="1.2" fill="#fff" opacity="0.8"/>
-  <circle cx="728" cy="8"  r="1.5" fill="#fff" opacity="0.7"/>
-  <circle cx="818" cy="22" r="1.0" fill="#fff" opacity="0.7"/>
-  <circle cx="868" cy="13" r="1.3" fill="#fff" opacity="0.6"/>
-  <circle cx="72"  cy="35" r="0.9" fill="#fff" opacity="0.5"/>
-  <circle cx="162" cy="42" r="1.0" fill="#fff" opacity="0.4"/>
-  <circle cx="318" cy="38" r="0.8" fill="#fff" opacity="0.5"/>
-  <circle cx="510" cy="32" r="1.1" fill="#fff" opacity="0.4"/>
-  <circle cx="695" cy="40" r="0.9" fill="#fff" opacity="0.5"/>
+  <circle cx="50"  cy="15" r="2"   fill="#fff" opacity="0.9"/>
+  <circle cx="120" cy="8"  r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="200" cy="22" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="290" cy="7"  r="2"   fill="#fff" opacity="0.7"/>
+  <circle cx="380" cy="14" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="520" cy="6"  r="2"   fill="#fff" opacity="0.7"/>
+  <circle cx="610" cy="18" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="700" cy="10" r="2"   fill="#fff" opacity="0.8"/>
+  <circle cx="800" cy="7"  r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="900" cy="20" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="80"  cy="35" r="1.5" fill="#fff" opacity="0.5"/>
+  <circle cx="175" cy="40" r="1.2" fill="#fff" opacity="0.4"/>
+  <circle cx="340" cy="32" r="1.5" fill="#fff" opacity="0.5"/>
+  <circle cx="560" cy="28" r="1.2" fill="#fff" opacity="0.4"/>
+  <circle cx="760" cy="36" r="1.5" fill="#fff" opacity="0.5"/>
+  <circle cx="960" cy="12" r="2"   fill="#fff" opacity="0.7"/>
 
   <!-- Ksiezyc -->
-  <circle cx="820" cy="36" r="20" fill="#c8ddf0"/>
-  <circle cx="830" cy="29" r="16" fill="#0b1c2e"/>
+  <circle cx="910" cy="35" r="22" fill="#c8ddf0"/>
+  <circle cx="922" cy="27" r="18" fill="#0b1c2e"/>
 
-  <!-- Grań — cień (ciemna warstwa z tyłu) -->
-  <polygon fill="#162232" points="
-    0,180  0,148  30,142  60,146  88,138  108,130
-    125,122 140,116 152,108 163,115 174,106 186,97
-    198,90  210,98  222,86  233,78  240,84  248,72
-    258,80  267,65  277,58  285,66  296,50  306,60
-    315,44  324,54  332,39  341,49  350,34  360,45
-    369,36  378,48  387,30  396,42  404,24  412,36
-    420,18  428,30  436,22  444,34  452,14  460,26
-    468,18  476,30  484,20  492,32  501,24  510,36
-    520,26  531,38  542,28  554,42  565,30  577,46
-    589,34  602,50  615,38  629,54  643,44  657,60
-    671,50  686,66  701,56  716,70  732,60  747,74
-    763,64  779,78  795,68  812,82  829,72  847,86
-    865,76  883,90  900,82  900,180
+  <!-- Gran cien -->
+  <polygon fill="#101f2e" points="
+    0,160  0,132  35,124  70,128  100,118  125,110
+    148,100 165,92  180,84  195,90  210,78  225,68
+    240,74  255,62  268,52  280,58  294,44  308,54
+    320,38  334,48  346,30  358,40  370,24  382,34
+    394,18  406,28  418,12  430,22  442,16  454,26
+    466,10  478,20  490,14  502,24  514,18  526,30
+    540,20  554,32  568,22  582,36  596,26  612,42
+    628,30  644,46  660,36  676,52  694,42  712,58
+    730,48  748,64  766,54  784,70  802,60  820,76
+    840,66  860,82  882,72  904,88  926,78  950,92
+    1000,84  1000,160
   "/>
 
-  <!-- Grań — główna warstwa (jaśniejsza) -->
-  <polygon fill="#2e4a62" points="
-    0,180  0,154  30,148  60,152  88,144  108,136
-    125,128 140,122 152,114 163,121 174,112 186,103
-    198,96  210,104 222,92  233,84  240,90  248,78
-    258,86  267,71  277,64  285,72  296,56  306,66
-    315,50  324,60  332,45  341,55  350,40  360,51
-    369,42  378,54  387,36  396,48  404,30  412,42
-    420,24  428,36  436,28  444,40  452,20  460,32
-    468,24  476,36  484,26  492,38  501,30  510,42
-    520,32  531,44  542,34  554,48  565,36  577,52
-    589,40  602,56  615,44  629,60  643,50  657,66
-    671,56  686,72  701,62  716,76  732,66  747,80
-    763,70  779,84  795,74  812,88  829,78  847,92
-    865,82  883,96  900,88  900,180
+  <!-- Gran glowna -->
+  <polygon fill="#243d52" points="
+    0,160  0,138  35,130  70,134  100,124  125,116
+    148,106 165,98  180,90  195,96  210,84  225,74
+    240,80  255,68  268,58  280,64  294,50  308,60
+    320,44  334,54  346,36  358,46  370,30  382,40
+    394,24  406,34  418,18  430,28  442,22  454,32
+    466,16  478,26  490,20  502,30  514,24  526,36
+    540,26  554,38  568,28  582,42  596,32  612,48
+    628,36  644,52  660,42  676,58  694,48  712,64
+    730,54  748,70  766,60  784,76  802,66  820,82
+    840,72  860,88  882,78  904,94  926,84  950,98
+    1000,90  1000,160
   "/>
 
-  <!-- Snieg na wierzcholkach -->
-  <polygon fill="#deeeff" opacity="0.85" points="
-    267,71  277,64  281,68  285,72  296,56  300,60  306,66
-    315,50  319,54  324,60  332,45  336,49  341,55  350,40
-    354,44  360,51  369,42  373,46  378,54  387,36  391,40
-    396,48  404,30  408,34  412,42  420,24  424,28  428,36
-    436,28  440,32  444,40  452,20  456,24  460,32  468,24
-    472,28  476,36  484,26  488,30  492,38
+  <!-- Snieg -->
+  <polygon fill="#deeeff" opacity="0.9" points="
+    294,50  300,55  308,60  320,44  326,49  334,54
+    346,36  352,41  358,46  370,30  376,35  382,40
+    394,24  400,29  406,34  418,18  424,23  430,28
+    442,22  448,27  454,32  466,16  472,21  478,26
+    490,20  496,25  502,30  514,24  520,29  526,36
+    540,26  546,31  554,38
   "/>
 
-  <!-- Etykiety szczytow -->
-  <line x1="233" y1="84" x2="233" y2="66" stroke="#7ab0d0" stroke-width="1.2"/>
-  <text x="233" y="60" fill="#b8d8f0" font-family="serif" font-size="11" text-anchor="middle">Swnica</text>
+  <!-- Etykiety — duze czcionki, skaluja sie z viewBox -->
+  <line x1="268" y1="58" x2="268" y2="38" stroke="#5a96c0" stroke-width="1.5"/>
+  <text x="268" y="32" fill="#a0c8e8" font-family="Georgia,serif" font-size="16" text-anchor="middle">Swinica</text>
 
-  <line x1="332" y1="45" x2="332" y2="27" stroke="#7ab0d0" stroke-width="1.2"/>
-  <text x="332" y="21" fill="#c8e0f4" font-family="serif" font-size="11" text-anchor="middle">Rysy</text>
+  <line x1="346" y1="36" x2="346" y2="16" stroke="#5a96c0" stroke-width="1.5"/>
+  <text x="346" y="10" fill="#c0ddf4" font-family="Georgia,serif" font-size="16" text-anchor="middle">Rysy</text>
 
-  <line x1="387" y1="36" x2="387" y2="18" stroke="#7ab0d0" stroke-width="1.2"/>
-  <text x="387" y="13" fill="#b8d8f0" font-family="serif" font-size="10" text-anchor="middle">Kozi W.</text>
+  <line x1="418" y1="18" x2="418" y2="0" stroke="#80c0e8" stroke-width="2"/>
+  <text x="418" y="-4" fill="#ffffff" font-family="Georgia,serif" font-size="18" font-weight="bold" text-anchor="middle">Gerlach</text>
 
-  <line x1="420" y1="24" x2="420" y2="6" stroke="#d0ecff" stroke-width="1.5"/>
-  <text x="420" y="5" fill="#ffffff" font-family="serif" font-size="13" font-weight="bold" text-anchor="middle">Gerlach</text>
+  <line x1="466" y1="16" x2="490" y2="2" stroke="#5a96c0" stroke-width="1.5"/>
+  <text x="540" y="2" fill="#a0c8e8" font-family="Georgia,serif" font-size="15" text-anchor="middle">Lomnica</text>
 
-  <line x1="452" y1="20" x2="475" y2="6" stroke="#7ab0d0" stroke-width="1.2"/>
-  <text x="500" y="6" fill="#b8d8f0" font-family="serif" font-size="11" text-anchor="start">Lomnica</text>
-
-  <!-- Pasek dolny z napisem -->
-  <rect x="0" y="148" width="900" height="32" fill="#06111e" opacity="0.7"/>
-  <text x="450" y="169" fill="#7aaac8" font-family="serif" font-size="14" font-weight="bold"
-        text-anchor="middle" letter-spacing="4">POGODA GORSKA - TATRY &amp; BESKIDY</text>
+  <!-- Pasek tytulowy na dole -->
+  <rect x="0" y="128" width="1000" height="32" fill="#060e18" opacity="0.75"/>
+  <text x="500" y="150" fill="#6aaad0" font-family="Georgia,serif" font-size="17" font-weight="bold"
+        text-anchor="middle" letter-spacing="5">POGODA GORSKA  -  TATRY &amp; BESKIDY</text>
 
 </svg>
 </body></html>"""
-components.html(BANNER_HTML, height=165, scrolling=False)
+components.html(BANNER_HTML, height=155, scrolling=False)
 
 sobota, niedziela = nastepny_weekend()
 
