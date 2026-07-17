@@ -7,8 +7,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 st.set_page_config(
-    page_title="Pogoda Górska — Tatry & Beskidy",
-    page_icon="⛰️",
+    page_title="Mountain Weather — Tatry & Beskidy",
+    page_icon="🏔️",
     layout="wide"
 )
 
@@ -24,8 +24,15 @@ st.markdown("""
 [data-testid="stHeader"] {
     background-color: #0a1520 !important;
 }
-[data-testid="stMain"] > div:first-child {
-    padding-top: 0.3rem;
+/* Banner bezposrednio pod headerem */
+[data-testid="stMain"] { padding-top: 0 !important; }
+[data-testid="stMain"] > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
+/* Iframe bannera — pelna szerokosc, bez bialego otoczenia */
+iframe[title="streamlit_component.v1.html"] {
+    margin-top: -4px !important;
+    display: block !important;
+    width: 100% !important;
+    border-radius: 0 0 10px 10px !important;
 }
 /* ---- Tekst ogolny ---- */
 body, p, div, span, label {
@@ -35,13 +42,6 @@ body, p, div, span, label {
 h1 { font-size: 1.9rem !important; font-weight: 800 !important; color: #e8f4ff !important; }
 h2 { color: #c8ddf0 !important; }
 h3 { color: #90bce0 !important; border-bottom: 2px solid #1e3a58; padding-bottom: 4px; margin-top: 1.2rem !important; }
-
-/* ---- Banner iframe — pelna szerokosc ---- */
-iframe[title="streamlit_component.v1.html"] {
-    width: 100% !important;
-    border-radius: 10px !important;
-    display: block !important;
-}
 
 /* ---- Karty metryk ---- */
 [data-testid="metric-container"] {
@@ -99,6 +99,14 @@ hr { border-color: #1e3a58 !important; margin: 0.8rem 0 !important; }
 
 /* ---- Caption / subtext ---- */
 [data-testid="stCaptionContainer"] p { color: #7aaac8 !important; }
+
+/* ---- Multiselect tagi — ciemnogranatowe ---- */
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
+    background-color: #1e3a58 !important;
+    color: #c8ddf0 !important;
+    border: 1px solid #2e5a88 !important;
+}
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] svg { fill: #7aaac8 !important; }
 
 /* ---- Dataframe tlo ---- */
 [data-testid="stDataFrame"] table { background: #0e1e2f !important; }
@@ -868,34 +876,47 @@ sobota, niedziela = nastepny_weekend()
 # ---- Tytuł + data weekendu ----
 col_tytul, col_weekend = st.columns([3, 1])
 with col_tytul:
-    st.markdown("# ⛰️ Pogoda Górska — Tatry & Beskidy")
+    st.markdown("""
+    <div style="display:flex;align-items:center;gap:14px;margin-top:10px;margin-bottom:4px;">
+      <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,4 35,32 3,32" fill="#243d52" stroke="#5a96c0" stroke-width="1.5"/>
+        <polygon points="19,4 27,17 11,17" fill="#deeeff" opacity="0.9"/>
+        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#1a3048"/>
+      </svg>
+      <div>
+        <div style="font-size:1.75rem;font-weight:800;color:#e8f4ff;line-height:1.1;letter-spacing:0.5px;">Mountain Weather</div>
+        <div style="font-size:0.8rem;color:#7aaac8;letter-spacing:2px;">TATRY &amp; BESKIDY</div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
 with col_weekend:
     st.markdown(f"""
-    <div style="background:#ffffff;border:1px solid #c0d0e0;border-radius:10px;padding:10px 16px;text-align:center;margin-top:6px;">
-      <div style="font-size:0.72rem;color:#667788;text-transform:uppercase;letter-spacing:1px;">Prognoza na weekend</div>
-      <div style="font-size:1rem;font-weight:700;color:#1a2a3a;">{sobota.strftime('%d.%m')} sob – {niedziela.strftime('%d.%m')} nd</div>
+    <div style="background:#243d52;border:1px solid #3a6080;border-radius:10px;padding:10px 16px;text-align:center;margin-top:10px;">
+      <div style="font-size:0.68rem;color:#7aaac8;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px;">Prognoza na weekend</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#e8f4ff;">{sobota.strftime('%d.%m')} sob – {niedziela.strftime('%d.%m')} nd</div>
     </div>
     """, unsafe_allow_html=True)
 st.divider()
 
 # --- Sekcja 1: Wybór źródła ---
 st.markdown("### 🌐 Źródło pogody")
-tryb_zrodla = st.radio(
-    "Tryb:",
-    ["Jedno źródło", "Porównaj wszystkie źródła"],
-    horizontal=True,
-    help="Tryb porównania pobiera dane ze wszystkich źródeł i zestawia je na jednym wykresie."
-)
-
-if tryb_zrodla == "Jedno źródło":
-    wybrane_zrodlo = st.selectbox(
-        "Źródło danych:",
-        list(ZRODLA.keys()),
-        help="Wybierz skąd pobierać prognozę pogody."
+col_z1, col_z2 = st.columns([2, 3])
+with col_z1:
+    tryb_zrodla = st.selectbox(
+        "Tryb:",
+        ["Jedno źródło", "Porównaj wszystkie źródła"],
+        help="Tryb porównania pobiera dane ze wszystkich źródeł i zestawia je na jednym wykresie."
     )
-    st.caption(f"ℹ️ {ZRODLA_INFO[wybrane_zrodlo]}")
-else:
-    st.info("ℹ️ Zostaną pobrane dane ze wszystkich 3 źródeł: Open-Meteo best_match, Open-Meteo ICON oraz Yr.no (MET Norway)")
+with col_z2:
+    if tryb_zrodla == "Jedno źródło":
+        wybrane_zrodlo = st.selectbox(
+            "Źródło danych:",
+            list(ZRODLA.keys()),
+            help="Wybierz skąd pobierać prognozę pogody."
+        )
+        st.caption(f"ℹ️ {ZRODLA_INFO[wybrane_zrodlo]}")
+    else:
+        st.info("ℹ️ Dane ze wszystkich 3 źródeł: Open-Meteo, ICON, Yr.no")
 
 st.divider()
 
