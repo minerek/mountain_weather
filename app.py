@@ -65,7 +65,6 @@ SZCZYTY = {
     "Brestová":                          (49.1953, 19.8058, 1903, "Tatry Zachodnie"),
     "Hruba Kopa":                        (49.1994, 19.8267, 2166, "Tatry Zachodnie"),
     "Banikovský štít":                   (49.1969, 19.8183, 2178, "Tatry Zachodnie"),
-    "Siodłowy Wierch (Sedlo)":           (49.2156, 19.8439, 1995, "Tatry Zachodnie"),
 
     # ---------- TATRY SŁOWACKIE ----------
     "Gerlach (Gerlachovský štít)":        (49.1831, 20.1344, 2655, "Tatry Słowackie"),
@@ -81,7 +80,8 @@ SZCZYTY = {
     "Szeroka Jaworzyńska (Jahňací štít)": (49.1908, 20.1714, 2210, "Tatry Słowackie"),
     "Mały Kieżmarski Szczyt":             (49.1947, 20.1894, 2513, "Tatry Słowackie"),
     "Wielki Kieżmarski Szczyt":           (49.1931, 20.2006, 2556, "Tatry Słowackie"),
-    "Staroleśny Szczyt (Slavkovský štít)":(49.2019, 20.1828, 2452, "Tatry Słowackie"),
+    "Sławkowski Szczyt (Slavkovský štít)":(49.1983, 20.1883, 2452, "Tatry Słowackie"),
+    "Bradavica (Staroleśny Szczyt)":      (49.2019, 20.1828, 2476, "Tatry Słowackie"),
     "Hawrań (Havran)":                    (49.2189, 20.2864, 2152, "Tatry Słowackie"),
     "Murań (Murán)":                      (49.2158, 20.2761, 2068, "Tatry Słowackie"),
     "Jagnięcy Szczyt (Baranec)":          (49.1931, 19.8722, 2185, "Tatry Słowackie"),
@@ -89,8 +89,6 @@ SZCZYTY = {
     "Solisko":                            (49.2183, 19.9717, 2093, "Tatry Słowackie"),
     "Szatan":                             (49.1944, 20.0489, 2415, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":         (49.1794, 20.0883, 2499, "Tatry Słowackie"),
-    "Téryho chata (okolice)":             (49.2019, 20.1617, 2015, "Tatry Słowackie"),
-    "Nefcerka":                           (49.1886, 20.0981, 2335, "Tatry Słowackie"),
     "Mengusovský štít":                   (49.1908, 20.0803, 2438, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
