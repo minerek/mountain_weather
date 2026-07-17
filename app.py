@@ -181,19 +181,22 @@ def zdjecie_szczytu(nazwa, lat, lon):
     """Zwraca URL zdjęcia lub None jeśli brak."""
     return ZDJECIA.get(nazwa)
 
-def miniatura_mapa_html(lat, lon, zoom=13):
-    """Zwraca HTML z osadzonym podglądem mapy przez iframe Leaflet CDN — działa zawsze."""
+def miniatura_mapa_html(lat, lon, zoom=14):
+    """Zwraca HTML z osadzonym podglądem mapy przez iframe OSM — marker dokładnie na szczycie."""
+    # bbox: lewy-dolny-lon, lewy-dolny-lat, prawy-górny-lon, prawy-górny-lat
+    d = 0.018  # ~2 km w każdą stronę
+    bbox = f"{lon-d},{lat-d},{lon+d},{lat+d}"
     return f"""
-<div style="width:100%;height:220px;border-radius:8px;overflow:hidden;border:1px solid #444;">
+<div style="width:100%;height:230px;border-radius:8px;overflow:hidden;border:1px solid #555;">
 <iframe
-  width="100%" height="220"
+  width="100%" height="230"
   frameborder="0" scrolling="no"
-  src="https://www.openstreetmap.org/export/embed.html?bbox={lon-0.03},{lat-0.02},{lon+0.03},{lat+0.02}&layer=cyclemap&marker={lat},{lon}"
-  style="border:none;">
+  src="https://www.openstreetmap.org/export/embed.html?bbox={bbox}&layer=cyclemap&marker={lat},{lon}"
+  style="border:none;display:block;">
 </iframe>
 </div>
-<div style="font-size:11px;color:#888;margin-top:2px;">
-  <a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map={zoom}/{lat}/{lon}" target="_blank">Otwórz na mapie OpenStreetMap</a>
+<div style="font-size:11px;color:#888;margin-top:3px;">
+  📍 <a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map={zoom}/{lat}/{lon}" target="_blank" style="color:#888;">Otwórz pełną mapę OSM</a>
 </div>
 """
 
@@ -332,8 +335,9 @@ def _parse_open_meteo(d):
         "izot0":       h["freezinglevel_height"],
     })
 
+@st.cache_data(ttl=3600, show_spinner=False)
 def pobierz_open_meteo(lat, lon):
-    """Open-Meteo — model best_match (ICON/ECMWF)."""
+    """Open-Meteo — model best_match (ICON/ECMWF). Cache 1h."""
     url = (
         f"https://api.open-meteo.com/v1/forecast"
         f"?latitude={lat}&longitude={lon}"
@@ -341,11 +345,12 @@ def pobierz_open_meteo(lat, lon):
         f"&windspeed_unit=ms&timezone=Europe%2FWarsaw"
         f"&forecast_days=10&models=best_match"
     )
-    d = requests.get(url, timeout=10).json()
+    d = requests.get(url, timeout=15).json()
     return _parse_open_meteo(d)
 
+@st.cache_data(ttl=3600, show_spinner=False)
 def pobierz_yr(lat, lon):
-    """Yr.no (MET Norway) — model NWP."""
+    """Yr.no (MET Norway) — model NWP. Cache 1h."""
     url = f"https://api.met.no/weatherapi/locationforecast/2.0/complete?lat={lat:.4f}&lon={lon:.4f}"
     r = requests.get(url, headers={"User-Agent": "MountainWeatherApp/1.0 github.com/minerek/mountain_weather"}, timeout=10)
     data = r.json()
@@ -393,8 +398,9 @@ def yr_symbol_to_wmo(symbol):
     if "clearsky" in s:              return 0
     return 2
 
+@st.cache_data(ttl=3600, show_spinner=False)
 def pobierz_open_meteo_icon(lat, lon):
-    """Open-Meteo z modelem ICON Seamless (DWD Niemcy — najlepszy dla Karpat)."""
+    """Open-Meteo z modelem ICON Seamless (DWD Niemcy — najlepszy dla Karpat). Cache 1h."""
     url = (
         f"https://api.open-meteo.com/v1/forecast"
         f"?latitude={lat}&longitude={lon}"
@@ -402,7 +408,7 @@ def pobierz_open_meteo_icon(lat, lon):
         f"&windspeed_unit=ms&timezone=Europe%2FWarsaw"
         f"&forecast_days=7&models=icon_seamless"
     )
-    d = requests.get(url, timeout=10).json()
+    d = requests.get(url, timeout=15).json()
     return _parse_open_meteo(d)
 
 ZRODLA = {
