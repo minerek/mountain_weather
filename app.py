@@ -26,7 +26,7 @@ st.markdown("""
 }
 /* Pasek Streamlit ma ok 58px — odsuwamy tresc zeby banner byl widoczny */
 [data-testid="stMain"] { padding-top: 0 !important; }
-[data-testid="stAppViewBlockContainer"] { padding-top: 65px !important; }
+[data-testid="stAppViewBlockContainer"] { padding-top: 75px !important; }
 /* Iframe bannera — pelna szerokosc */
 iframe[title="streamlit_component.v1.html"] {
     display: block !important;
@@ -771,102 +771,124 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 # UI
 # ============================================================
 # ---- SVG panorama Tatr jako banner — renderowane przez components.html ----
+# Grań przesunieta w dol (y=80..160), etykiety nad nią (y=20..70), wszystko w viewBox 0 0 1000 200
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:100%; height:100%; background:#0b1c2e; overflow:hidden; }
+  html, body { width:100%; height:200px; background:#07111c; overflow:hidden; }
 </style></head>
 <body>
-<svg viewBox="0 0 1000 160" preserveAspectRatio="xMidYMid slice"
+<svg viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid meet"
      xmlns="http://www.w3.org/2000/svg"
-     style="width:100%;height:150px;display:block;">
+     style="width:100%;height:200px;display:block;">
 
   <!-- Niebo -->
-  <rect width="1000" height="160" fill="#0b1c2e"/>
+  <rect width="1000" height="200" fill="#07111c"/>
 
-  <!-- Gwiazdy -->
-  <circle cx="50"  cy="15" r="2"   fill="#fff" opacity="0.9"/>
-  <circle cx="120" cy="8"  r="1.5" fill="#fff" opacity="0.8"/>
-  <circle cx="200" cy="22" r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="290" cy="7"  r="2"   fill="#fff" opacity="0.7"/>
-  <circle cx="380" cy="14" r="1.5" fill="#fff" opacity="0.8"/>
-  <circle cx="520" cy="6"  r="2"   fill="#fff" opacity="0.7"/>
-  <circle cx="610" cy="18" r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="700" cy="10" r="2"   fill="#fff" opacity="0.8"/>
-  <circle cx="800" cy="7"  r="1.5" fill="#fff" opacity="0.7"/>
-  <circle cx="900" cy="20" r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="80"  cy="35" r="1.5" fill="#fff" opacity="0.5"/>
-  <circle cx="175" cy="40" r="1.2" fill="#fff" opacity="0.4"/>
-  <circle cx="340" cy="32" r="1.5" fill="#fff" opacity="0.5"/>
-  <circle cx="560" cy="28" r="1.2" fill="#fff" opacity="0.4"/>
-  <circle cx="760" cy="36" r="1.5" fill="#fff" opacity="0.5"/>
-  <circle cx="960" cy="12" r="2"   fill="#fff" opacity="0.7"/>
+  <!-- Gwiazdy — wszystkie w gornej polowie (y < 80) -->
+  <circle cx="45"  cy="12" r="2"   fill="#fff" opacity="0.9"/>
+  <circle cx="115" cy="6"  r="1.8" fill="#fff" opacity="0.85"/>
+  <circle cx="195" cy="18" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="275" cy="5"  r="2"   fill="#fff" opacity="0.8"/>
+  <circle cx="360" cy="14" r="1.8" fill="#fff" opacity="0.85"/>
+  <circle cx="455" cy="4"  r="2"   fill="#fff" opacity="0.9"/>
+  <circle cx="545" cy="16" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="630" cy="8"  r="1.8" fill="#fff" opacity="0.8"/>
+  <circle cx="720" cy="5"  r="2"   fill="#fff" opacity="0.85"/>
+  <circle cx="810" cy="15" r="1.8" fill="#fff" opacity="0.8"/>
+  <circle cx="895" cy="7"  r="2"   fill="#fff" opacity="0.9"/>
+  <circle cx="970" cy="20" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="80"  cy="30" r="1.3" fill="#fff" opacity="0.5"/>
+  <circle cx="170" cy="38" r="1.2" fill="#fff" opacity="0.45"/>
+  <circle cx="320" cy="28" r="1.3" fill="#fff" opacity="0.5"/>
+  <circle cx="500" cy="35" r="1.2" fill="#fff" opacity="0.45"/>
+  <circle cx="680" cy="32" r="1.3" fill="#fff" opacity="0.5"/>
+  <circle cx="860" cy="38" r="1.2" fill="#fff" opacity="0.45"/>
 
   <!-- Ksiezyc -->
-  <circle cx="910" cy="35" r="22" fill="#c8ddf0"/>
-  <circle cx="922" cy="27" r="18" fill="#0b1c2e"/>
+  <circle cx="870" cy="42" r="25" fill="#bdd4ec"/>
+  <circle cx="883" cy="33" r="20" fill="#07111c"/>
 
-  <!-- Gran cien -->
-  <polygon fill="#101f2e" points="
-    0,160  0,132  35,124  70,128  100,118  125,110
-    148,100 165,92  180,84  195,90  210,78  225,68
-    240,74  255,62  268,52  280,58  294,44  308,54
-    320,38  334,48  346,30  358,40  370,24  382,34
-    394,18  406,28  418,12  430,22  442,16  454,26
-    466,10  478,20  490,14  502,24  514,18  526,30
-    540,20  554,32  568,22  582,36  596,26  612,42
-    628,30  644,46  660,36  676,52  694,42  712,58
-    730,48  748,64  766,54  784,70  802,60  820,76
-    840,66  860,82  882,72  904,88  926,78  950,92
-    1000,84  1000,160
+  <!-- GRAN — cien (kilka px w lewo/dol) -->
+  <polygon fill="#162636" points="
+    0,200  0,170  40,158  80,163  115,152  148,140
+    172,128 194,116 212,108 228,115 244,102 260,90
+    276,97  292,83  308,70  322,78  336,62  350,72
+    364,56  378,66  392,50  406,60  420,74  434,82
+    448,66  462,56  476,68  490,52  504,62  518,48
+    534,58  550,72  566,60  582,76  598,64  615,80
+    632,68  650,86  668,74  686,92  704,80  722,98
+    740,86  758,104 776,92  794,110 812,98  832,116
+    852,104 874,122 896,110 920,128 944,116 968,132
+    1000,120 1000,200
   "/>
 
-  <!-- Gran glowna -->
-  <polygon fill="#243d52" points="
-    0,160  0,138  35,130  70,134  100,124  125,116
-    148,106 165,98  180,90  195,96  210,84  225,74
-    240,80  255,68  268,58  280,64  294,50  308,60
-    320,44  334,54  346,36  358,46  370,30  382,40
-    394,24  406,34  418,18  430,28  442,22  454,32
-    466,16  478,26  490,20  502,30  514,24  526,36
-    540,26  554,38  568,28  582,42  596,32  612,48
-    628,36  644,52  660,42  676,58  694,48  712,64
-    730,54  748,70  766,60  784,76  802,66  820,82
-    840,72  860,88  882,78  904,94  926,84  950,98
-    1000,90  1000,160
+  <!-- GRAN — warstwa glowna (jasnoniebieska, wyrazna) -->
+  <polygon fill="#4a7a9b" points="
+    0,200  0,175  40,163  80,168  115,157  148,145
+    172,133 194,121 212,113 228,120 244,107 260,95
+    276,102 292,88  308,75  322,83  336,67  350,77
+    364,61  378,71  392,55  406,65  420,79  434,87
+    448,71  462,61  476,73  490,57  504,67  518,53
+    534,63  550,77  566,65  582,81  598,69  615,85
+    632,73  650,91  668,79  686,97  704,85  722,103
+    740,91  758,109 776,97  794,115 812,103 832,121
+    852,109 874,127 896,115 920,133 944,121 968,137
+    1000,125 1000,200
   "/>
 
-  <!-- Snieg -->
-  <polygon fill="#deeeff" opacity="0.9" points="
-    294,50  300,55  308,60  320,44  326,49  334,54
-    346,36  352,41  358,46  370,30  376,35  382,40
-    394,24  400,29  406,34  418,18  424,23  430,28
-    442,22  448,27  454,32  466,16  472,21  478,26
-    490,20  496,25  502,30  514,24  520,29  526,36
-    540,26  546,31  554,38
+  <!-- Krawedz grani — cienka biala linia -->
+  <polyline fill="none" stroke="#8abcd4" stroke-width="1.5" opacity="0.6" points="
+    0,175  40,163  80,168  115,157  148,145
+    172,133 194,121 212,113 228,120 244,107 260,95
+    276,102 292,88  308,75  322,83  336,67  350,77
+    364,61  378,71  392,55  406,65  420,79  434,87
+    448,71  462,61  476,73  490,57  504,67  518,53
+    534,63  550,77  566,65  582,81  598,69  615,85
+    632,73  650,91  668,79  686,97  704,85  722,103
+    740,91  758,109 776,97  794,115 812,103 832,121
+    852,109 874,127 896,115 920,133 944,121 968,137
+    1000,125
   "/>
 
-  <!-- Etykiety — duze czcionki, skaluja sie z viewBox -->
-  <line x1="268" y1="58" x2="268" y2="38" stroke="#5a96c0" stroke-width="1.5"/>
-  <text x="268" y="32" fill="#a0c8e8" font-family="Georgia,serif" font-size="16" text-anchor="middle">Swinica</text>
+  <!-- Snieg — wyraznie bialy, tylko na wierzcholkach po lewej -->
+  <polygon fill="#e2f0ff" opacity="0.95" points="
+    308,75  314,80  322,83  336,67  342,72  350,77
+    364,61  370,66  378,71  392,55  398,60  406,65
+    420,79  426,83  434,87  448,71  454,76  462,61
+    468,66  476,73  490,57  496,62  504,67  518,53
+    524,58  534,63
+  "/>
 
-  <line x1="346" y1="36" x2="346" y2="16" stroke="#5a96c0" stroke-width="1.5"/>
-  <text x="346" y="10" fill="#c0ddf4" font-family="Georgia,serif" font-size="16" text-anchor="middle">Rysy</text>
+  <!-- Etykiety — WSZYSTKIE y >= 20, linie od grani w gore -->
+  <!-- Swinica: gran y=88, linia do y=62, tekst y=56 -->
+  <line x1="292" y1="88" x2="292" y2="62" stroke="#7ab0d0" stroke-width="1.5"/>
+  <text x="292" y="56" fill="#a8cce8" font-family="Georgia,serif" font-size="15" text-anchor="middle">Swinica</text>
 
-  <line x1="418" y1="18" x2="418" y2="0" stroke="#80c0e8" stroke-width="2"/>
-  <text x="418" y="-4" fill="#ffffff" font-family="Georgia,serif" font-size="18" font-weight="bold" text-anchor="middle">Gerlach</text>
+  <!-- Rysy: gran y=67, linia do y=42, tekst y=36 -->
+  <line x1="336" y1="67" x2="336" y2="42" stroke="#7ab0d0" stroke-width="1.5"/>
+  <text x="336" y="36" fill="#c0daf4" font-family="Georgia,serif" font-size="15" text-anchor="middle">Rysy</text>
 
-  <line x1="466" y1="16" x2="490" y2="2" stroke="#5a96c0" stroke-width="1.5"/>
-  <text x="540" y="2" fill="#a0c8e8" font-family="Georgia,serif" font-size="15" text-anchor="middle">Lomnica</text>
+  <!-- Kozi Wierch: gran y=55, linia do y=30, tekst y=24 -->
+  <line x1="392" y1="55" x2="392" y2="30" stroke="#7ab0d0" stroke-width="1.5"/>
+  <text x="392" y="24" fill="#a8cce8" font-family="Georgia,serif" font-size="13" text-anchor="middle">Kozi W.</text>
+
+  <!-- Gerlach (najwyzszy sczyt): gran y=79, linia do y=22, tekst y=20 -->
+  <line x1="420" y1="79" x2="420" y2="22" stroke="#c0e0ff" stroke-width="2"/>
+  <text x="420" y="20" fill="#ffffff" font-family="Georgia,serif" font-size="18" font-weight="bold" text-anchor="middle">Gerlach</text>
+
+  <!-- Lomnica: gran y=61, linia do y=36, tekst y=30 -->
+  <line x1="462" y1="61" x2="490" y2="30" stroke="#7ab0d0" stroke-width="1.5"/>
+  <text x="540" y="30" fill="#a8cce8" font-family="Georgia,serif" font-size="14" text-anchor="middle">Lomnica</text>
 
   <!-- Pasek tytulowy na dole -->
-  <rect x="0" y="128" width="1000" height="32" fill="#060e18" opacity="0.75"/>
-  <text x="500" y="150" fill="#6aaad0" font-family="Georgia,serif" font-size="17" font-weight="bold"
-        text-anchor="middle" letter-spacing="5">POGODA GORSKA  -  TATRY &amp; BESKIDY</text>
+  <rect x="0" y="165" width="1000" height="35" fill="#040c16" opacity="0.85"/>
+  <text x="500" y="188" fill="#6aaad0" font-family="Georgia,serif" font-size="17" font-weight="bold"
+        text-anchor="middle" letter-spacing="5">MOUNTAIN WEATHER  —  TATRY &amp; BESKIDY</text>
 
 </svg>
 </body></html>"""
-components.html(BANNER_HTML, height=155, scrolling=False)
+components.html(BANNER_HTML, height=205, scrolling=False)
 
 sobota, niedziela = nastepny_weekend()
 
