@@ -770,16 +770,16 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 # ============================================================
 # UI
 # ============================================================
-# Banner — wielowarstwowe gory inspirowane flat design, bez nachodzacych etykiet
+# Banner — wielowarstwowe gory, skalowanie przez viewBox bez przycinania gory
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:100%; height:220px; overflow:hidden; }
+  html, body { width:100%; height:200px; overflow:hidden; background:#0a2a3a; }
 </style></head>
 <body>
-<svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid slice"
+<svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid meet"
      xmlns="http://www.w3.org/2000/svg"
-     style="position:fixed;top:0;left:0;width:100%;height:220px;display:block;">
+     style="width:100%;height:200px;display:block;">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#0a2a3a"/>
@@ -887,7 +887,7 @@ BANNER_HTML = """<!DOCTYPE html>
         text-anchor="middle" letter-spacing="6">MOUNTAIN WEATHER  —  TATRY &amp; BESKIDY</text>
 </svg>
 </body></html>"""
-components.html(BANNER_HTML, height=225, scrolling=False)
+components.html(BANNER_HTML, height=205, scrolling=False)
 
 sobota, niedziela = nastepny_weekend()
 
@@ -895,16 +895,9 @@ sobota, niedziela = nastepny_weekend()
 col_tytul, col_weekend = st.columns([3, 1])
 with col_tytul:
     st.markdown("""
-    <div style="display:flex;align-items:center;gap:14px;margin-top:10px;margin-bottom:4px;">
-      <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="19,4 35,32 3,32" fill="#243d52" stroke="#5a96c0" stroke-width="1.5"/>
-        <polygon points="19,4 27,17 11,17" fill="#deeeff" opacity="0.9"/>
-        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#1a3048"/>
-      </svg>
-      <div>
-        <div style="font-size:1.75rem;font-weight:800;color:#e8f4ff;line-height:1.1;letter-spacing:0.5px;">Mountain Weather</div>
-        <div style="font-size:0.8rem;color:#7aaac8;letter-spacing:2px;">TATRY &amp; BESKIDY</div>
-      </div>
+    <div style="margin-top:10px;margin-bottom:4px;">
+      <div style="font-size:1.75rem;font-weight:800;color:#e8f4ff;line-height:1.1;letter-spacing:0.5px;">Mountain Weather</div>
+      <div style="font-size:0.8rem;color:#7aaac8;letter-spacing:2px;">TATRY &amp; BESKIDY</div>
     </div>
     """, unsafe_allow_html=True)
 with col_weekend:
