@@ -6,17 +6,43 @@ from datetime import datetime, timedelta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# Favicon jako SVG data-URI — trojkat gorki, te same kolory co banner
+_FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a2a3a'/%3E%3Cpolygon points='16,4 28,26 4,26' fill='%234a7a9b'/%3E%3Cpolygon points='16,4 21,13 11,13' fill='%23ddeeff' opacity='0.9'/%3E%3Cpolygon points='11,13 13,18 4,26 28,26 21,13 19,18' fill='%23144a5e'/%3E%3C/svg%3E"
+
 st.set_page_config(
     page_title="Mountain Weather — Tatry & Beskidy",
-    page_icon="⛰️",
+    page_icon=_FAVICON,
     layout="wide"
 )
 
 # ============================================================
 # CUSTOM CSS — wygląd i czytelność
 # ============================================================
+# Zaladuj Google Font Cinzel (serif gorski) przez components.html — st.markdown blokuje @import
+components.html("""<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">""", height=0)
+
 st.markdown("""
 <style>
+/* ---- Czcionka Cinzel dla naglowkow ---- */
+.mw-heading {
+    font-family: 'Cinzel', Georgia, serif !important;
+    color: #90bce0 !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 1.5px !important;
+    border-bottom: 1px solid #1e3a58;
+    padding-bottom: 5px;
+    margin-top: 1.1rem !important;
+    margin-bottom: 0.6rem !important;
+}
+.mw-peak-title {
+    font-family: 'Cinzel', Georgia, serif !important;
+    color: #c8ddf0 !important;
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    margin-bottom: 4px !important;
+}
 /* ---- Ciemne tlo granatowe ---- */
 [data-testid="stAppViewContainer"], [data-testid="stApp"] {
     background-color: #0e1e2f !important;
@@ -40,7 +66,7 @@ body, p, div, span, label {
 /* ---- Nagłówki ---- */
 h1 { font-size: 1.9rem !important; font-weight: 800 !important; color: #e8f4ff !important; }
 h2 { color: #c8ddf0 !important; }
-h3 { color: #90bce0 !important; border-bottom: 2px solid #1e3a58; padding-bottom: 4px; margin-top: 1.2rem !important; }
+h3 { font-family: 'Cinzel', Georgia, serif !important; color: #90bce0 !important; border-bottom: 1px solid #1e3a58; padding-bottom: 4px; margin-top: 1.2rem !important; font-size: 1.1rem !important; letter-spacing: 1px !important; }
 
 /* ---- Karty metryk ---- */
 [data-testid="metric-container"] {
@@ -910,7 +936,10 @@ with col_weekend:
 st.divider()
 
 # --- Sekcja 1: Wybór źródła ---
-st.markdown("### 🌐 Źródło pogody")
+st.markdown("""<div class="mw-heading">
+  <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+  Źródło pogody
+</div>""", unsafe_allow_html=True)
 col_z1, col_z2 = st.columns([2, 3])
 with col_z1:
     tryb_zrodla = st.selectbox(
@@ -932,7 +961,10 @@ with col_z2:
 st.divider()
 
 # --- Sekcja 2: Filtr pasm + wybór szczytu ---
-st.markdown("### 🏔️ Wybierz pasmo i szczyt")
+st.markdown("""<div class="mw-heading">
+  <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="3,20 12,4 21,20"/><polyline points="3,20 21,20"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+  Wybierz pasmo i szczyt
+</div>""", unsafe_allow_html=True)
 
 col_pasma, col_szczyt = st.columns([1, 2])
 
@@ -1019,7 +1051,7 @@ if wspolrzedne_ok and lat:
             components.html(miniatura_mapa_html(lat, lon, nazwa_wyswietlana), height=260)
 
     with col_info:
-        st.markdown(f"### 📍 {nazwa_wyswietlana}")
+        st.markdown(f'<div class="mw-peak-title">{nazwa_wyswietlana}</div>', unsafe_allow_html=True)
         st.markdown(f"**Wysokość:** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
         if _pasmo:
             st.markdown(f"**Pasmo:** {_pasmo}")
