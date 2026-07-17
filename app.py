@@ -13,6 +13,78 @@ st.set_page_config(
 )
 
 # ============================================================
+# CUSTOM CSS — wygląd i czytelność
+# ============================================================
+st.markdown("""
+<style>
+/* ---- Ogólne ---- */
+[data-testid="stAppViewContainer"] {
+    background-color: #f0f4f8;
+}
+[data-testid="stMain"] > div:first-child {
+    padding-top: 0.5rem;
+}
+/* ---- Nagłówki sekcji ---- */
+h1 { font-size: 1.9rem !important; font-weight: 800 !important; color: #1a2a3a !important; }
+h3 { color: #2c4a6e !important; border-bottom: 2px solid #d0dce8; padding-bottom: 4px; margin-top: 1.2rem !important; }
+
+/* ---- Karty metryk ---- */
+[data-testid="metric-container"] {
+    background: #ffffff;
+    border: 1px solid #ccd6e0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+[data-testid="metric-container"] label { font-size: 0.75rem !important; color: #556677 !important; }
+[data-testid="metric-container"] [data-testid="stMetricValue"] { font-size: 1.25rem !important; font-weight: 700 !important; color: #1a2a3a !important; }
+
+/* ---- Selectbox / multiselect / radio ---- */
+[data-testid="stSelectbox"] > div, [data-testid="stMultiSelect"] > div {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+/* ---- Radio przyciski ---- */
+[data-testid="stRadio"] > div { gap: 8px; }
+[data-testid="stRadio"] label {
+    background: #ffffff;
+    border: 1px solid #b0c0d0;
+    border-radius: 6px;
+    padding: 4px 14px;
+    font-size: 0.88rem;
+}
+
+/* ---- Przyciski ---- */
+[data-testid="stButton"] > button[kind="primary"] {
+    background: linear-gradient(135deg, #2c6fad, #1a4a7a);
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.55rem 1.6rem;
+    border: none;
+    box-shadow: 0 2px 6px rgba(28,74,122,0.35);
+    transition: transform 0.1s;
+}
+[data-testid="stButton"] > button[kind="primary"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(28,74,122,0.4);
+}
+
+/* ---- Tabela danych ---- */
+[data-testid="stDataFrame"] { border-radius: 8px; overflow: hidden; }
+iframe[title="streamlit_component.v1.html"] { border-radius: 8px; }
+
+/* ---- Info / warning / success ---- */
+[data-testid="stAlert"] { border-radius: 8px; }
+
+/* ---- Sidebar / divider ---- */
+hr { border-color: #c8d8e8 !important; margin: 0.8rem 0 !important; }
+</style>
+""", unsafe_allow_html=True)
+
+# ============================================================
 # BAZA SZCZYTÓW: (lat, lon, wysokość m n.p.m., pasmo)
 # ============================================================
 # Pasma: "Tatry Polskie", "Tatry Słowackie", "Beskid Śląski",
@@ -672,13 +744,178 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 # ============================================================
 # UI
 # ============================================================
-st.title("⛰️ Pogoda Górska — Tatry & Beskidy")
+# ---- SVG panorama Tatr jako banner ----
+st.markdown("""
+<div style="background:#1a2a3a;border-radius:12px;padding:0 0 0 0;margin-bottom:1rem;overflow:hidden;">
+<svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+  <!-- niebo gradientowe -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1f35"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f0f8"/>
+      <stop offset="100%" stop-color="#b8cede"/>
+    </linearGradient>
+    <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7a8fa0"/>
+      <stop offset="100%" stop-color="#4a6070"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="140" fill="url(#sky)"/>
+
+  <!-- gwiazdy -->
+  <circle cx="50" cy="18" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="120" cy="10" r="1.2" fill="#fff" opacity="0.8"/>
+  <circle cx="200" cy="22" r="0.9" fill="#fff" opacity="0.5"/>
+  <circle cx="310" cy="8" r="1.1" fill="#fff" opacity="0.7"/>
+  <circle cx="450" cy="14" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="580" cy="9" r="1.3" fill="#fff" opacity="0.8"/>
+  <circle cx="700" cy="20" r="0.8" fill="#fff" opacity="0.5"/>
+  <circle cx="820" cy="11" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="860" cy="25" r="0.9" fill="#fff" opacity="0.4"/>
+
+  <!-- Grań Tatr — sylwetka skalna (ciemna) -->
+  <polygon fill="url(#rock)" points="
+    0,140
+    0,105
+    30,100
+    60,108
+    90,95
+    115,88
+    130,82
+    145,75
+    155,68
+    165,75
+    175,70
+    190,60
+    200,55
+    210,63
+    225,52
+    235,45
+    242,50
+    250,40
+    258,48
+    268,38
+    278,35
+    285,42
+    295,30
+    305,38
+    315,25
+    322,32
+    330,22
+    338,30
+    348,18
+    355,28
+    362,20
+    370,32
+    380,16
+    388,28
+    396,14
+    402,22
+    410,12
+    418,22
+    425,10
+    432,20
+    438,15
+    445,25
+    452,8
+    458,18
+    465,12
+    472,22
+    480,16
+    488,28
+    496,20
+    502,30
+    510,22
+    518,32
+    526,20
+    535,30
+    544,22
+    552,35
+    560,25
+    568,38
+    578,28
+    588,40
+    598,30
+    608,42
+    618,32
+    628,48
+    638,38
+    650,52
+    662,42
+    675,58
+    688,48
+    700,62
+    715,52
+    730,68
+    745,60
+    760,72
+    775,65
+    790,78
+    805,70
+    820,80
+    840,88
+    860,82
+    880,90
+    900,95
+    900,140
+  "/>
+
+  <!-- Śnieg na wierzchołkach -->
+  <polygon fill="url(#snow)" opacity="0.85" points="
+    280,35  278,35  285,42  295,30  302,36
+    315,25  322,32  330,22  337,28
+    348,18  354,26  362,20  368,30
+    380,16  387,26  396,14  401,21
+    410,12  417,20  425,10  431,19  438,15  444,24
+    452,8   457,17  465,12  471,21
+    480,16  487,26  496,20  501,29
+  "/>
+
+  <!-- Księżyc -->
+  <circle cx="810" cy="28" r="12" fill="#d4e8ff" opacity="0.9"/>
+  <circle cx="816" cy="24" r="10" fill="#1a2f45" opacity="0.9"/>
+
+  <!-- Etykiety szczytów -->
+  <text x="330" y="16" fill="#e8f0f8" font-family="sans-serif" font-size="7.5" text-anchor="middle" opacity="0.9">Rysy</text>
+  <line x1="330" y1="18" x2="330" y2="22" stroke="#e8f0f8" stroke-width="0.6" opacity="0.7"/>
+
+  <text x="380" y="10" fill="#e8f0f8" font-family="sans-serif" font-size="7" text-anchor="middle" opacity="0.9">Kozi</text>
+  <line x1="380" y1="12" x2="380" y2="16" stroke="#e8f0f8" stroke-width="0.6" opacity="0.7"/>
+
+  <text x="425" y="4" fill="#f0f8ff" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle" opacity="1">Gerlach</text>
+  <line x1="425" y1="6" x2="425" y2="10" stroke="#f0f8ff" stroke-width="0.8" opacity="0.9"/>
+
+  <text x="452" y="2" fill="#e8f0f8" font-family="sans-serif" font-size="7" text-anchor="middle" opacity="0.9">Łomnica</text>
+  <line x1="452" y1="4" x2="452" y2="8" stroke="#e8f0f8" stroke-width="0.6" opacity="0.7"/>
+
+  <text x="235" y="39" fill="#c8d8e8" font-family="sans-serif" font-size="7" text-anchor="middle" opacity="0.8">Świnica</text>
+
+  <!-- Napis główny -->
+  <text x="450" y="120" fill="#b8cede" font-family="sans-serif" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="3" opacity="0.7">TATRY  &amp;  BESKIDY</text>
+</svg>
+</div>
+""", unsafe_allow_html=True)
+
 sobota, niedziela = nastepny_weekend()
-st.caption(f"Prognoza na najbliższy weekend: **{sobota.strftime('%d.%m.%Y')} (sob)** — **{niedziela.strftime('%d.%m.%Y')} (nd)**")
+
+# ---- Tytuł + data weekendu ----
+col_tytul, col_weekend = st.columns([3, 1])
+with col_tytul:
+    st.markdown("# ⛰️ Pogoda Górska — Tatry & Beskidy")
+with col_weekend:
+    st.markdown(f"""
+    <div style="background:#ffffff;border:1px solid #c0d0e0;border-radius:10px;padding:10px 16px;text-align:center;margin-top:6px;">
+      <div style="font-size:0.72rem;color:#667788;text-transform:uppercase;letter-spacing:1px;">Prognoza na weekend</div>
+      <div style="font-size:1rem;font-weight:700;color:#1a2a3a;">{sobota.strftime('%d.%m')} sob – {niedziela.strftime('%d.%m')} nd</div>
+    </div>
+    """, unsafe_allow_html=True)
 st.divider()
 
 # --- Sekcja 1: Wybór źródła ---
-st.markdown("### 1️⃣ Wybierz źródło pogody")
+st.markdown("### 🌐 Źródło pogody")
 tryb_zrodla = st.radio(
     "Tryb:",
     ["Jedno źródło", "Porównaj wszystkie źródła"],
@@ -699,7 +936,7 @@ else:
 st.divider()
 
 # --- Sekcja 2: Filtr pasm + wybór szczytu ---
-st.markdown("### 2️⃣ Wybierz pasmo i szczyt")
+st.markdown("### 🏔️ Wybierz pasmo i szczyt")
 
 col_pasma, col_szczyt = st.columns([1, 2])
 
