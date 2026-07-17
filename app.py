@@ -55,7 +55,7 @@ SZCZYTY = {
     "Mięguszowiecki Szczyt Pośredni":                (49.1882, 20.0619, 2393, "Tatry Polskie"),
     "Cubryna":                                       (49.1895, 20.0536, 2376, "Tatry Polskie"),
     "Szpiglasowy Wierch (Hrubý štít)":               (49.1969, 20.0411, 2172, "Tatry Polskie"),
-    "Kazalnica Mięguszowiecka":                      (49.1970, 20.0714, 2159, "Tatry Polskie"),
+    "Kazalnica Mięguszowiecka":                      (49.1897, 20.0694, 2159, "Tatry Polskie"),
     "Kościelec":                                     (49.2255, 20.0147, 2155, "Tatry Polskie"),
     "Zawrat":                                        (49.2195, 20.0161, 2159, "Tatry Polskie"),
     "Świnica (Svinica)":                             (49.2196, 20.0094, 2301, "Tatry Polskie"),
