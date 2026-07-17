@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
@@ -180,10 +181,21 @@ def zdjecie_szczytu(nazwa, lat, lon):
     """Zwraca URL zdjęcia lub None jeśli brak."""
     return ZDJECIA.get(nazwa)
 
-def miniatura_osm(lat, lon, zoom=13):
-    """Zwraca URL miniaturki mapy OpenStreetMap dla szczytu."""
-    # Używamy staticmap API (darmowe)
-    return f"https://staticmap.openstreetmap.de/staticmap.php?center={lat},{lon}&zoom={zoom}&size=400x250&maptype=mapnik&markers={lat},{lon},red-pushpin"
+def miniatura_mapa_html(lat, lon, zoom=13):
+    """Zwraca HTML z osadzonym podglądem mapy przez iframe Leaflet CDN — działa zawsze."""
+    return f"""
+<div style="width:100%;height:220px;border-radius:8px;overflow:hidden;border:1px solid #444;">
+<iframe
+  width="100%" height="220"
+  frameborder="0" scrolling="no"
+  src="https://www.openstreetmap.org/export/embed.html?bbox={lon-0.03},{lat-0.02},{lon+0.03},{lat+0.02}&layer=cyclemap&marker={lat},{lon}"
+  style="border:none;">
+</iframe>
+</div>
+<div style="font-size:11px;color:#888;margin-top:2px;">
+  <a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map={zoom}/{lat}/{lon}" target="_blank">Otwórz na mapie OpenStreetMap</a>
+</div>
+"""
 
 # ============================================================
 # LINKI ZEWNĘTRZNE DO SERWISÓW POGODOWYCH
@@ -667,23 +679,22 @@ if wspolrzedne_ok and lat:
     with col_foto:
         zdjecie_url = ZDJECIA.get(nazwa_wyswietlana)
         if zdjecie_url:
-            # Pobieramy zdjęcie przez requests i przekazujemy jako bytes — omija hotlinking
+            # Pobieramy zdjęcie przez requests jako bytes — omija blokadę hotlinkingu
             try:
-                resp = requests.get(zdjecie_url,
-                                    headers={"User-Agent": "Mozilla/5.0", "Referer": "https://commons.wikimedia.org/"},
-                                    timeout=5)
+                resp = requests.get(
+                    zdjecie_url,
+                    headers={"User-Agent": "Mozilla/5.0", "Referer": "https://commons.wikimedia.org/"},
+                    timeout=6,
+                )
                 if resp.status_code == 200:
-                    st.image(resp.content, caption=f"© Wikimedia Commons", use_container_width=True)
+                    st.image(resp.content, caption="© Wikimedia Commons", use_container_width=True)
                 else:
-                    st.image(miniatura_osm(lat, lon), caption="Mapa szczytu (OSM)", use_container_width=True)
+                    components.html(miniatura_mapa_html(lat, lon), height=245)
             except Exception:
-                st.image(miniatura_osm(lat, lon), caption="Mapa szczytu (OSM)", use_container_width=True)
+                components.html(miniatura_mapa_html(lat, lon), height=245)
         else:
-            # Brak zdjęcia — pokaż mapę OSM
-            try:
-                st.image(miniatura_osm(lat, lon), caption="Mapa szczytu (OSM)", use_container_width=True)
-            except Exception:
-                st.caption("📷 Brak zdjęcia")
+            # Brak zdjęcia — mapa OSM przez iframe (nie ma limitów)
+            components.html(miniatura_mapa_html(lat, lon), height=245)
 
     with col_info:
         st.markdown(f"### 📍 {nazwa_wyswietlana}")
