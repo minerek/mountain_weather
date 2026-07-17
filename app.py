@@ -796,32 +796,32 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 # ============================================================
 # UI
 # ============================================================
-# Banner — wielowarstwowe gory, skalowanie przez viewBox bez przycinania gory
+# Banner — rozciaga sie na pelna szerokosc (none), bez etykiet, bez sniegu, bez paska tytulowego
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:100%; height:200px; overflow:hidden; background:#0a2a3a; }
 </style></head>
 <body>
-<svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid meet"
+<svg viewBox="0 0 1200 220" preserveAspectRatio="none"
      xmlns="http://www.w3.org/2000/svg"
      style="width:100%;height:200px;display:block;">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#0a2a3a"/>
       <stop offset="60%"  stop-color="#0e4060"/>
       <stop offset="100%" stop-color="#1a6878"/>
     </linearGradient>
-    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="bfog" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%"   stop-color="#1a6878" stop-opacity="0"/>
       <stop offset="100%" stop-color="#1a6878" stop-opacity="0.55"/>
     </linearGradient>
   </defs>
 
   <!-- Niebo -->
-  <rect width="1200" height="220" fill="url(#sky)"/>
+  <rect width="1200" height="220" fill="url(#bsky)"/>
 
-  <!-- Warstwa 4 — najdalsze gory (najjasniejsze, mgielne) -->
+  <!-- Warstwa 4 — najdalsze gory mgielne -->
   <polygon fill="#2a7a8a" opacity="0.55" points="
     0,220 0,145 60,128 130,118 200,105 270,95 340,88 400,80
     460,74 520,68 580,74 640,80 700,86 760,92 820,98 880,92
@@ -836,17 +836,11 @@ BANNER_HTML = """<!DOCTYPE html>
     780,110 830,118 880,126 930,132 980,138 1030,132
     1080,126 1130,132 1180,138 1200,140 1200,220
   "/>
-  <!-- Snieg w3 -->
-  <polygon fill="#cce8f4" opacity="0.6" points="
-    390,72 400,78 410,72 420,64 432,72 440,78 450,58
-    460,66 470,72 480,52 492,60 500,66 510,46 520,54 530,60
-    540,52 548,58 558,64 565,58 572,64 578,70 590,64
-  "/>
 
   <!-- Mgla miedzy warstwami -->
-  <rect x="0" y="130" width="1200" height="40" fill="url(#fog)"/>
+  <rect x="0" y="130" width="1200" height="40" fill="url(#bfog)"/>
 
-  <!-- Warstwa 2 — blizsze gory (ciemniejsze) -->
+  <!-- Warstwa 2 — blizsze gory -->
   <polygon fill="#144a5e" points="
     0,220 0,175 60,165 110,155 160,142 200,130 240,118
     275,108 305,98 330,88 355,78 375,68 395,60 415,54
@@ -854,13 +848,6 @@ BANNER_HTML = """<!DOCTYPE html>
     570,108 600,116 640,124 690,132 740,140 790,148
     840,154 900,160 960,166 1020,160 1080,154 1140,160
     1200,166 1200,220
-  "/>
-  <!-- Snieg w2 -->
-  <polygon fill="#ddeeff" opacity="0.8" points="
-    330,88 340,94 350,88 355,78 365,84 372,88 375,68
-    383,74 390,80 395,60 403,66 410,72 415,54 423,60
-    430,66 435,48 443,54 450,60 455,54 462,60 468,66
-    470,60 476,66 482,72 485,68 490,74 496,80 500,78
   "/>
 
   <!-- Warstwa 1 — pierwszoplanowe gory (najciemniejsze) -->
@@ -893,24 +880,6 @@ BANNER_HTML = """<!DOCTYPE html>
     <polygon points="1154,212 1158,192 1162,212"/>
     <polygon points="1170,220 1179,200 1188,220"/>
   </g>
-
-  <!-- Etykiety — tylko 3, dobrze rozmieszczone, bez nachodzenia -->
-  <!-- Rysy — szczyt po lewej stronie, wyraznie -->
-  <line x1="355" y1="78" x2="320" y2="52" stroke="#6ab4d4" stroke-width="1.2" opacity="0.9"/>
-  <text x="285" y="48" fill="#b0d8f0" font-family="Georgia,serif" font-size="14" font-weight="bold" text-anchor="middle">Rysy 2501m</text>
-
-  <!-- Gerlach — centralna, najwyzsza, wyrozniajaca sie etykieta -->
-  <line x1="480" y1="52" x2="480" y2="28" stroke="#90d0f0" stroke-width="1.5" opacity="0.9"/>
-  <text x="480" y="22" fill="#ffffff" font-family="Georgia,serif" font-size="16" font-weight="bold" text-anchor="middle">Gerlach 2655m</text>
-
-  <!-- Lomnica — po prawej od Gerlacha, duzy odstep -->
-  <line x1="700" y1="90" x2="720" y2="58" stroke="#6ab4d4" stroke-width="1.2" opacity="0.9"/>
-  <text x="760" y="52" fill="#b0d8f0" font-family="Georgia,serif" font-size="14" font-weight="bold" text-anchor="middle">Lomnica 2634m</text>
-
-  <!-- Pasek tytulowy -->
-  <rect x="0" y="188" width="1200" height="32" fill="#040e18" opacity="0.82"/>
-  <text x="600" y="209" fill="#5aaac8" font-family="Georgia,serif" font-size="16" font-weight="bold"
-        text-anchor="middle" letter-spacing="6">MOUNTAIN WEATHER  —  TATRY &amp; BESKIDY</text>
 </svg>
 </body></html>"""
 components.html(BANNER_HTML, height=205, scrolling=False)
@@ -921,9 +890,16 @@ sobota, niedziela = nastepny_weekend()
 col_tytul, col_weekend = st.columns([3, 1])
 with col_tytul:
     st.markdown("""
-    <div style="margin-top:10px;margin-bottom:4px;">
-      <div style="font-size:1.75rem;font-weight:800;color:#e8f4ff;line-height:1.1;letter-spacing:0.5px;">Mountain Weather</div>
-      <div style="font-size:0.8rem;color:#7aaac8;letter-spacing:2px;">TATRY &amp; BESKIDY</div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:10px;margin-bottom:4px;">
+      <svg width="34" height="34" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1"/>
+        <polygon points="19,4 27,17 11,17" fill="#ddeeff" opacity="0.9"/>
+        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#144a5e"/>
+      </svg>
+      <div>
+        <div style="font-family:'Cinzel',Georgia,serif;font-size:1.75rem;font-weight:700;color:#e8f4ff;line-height:1.1;letter-spacing:1px;">Mountain Weather</div>
+        <div style="font-size:0.75rem;color:#7aaac8;letter-spacing:3px;">TATRY &amp; BESKIDY</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 with col_weekend:
@@ -1051,7 +1027,10 @@ if wspolrzedne_ok and lat:
             components.html(miniatura_mapa_html(lat, lon, nazwa_wyswietlana), height=260)
 
     with col_info:
-        st.markdown(f'<div class="mw-peak-title">{nazwa_wyswietlana}</div>', unsafe_allow_html=True)
+        st.markdown(f"""<div class="mw-peak-title">
+          <svg style="vertical-align:-4px;margin-right:6px" width="18" height="18" viewBox="0 0 24 24" fill="#e05050" stroke="#e05050" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff" stroke="none"/></svg>
+          {nazwa_wyswietlana}
+        </div>""", unsafe_allow_html=True)
         st.markdown(f"**Wysokość:** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
         if _pasmo:
             st.markdown(f"**Pasmo:** {_pasmo}")
