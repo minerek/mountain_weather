@@ -744,111 +744,109 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 # ============================================================
 # UI
 # ============================================================
-# ---- SVG panorama Tatr jako banner ----
-# viewBox 0 0 900 200 — dużo miejsca, grań zajmuje dolne 120px, niebo górne 80px
-st.markdown("""
-<div style="border-radius:12px;overflow:hidden;margin-bottom:1.2rem;box-shadow:0 4px 16px rgba(0,0,0,0.25);">
-<svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+# ---- SVG panorama Tatr jako banner — renderowane przez components.html ----
+BANNER_HTML = """<!DOCTYPE html>
+<html><head><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:transparent; overflow:hidden; }
+</style></head>
+<body>
+<svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:160px;display:block;border-radius:10px;">
 
-  <!-- Niebo — dwa prostokąty jako prosty gradient -->
-  <rect width="900" height="200" fill="#0b1c2e"/>
-  <rect width="900" height="90" fill="#102540" opacity="0.7"/>
+  <!-- Niebo -->
+  <rect width="900" height="180" fill="#0b1c2e"/>
 
   <!-- Gwiazdy -->
-  <circle cx="45"  cy="20" r="1.5" fill="#fff" opacity="0.7"/>
-  <circle cx="110" cy="12" r="1.2" fill="#fff" opacity="0.9"/>
-  <circle cx="190" cy="28" r="1.0" fill="#fff" opacity="0.5"/>
-  <circle cx="270" cy="10" r="1.4" fill="#fff" opacity="0.8"/>
-  <circle cx="355" cy="18" r="1.1" fill="#fff" opacity="0.6"/>
-  <circle cx="480" cy="8"  r="1.3" fill="#fff" opacity="0.7"/>
-  <circle cx="560" cy="22" r="1.0" fill="#fff" opacity="0.5"/>
-  <circle cx="640" cy="14" r="1.2" fill="#fff" opacity="0.8"/>
-  <circle cx="730" cy="9"  r="1.5" fill="#fff" opacity="0.6"/>
-  <circle cx="820" cy="25" r="1.0" fill="#fff" opacity="0.7"/>
-  <circle cx="870" cy="15" r="1.3" fill="#fff" opacity="0.5"/>
+  <circle cx="45"  cy="18" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="110" cy="10" r="1.2" fill="#fff" opacity="0.9"/>
+  <circle cx="185" cy="25" r="1.0" fill="#fff" opacity="0.6"/>
+  <circle cx="265" cy="8"  r="1.4" fill="#fff" opacity="0.7"/>
+  <circle cx="350" cy="16" r="1.1" fill="#fff" opacity="0.8"/>
+  <circle cx="475" cy="7"  r="1.3" fill="#fff" opacity="0.7"/>
+  <circle cx="555" cy="20" r="1.0" fill="#fff" opacity="0.6"/>
+  <circle cx="638" cy="12" r="1.2" fill="#fff" opacity="0.8"/>
+  <circle cx="728" cy="8"  r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="818" cy="22" r="1.0" fill="#fff" opacity="0.7"/>
+  <circle cx="868" cy="13" r="1.3" fill="#fff" opacity="0.6"/>
+  <circle cx="72"  cy="35" r="0.9" fill="#fff" opacity="0.5"/>
+  <circle cx="162" cy="42" r="1.0" fill="#fff" opacity="0.4"/>
+  <circle cx="318" cy="38" r="0.8" fill="#fff" opacity="0.5"/>
+  <circle cx="510" cy="32" r="1.1" fill="#fff" opacity="0.4"/>
+  <circle cx="695" cy="40" r="0.9" fill="#fff" opacity="0.5"/>
 
-  <!-- Księżyc -->
-  <circle cx="820" cy="38" r="18" fill="#c8ddf0"/>
-  <circle cx="828" cy="32" r="15" fill="#0b1c2e"/>
+  <!-- Ksiezyc -->
+  <circle cx="820" cy="36" r="20" fill="#c8ddf0"/>
+  <circle cx="830" cy="29" r="16" fill="#0b1c2e"/>
 
-  <!-- Sylwetka grani — ciemna skała, dolna warstwa (cienie) -->
-  <polygon fill="#1e2e3e" points="
-    0,200 0,155 25,148 50,152 75,144 95,138
-    110,132 125,126 135,120 148,114 158,120
-    168,112 180,104 192,98  202,106 215,94
-    228,86  236,92  244,80  254,88  265,74
-    275,68  283,76  294,60  304,70  315,52
-    325,62  333,48  342,58  352,42  361,54
-    370,44  379,56  388,38  397,50  405,32
-    413,44  422,26  430,38  438,30  446,42
-    454,22  462,34  470,26  478,38  486,28
-    494,40  502,32  510,44  520,34  532,46
-    544,36  555,50  566,38  578,54  590,42
-    604,58  618,46  632,62  646,52  660,68
-    675,56  690,72  706,62  720,76  736,66
-    750,80  765,70  780,84  796,74  812,88
-    828,78  845,92  862,82  880,96  900,88
-    900,200
+  <!-- Grań — cień (ciemna warstwa z tyłu) -->
+  <polygon fill="#162232" points="
+    0,180  0,148  30,142  60,146  88,138  108,130
+    125,122 140,116 152,108 163,115 174,106 186,97
+    198,90  210,98  222,86  233,78  240,84  248,72
+    258,80  267,65  277,58  285,66  296,50  306,60
+    315,44  324,54  332,39  341,49  350,34  360,45
+    369,36  378,48  387,30  396,42  404,24  412,36
+    420,18  428,30  436,22  444,34  452,14  460,26
+    468,18  476,30  484,20  492,32  501,24  510,36
+    520,26  531,38  542,28  554,42  565,30  577,46
+    589,34  602,50  615,38  629,54  643,44  657,60
+    671,50  686,66  701,56  716,70  732,60  747,74
+    763,64  779,78  795,68  812,82  829,72  847,86
+    865,76  883,90  900,82  900,180
   "/>
 
-  <!-- Sylwetka grani — górna warstwa jaśniejsza (skała główna) -->
-  <polygon fill="#3a5068" points="
-    0,200 0,160 25,154 50,158 75,150 95,144
-    110,138 125,132 135,126 148,120 158,126
-    168,118 180,110 192,104 202,112 215,100
-    228,92  236,98  244,86  254,94  265,80
-    275,74  283,82  294,66  304,76  315,58
-    325,68  333,54  342,64  352,48  361,60
-    370,50  379,62  388,44  397,56  405,38
-    413,50  422,32  430,44  438,36  446,48
-    454,28  462,40  470,32  478,44  486,34
-    494,46  502,38  510,50  520,40  532,52
-    544,42  555,56  566,44  578,60  590,48
-    604,64  618,52  632,68  646,58  660,74
-    675,62  690,78  706,68  720,82  736,72
-    750,86  765,76  780,90  796,80  812,94
-    828,84  845,98  862,88  880,102 900,94
-    900,200
+  <!-- Grań — główna warstwa (jaśniejsza) -->
+  <polygon fill="#2e4a62" points="
+    0,180  0,154  30,148  60,152  88,144  108,136
+    125,128 140,122 152,114 163,121 174,112 186,103
+    198,96  210,104 222,92  233,84  240,90  248,78
+    258,86  267,71  277,64  285,72  296,56  306,66
+    315,50  324,60  332,45  341,55  350,40  360,51
+    369,42  378,54  387,36  396,48  404,30  412,42
+    420,24  428,36  436,28  444,40  452,20  460,32
+    468,24  476,36  484,26  492,38  501,30  510,42
+    520,32  531,44  542,34  554,48  565,36  577,52
+    589,40  602,56  615,44  629,60  643,50  657,66
+    671,56  686,72  701,62  716,76  732,66  747,80
+    763,70  779,84  795,74  812,88  829,78  847,92
+    865,82  883,96  900,88  900,180
   "/>
 
-  <!-- Śnieg na wierzchołkach (biała warstwa tylko przy szczytach) -->
-  <polygon fill="#ddeeff" opacity="0.9" points="
-    265,80  275,74  278,77  283,82  294,66  298,70  304,76
-    315,58  319,62  325,68  333,54  337,58  342,64  352,48
-    356,52  361,60  370,50  374,54  379,62  388,44  392,48
-    397,56  405,38  409,42  413,50  422,32  426,36  430,44
-    438,36  442,40  446,48  454,28  458,32  462,40  470,32
-    474,36  478,44  486,34  490,38  494,46
+  <!-- Snieg na wierzcholkach -->
+  <polygon fill="#deeeff" opacity="0.85" points="
+    267,71  277,64  281,68  285,72  296,56  300,60  306,66
+    315,50  319,54  324,60  332,45  336,49  341,55  350,40
+    354,44  360,51  369,42  373,46  378,54  387,36  391,40
+    396,48  404,30  408,34  412,42  420,24  424,28  428,36
+    436,28  440,32  444,40  452,20  456,24  460,32  468,24
+    472,28  476,36  484,26  488,30  492,38
   "/>
 
-  <!-- Etykiety szczytów — nad granią, z białą linią -->
-  <!-- Świnica -->
-  <line x1="244" y1="86" x2="244" y2="68" stroke="#a0c0e0" stroke-width="1"/>
-  <text x="244" y="62" fill="#c8ddf0" font-family="Georgia,serif" font-size="10" text-anchor="middle">Świnica</text>
+  <!-- Etykiety szczytow -->
+  <line x1="233" y1="84" x2="233" y2="66" stroke="#7ab0d0" stroke-width="1.2"/>
+  <text x="233" y="60" fill="#b8d8f0" font-family="serif" font-size="11" text-anchor="middle">Swnica</text>
 
-  <!-- Rysy -->
-  <line x1="333" y1="54" x2="333" y2="36" stroke="#a0c0e0" stroke-width="1"/>
-  <text x="333" y="30" fill="#c8ddf0" font-family="Georgia,serif" font-size="10" text-anchor="middle">Rysy ⭐</text>
+  <line x1="332" y1="45" x2="332" y2="27" stroke="#7ab0d0" stroke-width="1.2"/>
+  <text x="332" y="21" fill="#c8e0f4" font-family="serif" font-size="11" text-anchor="middle">Rysy</text>
 
-  <!-- Kozi Wierch -->
-  <line x1="388" y1="44" x2="388" y2="26" stroke="#a0c0e0" stroke-width="1"/>
-  <text x="388" y="20" fill="#c8ddf0" font-family="Georgia,serif" font-size="9" text-anchor="middle">Kozi Wierch</text>
+  <line x1="387" y1="36" x2="387" y2="18" stroke="#7ab0d0" stroke-width="1.2"/>
+  <text x="387" y="13" fill="#b8d8f0" font-family="serif" font-size="10" text-anchor="middle">Kozi W.</text>
 
-  <!-- Gerlach — najwyższy, większa etykieta -->
-  <line x1="422" y1="32" x2="422" y2="12" stroke="#e0f0ff" stroke-width="1.5"/>
-  <text x="422" y="8" fill="#ffffff" font-family="Georgia,serif" font-size="12" font-weight="bold" text-anchor="middle">Gerlach ⭐</text>
+  <line x1="420" y1="24" x2="420" y2="6" stroke="#d0ecff" stroke-width="1.5"/>
+  <text x="420" y="5" fill="#ffffff" font-family="serif" font-size="13" font-weight="bold" text-anchor="middle">Gerlach</text>
 
-  <!-- Łomnica -->
-  <line x1="454" y1="28" x2="454" y2="12" stroke="#a0c0e0" stroke-width="1"/>
-  <text x="500" y="8" fill="#c8ddf0" font-family="Georgia,serif" font-size="10" text-anchor="middle">Łomnica ⭐</text>
+  <line x1="452" y1="20" x2="475" y2="6" stroke="#7ab0d0" stroke-width="1.2"/>
+  <text x="500" y="6" fill="#b8d8f0" font-family="serif" font-size="11" text-anchor="start">Lomnica</text>
 
-  <!-- Napis tytułowy na dole bannera -->
-  <rect x="0" y="160" width="900" height="40" fill="#0b1c2e" opacity="0.55"/>
-  <text x="450" y="188" fill="#8ab4d4" font-family="Georgia,serif" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="5">POGODA GÓRSKA — TATRY &amp; BESKIDY</text>
+  <!-- Pasek dolny z napisem -->
+  <rect x="0" y="148" width="900" height="32" fill="#06111e" opacity="0.7"/>
+  <text x="450" y="169" fill="#7aaac8" font-family="serif" font-size="14" font-weight="bold"
+        text-anchor="middle" letter-spacing="4">POGODA GORSKA - TATRY &amp; BESKIDY</text>
 
 </svg>
-</div>
-""", unsafe_allow_html=True)
+</body></html>"""
+components.html(BANNER_HTML, height=165, scrolling=False)
 
 sobota, niedziela = nastepny_weekend()
 
