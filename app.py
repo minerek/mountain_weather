@@ -92,8 +92,8 @@ SZCZYTY = {
     "Durny Szczyt (Pyšný štít) ⭐WKT":            (49.1769, 20.1325, 2621, "Tatry Słowackie"),
     "Wysoka (Vysoká) ⭐WKT":                      (49.1822, 20.1025, 2558, "Tatry Słowackie"),
     "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT":   (49.1939, 20.1953, 2557, "Tatry Słowackie"),
-    "Kończysty Wierch (Končistá) ⭐WKT":          (49.1808, 20.0856, 2536, "Tatry Słowackie"),
-    "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.1917, 20.0072, 2530, "Tatry Słowackie"),
+    "Kończysta (Končistá) ⭐WKT":                 (49.1817, 20.0772, 2538, "Tatry Słowackie"),
+    "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.1908, 20.0044, 2526, "Tatry Słowackie"),
     "Krywań (Kriváň) ⭐WKT":                      (49.1758, 19.9944, 2495, "Tatry Słowackie"),
     "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.2019, 20.1828, 2489, "Tatry Słowackie"),
     "Ganek (Gánok) ⭐WKT":                        (49.1864, 20.1158, 2464, "Tatry Słowackie"),
@@ -194,22 +194,49 @@ def zdjecie_szczytu(nazwa, lat, lon):
     """Zwraca URL zdjęcia lub None jeśli brak."""
     return ZDJECIA.get(nazwa)
 
-def miniatura_mapa_html(lat, lon, zoom=14):
-    """Zwraca HTML z osadzonym podglądem mapy przez iframe OSM — marker dokładnie na szczycie."""
-    # bbox: lewy-dolny-lon, lewy-dolny-lat, prawy-górny-lon, prawy-górny-lat
-    d = 0.018  # ~2 km w każdą stronę
-    bbox = f"{lon-d},{lat-d},{lon+d},{lat+d}"
+def miniatura_mapa_html(lat, lon, nazwa="", zoom=14):
+    """Leaflet.js + OpenTopoMap — precyzyjny marker z podpisem szczytu."""
+    # Czyścimy ⭐WKT z nazwy do podpisu na mapie
+    label = nazwa.replace(" ⭐WKT", "").replace("'", "\\'").replace('"', "&quot;")
     return f"""
-<div style="width:100%;height:230px;border-radius:8px;overflow:hidden;border:1px solid #555;">
-<iframe
-  width="100%" height="230"
-  frameborder="0" scrolling="no"
-  src="https://www.openstreetmap.org/export/embed.html?bbox={bbox}&layer=cyclemap&marker={lat},{lon}"
-  style="border:none;display:block;">
-</iframe>
+<div id="map_{int(lat*10000)}_{int(lon*10000)}"
+     style="width:100%;height:240px;border-radius:8px;border:1px solid #555;">
 </div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){{
+  var divId = 'map_{int(lat*10000)}_{int(lon*10000)}';
+  var map = L.map(divId, {{zoomControl:true, attributionControl:false}})
+             .setView([{lat}, {lon}], {zoom});
+  L.tileLayer('https://{{s}}.tile.opentopomap.org/{{z}}/{{x}}/{{y}}.png', {{
+    maxZoom: 17,
+    attribution: 'OpenTopoMap'
+  }}).addTo(map);
+  var icon = L.divIcon({{
+    html: '<div style="background:#c0392b;width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px #000;"></div>',
+    iconSize:[12,12], iconAnchor:[6,6], className:''
+  }});
+  L.marker([{lat}, {lon}], {{icon:icon}})
+   .addTo(map)
+   .bindTooltip('{label}', {{permanent:true, direction:'top', offset:[0,-8],
+     className:'peak-label'}});
+}})();
+</script>
+<style>
+.peak-label {{
+  background:rgba(0,0,0,0.7);color:#fff;border:none;
+  padding:2px 6px;border-radius:3px;font-size:11px;font-weight:bold;
+  white-space:nowrap;box-shadow:none;
+}}
+.peak-label::before {{ display:none; }}
+</style>
 <div style="font-size:11px;color:#888;margin-top:3px;">
-  📍 <a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map={zoom}/{lat}/{lon}" target="_blank" style="color:#888;">Otwórz pełną mapę OSM</a>
+  📍 <a href="https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map={zoom}/{lat}/{lon}"
+     target="_blank" style="color:#888;">Otwórz w OpenStreetMap</a>
+  &nbsp;|&nbsp;
+  <a href="https://mapy.cz/turisticka?x={lon}&y={lat}&z={zoom}&source=coor&id={lon}%2C{lat}"
+     target="_blank" style="color:#888;">Mapy.cz</a>
 </div>
 """
 
@@ -721,12 +748,12 @@ if wspolrzedne_ok and lat:
                 if resp.status_code == 200:
                     st.image(resp.content, caption="© Wikimedia Commons", use_container_width=True)
                 else:
-                    components.html(miniatura_mapa_html(lat, lon), height=245)
+                    components.html(miniatura_mapa_html(lat, lon, nazwa_wyswietlana), height=260)
             except Exception:
-                components.html(miniatura_mapa_html(lat, lon), height=245)
+                components.html(miniatura_mapa_html(lat, lon, nazwa_wyswietlana), height=260)
         else:
             # Brak zdjęcia — mapa OSM przez iframe (nie ma limitów)
-            components.html(miniatura_mapa_html(lat, lon), height=245)
+            components.html(miniatura_mapa_html(lat, lon, nazwa_wyswietlana), height=260)
 
     with col_info:
         st.markdown(f"### 📍 {nazwa_wyswietlana}")
