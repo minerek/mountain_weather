@@ -337,15 +337,22 @@ def _parse_open_meteo(d):
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def pobierz_open_meteo(lat, lon):
-    """Open-Meteo — model best_match (ICON/ECMWF). Cache 1h."""
+    """Open-Meteo — bez parametru models (w pełni darmowe). Cache 1h."""
+    # UWAGA: models=best_match / icon_seamless mogą być płatne na niektórych IP
+    # Używamy domyślnego endpointu bez models= — zawsze darmowy
     url = (
         f"https://api.open-meteo.com/v1/forecast"
         f"?latitude={lat}&longitude={lon}"
         f"&hourly={HOURLY_FIELDS}"
         f"&windspeed_unit=ms&timezone=Europe%2FWarsaw"
-        f"&forecast_days=10&models=best_match"
+        f"&forecast_days=10"
     )
-    d = requests.get(url, timeout=15).json()
+    r = requests.get(url, timeout=15)
+    d = r.json()
+    if "error" in d or "reason" in d:
+        # Fallback: spróbuj przez ECMWF endpoint
+        url2 = url.replace("v1/forecast", "v1/ecmwf")
+        d = requests.get(url2, timeout=15).json()
     return _parse_open_meteo(d)
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -400,15 +407,21 @@ def yr_symbol_to_wmo(symbol):
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def pobierz_open_meteo_icon(lat, lon):
-    """Open-Meteo z modelem ICON Seamless (DWD Niemcy — najlepszy dla Karpat). Cache 1h."""
+    """Open-Meteo — endpoint DWD ICON (zawsze darmowy). Cache 1h."""
+    # Używamy dedykowanego endpointu DWD zamiast models=icon_seamless
     url = (
-        f"https://api.open-meteo.com/v1/forecast"
+        f"https://api.open-meteo.com/v1/dwd-icon"
         f"?latitude={lat}&longitude={lon}"
         f"&hourly={HOURLY_FIELDS}"
         f"&windspeed_unit=ms&timezone=Europe%2FWarsaw"
-        f"&forecast_days=7&models=icon_seamless"
+        f"&forecast_days=7"
     )
-    d = requests.get(url, timeout=15).json()
+    r = requests.get(url, timeout=15)
+    d = r.json()
+    if "error" in d or "reason" in d:
+        # Fallback na standardowy endpoint
+        url2 = url.replace("v1/dwd-icon", "v1/forecast")
+        d = requests.get(url2, timeout=15).json()
     return _parse_open_meteo(d)
 
 ZRODLA = {
@@ -748,7 +761,9 @@ if wspolrzedne_ok and st.button("🔍 Sprawdź pogodę na weekend", type="primar
             with st.spinner(f"Pobieram prognozę z {wybrane_zrodlo}..."):
                 df = fn(lat, lon)
         except Exception as e:
+            import traceback
             st.error(f"Błąd pobierania danych: {e}")
+            st.code(traceback.format_exc(), language="text")
             st.stop()
         wyswietl_prognoze(df, nazwa_wyswietlana, lat, lon, wys or 0, sobota, niedziela, wybrane_zrodlo)
 
