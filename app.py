@@ -27,13 +27,16 @@ SZCZYTY = {
     "Kościelec":                          (49.2333, 20.0167, 2155, "Tatry Polskie"),
     "Skrajny Granat":                     (49.2283, 20.0333, 2225, "Tatry Polskie"),
     "Pośredni Granat":                    (49.2267, 20.0300, 2234, "Tatry Polskie"),
+    "Zadni Granat":                       (49.2300, 20.0367, 2240, "Tatry Polskie"),
     "Zawrat":                             (49.2250, 20.0083, 2159, "Tatry Polskie"),
     "Orla Perć (grań)":                   (49.2200, 20.0200, 2000, "Tatry Polskie"),
     "Czarny Staw pod Rysami":             (49.1900, 20.0783, 1580, "Tatry Polskie"),
     "Morskie Oko":                        (49.2017, 20.0717, 1395, "Tatry Polskie"),
     "Żabi Koń":                           (49.2117, 20.0583, 2291, "Tatry Polskie"),
+    "Żabi Szczyt Polski":                 (49.2083, 20.0650, 2259, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Wielki":       (49.1950, 20.0667, 2438, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Czarny":       (49.1933, 20.0633, 2410, "Tatry Polskie"),
+    "Mięguszowiecki Szczyt Pośredni":     (49.1942, 20.0650, 2393, "Tatry Polskie"),
     "Cubryna":                            (49.2050, 20.0550, 2376, "Tatry Polskie"),
     "Wołowiec":                           (49.2617, 19.8483, 2064, "Tatry Polskie"),
     "Starorobociański Wierch":            (49.2433, 19.8617, 2176, "Tatry Polskie"),
@@ -44,7 +47,32 @@ SZCZYTY = {
     "Ciemniak":                           (49.2533, 19.9083, 2096, "Tatry Polskie"),
     "Tomanowy Wierch Polskie":            (49.2283, 19.9000, 2103, "Tatry Polskie"),
     "Krzesanica":                         (49.2467, 19.9150, 2122, "Tatry Polskie"),
-    "Czerwone Wierchy (Ciemniak)":        (49.2533, 19.9083, 2096, "Tatry Polskie"),
+    "Zadnia Kopka":                       (49.2317, 20.0483, 2162, "Tatry Polskie"),
+    "Pośrednia Kopka":                    (49.2300, 20.0450, 2133, "Tatry Polskie"),
+    "Skrajna Turnia":                     (49.2250, 20.0417, 2096, "Tatry Polskie"),
+    "Buczynowe Turnie":                   (49.2317, 20.0583, 2183, "Tatry Polskie"),
+    "Waksmundzki Wierch":                 (49.2617, 20.0583, 1617, "Tatry Polskie"),
+    "Wierch nad Kotlinami":               (49.2650, 20.0433, 1748, "Tatry Polskie"),
+    "Hawrań (Tatry Polskie)":             (49.2683, 20.2883, 1152, "Tatry Polskie"),
+    "Nosal":                              (49.2700, 19.9683, 1206, "Tatry Polskie"),
+    "Gubałówka":                          (49.2983, 19.9500,  1123, "Tatry Polskie"),
+
+    # ---------- TATRY ZACHODNIE (Rohacze i okolice) ----------
+    "Rohacz Ostry (Ostrý Roháč)":        (49.1900, 19.7683, 2088, "Tatry Zachodnie"),
+    "Rohacz Płaski (Plochý Roháč)":      (49.1933, 19.7567, 2001, "Tatry Zachodnie"),
+    "Wołowiec (Tatry Zach.)":            (49.2000, 19.7933, 2063, "Tatry Zachodnie"),
+    "Baraniec (Baranec)":                (49.1867, 19.7400, 2184, "Tatry Zachodnie"),
+    "Siwy Wierch (Sivý vrch)":           (49.2367, 19.8033, 1806, "Tatry Zachodnie"),
+    "Osobita":                           (49.2583, 19.7583, 1687, "Tatry Zachodnie"),
+    "Salatín":                           (49.1783, 19.7217, 2048, "Tatry Zachodnie"),
+    "Brestová":                          (49.1933, 19.8033, 1903, "Tatry Zachodnie"),
+    "Hruba Kopa":                        (49.2000, 19.8250, 2166, "Tatry Zachodnie"),
+    "Tatliakova veža":                   (49.1917, 19.7800, 1879, "Tatry Zachodnie"),
+    "Pachola":                           (49.2100, 19.8100, 1874, "Tatry Zachodnie"),
+    "Gaborova skala":                    (49.1983, 19.8433, 2075, "Tatry Zachodnie"),
+    "Banikovský štít":                   (49.1950, 19.8167, 2178, "Tatry Zachodnie"),
+    "Tomanová (przełęcz)":               (49.2200, 19.8750, 1686, "Tatry Zachodnie"),
+    "Siodłowy Wierch (Sedlo)":           (49.2150, 19.8417, 1995, "Tatry Zachodnie"),
 
     # ---------- TATRY SŁOWACKIE ----------
     "Gerlach (Gerlachovský štít)":        (49.1833, 20.1333, 2655, "Tatry Słowackie"),
@@ -69,6 +97,10 @@ SZCZYTY = {
     "Szatan":                             (49.1967, 20.0483, 2415, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":         (49.1794, 20.0883, 2499, "Tatry Słowackie"),
     "Téryho chata (okolice)":             (49.2017, 20.1600, 2015, "Tatry Słowackie"),
+    "Nefcerka":                           (49.1883, 20.0983, 2335, "Tatry Słowackie"),
+    "Mengusovský štít":                   (49.1900, 20.0800, 2438, "Tatry Słowackie"),
+    "Popradský štít":                     (49.1817, 20.1583, 2369, "Tatry Słowackie"),
+    "Rysia veža":                         (49.1850, 20.0950, 2350, "Tatry Słowackie"),
 
     # ---------- BESKID ŚLĄSKI ----------
     "Skrzyczne":                          (49.7100, 19.0317, 1257, "Beskid Śląski"),
@@ -123,6 +155,74 @@ SZCZYTY = {
 }
 
 PASMA = sorted(set(v[3] for v in SZCZYTY.values()))
+
+# ============================================================
+# ZDJĘCIA SZCZYTÓW (Wikimedia Commons — Creative Commons)
+# ============================================================
+ZDJECIA = {
+    "Rysy":                               "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Rysy_from_Morskie_Oko.jpg/800px-Rysy_from_Morskie_Oko.jpg",
+    "Giewont":                            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Giewont_z_Kulbackiego.jpg/800px-Giewont_z_Kulbackiego.jpg",
+    "Kasprowy Wierch":                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Kasprowy_Wierch.jpg/800px-Kasprowy_Wierch.jpg",
+    "Świnica":                            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Swinica.jpg/800px-Swinica.jpg",
+    "Kościelec":                          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ko%C5%9Bcielec_from_the_east.jpg/800px-Ko%C5%9Bcielec_from_the_east.jpg",
+    "Morskie Oko":                        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Morskie_Oko_2.jpg/800px-Morskie_Oko_2.jpg",
+    "Mięguszowiecki Szczyt Wielki":       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mieguszowieckie_szczyty.jpg/800px-Mieguszowieckie_szczyty.jpg",
+    "Wołowiec":                           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Wo%C5%82owiec_2064.jpg/800px-Wo%C5%82owiec_2064.jpg",
+    "Starorobociański Wierch":            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Starorobocianski_Wierch.jpg/800px-Starorobocianski_Wierch.jpg",
+    "Bystra":                             "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Bystra.jpg/800px-Bystra.jpg",
+    "Krzesanica":                         "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Krzesanica.jpg/800px-Krzesanica.jpg",
+    "Gerlach (Gerlachovský štít)":        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Gerlach%2C_highest_peak_of_the_Tatras.jpg/800px-Gerlach%2C_highest_peak_of_the_Tatras.jpg",
+    "Łomnica (Lomnický štít)":            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Lomnick%C3%BD_%C5%A1t%C3%ADt_from_south.jpg/800px-Lomnick%C3%BD_%C5%A1t%C3%ADt_from_south.jpg",
+    "Krywań (Kriváň)":                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Krivan.jpg/800px-Krivan.jpg",
+    "Kołowy Szczyt (Kolový štít)":        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kolovy_stit.jpg/800px-Kolovy_stit.jpg",
+    "Babia Góra":                         "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Babia_G%C3%B3ra_from_Zawoja.jpg/800px-Babia_G%C3%B3ra_from_Zawoja.jpg",
+    "Turbacz":                            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Turbacz.jpg/800px-Turbacz.jpg",
+    "Skrzyczne":                          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Skrzyczne.jpg/800px-Skrzyczne.jpg",
+    "Pilsko":                             "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Pilsko.jpg/800px-Pilsko.jpg",
+    "Rohacz Ostry (Ostrý Roháč)":        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Rohace_panorama.jpg/800px-Rohace_panorama.jpg",
+    "Rohacz Płaski (Plochý Roháč)":      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Rohace_panorama.jpg/800px-Rohace_panorama.jpg",
+    "Hawrań (Havran)":                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Havran_from_the_south.jpg/800px-Havran_from_the_south.jpg",
+    "Trzy Korony":                        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Trzy_Korony_-_Pieniny.jpg/800px-Trzy_Korony_-_Pieniny.jpg",
+}
+
+# ============================================================
+# LINKI ZEWNĘTRZNE DO SERWISÓW POGODOWYCH
+# ============================================================
+def link_mountain_forecast(nazwa, lat, lon, wys):
+    """Mountain-forecast.com — wymaga nazwy szczytu w URL."""
+    # Normalizuj nazwę do formatu URL (małe litery, myślniki)
+    import re
+    slug = re.sub(r'[^a-z0-9]+', '-', nazwa.lower().split('(')[0].strip()
+                  .replace('ą','a').replace('ć','c').replace('ę','e')
+                  .replace('ł','l').replace('ń','n').replace('ó','o')
+                  .replace('ś','s').replace('ź','z').replace('ż','z')
+                  .replace('á','a').replace('é','e').replace('í','i')
+                  .replace('ú','u').replace('ý','y').replace('č','c')
+                  .replace('š','s').replace('ž','z').replace('ř','r')
+                  ).strip('-')
+    return f"https://www.mountain-forecast.com/peaks/{slug}/forecasts/{wys}"
+
+def link_meteoblue(lat, lon, nazwa):
+    """Meteoblue — bezpośredni URL do prognozy dla współrzędnych."""
+    import re
+    slug = re.sub(r'[^a-z0-9]+', '-', nazwa.lower().split('(')[0].strip()
+                  .replace('ą','a').replace('ć','c').replace('ę','e')
+                  .replace('ł','l').replace('ń','n').replace('ó','o')
+                  .replace('ś','s').replace('ź','z').replace('ż','z')
+                  ).strip('-')
+    return f"https://www.meteoblue.com/pl/pogoda/tydzien/{slug}_polska_{lat:.4f}N{lon:.4f}E"
+
+def link_yr_web(lat, lon):
+    """Yr.no — strona z prognozą dla współrzędnych."""
+    return f"https://www.yr.no/en/forecast/daily-table/{lat:.4f}N{lon:.4f}E"
+
+def link_windy(lat, lon):
+    """Windy.com — dobra wizualizacja wiatru i burz górskich."""
+    return f"https://www.windy.com/{lat:.2f}/{lon:.2f}?{lat:.2f},{lon:.2f},11"
+
+def link_meteoalarm(lat, lon):
+    """MeteoAlarm — europejskie ostrzeżenia meteorologiczne."""
+    return "https://www.meteoalarm.org/en/live/?fbclid=IwAR0#poland"
 
 # ============================================================
 # KODY WMO
@@ -574,7 +674,36 @@ if tryb == "Wpisz nazwę ręcznie" and nazwa_wpisana:
 
 if wspolrzedne_ok and lat:
     wys_str = f"{wys} m n.p.m." if wys else ""
-    st.info(f"📍 **{nazwa_wyswietlana}** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
+
+    # Zdjęcie + info obok siebie
+    zdjecie_url = ZDJECIA.get(nazwa_wyswietlana)
+    if zdjecie_url:
+        col_foto, col_info = st.columns([1, 2])
+        with col_foto:
+            try:
+                st.image(zdjecie_url, caption=nazwa_wyswietlana, use_container_width=True)
+            except Exception:
+                pass
+        with col_info:
+            st.markdown(f"### 📍 {nazwa_wyswietlana}")
+            st.markdown(f"**Wysokość:** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
+            _pasmo = SZCZYTY.get(nazwa_wyswietlana, (None, None, None, ""))[3]
+            if _pasmo:
+                st.markdown(f"**Pasmo:** {_pasmo}")
+            st.markdown("**🔗 Prognozy zewnętrzne:**")
+            ln_cols = st.columns(4)
+            ln_cols[0].markdown(f"[🏔️ Mountain\u2011Forecast]({link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)})")
+            ln_cols[1].markdown(f"[🌐 Meteoblue]({link_meteoblue(lat, lon, nazwa_wyswietlana)})")
+            ln_cols[2].markdown(f"[🇳🇴 Yr.no]({link_yr_web(lat, lon)})")
+            ln_cols[3].markdown(f"[💨 Windy]({link_windy(lat, lon)})")
+    else:
+        st.info(f"📍 **{nazwa_wyswietlana}** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
+        st.markdown("**🔗 Prognozy zewnętrzne:**")
+        ln_cols = st.columns(4)
+        ln_cols[0].markdown(f"[🏔️ Mountain\u2011Forecast]({link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)})")
+        ln_cols[1].markdown(f"[🌐 Meteoblue]({link_meteoblue(lat, lon, nazwa_wyswietlana)})")
+        ln_cols[2].markdown(f"[🇳🇴 Yr.no]({link_yr_web(lat, lon)})")
+        ln_cols[3].markdown(f"[💨 Windy]({link_windy(lat, lon)})")
 
 st.divider()
 
