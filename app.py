@@ -122,6 +122,10 @@ h3 { font-family: 'Cinzel', Georgia, serif !important; color: #90bce0 !important
 /* ---- Divider ---- */
 hr { border-color: #1e3a58 !important; margin: 0.8rem 0 !important; }
 
+/* ---- Linki bez podkreslenia ---- */
+a { text-decoration: none !important; }
+a:hover { text-decoration: underline !important; opacity: 0.85; }
+
 /* ---- Caption / subtext ---- */
 [data-testid="stCaptionContainer"] p { color: #7aaac8 !important; }
 
