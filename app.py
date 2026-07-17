@@ -24,15 +24,14 @@ st.markdown("""
 [data-testid="stHeader"] {
     background-color: #0a1520 !important;
 }
-/* Banner bezposrednio pod headerem */
+/* Pasek Streamlit ma ok 58px — odsuwamy tresc zeby banner byl widoczny */
 [data-testid="stMain"] { padding-top: 0 !important; }
-[data-testid="stMain"] > div:first-child { padding-top: 0 !important; margin-top: 0 !important; }
-/* Iframe bannera — pelna szerokosc, bez bialego otoczenia */
+[data-testid="stAppViewBlockContainer"] { padding-top: 65px !important; }
+/* Iframe bannera — pelna szerokosc */
 iframe[title="streamlit_component.v1.html"] {
-    margin-top: -4px !important;
     display: block !important;
     width: 100% !important;
-    border-radius: 0 0 10px 10px !important;
+    border-radius: 8px !important;
 }
 /* ---- Tekst ogolny ---- */
 body, p, div, span, label {
@@ -141,7 +140,6 @@ WKT = {
 SZCZYTY = {
     # ---------- TATRY WYSOKIE — WSCHODNIA CZĘŚĆ (Morskie Oko, Rysy, Granaty...) ----------
     "Rysy ⭐WKT":                                    (49.1793, 20.0884, 2501, "Tatry Polskie"),
-    "Turnia nad Grzędą (Hrubý štít)":               (49.2014, 20.0461, 2472, "Tatry Polskie"),
     "Kozi Wierch":                                   (49.2182, 20.0163, 2291, "Tatry Polskie"),
     "Kozie Czuby":                                   (49.2178, 20.0125, 2263, "Tatry Polskie"),
     "Mały Kozi Wierch":                              (49.2190, 20.0076, 2228, "Tatry Polskie"),
@@ -159,12 +157,11 @@ SZCZYTY = {
     "Kazalnica Mięguszowiecka":                      (49.1897, 20.0694, 2159, "Tatry Polskie"),
     "Kościelec":                                     (49.2255, 20.0147, 2155, "Tatry Polskie"),
     "Zawrat":                                        (49.2195, 20.0161, 2159, "Tatry Polskie"),
-    "Świnica (Svinica)":                             (49.2196, 20.0094, 2301, "Tatry Polskie"),
+    "Świnica":                                       (49.2196, 20.0094, 2301, "Tatry Polskie"),
     "Morskie Oko":                                   (49.2014, 20.0708, 1395, "Tatry Polskie"),
     "Czarny Staw pod Rysami":                        (49.1917, 20.0725, 1580, "Tatry Polskie"),
     "Mały Kościelec":                                (49.2291, 20.0142, 1866, "Tatry Polskie"),
     "Nosal":                                         (49.2783, 19.9796, 1206, "Tatry Polskie"),
-    "Gęsia Szyja":                                   (49.2612, 20.0784, 1490, "Tatry Polskie"),
     "Sarnia Skała":                                  (49.2638, 19.9405, 1377, "Tatry Polskie"),
     "Wielki Kopieniec":                              (49.2778, 19.9922, 1328, "Tatry Polskie"),
 
