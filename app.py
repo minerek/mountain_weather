@@ -980,6 +980,39 @@ BANNER_HTML = """<!DOCTYPE html>
       <stop offset="0%"   stop-color="#1a4a28"/>
       <stop offset="100%" stop-color="#0d2a18"/>
     </linearGradient>
+    <!--
+      Poziome gradienty dla warstw gór 4→1 — taki sam kierunek co niebo (x).
+      Lewo: ciemny granat, prawo: ciepły brąz/pomarańcz — każda warstwa
+      w ciut innym jasności, żeby zachować głębię.
+    -->
+    <linearGradient id="gmtn4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#1e4a6a"/>
+      <stop offset="60%"  stop-color="#1e4a6a"/>
+      <stop offset="80%"  stop-color="#2a4050"/>
+      <stop offset="92%"  stop-color="#5a3828"/>
+      <stop offset="100%" stop-color="#7a4828"/>
+    </linearGradient>
+    <linearGradient id="gmtn3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#183a52"/>
+      <stop offset="55%"  stop-color="#183a52"/>
+      <stop offset="75%"  stop-color="#22323e"/>
+      <stop offset="88%"  stop-color="#4a2e1e"/>
+      <stop offset="100%" stop-color="#6a3a20"/>
+    </linearGradient>
+    <linearGradient id="gmtn2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#112a3e"/>
+      <stop offset="50%"  stop-color="#112a3e"/>
+      <stop offset="72%"  stop-color="#1e2830"/>
+      <stop offset="85%"  stop-color="#3a2218"/>
+      <stop offset="100%" stop-color="#542e18"/>
+    </linearGradient>
+    <linearGradient id="gmtn1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#091820"/>
+      <stop offset="45%"  stop-color="#091820"/>
+      <stop offset="68%"  stop-color="#141a1e"/>
+      <stop offset="82%"  stop-color="#2a1a10"/>
+      <stop offset="100%" stop-color="#3c2210"/>
+    </linearGradient>
   </defs>
 
   <!-- Niebo -->
@@ -1009,15 +1042,15 @@ BANNER_HTML = """<!DOCTYPE html>
   <circle cx="95" cy="38" r="14" fill="#fffde0" opacity="0.92"/>
   <circle cx="103" cy="32" r="12" fill="#0d1b2e" opacity="0.95"/>
 
-  <!-- Warstwa 4 — najdalsze góry (błękitno-fioletowe, jak mgła) -->
-  <polygon fill="#3d6b9a" opacity="0.45" points="
+  <!-- Warstwa 4 — najdalsze góry — gradient poziomy -->
+  <polygon fill="url(#gmtn4)" opacity="0.75" points="
     0,220 0,130 60,115 130,103 200,90 270,80 340,72 410,64
     480,58 545,52 600,48 655,52 710,58 770,65 840,72 910,78
     980,84 1050,78 1120,72 1200,68 1200,220
   "/>
 
-  <!-- Warstwa 3 — środkowe góry (zimny niebieskoszary) -->
-  <polygon fill="#2a5070" opacity="0.80" points="
+  <!-- Warstwa 3 — środkowe góry — gradient poziomy -->
+  <polygon fill="url(#gmtn3)" points="
     0,220 0,150 50,140 100,128 155,114 215,100
     265,88 315,76 360,66 395,56 425,48 455,42 485,36
     515,42 545,48 575,54 605,60 640,68 680,78 720,88
@@ -1039,18 +1072,14 @@ BANNER_HTML = """<!DOCTYPE html>
   <!-- Mgła między warstwami -->
   <rect x="0" y="112" width="1200" height="50" fill="url(#bfog)"/>
 
-  <!-- Warstwa 2 — bliższe góry (cieplejsze, przysłonięte różem wschodu po prawej) -->
-  <polygon fill="#1a4a62" points="
+  <!-- Warstwa 2 — gradient poziomy (ciemny granat → ciepły brąz) -->
+  <polygon fill="url(#gmtn2)" points="
     0,220 0,168 55,158 110,146 162,132 205,120 242,108
     272,96 298,84 322,74 344,64 364,56 384,50 404,44
     424,38 444,44 460,50 476,58 490,68 507,78 530,88
     558,96 588,104 622,112 665,120 718,128 772,136
     828,142 888,148 950,142 1012,136 1068,142
     1130,148 1200,150 1200,220
-  "/>
-  <!-- Ciepły poblask wschodu na prawą część warstwy 2 -->
-  <polygon fill="#b04820" opacity="0.22" points="
-    850,220 850,142 888,148 950,142 1012,136 1068,142 1130,148 1200,150 1200,220
   "/>
 
   <!-- Śnieg na warswie 2 -->
@@ -1061,8 +1090,8 @@ BANNER_HTML = """<!DOCTYPE html>
     316,74 322,74 344,64 356,68 344,72 322,78
   "/>
 
-  <!-- Warstwa 1 — pierwszoplanowe góry (najciemniejsze, niemal czarne) -->
-  <polygon fill="#0e2d42" points="
+  <!-- Warstwa 1 — gradient poziomy (najciemniejszy, niemal czarny → ciemny brąz) -->
+  <polygon fill="url(#gmtn1)" points="
     0,220 0,185 40,178 80,170 122,162 162,154 198,144
     228,134 252,124 268,114 278,124 292,134 314,122
     340,110 366,98 386,88 400,96 416,104 432,94
@@ -1070,10 +1099,6 @@ BANNER_HTML = """<!DOCTYPE html>
     526,132 552,140 588,148 640,154 700,160
     762,166 826,170 888,174 950,170 1012,166
     1072,170 1132,174 1200,176 1200,220
-  "/>
-  <!-- Ciepły poblask wschodu na pierwszoplanową warstwę prawą -->
-  <polygon fill="#c05020" opacity="0.18" points="
-    820,220 820,170 888,174 950,170 1012,166 1072,170 1132,174 1200,176 1200,220
   "/>
 
   <!-- Drzewa iglaste po lewej — zielone -->
