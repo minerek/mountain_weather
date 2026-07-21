@@ -310,7 +310,7 @@ SZCZYTY = {
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
     # ---------- BESKID ŚLĄSKI ----------
-    "Skrzyczne":                          (49.6844, 19.0303, 1257, "Beskid Śląski"),
+    "Skrzyczne 👑":                        (49.6844, 19.0303, 1257, "Beskid Śląski"),
     "Klimczok":                           (49.7397, 18.9950, 1117, "Beskid Śląski"),
     "Błatnia":                            (49.7347, 18.9669, 1005, "Beskid Śląski"),
     "Równica":                            (49.7153, 18.8475,  884, "Beskid Śląski"),
@@ -322,7 +322,7 @@ SZCZYTY = {
     "Soszów Wielki":                      (49.6385, 18.8166,  863, "Beskid Śląski"),
 
     # ---------- BESKID ŻYWIECKI ----------
-    "Babia Góra":                         (49.5733, 19.5294, 1725, "Beskid Żywiecki"),
+    "Babia Góra 👑":                       (49.5733, 19.5294, 1725, "Beskid Żywiecki"),
     "Pilsko":                             (49.5283, 19.3175, 1557, "Beskid Żywiecki"),
     "Romanka":                            (49.5661, 19.2319, 1366, "Beskid Żywiecki"),
     "Lipowski Wierch":                    (49.5483, 19.2069, 1324, "Beskid Żywiecki"),
@@ -334,19 +334,19 @@ SZCZYTY = {
     "Jałowiec":                           (49.6456, 19.4897, 1111, "Beskid Żywiecki"),
 
     # ---------- BESKID MAŁY ----------
-    "Czupel":                             (49.7797, 19.1617,  933, "Beskid Mały"),
+    "Czupel 👑":                           (49.7797, 19.1617,  933, "Beskid Mały"),
     "Leskowiec":                          (49.7881, 19.2028,  922, "Beskid Mały"),
     "Góra Żar":                           (49.7942, 19.1358,  761, "Beskid Mały"),
     "Czarna Góra (Beskid Mały)":          (49.7744, 19.1169,  891, "Beskid Mały"),
     "Magurka Wilkowicka":                 (49.8097, 19.0983,  909, "Beskid Mały"),
 
     # ---------- BESKID MAKOWSKI ----------
-    "Lubomir":                            (49.7117, 20.0008,  904, "Beskid Makowski"),
+    "Lubomir 👑":                          (49.7117, 20.0008,  904, "Beskid Makowski"),
     "Łysina":                             (49.7481, 19.9117,  890, "Beskid Makowski"),
     "Koskowa Góra":                       (49.7681, 19.8978,  756, "Beskid Makowski"),
 
     # ---------- GORCE ----------
-    "Turbacz":                            (49.5428, 20.1114, 1310, "Gorce"),
+    "Turbacz 👑":                          (49.5428, 20.1114, 1310, "Gorce"),
     "Gorc":                               (49.5631, 20.1750, 1228, "Gorce"),
     "Lubań":                              (49.5883, 20.1283, 1211, "Gorce"),
     "Runek":                              (49.5978, 20.2069, 1004, "Gorce"),
@@ -358,7 +358,7 @@ SZCZYTY = {
     "Jaworzyna Gorczańska":               (49.5583, 20.1317, 1288, "Gorce"),
 
     # ---------- BESKID WYSPOWY ----------
-    "Mogielica":                          (49.6136, 20.2981, 1170, "Beskid Wyspowy"),
+    "Mogielica 👑":                        (49.6136, 20.2981, 1170, "Beskid Wyspowy"),
     "Luboń Wielki":                       (49.6385, 19.9897, 1022, "Beskid Wyspowy"),
     "Modyń":                              (49.6367, 20.4075, 1029, "Beskid Wyspowy"),
     "Skiełek":                            (49.6667, 20.3708,  750, "Beskid Wyspowy"),
@@ -368,14 +368,14 @@ SZCZYTY = {
 
     # ---------- BESKID SĄDECKI ----------
     "Jaworzyna Krynicka":                 (49.4217, 20.9100, 1114, "Beskid Sądecki"),
-    "Radziejowa":                         (49.4496, 20.6033, 1262, "Beskid Sądecki"),
+    "Radziejowa 👑":                       (49.4496, 20.6033, 1262, "Beskid Sądecki"),
     "Przehyba":                           (49.4633, 20.5567, 1175, "Beskid Sądecki"),
     "Hala Łabowska":                      (49.4417, 20.8533,  997, "Beskid Sądecki"),
     "Wielki Rogacz":                      (49.4319, 20.6272, 1182, "Beskid Sądecki"),
     "Pusta Wielka":                       (49.4186, 20.8406, 1060, "Beskid Sądecki"),
 
     # ---------- BESKID NISKI ----------
-    "Lackowa":                            (49.3764, 21.1111,  997, "Beskid Niski"),
+    "Lackowa 👑":                          (49.3764, 21.1111,  997, "Beskid Niski"),
     "Lackowa (słowacka)":                 (49.3708, 21.1167,  997, "Beskid Niski"),
     "Cergowa":                            (49.5447, 21.5683,  716, "Beskid Niski"),
     "Magura Małastowska":                 (49.4619, 21.0172,  813, "Beskid Niski"),
@@ -401,12 +401,12 @@ ZDJECIA = {
     "Gerlach (Gerlachovský štít)":        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Gerlach_from_Rysy.jpg/640px-Gerlach_from_Rysy.jpg",
     "Łomnica (Lomnický štít)":            "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Lomnicky_stit_from_the_north.jpg/640px-Lomnicky_stit_from_the_north.jpg",
     "Krywań (Kriváň)":                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Krivan_Slovakia.jpg/640px-Krivan_Slovakia.jpg",
-    "Babia Góra":                         "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Babia_Gora_z_Zawoi.jpg/640px-Babia_Gora_z_Zawoi.jpg",
+    "Babia Góra 👑":                       "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Babia_Gora_z_Zawoi.jpg/640px-Babia_Gora_z_Zawoi.jpg",
     "Rohacz Ostry (Ostrý Roháč)":         "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Rohace.jpg/640px-Rohace.jpg",
     "Rohacz Płaski (Plochý Roháč)":       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Rohace.jpg/640px-Rohace.jpg",
     "Trzy Korony":                        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Trzy_Korony_2006.jpg/640px-Trzy_Korony_2006.jpg",
-    "Turbacz":                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Turbacz_szczyt.jpg/640px-Turbacz_szczyt.jpg",
-    "Skrzyczne":                          "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Skrzyczne.jpg/640px-Skrzyczne.jpg",
+    "Turbacz 👑":                          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Turbacz_szczyt.jpg/640px-Turbacz_szczyt.jpg",
+    "Skrzyczne 👑":                        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Skrzyczne.jpg/640px-Skrzyczne.jpg",
 }
 
 def zdjecie_szczytu(nazwa, lat, lon):
@@ -719,11 +719,14 @@ _REPR_PASMA = {
     "Tatry Polskie":    "Kasprowy Wierch (Kasprový vrch)",
     "Tatry Zachodnie":  "Giewont",
     "Tatry Słowackie":  "Łomnica (Lomnický štít) ⭐WKT",
-    "Beskid Śląski":    "Skrzyczne",
-    "Beskid Żywiecki":  "Babia Góra",
-    "Gorce":            "Turbacz",
-    "Beskid Wyspowy":   "Śnieżnica",
-    "Beskid Sądecki":   "Radziejowa",
+    "Beskid Śląski":    "Skrzyczne 👑",
+    "Beskid Żywiecki":  "Babia Góra 👑",
+    "Gorce":            "Turbacz 👑",
+    "Beskid Wyspowy":   "Mogielica 👑",
+    "Beskid Sądecki":   "Radziejowa 👑",
+    "Beskid Mały":      "Czupel 👑",
+    "Beskid Makowski":  "Lubomir 👑",
+    "Beskid Niski":     "Lackowa 👑",
     "Pieniny":          "Trzy Korony",
 }
 
