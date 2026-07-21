@@ -1044,26 +1044,6 @@ BANNER_HTML = """<!DOCTYPE html>
     <circle cx="420" cy="48" r="0.7" opacity="0.5"/>
   </g>
 
-  <!-- Logo IG — dolny lewy róg (pikselowe, nie rozciąga się ze skalowaniem) -->
-  <!-- Używamy preserveAspectRatio na zagnieżdżonym <svg> żeby ikona była kwadratowa -->
-  <svg x="14" y="178" width="32" height="32" viewBox="0 0 24 24"
-       preserveAspectRatio="xMidYMid meet">
-    <!-- tło ikony IG -->
-    <rect width="24" height="24" rx="6" ry="6" fill="#1a1a2e" opacity="0.75"/>
-    <!-- gradient IG (uproszczony) -->
-    <rect width="24" height="24" rx="6" ry="6" fill="none" stroke="url(#iggrad)" stroke-width="1.5" opacity="0.9"/>
-    <!-- aparat — kwadrat zaokrąglony -->
-    <rect x="4" y="4" width="16" height="16" rx="4" ry="4"
-          fill="none" stroke="#e8d0a0" stroke-width="1.4"/>
-    <!-- obiektyw -->
-    <circle cx="12" cy="12" r="4" fill="none" stroke="#e8d0a0" stroke-width="1.4"/>
-    <!-- blyskawica dot -->
-    <circle cx="17.5" cy="6.5" r="1.1" fill="#e8d0a0"/>
-  </svg>
-  <!-- Nazwa profilu obok ikony -->
-  <text x="50" y="196" font-family="Arial,sans-serif" font-size="9"
-        fill="#c8b890" opacity="0.85" letter-spacing="0.5">hikewithmic</text>
-
   <!-- Warstwa 4 — najdalsze góry — gradient poziomy -->
   <polygon fill="url(#gmtn4)" opacity="0.75" points="
     0,220 0,130 60,115 130,103 200,90 270,80 340,72 410,64
@@ -1157,6 +1137,19 @@ BANNER_HTML = """<!DOCTYPE html>
     <polygon points="1148,220 1157,198 1166,220"/>
     <polygon points="1164,220 1172,202 1180,220"/>
   </g>
+
+  <!-- Logo IG + hikewithmic — NA WIERZCHU, dolny lewy róg -->
+  <svg x="16" y="175" width="28" height="28" viewBox="0 0 24 24"
+       preserveAspectRatio="xMidYMid meet">
+    <rect width="24" height="24" rx="6" ry="6" fill="#0d0d18" opacity="0.80"/>
+    <rect width="24" height="24" rx="6" ry="6" fill="none" stroke="url(#iggrad)" stroke-width="2" opacity="1"/>
+    <rect x="4.5" y="4.5" width="15" height="15" rx="3.5" ry="3.5"
+          fill="none" stroke="#f0e0b0" stroke-width="1.3"/>
+    <circle cx="12" cy="12" r="3.8" fill="none" stroke="#f0e0b0" stroke-width="1.3"/>
+    <circle cx="17.2" cy="6.8" r="1.2" fill="#f0e0b0"/>
+  </svg>
+  <text x="48" y="193" font-family="Arial,Helvetica,sans-serif" font-size="10"
+        fill="#f0e0b0" opacity="0.90" letter-spacing="0.8">hikewithmic</text>
 </svg>
 </body></html>"""
 components.html(BANNER_HTML, height=205, scrolling=False)
