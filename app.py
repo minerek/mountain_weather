@@ -347,8 +347,11 @@ SZCZYTY = {
 
     # ---------- GORCE ----------
     "Turbacz":                            (49.5428, 20.1114, 1310, "Gorce"),
+    "Gorc":                               (49.5631, 20.1750, 1228, "Gorce"),
     "Lubań":                              (49.5883, 20.1283, 1211, "Gorce"),
-    "Luboń Wielki":                       (49.6385, 19.9897,  968, "Gorce"),
+    "Runek":                              (49.5978, 20.2069, 1004, "Gorce"),
+    "Stare Wierchy":                      (49.6097, 20.1847,  969, "Gorce"),
+    "Maciejowa":                          (49.5764, 20.2408,  815, "Gorce"),
     "Szczebel":                           (49.6853, 19.9844,  977, "Gorce"),
     "Łopień":                             (49.6978, 20.2644,  952, "Gorce"),
     "Kudłoń":                             (49.5739, 20.1744, 1276, "Gorce"),
@@ -356,6 +359,7 @@ SZCZYTY = {
 
     # ---------- BESKID WYSPOWY ----------
     "Mogielica":                          (49.6136, 20.2981, 1170, "Beskid Wyspowy"),
+    "Luboń Wielki":                       (49.6385, 19.9897, 1022, "Beskid Wyspowy"),
     "Modyń":                              (49.6367, 20.4075, 1029, "Beskid Wyspowy"),
     "Skiełek":                            (49.6667, 20.3708,  750, "Beskid Wyspowy"),
     "Łysa Góra (Beskid Wyspowy)":         (49.7214, 20.4022,  791, "Beskid Wyspowy"),
