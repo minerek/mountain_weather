@@ -1013,6 +1013,12 @@ BANNER_HTML = """<!DOCTYPE html>
       <stop offset="82%"  stop-color="#2a1a10"/>
       <stop offset="100%" stop-color="#3c2210"/>
     </linearGradient>
+    <!-- Gradient obramowania ikony IG (uproszczony: żółty→różowy→fiolet) -->
+    <linearGradient id="iggrad" x1="1" y1="1" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#f9ce34"/>
+      <stop offset="35%"  stop-color="#ee2a7b"/>
+      <stop offset="100%" stop-color="#6228d7"/>
+    </linearGradient>
   </defs>
 
   <!-- Niebo -->
@@ -1038,9 +1044,25 @@ BANNER_HTML = """<!DOCTYPE html>
     <circle cx="420" cy="48" r="0.7" opacity="0.5"/>
   </g>
 
-  <!-- Księżyc (górny lewy róg) -->
-  <circle cx="95" cy="38" r="14" fill="#fffde0" opacity="0.92"/>
-  <circle cx="103" cy="32" r="12" fill="#0d1b2e" opacity="0.95"/>
+  <!-- Logo IG — dolny lewy róg (pikselowe, nie rozciąga się ze skalowaniem) -->
+  <!-- Używamy preserveAspectRatio na zagnieżdżonym <svg> żeby ikona była kwadratowa -->
+  <svg x="14" y="178" width="32" height="32" viewBox="0 0 24 24"
+       preserveAspectRatio="xMidYMid meet">
+    <!-- tło ikony IG -->
+    <rect width="24" height="24" rx="6" ry="6" fill="#1a1a2e" opacity="0.75"/>
+    <!-- gradient IG (uproszczony) -->
+    <rect width="24" height="24" rx="6" ry="6" fill="none" stroke="url(#iggrad)" stroke-width="1.5" opacity="0.9"/>
+    <!-- aparat — kwadrat zaokrąglony -->
+    <rect x="4" y="4" width="16" height="16" rx="4" ry="4"
+          fill="none" stroke="#e8d0a0" stroke-width="1.4"/>
+    <!-- obiektyw -->
+    <circle cx="12" cy="12" r="4" fill="none" stroke="#e8d0a0" stroke-width="1.4"/>
+    <!-- blyskawica dot -->
+    <circle cx="17.5" cy="6.5" r="1.1" fill="#e8d0a0"/>
+  </svg>
+  <!-- Nazwa profilu obok ikony -->
+  <text x="50" y="196" font-family="Arial,sans-serif" font-size="9"
+        fill="#c8b890" opacity="0.85" letter-spacing="0.5">hikewithmic</text>
 
   <!-- Warstwa 4 — najdalsze góry — gradient poziomy -->
   <polygon fill="url(#gmtn4)" opacity="0.75" points="
