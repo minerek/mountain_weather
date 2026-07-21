@@ -938,85 +938,177 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
 BANNER_HTML = """<!DOCTYPE html>
 <html><head><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:100%; height:200px; overflow:hidden; background:#0a2a3a; }
+  html, body { width:100%; height:200px; overflow:hidden; background:#0d1b2e; }
 </style></head>
 <body>
 <svg viewBox="0 0 1200 220" preserveAspectRatio="none"
      xmlns="http://www.w3.org/2000/svg"
      style="width:100%;height:200px;display:block;">
   <defs>
-    <linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#0a2a3a"/>
-      <stop offset="60%"  stop-color="#0e4060"/>
-      <stop offset="100%" stop-color="#1a6878"/>
+    <!-- Niebo: noc -> świt po prawej -->
+    <linearGradient id="bsky" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#0d1b2e"/>
+      <stop offset="45%"  stop-color="#0d1b2e"/>
+      <stop offset="70%"  stop-color="#1a2f50"/>
+      <stop offset="85%"  stop-color="#8b3a2a"/>
+      <stop offset="93%"  stop-color="#d4621a"/>
+      <stop offset="100%" stop-color="#e8922a"/>
     </linearGradient>
+    <!-- Gradient pionowy nieba -->
+    <linearGradient id="bsky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+    </linearGradient>
+    <!-- Blask wschodu -->
+    <radialGradient id="bglow" cx="88%" cy="55%" r="30%">
+      <stop offset="0%"   stop-color="#f5a030" stop-opacity="0.55"/>
+      <stop offset="50%"  stop-color="#c0541a" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Mgła -->
     <linearGradient id="bfog" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#1a6878" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#1a6878" stop-opacity="0.55"/>
+      <stop offset="0%"   stop-color="#4a8fa8" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#4a8fa8" stop-opacity="0.40"/>
+    </linearGradient>
+    <!-- Śnieg na wierzchołkach -->
+    <linearGradient id="bsnow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#e8f4ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#e8f4ff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Zieleń drzew -->
+    <linearGradient id="btree" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1a4a28"/>
+      <stop offset="100%" stop-color="#0d2a18"/>
     </linearGradient>
   </defs>
 
   <!-- Niebo -->
   <rect width="1200" height="220" fill="url(#bsky)"/>
+  <rect width="1200" height="220" fill="url(#bglow)"/>
+  <rect width="1200" height="220" fill="url(#bsky2)"/>
 
-  <!-- Warstwa 4 — najdalsze gory mgielne -->
-  <polygon fill="#2a7a8a" opacity="0.55" points="
-    0,220 0,145 60,128 130,118 200,105 270,95 340,88 400,80
-    460,74 520,68 580,74 640,80 700,86 760,92 820,98 880,92
-    940,86 1000,92 1060,98 1120,104 1180,110 1200,112 1200,220
-  "/>
-
-  <!-- Warstwa 3 — srednie gory -->
-  <polygon fill="#1e5c72" opacity="0.75" points="
-    0,220 0,158 50,148 100,138 150,124 210,112 260,100
-    310,90 355,82 390,72 420,64 450,58 480,52 510,46
-    540,52 565,58 590,64 620,70 660,80 700,90 740,100
-    780,110 830,118 880,126 930,132 980,138 1030,132
-    1080,126 1130,132 1180,138 1200,140 1200,220
-  "/>
-
-  <!-- Mgla miedzy warstwami -->
-  <rect x="0" y="130" width="1200" height="40" fill="url(#bfog)"/>
-
-  <!-- Warstwa 2 — blizsze gory -->
-  <polygon fill="#144a5e" points="
-    0,220 0,175 60,165 110,155 160,142 200,130 240,118
-    275,108 305,98 330,88 355,78 375,68 395,60 415,54
-    435,48 455,54 470,60 485,68 500,78 520,88 545,98
-    570,108 600,116 640,124 690,132 740,140 790,148
-    840,154 900,160 960,166 1020,160 1080,154 1140,160
-    1200,166 1200,220
-  "/>
-
-  <!-- Warstwa 1 — pierwszoplanowe gory (najciemniejsze) -->
-  <polygon fill="#0c3245" points="
-    0,220 0,188 40,182 80,175 120,168 160,160 195,152
-    225,144 250,136 268,128 280,138 295,148 315,140
-    340,130 365,120 385,112 400,120 415,128 430,118
-    445,108 458,100 470,108 482,118 495,128 510,138
-    530,148 555,156 590,162 640,168 700,174 760,180
-    820,184 880,188 940,184 1000,180 1060,184 1120,188
-    1200,190 1200,220
-  "/>
-
-  <!-- Drzewa iglaste po lewej -->
-  <g fill="#071e2e">
-    <polygon points="30,220 42,190 54,220"/>
-    <polygon points="36,210 42,188 48,210"/>
-    <polygon points="14,220 24,196 34,220"/>
-    <polygon points="55,220 65,194 75,220"/>
-    <polygon points="62,212 65,192 68,212"/>
-    <polygon points="76,220 85,198 94,220"/>
-    <polygon points="95,220 103,202 111,220"/>
+  <!-- Gwiazdy (lewa/środkowa część nieba) -->
+  <g fill="#ffffff">
+    <circle cx="42"  cy="18" r="1.1" opacity="0.9"/>
+    <circle cx="115" cy="28" r="0.9" opacity="0.7"/>
+    <circle cx="188" cy="12" r="1.3" opacity="0.85"/>
+    <circle cx="254" cy="32" r="0.8" opacity="0.6"/>
+    <circle cx="320" cy="8"  r="1.0" opacity="0.8"/>
+    <circle cx="390" cy="22" r="0.7" opacity="0.65"/>
+    <circle cx="455" cy="14" r="1.2" opacity="0.75"/>
+    <circle cx="510" cy="35" r="0.8" opacity="0.55"/>
+    <circle cx="565" cy="10" r="1.0" opacity="0.7"/>
+    <circle cx="78"  cy="42" r="0.7" opacity="0.5"/>
+    <circle cx="145" cy="55" r="0.9" opacity="0.6"/>
+    <circle cx="230" cy="44" r="0.8" opacity="0.55"/>
+    <circle cx="300" cy="50" r="1.1" opacity="0.65"/>
+    <circle cx="420" cy="48" r="0.7" opacity="0.5"/>
   </g>
-  <!-- Drzewa iglaste po prawej -->
-  <g fill="#071e2e">
-    <polygon points="1106,220 1118,190 1130,220"/>
-    <polygon points="1112,210 1118,188 1124,210"/>
-    <polygon points="1126,220 1136,196 1146,220"/>
-    <polygon points="1148,220 1158,194 1168,220"/>
-    <polygon points="1154,212 1158,192 1162,212"/>
-    <polygon points="1170,220 1179,200 1188,220"/>
+
+  <!-- Księżyc (górny lewy róg) -->
+  <circle cx="95" cy="38" r="14" fill="#fffde0" opacity="0.92"/>
+  <circle cx="103" cy="32" r="12" fill="#0d1b2e" opacity="0.95"/>
+
+  <!-- Warstwa 4 — najdalsze góry (błękitno-fioletowe, jak mgła) -->
+  <polygon fill="#3d6b9a" opacity="0.45" points="
+    0,220 0,130 60,115 130,103 200,90 270,80 340,72 410,64
+    480,58 545,52 600,48 655,52 710,58 770,65 840,72 910,78
+    980,84 1050,78 1120,72 1200,68 1200,220
+  "/>
+
+  <!-- Warstwa 3 — środkowe góry (zimny niebieskoszary) -->
+  <polygon fill="#2a5070" opacity="0.80" points="
+    0,220 0,150 50,140 100,128 155,114 215,100
+    265,88 315,76 360,66 395,56 425,48 455,42 485,36
+    515,42 545,48 575,54 605,60 640,68 680,78 720,88
+    760,98 805,106 855,114 905,120 960,126 1015,120
+    1070,114 1125,120 1180,126 1200,128 1200,220
+  "/>
+
+  <!-- Śnieg na warswie 3 (wierzchołki środkowe) -->
+  <polygon fill="#ddeeff" opacity="0.75" points="
+    415,48 425,48 455,42 485,36 515,42 545,48 540,54 515,50 485,44 455,50 425,54
+  "/>
+  <polygon fill="#ddeeff" opacity="0.55" points="
+    260,88 275,80 295,72 315,76 310,84 290,80
+  "/>
+  <polygon fill="#ddeeff" opacity="0.55" points="
+    635,68 645,60 660,52 680,60 670,68
+  "/>
+
+  <!-- Mgła między warstwami -->
+  <rect x="0" y="112" width="1200" height="50" fill="url(#bfog)"/>
+
+  <!-- Warstwa 2 — bliższe góry (cieplejsze, przysłonięte różem wschodu po prawej) -->
+  <polygon fill="#1a4a62" points="
+    0,220 0,168 55,158 110,146 162,132 205,120 242,108
+    272,96 298,84 322,74 344,64 364,56 384,50 404,44
+    424,38 444,44 460,50 476,58 490,68 507,78 530,88
+    558,96 588,104 622,112 665,120 718,128 772,136
+    828,142 888,148 950,142 1012,136 1068,142
+    1130,148 1200,150 1200,220
+  "/>
+  <!-- Ciepły poblask wschodu na prawą część warstwy 2 -->
+  <polygon fill="#b04820" opacity="0.22" points="
+    850,220 850,142 888,148 950,142 1012,136 1068,142 1130,148 1200,150 1200,220
+  "/>
+
+  <!-- Śnieg na warswie 2 -->
+  <polygon fill="#e8f4ff" opacity="0.80" points="
+    398,50 404,44 424,38 444,44 455,50 444,54 424,46 404,54
+  "/>
+  <polygon fill="#e8f4ff" opacity="0.60" points="
+    316,74 322,74 344,64 356,68 344,72 322,78
+  "/>
+
+  <!-- Warstwa 1 — pierwszoplanowe góry (najciemniejsze, niemal czarne) -->
+  <polygon fill="#0e2d42" points="
+    0,220 0,185 40,178 80,170 122,162 162,154 198,144
+    228,134 252,124 268,114 278,124 292,134 314,122
+    340,110 366,98 386,88 400,96 416,104 432,94
+    446,82 460,90 474,102 488,112 504,122
+    526,132 552,140 588,148 640,154 700,160
+    762,166 826,170 888,174 950,170 1012,166
+    1072,170 1132,174 1200,176 1200,220
+  "/>
+  <!-- Ciepły poblask wschodu na pierwszoplanową warstwę prawą -->
+  <polygon fill="#c05020" opacity="0.18" points="
+    820,220 820,170 888,174 950,170 1012,166 1072,170 1132,174 1200,176 1200,220
+  "/>
+
+  <!-- Drzewa iglaste po lewej — zielone -->
+  <g fill="url(#btree)">
+    <polygon points="14,220 26,192 38,220"/>
+    <polygon points="20,210 26,190 32,210"/>
+    <polygon points="34,220 44,198 54,220"/>
+    <polygon points="54,220 65,194 76,220"/>
+    <polygon points="61,212 65,192 69,212"/>
+    <polygon points="74,220 84,196 94,220"/>
+    <polygon points="92,220 101,200 110,220"/>
+    <polygon points="108,220 116,204 124,220"/>
+  </g>
+  <!-- Drzewa iglaste po lewej — ciemniejsza warstwa (głąb lasu) -->
+  <g fill="#0a1e10" opacity="0.6">
+    <polygon points="24,220 33,198 42,220"/>
+    <polygon points="46,220 54,200 62,220"/>
+    <polygon points="80,220 88,202 96,220"/>
+  </g>
+
+  <!-- Drzewa iglaste po prawej — zielone -->
+  <g fill="url(#btree)">
+    <polygon points="1092,220 1104,192 1116,220"/>
+    <polygon points="1098,210 1104,190 1110,210"/>
+    <polygon points="1112,220 1122,196 1132,220"/>
+    <polygon points="1130,220 1140,194 1150,220"/>
+    <polygon points="1136,212 1140,192 1144,212"/>
+    <polygon points="1148,220 1157,198 1166,220"/>
+    <polygon points="1164,220 1172,202 1180,220"/>
+  </g>
+  <!-- Drzewa po prawej — podświetlone blaskiem wschodu -->
+  <g fill="#7a3015" opacity="0.30">
+    <polygon points="1130,220 1140,194 1150,220"/>
+    <polygon points="1148,220 1157,198 1166,220"/>
+    <polygon points="1164,220 1172,202 1180,220"/>
   </g>
 </svg>
 </body></html>"""
