@@ -1143,7 +1143,7 @@ BANNER_HTML = """<!DOCTYPE html>
 
 # ---- IG badge — nad bannerem, górny prawy róg ----
 st.markdown("""
-<div style="display:flex;justify-content:flex-end;margin-bottom:-8px;">
+<div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
   <a href="https://www.instagram.com/hikewithmic" target="_blank" style="text-decoration:none;">
     <div style="display:inline-flex;align-items:center;gap:8px;background:transparent;padding:5px 0;">
       <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
