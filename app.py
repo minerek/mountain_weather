@@ -333,19 +333,34 @@ SZCZYTY = {
     "Hala Miziowa":                       (49.5700, 19.4833, 1180, "Beskid Żywiecki"),
     "Jałowiec":                           (49.6456, 19.4897, 1111, "Beskid Żywiecki"),
 
+    # ---------- BESKID MAŁY ----------
+    "Czupel":                             (49.7797, 19.1617,  933, "Beskid Mały"),
+    "Leskowiec":                          (49.7881, 19.2028,  922, "Beskid Mały"),
+    "Góra Żar":                           (49.7942, 19.1358,  761, "Beskid Mały"),
+    "Czarna Góra (Beskid Mały)":          (49.7744, 19.1169,  891, "Beskid Mały"),
+    "Magurka Wilkowicka":                 (49.8097, 19.0983,  909, "Beskid Mały"),
+
+    # ---------- BESKID MAKOWSKI ----------
+    "Lubomir":                            (49.7117, 20.0008,  904, "Beskid Makowski"),
+    "Łysina":                             (49.7481, 19.9117,  890, "Beskid Makowski"),
+    "Koskowa Góra":                       (49.7681, 19.8978,  756, "Beskid Makowski"),
+
     # ---------- GORCE ----------
     "Turbacz":                            (49.5428, 20.1114, 1310, "Gorce"),
+    "Lubań":                              (49.5883, 20.1283, 1211, "Gorce"),
     "Luboń Wielki":                       (49.6385, 19.9897,  968, "Gorce"),
-    "Mogielica":                          (49.6552, 20.2764, 1170, "Gorce"),
     "Szczebel":                           (49.6853, 19.9844,  977, "Gorce"),
     "Łopień":                             (49.6978, 20.2644,  952, "Gorce"),
     "Kudłoń":                             (49.5739, 20.1744, 1276, "Gorce"),
     "Jaworzyna Gorczańska":               (49.5583, 20.1317, 1288, "Gorce"),
 
     # ---------- BESKID WYSPOWY ----------
+    "Mogielica":                          (49.6136, 20.2981, 1170, "Beskid Wyspowy"),
+    "Modyń":                              (49.6367, 20.4075, 1029, "Beskid Wyspowy"),
+    "Skiełek":                            (49.6667, 20.3708,  750, "Beskid Wyspowy"),
     "Łysa Góra (Beskid Wyspowy)":         (49.7214, 20.4022,  791, "Beskid Wyspowy"),
     "Cichoń":                             (49.6417, 20.3547,  892, "Beskid Wyspowy"),
-    "Śnieżnica":                          (49.7153, 20.1878,  1006, "Beskid Wyspowy"),
+    "Śnieżnica":                          (49.7153, 20.1878, 1006, "Beskid Wyspowy"),
 
     # ---------- BESKID SĄDECKI ----------
     "Jaworzyna Krynicka":                 (49.4217, 20.9100, 1114, "Beskid Sądecki"),
@@ -354,6 +369,13 @@ SZCZYTY = {
     "Hala Łabowska":                      (49.4417, 20.8533,  997, "Beskid Sądecki"),
     "Wielki Rogacz":                      (49.4319, 20.6272, 1182, "Beskid Sądecki"),
     "Pusta Wielka":                       (49.4186, 20.8406, 1060, "Beskid Sądecki"),
+
+    # ---------- BESKID NISKI ----------
+    "Lackowa":                            (49.3764, 21.1111,  997, "Beskid Niski"),
+    "Lackowa (słowacka)":                 (49.3708, 21.1167,  997, "Beskid Niski"),
+    "Cergowa":                            (49.5447, 21.5683,  716, "Beskid Niski"),
+    "Magura Małastowska":                 (49.4619, 21.0172,  813, "Beskid Niski"),
+    "Hańczowa":                           (49.4342, 21.1353,  881, "Beskid Niski"),
 
     # ---------- PIENINY ----------
     "Trzy Korony":                        (49.4147, 20.4144,  982, "Pieniny"),
