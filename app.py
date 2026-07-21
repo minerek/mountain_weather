@@ -1138,26 +1138,14 @@ BANNER_HTML = """<!DOCTYPE html>
     <polygon points="1164,220 1172,202 1180,220"/>
   </g>
 
-  <!-- Logo IG + hikewithmic — NA WIERZCHU, dolny lewy róg -->
-  <svg x="16" y="175" width="28" height="28" viewBox="0 0 24 24"
-       preserveAspectRatio="xMidYMid meet">
-    <rect width="24" height="24" rx="6" ry="6" fill="#0d0d18" opacity="0.80"/>
-    <rect width="24" height="24" rx="6" ry="6" fill="none" stroke="url(#iggrad)" stroke-width="2" opacity="1"/>
-    <rect x="4.5" y="4.5" width="15" height="15" rx="3.5" ry="3.5"
-          fill="none" stroke="#f0e0b0" stroke-width="1.3"/>
-    <circle cx="12" cy="12" r="3.8" fill="none" stroke="#f0e0b0" stroke-width="1.3"/>
-    <circle cx="17.2" cy="6.8" r="1.2" fill="#f0e0b0"/>
-  </svg>
-  <text x="48" y="193" font-family="Arial,Helvetica,sans-serif" font-size="10"
-        fill="#f0e0b0" opacity="0.90" letter-spacing="0.8">hikewithmic</text>
 </svg>
 </body></html>"""
 components.html(BANNER_HTML, height=205, scrolling=False)
 
 sobota, niedziela = nastepny_weekend()
 
-# ---- Tytuł + data weekendu ----
-col_tytul, col_weekend = st.columns([3, 1])
+# ---- Tytuł + IG badge + data weekendu ----
+col_tytul, col_ig, col_weekend = st.columns([3, 1, 1])
 with col_tytul:
     st.markdown("""
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px;margin-bottom:4px;">
@@ -1170,6 +1158,31 @@ with col_tytul:
         <div style="font-family:'Cinzel',Georgia,serif;font-size:1.75rem;font-weight:700;color:#e8f4ff;line-height:1.1;letter-spacing:1px;">Mountain Weather</div>
         <div style="font-size:0.75rem;color:#7aaac8;letter-spacing:3px;">TATRY &amp; BESKIDY</div>
       </div>
+    </div>
+    """, unsafe_allow_html=True)
+with col_ig:
+    st.markdown("""
+    <div style="display:flex;justify-content:flex-end;align-items:center;margin-top:10px;">
+      <a href="https://www.instagram.com/hikewithmic" target="_blank" style="text-decoration:none;">
+        <div style="display:inline-flex;align-items:center;gap:0;background:#111;border-radius:10px;overflow:hidden;height:36px;box-shadow:0 1px 6px rgba(0,0,0,0.5);">
+          <!-- ikona IG jako SVG inline — zawsze kwadratowa, nie rozciąga się -->
+          <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+            <defs>
+              <linearGradient id="ig1" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#f9ce34"/>
+                <stop offset="30%"  stop-color="#ee2a7b"/>
+                <stop offset="65%"  stop-color="#9b27af"/>
+                <stop offset="100%" stop-color="#4f5bd5"/>
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="9" fill="url(#ig1)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="white" stroke-width="2"/>
+            <circle cx="18" cy="18" r="5.5" fill="none" stroke="white" stroke-width="2"/>
+            <circle cx="25" cy="11" r="1.5" fill="white"/>
+          </svg>
+          <span style="color:#fff;font-family:Arial,sans-serif;font-weight:700;font-size:0.78rem;padding:0 10px 0 7px;letter-spacing:0.3px;white-space:nowrap;">@hikewithmic</span>
+        </div>
+      </a>
     </div>
     """, unsafe_allow_html=True)
 with col_weekend:
