@@ -1189,7 +1189,7 @@ st.markdown("""
         <circle cx="18" cy="18" r="5.5" fill="none" stroke="white" stroke-width="2.2"/>
         <circle cx="25" cy="11" r="1.6" fill="white"/>
       </svg>
-      <span style="font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:0.72rem;color:#c8ddf0;letter-spacing:1.5px;">@hikewithmic</span>
+      <span style="font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-weight:600;font-size:0.78rem;color:#c8ddf0;letter-spacing:0.3px;">@hikewithmic</span>
     </div>
   </a>
 </div>
