@@ -139,6 +139,41 @@ a:hover { text-decoration: underline !important; opacity: 0.85; }
 
 /* ---- Dataframe tlo ---- */
 [data-testid="stDataFrame"] table { background: #0e1e2f !important; }
+
+/* ---- Karty rekomendacji pasm ---- */
+.rec-card {
+    background: #0e2233;
+    border: 1px solid #1e4060;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+}
+.rec-card.rec-best {
+    background: #0a2a1a;
+    border: 1px solid #1e7a40;
+}
+.rec-card.rec-warn {
+    background: #2a1a0a;
+    border: 1px solid #7a4010;
+}
+.rec-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #7aaac8;
+}
+.rec-name {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e8f4ff;
+}
+.rec-stats {
+    font-size: 0.82rem;
+    color: #8ab4cc;
+    margin-top: 2px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -650,6 +685,105 @@ def link_lightningmaps(lat, lon, zoom=9):
     return f"https://www.lightningmaps.org/?lang=pl#m=oss;t=3;s=0;o=0;b=;ts=0;y={lat:.3f};x={lon:.3f};z={zoom};d=2;dl=2;dc=0;"
 
 # ============================================================
+# REKOMENDACJA NAJLEPSZEGO PASMA NA WEEKEND
+# ============================================================
+
+# Reprezentatywny szczyt dla każdego pasma — wybieramy popularny, niezbyt wysoki punkt
+_REPR_PASMA = {
+    "Tatry Polskie":    "Kasprowy Wierch (Kasprový vrch)",
+    "Tatry Zachodnie":  "Giewont",
+    "Tatry Słowackie":  "Łomnica (Lomnický štít) ⭐WKT",
+    "Beskid Śląski":    "Skrzyczne",
+    "Beskid Żywiecki":  "Babia Góra",
+    "Gorce":            "Turbacz",
+    "Beskid Wyspowy":   "Śnieżnica",
+    "Beskid Sądecki":   "Radziejowa",
+    "Pieniny":          "Trzy Korony",
+}
+
+def _ocen_pasmo_weekend(df, sobota, niedziela):
+    """
+    Ocenia warunki weekendowe na podstawie danych godzinowych.
+    Zwraca dict z score (niższy = lepszy), bool burza, opady_suma, wiatr_max, opis.
+    """
+    df_w = df[df["czas"].dt.date.isin([sobota, niedziela])].copy()
+    if df_w.empty:
+        return {"score": 999, "burza": False, "opady": 0, "wiatr_max": 0, "opis": "Brak danych"}
+
+    burza = bool(df_w["kod"].isin([95, 96, 99]).any())
+    deszcz_h = df_w[df_w["kod"].isin([51,53,55,61,63,65,80,81,82])].shape[0]  # liczba godzin z opadami
+    opady_suma = float(df_w["opady"].sum())
+    wiatr_max = float(df_w["wiatr"].max())
+    porywy_max = float(df_w["porywy"].max())
+    pochmurnych_h = df_w[df_w["zachmurzenie"] > 75].shape[0] if "zachmurzenie" in df_w.columns else 0
+
+    # Scoring — niższy = lepszy
+    score = 0
+    if burza:
+        score += 1000
+    score += opady_suma * 5          # każdy mm opadów +5 pkt
+    score += deszcz_h * 10           # każda godzina z deszczem +10 pkt
+    score += max(0, wiatr_max - 10) * 3   # wiatr ponad 10 m/s
+    score += pochmurnych_h * 1       # godziny pełnego zachmurzenia
+
+    # Czytelny opis
+    if burza:
+        opis = "⛈️ Burze prognozowane"
+    elif opady_suma > 10 or deszcz_h > 5:
+        opis = "🌧️ Intensywne opady"
+    elif opady_suma > 3 or deszcz_h > 2:
+        opis = "🌦️ Przelotne deszcze"
+    elif opady_suma > 0.5:
+        opis = "🌂 Lekkie opady"
+    elif wiatr_max > 18:
+        opis = "💨 Silny wiatr"
+    elif pochmurnych_h > 12:
+        opis = "☁️ Bardzo pochmurnie"
+    else:
+        opis = "🌤️ Dobre warunki"
+
+    return {
+        "score": score,
+        "burza": burza,
+        "opady": round(opady_suma, 1),
+        "wiatr_max": round(wiatr_max, 1),
+        "porywy_max": round(porywy_max, 1),
+        "opis": opis,
+        "deszcz_h": deszcz_h,
+    }
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _pobierz_repr_pasma(lat, lon):
+    """Cache'd wrapper — pobiera Open-Meteo best_match dla repr. szczytu."""
+    return pobierz_open_meteo(lat, lon)
+
+def znajdz_najlepsze_pasma(sobota, niedziela):
+    """
+    Pobiera prognozę dla reprezentatywnego szczytu każdego pasma,
+    ocenia warunki i zwraca listę pasm posortowaną od najlepszej do najgorszej.
+    """
+    wyniki = []
+    for pasmo, nazwa_szczytu in _REPR_PASMA.items():
+        if nazwa_szczytu not in SZCZYTY:
+            continue
+        lat, lon, wys, _ = SZCZYTY[nazwa_szczytu]
+        try:
+            df = _pobierz_repr_pasma(lat, lon)
+            ocena = _ocen_pasmo_weekend(df, sobota, niedziela)
+        except Exception as e:
+            ocena = {"score": 999, "burza": False, "opady": 0, "wiatr_max": 0,
+                     "porywy_max": 0, "opis": f"❓ Błąd: {e}", "deszcz_h": 0}
+        wyniki.append({
+            "pasmo": pasmo,
+            "szczyt_repr": nazwa_szczytu,
+            "wys": wys,
+            **ocena,
+        })
+
+    wyniki.sort(key=lambda x: x["score"])
+    return wyniki
+
+# ============================================================
 # WYŚWIETLANIE PROGNOZY
 # ============================================================
 def wyswietl_prognoze(df, nazwa, lat, lon, wys, sobota, niedziela, zrodlo_nazwa):
@@ -913,6 +1047,64 @@ with col_weekend:
       <div style="font-size:1.1rem;font-weight:700;color:#e8f4ff;">{sobota.strftime('%d.%m')} sob – {niedziela.strftime('%d.%m')} nd</div>
     </div>
     """, unsafe_allow_html=True)
+st.divider()
+
+# ============================================================
+# --- Sekcja 0: Rekomendacja najlepszego pasma na weekend ---
+# ============================================================
+st.markdown("""<div class="mw-heading">
+  <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+    <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+    <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+  </svg>
+  Gdzie pojechać w ten weekend? — Rekomendacja pasma
+</div>""", unsafe_allow_html=True)
+
+_col_rec_btn, _col_rec_info = st.columns([1, 3])
+with _col_rec_btn:
+    _do_rec = st.button("🔎 Szukaj najlepszej pogody", help="Sprawdza prognozę dla każdego pasma i poleca te bez burz i deszczu.")
+with _col_rec_info:
+    st.caption("Pobiera prognozę dla reprezentatywnego szczytu w każdym paśmie i rankinguje wg warunków (brak burz → mało opadów → słaby wiatr).")
+
+if _do_rec:
+    with st.spinner("Sprawdzam pogodę dla wszystkich pasm… (~9 zapytań, kilka sekund)"):
+        _wyniki_rec = znajdz_najlepsze_pasma(sobota, niedziela)
+
+    if _wyniki_rec:
+        _najlepsze = _wyniki_rec[0]
+        # Nagłówek z rekomendacją
+        _medal_kolor = "#2e7d4f" if not _najlepsze["burza"] else "#7a3010"
+        st.markdown(f"""
+        <div style="background:{_medal_kolor};border-radius:12px;padding:14px 20px;margin-bottom:14px;">
+          <div style="font-size:0.72rem;color:#c0e8c0;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">🏆 Polecane pasmo na {sobota.strftime('%d.%m')}–{niedziela.strftime('%d.%m')}</div>
+          <div style="font-family:'Cinzel',Georgia,serif;font-size:1.5rem;font-weight:700;color:#ffffff;letter-spacing:1px;">{_najlepsze['pasmo']}</div>
+          <div style="font-size:0.9rem;color:#d4f0d4;margin-top:4px;">{_najlepsze['opis']} &nbsp;·&nbsp; Opady: {_najlepsze['opady']} mm &nbsp;·&nbsp; Wiatr max: {_najlepsze['wiatr_max']} m/s</div>
+          <div style="font-size:0.78rem;color:#a0c8a0;margin-top:3px;">Reprezentatywny szczyt: {_najlepsze['szczyt_repr'].replace(' ⭐WKT','')}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Tabela wszystkich pasm
+        _ncols = 3
+        _rows = [_wyniki_rec[i:i+_ncols] for i in range(0, len(_wyniki_rec), _ncols)]
+        for _row in _rows:
+            _cols = st.columns(_ncols)
+            for _ci, _w in enumerate(_row):
+                _is_best = _w == _najlepsze
+                _css_extra = "rec-best" if _is_best else ("rec-warn" if _w["burza"] or _w["opady"] > 5 else "")
+                _rank = _wyniki_rec.index(_w) + 1
+                _medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(_rank, f"#{_rank}")
+                _cols[_ci].markdown(f"""
+                <div class="rec-card {_css_extra}">
+                  <div class="rec-badge">{_medal} Miejsce {_rank}</div>
+                  <div class="rec-name">{_w['pasmo']}</div>
+                  <div class="rec-stats">{_w['opis']}</div>
+                  <div class="rec-stats">💧 {_w['opady']} mm &nbsp; 💨 {_w['wiatr_max']} m/s (porywy {_w['porywy_max']} m/s)</div>
+                  <div class="rec-stats" style="color:#617a8a;font-size:0.75rem;">ref: {_w['szczyt_repr'].replace(' ⭐WKT','')}</div>
+                </div>
+                """, unsafe_allow_html=True)
+
 st.divider()
 
 # --- Sekcja 1: Wybór źródła ---
