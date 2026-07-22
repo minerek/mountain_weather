@@ -293,7 +293,7 @@ SZCZYTY = {
     "Mała Wysoka (Východná Vysoká)":              (49.1738, 20.1411, 2429, "Tatry Słowackie"),
     "Koprowy Wierch (Kôprovský štít)":            (49.1718, 20.0469, 2363, "Tatry Słowackie"),
     "Koprowe Ramię (Kôprovské plece)":            (49.1931, 20.0139, 2312, "Tatry Słowackie"),
-    "Kołowy Szczyt (Kolový štít)":                (49.1792, 20.0628, 2418, "Tatry Słowackie"),
+    "Kołowy Szczyt (Kolový štít)":                (49.1783, 20.0594, 2418, "Tatry Słowackie"),
     "Żabi Szczyt Niżni (Žabí štít)":              (49.1994, 20.0925, 2253, "Tatry Słowackie"),
     "Żabi Szczyt Wyżni":                          (49.1978, 20.0889, 2259, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
@@ -494,8 +494,8 @@ def link_meteoblue(lat, lon, nazwa):
     return f"https://www.meteoblue.com/pl/pogoda/week/{lat:.4f}N{lon:.4f}E"
 
 def link_yr_web(lat, lon):
-    """Yr.no — strona z prognozą dla współrzędnych."""
-    return f"https://www.yr.no/en/forecast/daily-table/{lat:.4f}N{lon:.4f}E"
+    """Yr.no — format z przecinkiem (pewniejszy niż NE)."""
+    return f"https://www.yr.no/en/forecast/daily-table/{lat:.4f},{lon:.4f}"
 
 def link_windy(lat, lon):
     """Windy.com — dobra wizualizacja wiatru i burz górskich."""
