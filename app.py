@@ -462,17 +462,36 @@ def miniatura_mapa_html(lat, lon, nazwa="", zoom=14):
 # ============================================================
 # LINKI ZEWNĘTRZNE DO SERWISÓW POGODOWYCH
 # ============================================================
+
+# Ręczna mapa nazw Mountain-Forecast dla szczytów które są w ich bazie
+_MF_SLUGS = {
+    "Rysy ⭐WKT":                               "rysy",
+    "Giewont":                                  "giewont",
+    "Kasprowy Wierch (Kasprový vrch)":          "kasprowy-wierch",
+    "Świnica":                                  "swinica",
+    "Kozi Wierch":                              "kozi-wierch",
+    "Mięguszowiecki Szczyt Wielki":             "mieguszowiecki-szczyt-wielki",
+    "Gerlach (Gerlachovský štít) ⭐WKT":        "gerlachovska-stit",
+    "Łomnica (Lomnický štít) ⭐WKT":            "lomnicky-stit",
+    "Krywań (Kriváň) ⭐WKT":                    "krivan",
+    "Babia Góra 👑":                             "babia-gora",
+    "Skrzyczne 👑":                              "skrzyczne",
+    "Turbacz 👑":                                "turbacz",
+    "Pilsko":                                   "pilsko",
+    "Trzy Korony":                              "trzy-korony",
+}
+
 def link_mountain_forecast(nazwa, lat, lon, wys):
-    """Open-Meteo visual — działa zawsze po współrzędnych, bez slug."""
-    return (
-        f"https://open-meteo.com/en/docs"
-        f"#latitude={lat:.4f}&longitude={lon:.4f}&hourly=temperature_2m,"
-        f"precipitation,windspeed_10m,weathercode&windspeed_unit=ms&timezone=Europe%2FWarsaw"
-    )
+    """Mountain-forecast.com — dla znanych szczytów po slug, reszta Ventusky."""
+    slug = _MF_SLUGS.get(nazwa)
+    if slug:
+        return f"https://www.mountain-forecast.com/peaks/{slug}/forecasts/{wys}"
+    # Fallback: Ventusky — świetna mapa górska, zawsze działa po wsp.
+    return f"https://www.ventusky.com/?p={lat:.2f};{lon:.2f};10&l=rain-3h"
 
 def link_meteoblue(lat, lon, nazwa):
-    """Meteoblue — URL po współrzędnych (nie wymaga nazwy w bazie)."""
-    return f"https://www.meteoblue.com/pl/pogoda/tydzien/{lat:.4f}N{lon:.4f}E"
+    """Meteoblue — prawidłowy format URL po współrzędnych."""
+    return f"https://www.meteoblue.com/pl/pogoda/week/{lat:.4f}N{lon:.4f}E"
 
 def link_yr_web(lat, lon):
     """Yr.no — strona z prognozą dla współrzędnych."""
@@ -1395,7 +1414,9 @@ if wspolrzedne_ok and lat:
             st.markdown(f"**Pasmo:** {_pasmo}")
         st.markdown("**🔗 Prognozy zewnętrzne (kliknij aby otworzyć):**")
         ln_cols = st.columns(4)
-        ln_cols[0].markdown(f"[📊 Open-Meteo]({link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)})")
+        _mf_link = link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)
+        _mf_label = "🏔️ Mountain‑Forecast" if nazwa_wyswietlana in _MF_SLUGS else "🗺️ Ventusky"
+        ln_cols[0].markdown(f"[{_mf_label}]({_mf_link})")
         ln_cols[1].markdown(f"[🌐 Meteoblue]({link_meteoblue(lat, lon, nazwa_wyswietlana)})")
         ln_cols[2].markdown(f"[🇳🇴 Yr.no]({link_yr_web(lat, lon)})")
         ln_cols[3].markdown(f"[💨 Windy]({link_windy(lat, lon)})")
