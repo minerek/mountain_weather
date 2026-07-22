@@ -293,7 +293,7 @@ SZCZYTY = {
     "Mała Wysoka (Východná Vysoká)":              (49.1738, 20.1411, 2429, "Tatry Słowackie"),
     "Koprowy Wierch (Kôprovský štít)":            (49.1718, 20.0469, 2363, "Tatry Słowackie"),
     "Koprowe Ramię (Kôprovské plece)":            (49.1931, 20.0139, 2312, "Tatry Słowackie"),
-    "Kołowy Szczyt (Kolový štít)":                (49.1750, 20.1050, 2418, "Tatry Słowackie"),
+    "Kołowy Szczyt (Kolový štít)":                (49.2108, 20.1989, 2418, "Tatry Słowackie"),
     "Żabi Szczyt Niżni (Žabí štít)":              (49.1994, 20.0925, 2253, "Tatry Słowackie"),
     "Żabi Szczyt Wyżni":                          (49.1978, 20.0889, 2259, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
