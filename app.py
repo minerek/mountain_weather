@@ -463,28 +463,16 @@ def miniatura_mapa_html(lat, lon, nazwa="", zoom=14):
 # LINKI ZEWNĘTRZNE DO SERWISÓW POGODOWYCH
 # ============================================================
 def link_mountain_forecast(nazwa, lat, lon, wys):
-    """Mountain-forecast.com — wymaga nazwy szczytu w URL."""
-    # Normalizuj nazwę do formatu URL (małe litery, myślniki)
-    import re
-    slug = re.sub(r'[^a-z0-9]+', '-', nazwa.lower().split('(')[0].strip()
-                  .replace('ą','a').replace('ć','c').replace('ę','e')
-                  .replace('ł','l').replace('ń','n').replace('ó','o')
-                  .replace('ś','s').replace('ź','z').replace('ż','z')
-                  .replace('á','a').replace('é','e').replace('í','i')
-                  .replace('ú','u').replace('ý','y').replace('č','c')
-                  .replace('š','s').replace('ž','z').replace('ř','r')
-                  ).strip('-')
-    return f"https://www.mountain-forecast.com/peaks/{slug}/forecasts/{wys}"
+    """Open-Meteo visual — działa zawsze po współrzędnych, bez slug."""
+    return (
+        f"https://open-meteo.com/en/docs"
+        f"#latitude={lat:.4f}&longitude={lon:.4f}&hourly=temperature_2m,"
+        f"precipitation,windspeed_10m,weathercode&windspeed_unit=ms&timezone=Europe%2FWarsaw"
+    )
 
 def link_meteoblue(lat, lon, nazwa):
-    """Meteoblue — bezpośredni URL do prognozy dla współrzędnych."""
-    import re
-    slug = re.sub(r'[^a-z0-9]+', '-', nazwa.lower().split('(')[0].strip()
-                  .replace('ą','a').replace('ć','c').replace('ę','e')
-                  .replace('ł','l').replace('ń','n').replace('ó','o')
-                  .replace('ś','s').replace('ź','z').replace('ż','z')
-                  ).strip('-')
-    return f"https://www.meteoblue.com/pl/pogoda/tydzien/{slug}_polska_{lat:.4f}N{lon:.4f}E"
+    """Meteoblue — URL po współrzędnych (nie wymaga nazwy w bazie)."""
+    return f"https://www.meteoblue.com/pl/pogoda/tydzien/{lat:.4f}N{lon:.4f}E"
 
 def link_yr_web(lat, lon):
     """Yr.no — strona z prognozą dla współrzędnych."""
@@ -1407,7 +1395,7 @@ if wspolrzedne_ok and lat:
             st.markdown(f"**Pasmo:** {_pasmo}")
         st.markdown("**🔗 Prognozy zewnętrzne (kliknij aby otworzyć):**")
         ln_cols = st.columns(4)
-        ln_cols[0].markdown(f"[🏔️ Mountain‑Forecast]({link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)})")
+        ln_cols[0].markdown(f"[📊 Open-Meteo]({link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)})")
         ln_cols[1].markdown(f"[🌐 Meteoblue]({link_meteoblue(lat, lon, nazwa_wyswietlana)})")
         ln_cols[2].markdown(f"[🇳🇴 Yr.no]({link_yr_web(lat, lon)})")
         ln_cols[3].markdown(f"[💨 Windy]({link_windy(lat, lon)})")
