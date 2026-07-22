@@ -293,7 +293,7 @@ SZCZYTY = {
     "Mała Wysoka (Východná Vysoká)":              (49.1738, 20.1411, 2429, "Tatry Słowackie"),
     "Koprowy Wierch (Kôprovský štít)":            (49.1718, 20.0469, 2363, "Tatry Słowackie"),
     "Koprowe Ramię (Kôprovské plece)":            (49.1931, 20.0139, 2312, "Tatry Słowackie"),
-    "Kołowy Szczyt (Kolový štít)":                (49.1783, 20.0594, 2418, "Tatry Słowackie"),
+    "Kołowy Szczyt (Kolový štít)":                (49.1856, 20.0647, 2418, "Tatry Słowackie"),
     "Żabi Szczyt Niżni (Žabí štít)":              (49.1994, 20.0925, 2253, "Tatry Słowackie"),
     "Żabi Szczyt Wyżni":                          (49.1978, 20.0889, 2259, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
@@ -487,7 +487,7 @@ def link_mountain_forecast(nazwa, lat, lon, wys):
     if slug:
         return f"https://www.mountain-forecast.com/peaks/{slug}/forecasts/{wys}"
     # Fallback: Ventusky — świetna mapa górska, zawsze działa po wsp.
-    return f"https://www.ventusky.com/?p={lat:.2f};{lon:.2f};10&l=rain-3h"
+    return f"https://www.ventusky.com/?p={lat:.3f};{lon:.3f};12&l=temperature-2m"
 
 def link_meteoblue(lat, lon, nazwa):
     """Meteoblue — prawidłowy format URL po współrzędnych."""
@@ -499,7 +499,7 @@ def link_yr_web(lat, lon):
 
 def link_windy(lat, lon):
     """Windy.com — dobra wizualizacja wiatru i burz górskich."""
-    return f"https://www.windy.com/{lat:.2f}/{lon:.2f}?{lat:.2f},{lon:.2f},11"
+    return f"https://www.windy.com/{lat:.3f}/{lon:.3f}?{lat:.3f},{lon:.3f},12"
 
 def link_meteoalarm(lat, lon):
     """MeteoAlarm — europejskie ostrzeżenia meteorologiczne."""
