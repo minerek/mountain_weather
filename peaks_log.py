@@ -273,10 +273,10 @@ with col_list:
 
     # Nagłówek tabeli
     st.markdown("""
-    <div style="display:grid;grid-template-columns:28px 1fr 80px 1fr 90px;gap:4px;
+    <div style="display:grid;grid-template-columns:28px 1fr 1fr 90px;gap:4px;
          font-size:0.72rem;color:#5a8ab0;text-transform:uppercase;letter-spacing:0.8px;
          padding:4px 8px;border-bottom:1px solid #1e3a58;margin-bottom:4px;">
-      <div></div><div>Szczyt</div><div style="text-align:right">Wysokość</div><div>Notatki</div><div style="text-align:right">Data</div>
+      <div></div><div>Szczyt</div><div>Notatki</div><div style="text-align:right">Data</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -289,12 +289,11 @@ with col_list:
         bg = "#0a1e0e" if done else "#0a1828"
         border = "#1a4a22" if done else "#1a2e42"
         st.markdown(f"""
-        <div style="display:grid;grid-template-columns:28px 1fr 80px 1fr 90px;gap:4px;align-items:center;
+        <div style="display:grid;grid-template-columns:28px 1fr 1fr 90px;gap:4px;align-items:center;
              background:{bg};border:1px solid {border};border-radius:7px;
              padding:6px 8px;margin-bottom:3px;">
           <div style="font-size:1rem">{check}</div>
-          <div style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']}{wkt_b}</div>
-          <div style="text-align:right;font-size:0.82rem;color:#5a8ab0">{s['elevation']} m</div>
+          <div style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']} <span style="color:#5a8ab0;font-weight:400">{s['elevation']} m</span>{wkt_b}</div>
           <div>{notes_s}</div>
           <div style="text-align:right;font-size:0.82rem">{date_s}</div>
         </div>
