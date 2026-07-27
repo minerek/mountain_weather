@@ -37,6 +37,8 @@ body,.stMarkdown,p,li,span{color:#c8ddf0!important}
 .entry-notes{font-size:0.8rem;color:#8ab4cc;margin-top:3px;font-style:italic}
 .wkt-badge{display:inline-block;background:#1a3a10;border:1px solid #3a8a20;color:#8ade60;
   border-radius:5px;font-size:0.68rem;padding:1px 6px;margin-left:6px;font-weight:600;vertical-align:middle}
+.trasa-badge{display:inline-block;background:#2a2a10;border:1px solid #6a6a20;color:#c8c860;
+  border-radius:5px;font-size:0.68rem;padding:1px 6px;margin-left:6px;font-weight:600;vertical-align:middle}
 .prog-bar-bg{background:#0e2235;border-radius:8px;height:10px;overflow:hidden;border:1px solid #1e3a58}
 .prog-bar-fill{background:linear-gradient(90deg,#2a7a4a,#3aaa6a);height:100%;border-radius:8px}
 a{color:#5a9ecf!important;text-decoration:none!important}

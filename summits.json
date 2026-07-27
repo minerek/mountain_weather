@@ -262,5 +262,50 @@
     "wkt": false,
     "date": null,
     "notes": ""
+  },
+  {
+    "name": "Orla Perć",
+    "elevation": 2291,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "type": "trasa",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Barania Kotlina",
+    "elevation": 2200,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "type": "trasa",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Bystra Ławka (Bystrá lávka)",
+    "elevation": 2315,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "type": "trasa",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Czerwona Ławka",
+    "elevation": 2001,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "type": "trasa",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Rohacze (Roháče)",
+    "elevation": 2126,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "type": "trasa",
+    "date": null,
+    "notes": ""
   }
 ]
