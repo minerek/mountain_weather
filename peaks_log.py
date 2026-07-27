@@ -2,278 +2,261 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 import os
-from datetime import date, datetime
+from datetime import date
 
-# ── Favicon ──────────────────────────────────────────────────────────────────
 _FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a2a3a'/%3E%3Cpolygon points='16,4 28,26 4,26' fill='%234a7a9b'/%3E%3Cpolygon points='16,4 21,13 11,13' fill='%23ddeeff' opacity='0.9'/%3E%3Cpolygon points='11,13 13,18 4,26 28,26 21,13 19,18' fill='%23144a5e'/%3E%3C/svg%3E"
 
-st.set_page_config(
-    page_title="Moje Tatry — Dziennik Szczytów",
-    page_icon=_FAVICON,
-    layout="wide",
-)
-
+st.set_page_config(page_title="Moje Tatry — Dziennik", page_icon=_FAVICON, layout="wide")
 components.html("""<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">""", height=0)
 
 st.markdown("""
 <style>
-[data-testid="stAppViewContainer"], [data-testid="stApp"] {
-    background-color: #0e1e2f !important;
-}
-[data-testid="stHeader"] { background: transparent !important; }
-[data-testid="stAppViewBlockContainer"] { padding-top: 75px !important; }
-
-.mw-heading {
-    font-family: 'Cinzel', Georgia, serif !important;
-    color: #90bce0 !important;
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 1.5px !important;
-    border-bottom: 1px solid #1e3a58;
-    padding-bottom: 5px;
-    margin-top: 1.2rem !important;
-    margin-bottom: 0.7rem !important;
-}
-/* Ogólny tekst */
-body, .stMarkdown, .stText, p, li, span {
-    color: #c8ddf0 !important;
-}
-/* Dataframe */
-[data-testid="stDataFrame"] table { background: #0e1e2f !important; }
-/* Selectbox / input */
-[data-testid="stSelectbox"] > div > div,
-[data-testid="stTextInput"] > div > div > input,
+[data-testid="stAppViewContainer"],[data-testid="stApp"]{background:#0e1e2f!important}
+[data-testid="stHeader"]{background:transparent!important}
+[data-testid="stAppViewBlockContainer"]{padding-top:75px!important}
+body,.stMarkdown,p,li,span{color:#c8ddf0!important}
+.mw-title{font-family:'Cinzel',Georgia,serif;font-size:1.55rem;font-weight:700;color:#e8f4ff;letter-spacing:1px;line-height:1.1}
+.mw-sub{font-size:0.72rem;color:#7aaac8;letter-spacing:3px}
+.mw-heading{font-family:'Cinzel',Georgia,serif!important;color:#90bce0!important;font-size:1.05rem!important;
+  font-weight:600!important;letter-spacing:1.5px!important;border-bottom:1px solid #1e3a58;
+  padding-bottom:5px;margin-top:1.2rem!important;margin-bottom:0.7rem!important}
+[data-testid="stSelectbox"]>div>div,
+[data-testid="stTextInput"]>div>div>input,
 [data-testid="stTextArea"] textarea,
-[data-testid="stDateInput"] input {
-    background: #142840 !important;
-    color: #e8f4ff !important;
-    border: 1px solid #2a4a68 !important;
-    border-radius: 6px !important;
-}
-/* Button */
-[data-testid="stButton"] button {
-    background: linear-gradient(135deg, #1e5c8a, #0e3a5a) !important;
-    color: #e8f4ff !important;
-    border: 1px solid #3a7aaa !important;
-    border-radius: 8px !important;
-    font-weight: 600 !important;
-}
-[data-testid="stButton"] button:hover {
-    background: linear-gradient(135deg, #2a7ab8, #1a5080) !important;
-}
-/* Metric */
-[data-testid="stMetric"] {
-    background: #0e2235 !important;
-    border: 1px solid #1e3a58 !important;
-    border-radius: 10px !important;
-    padding: 10px 14px !important;
-}
-/* Tags WKT */
-.tag-wkt {
-    display:inline-block;background:#1a4a2e;border:1px solid #2a7a4a;
-    color:#7fd4a0;border-radius:5px;font-size:0.7rem;padding:1px 7px;
-    margin-left:6px;font-weight:600;letter-spacing:0.5px;vertical-align:middle;
-}
-.tag-done {
-    display:inline-block;background:#1a3a5a;border:1px solid #2a6a9a;
-    color:#7ab8e0;border-radius:5px;font-size:0.7rem;padding:1px 7px;
-    margin-left:4px;font-weight:600;letter-spacing:0.5px;vertical-align:middle;
-}
-/* Karty szczytów */
-.peak-card {
-    background:#0e2235;border:1px solid #1e3a58;border-radius:10px;
-    padding:10px 14px;margin-bottom:6px;
-}
-.peak-card.done {
-    background:#0a2218;border-color:#1a5a30;
-}
-.peak-name {
-    font-family:'Cinzel',Georgia,serif;font-size:1.0rem;font-weight:700;
-    color:#e8f4ff;letter-spacing:0.5px;
-}
-.peak-date { font-size:0.8rem;color:#7aaac8;margin-top:2px; }
-.peak-notes { font-size:0.82rem;color:#8ab4cc;margin-top:3px;font-style:italic; }
-a { color:#5a9ecf !important; text-decoration:none !important; }
-a:hover { text-decoration:underline !important; }
+[data-testid="stDateInput"] input{background:#142840!important;color:#e8f4ff!important;
+  border:1px solid #2a4a68!important;border-radius:6px!important}
+[data-testid="stButton"] button{background:linear-gradient(135deg,#1e5c8a,#0e3a5a)!important;
+  color:#e8f4ff!important;border:1px solid #3a7aaa!important;border-radius:8px!important;font-weight:600!important}
+[data-testid="stButton"] button:hover{background:linear-gradient(135deg,#2a7ab8,#1a5080)!important}
+[data-testid="stMetric"]{background:#0e2235!important;border:1px solid #1e3a58!important;
+  border-radius:10px!important;padding:10px 14px!important}
+.entry-card{background:#0a2218;border:1px solid #1a5a30;border-radius:10px;padding:11px 15px;margin-bottom:7px}
+.entry-rank{font-size:0.72rem;color:#7aaac8;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.entry-name{font-family:'Cinzel',Georgia,serif;font-size:1.0rem;font-weight:700;color:#e8f4ff}
+.entry-meta{font-size:0.8rem;color:#7aaac8;margin-top:2px}
+.entry-notes{font-size:0.8rem;color:#8ab4cc;margin-top:3px;font-style:italic}
+.wkt-badge{display:inline-block;background:#1a3a10;border:1px solid #3a8a20;color:#8ade60;
+  border-radius:5px;font-size:0.68rem;padding:1px 6px;margin-left:6px;font-weight:600;vertical-align:middle}
+.prog-bar-bg{background:#0e2235;border-radius:8px;height:10px;overflow:hidden;border:1px solid #1e3a58}
+.prog-bar-fill{background:linear-gradient(90deg,#2a7a4a,#3aaa6a);height:100%;border-radius:8px}
+a{color:#5a9ecf!important;text-decoration:none!important}
+a:hover{text-decoration:underline!important}
 </style>
 """, unsafe_allow_html=True)
 
-# ── Ścieżka do pliku danych ───────────────────────────────────────────────────
+# ── Dane ──────────────────────────────────────────────────────────────────────
 DATA_FILE = os.path.join(os.path.dirname(__file__), "summits.json")
 
-def load_data():
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
+def load():
+    with open(DATA_FILE, encoding="utf-8") as f:
         return json.load(f)
 
-def save_data(data):
+def save(data):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-# ── Nagłówek ─────────────────────────────────────────────────────────────────
-st.markdown("""
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
-  <svg width="36" height="36" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1"/>
-    <polygon points="19,4 27,17 11,17" fill="#ddeeff" opacity="0.9"/>
-    <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#144a5e"/>
-  </svg>
-  <div>
-    <div style="font-family:'Cinzel',Georgia,serif;font-size:1.6rem;font-weight:700;color:#e8f4ff;letter-spacing:1px;line-height:1.1;">Moje Tatry</div>
-    <div style="font-size:0.72rem;color:#7aaac8;letter-spacing:3px;">DZIENNIK ZDOBYTYCH SZCZYTÓW</div>
-  </div>
-</div>
-""", unsafe_allow_html=True)
+data = load()
 
-data = load_data()
+# ── Nagłówek ──────────────────────────────────────────────────────────────────
+col_h, col_ig = st.columns([4, 1])
+with col_h:
+    st.markdown("""
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+      <svg width="34" height="34" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1"/>
+        <polygon points="19,4 27,17 11,17" fill="#ddeeff" opacity="0.9"/>
+        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#144a5e"/>
+      </svg>
+      <div>
+        <div class="mw-title">Moje Tatry</div>
+        <div class="mw-sub">DZIENNIK ZDOBYTYCH SZCZYTÓW</div>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+with col_ig:
+    st.markdown("""
+    <div style="display:flex;justify-content:flex-end;align-items:center;margin-top:6px;">
+      <a href="https://www.instagram.com/hikewithmic/" target="_blank" style="text-decoration:none;">
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:4px 0;">
+          <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ig2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f9ce34"/>
+              <stop offset="30%" stop-color="#ee2a7b"/>
+              <stop offset="100%" stop-color="#4f5bd5"/>
+            </linearGradient></defs>
+            <rect width="36" height="36" rx="9" fill="url(#ig2)"/>
+            <rect x="7" y="7" width="22" height="22" rx="6" fill="none" stroke="white" stroke-width="2.2"/>
+            <circle cx="18" cy="18" r="5.5" fill="none" stroke="white" stroke-width="2.2"/>
+            <circle cx="25" cy="11" r="1.6" fill="white"/>
+          </svg>
+          <span style="font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-weight:600;font-size:0.78rem;color:#c8ddf0;">@hikewithmic</span>
+        </div>
+      </a>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ── Statystyki ────────────────────────────────────────────────────────────────
-total = len(data)
-done = sum(1 for s in data if s.get("date"))
-wkt_total = sum(1 for s in data if s.get("wkt"))
-wkt_done  = sum(1 for s in data if s.get("wkt") and s.get("date"))
-max_elev  = max((s["elevation"] for s in data if s.get("date")), default=0)
+all_done   = [s for s in data if s.get("date")]
+wkt_all    = [s for s in data if s.get("wkt")]
+wkt_done   = [s for s in data if s.get("wkt") and s.get("date")]
+max_e      = max((s["elevation"] for s in all_done), default=0)
+last_date  = sorted(all_done, key=lambda x: x["date"], reverse=True)[0]["date"] if all_done else None
 
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("⛰️ Zdobyte szczyty", f"{done} / {total}")
-c2.metric("⭐ WKT", f"{wkt_done} / {wkt_total}")
-c3.metric("🏆 Najwyższy zdobyty", f"{max_elev} m" if max_elev else "—")
-c4.metric("📅 Ostatnie wejście", next(
-    (s["date"] for s in sorted(
-        [s for s in data if s.get("date")],
-        key=lambda x: x["date"], reverse=True
-    )[:1]), "—"
-))
+c1.metric("⛰️ Zdobyte szczyty", f"{len(all_done)} / {len(data)}")
+c2.metric("⭐ WKT", f"{len(wkt_done)} / {len(wkt_all)}")
+c3.metric("🏆 Najwyższy", f"{max_e} m" if max_e else "—")
+c4.metric("📅 Ostatnie wejście", last_date or "—")
 
-st.divider()
-
-# ── Formularz dodawania wejścia ───────────────────────────────────────────────
-st.markdown('<div class="mw-heading">✏️ Dodaj lub edytuj wejście</div>', unsafe_allow_html=True)
-
-names = [s["name"] for s in data]
-col_sel, col_date, col_notes = st.columns([2, 1, 3])
-
-with col_sel:
-    selected_name = st.selectbox(
-        "Szczyt:",
-        names,
-        format_func=lambda n: next(
-            f"{'⭐ ' if s['wkt'] else ''}{s['name']}  ({s['elevation']} m)"
-            for s in data if s["name"] == n
-        )
-    )
-
-selected = next(s for s in data if s["name"] == selected_name)
-
-with col_date:
-    existing_date = date.fromisoformat(selected["date"]) if selected.get("date") else None
-    new_date = st.date_input("Data wejścia:", value=existing_date, min_value=date(1990, 1, 1), max_value=date.today())
-
-with col_notes:
-    new_notes = st.text_input("Notatki (opcjonalnie):", value=selected.get("notes", ""),
-                               placeholder="np. trasa, pogoda, towarzystwo...")
-
-col_save, col_clear = st.columns([1, 1])
-with col_save:
-    if st.button("💾 Zapisz wejście", type="primary"):
-        for s in data:
-            if s["name"] == selected_name:
-                s["date"] = new_date.isoformat()
-                s["notes"] = new_notes
-                break
-        save_data(data)
-        st.success(f"✅ Zapisano: {selected_name} — {new_date.strftime('%d.%m.%Y')}")
-        st.rerun()
-
-with col_clear:
-    if st.button("🗑️ Usuń datę (niezdobyty)"):
-        for s in data:
-            if s["name"] == selected_name:
-                s["date"] = None
-                s["notes"] = ""
-                break
-        save_data(data)
-        st.info(f"Usunięto wpis dla: {selected_name}")
-        st.rerun()
-
-st.divider()
-
-# ── Lista WKT ────────────────────────────────────────────────────────────────
-st.markdown('<div class="mw-heading">⭐ Wielka Korona Tatr (14 szczytów ≥ 2440 m)</div>', unsafe_allow_html=True)
-
-wkt_peaks = sorted([s for s in data if s.get("wkt")], key=lambda x: -x["elevation"])
-
-# Postęp WKT jako pasek
-wkt_pct = int(wkt_done / wkt_total * 100) if wkt_total else 0
+# Pasek postępu WKT
+wkt_pct = int(len(wkt_done) / len(wkt_all) * 100) if wkt_all else 0
 st.markdown(f"""
-<div style="margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#7aaac8;margin-bottom:4px;">
-    <span>Postęp WKT</span><span>{wkt_done}/{wkt_total} szczytów ({wkt_pct}%)</span>
+<div style="margin:10px 0 4px;">
+  <div style="display:flex;justify-content:space-between;font-size:0.78rem;color:#7aaac8;margin-bottom:3px;">
+    <span>Postęp WKT</span><span>{len(wkt_done)} / {len(wkt_all)} ({wkt_pct}%)</span>
   </div>
-  <div style="background:#0e2235;border-radius:8px;height:12px;overflow:hidden;border:1px solid #1e3a58;">
-    <div style="background:linear-gradient(90deg,#2a7a4a,#3aaa6a);height:100%;width:{wkt_pct}%;border-radius:8px;transition:width 0.5s;"></div>
-  </div>
+  <div class="prog-bar-bg"><div class="prog-bar-fill" style="width:{wkt_pct}%"></div></div>
 </div>
 """, unsafe_allow_html=True)
 
-cols_wkt = st.columns(3)
-for i, peak in enumerate(wkt_peaks):
-    done_flag = bool(peak.get("date"))
-    card_class = "peak-card done" if done_flag else "peak-card"
-    check = "✅" if done_flag else "⬜"
-    date_str = f'<div class="peak-date">📅 {peak["date"]}</div>' if done_flag else '<div class="peak-date" style="color:#3a6080;">— nie zdobyty —</div>'
-    notes_str = f'<div class="peak-notes">💬 {peak["notes"]}</div>' if peak.get("notes") else ""
-    rank = i + 1
-    cols_wkt[i % 3].markdown(f"""
-    <div class="{card_class}">
-      <div class="peak-name">{check} {rank}. {peak["name"]}</div>
-      <div style="font-size:0.78rem;color:#5a8ab0;margin-top:1px;">{peak["elevation"]} m · {peak["range"]}</div>
-      {date_str}{notes_str}
+st.divider()
+
+# ── Dwa panele: lista szczytów | formularz ────────────────────────────────────
+col_list, col_form = st.columns([2, 1], gap="large")
+
+with col_form:
+    st.markdown('<div class="mw-heading">✏️ Dodaj wejście</div>', unsafe_allow_html=True)
+
+    # Sortowanie listy: WKT najpierw, potem wg wysokości
+    sorted_all = sorted(data, key=lambda s: (-int(s.get("wkt", False)), -s["elevation"]))
+
+    sel_name = st.selectbox(
+        "Wybierz szczyt:",
+        [s["name"] for s in sorted_all],
+        format_func=lambda n: next(
+            ("⭐ " if s["wkt"] else "   ") + f"{s['name']}  ({s['elevation']} m)"
+            for s in sorted_all if s["name"] == n
+        )
+    )
+    sel = next(s for s in data if s["name"] == sel_name)
+
+    existing_date = date.fromisoformat(sel["date"]) if sel.get("date") else date.today()
+    new_date  = st.date_input("Data wejścia:", value=existing_date,
+                               min_value=date(1990,1,1), max_value=date.today())
+    new_notes = st.text_area("Notatki:", value=sel.get("notes",""),
+                              placeholder="np. trasa, pogoda, towarzystwo...",
+                              height=80)
+
+    if st.button("💾 Zapisz", type="primary", use_container_width=True):
+        for s in data:
+            if s["name"] == sel_name:
+                s["date"]  = new_date.isoformat()
+                s["notes"] = new_notes.strip()
+                break
+        save(data)
+        st.success(f"✅ Zapisano!")
+        st.rerun()
+
+    if sel.get("date") and st.button("🗑️ Usuń wpis", use_container_width=True):
+        for s in data:
+            if s["name"] == sel_name:
+                s["date"]  = None
+                s["notes"] = ""
+                break
+        save(data)
+        st.info("Wpis usunięty.")
+        st.rerun()
+
+    # Podgląd wybranego szczytu
+    st.markdown(f"""
+    <div style="background:#0e2235;border:1px solid #1e3a58;border-radius:8px;padding:10px 13px;margin-top:10px;">
+      <div style="font-size:0.72rem;color:#7aaac8;text-transform:uppercase;letter-spacing:1px;">Wybrany szczyt</div>
+      <div style="font-family:'Cinzel',Georgia,serif;font-size:0.95rem;color:#e8f4ff;margin-top:3px;">
+        {sel['name']}{'<span class="wkt-badge">⭐ WKT</span>' if sel.get('wkt') else ''}
+      </div>
+      <div style="font-size:0.8rem;color:#5a8ab0;margin-top:2px;">{sel['elevation']} m · {sel['range']}</div>
+      {'<div style="font-size:0.8rem;color:#3a9a5a;margin-top:3px;">✅ Zdobyty: ' + sel['date'] + '</div>' if sel.get('date') else '<div style="font-size:0.8rem;color:#3a6080;margin-top:3px;">⬜ Jeszcze nie zdobyty</div>'}
     </div>
     """, unsafe_allow_html=True)
 
-st.divider()
+with col_list:
+    st.markdown('<div class="mw-heading">📋 Wszystkie szczyty</div>', unsafe_allow_html=True)
 
-# ── Pozostałe szczyty ─────────────────────────────────────────────────────────
-st.markdown('<div class="mw-heading">🏔️ Pozostałe szczyty tatrzańskie</div>', unsafe_allow_html=True)
+    f1, f2 = st.columns(2)
+    with f1:
+        filt_status = st.selectbox("Status:", ["Wszystkie", "Zdobyte ✅", "Niezdobyte ⬜"], key="filt_s")
+    with f2:
+        filt_wkt = st.selectbox("Typ:", ["Wszystkie", "Tylko WKT ⭐", "Bez WKT"], key="filt_w")
 
-other_peaks = sorted([s for s in data if not s.get("wkt")], key=lambda x: -x["elevation"])
-other_done = sum(1 for s in other_peaks if s.get("date"))
+    disp = sorted(data, key=lambda s: (-int(s.get("wkt", False)), -s["elevation"]))
+    if filt_status == "Zdobyte ✅":    disp = [s for s in disp if s.get("date")]
+    if filt_status == "Niezdobyte ⬜": disp = [s for s in disp if not s.get("date")]
+    if filt_wkt == "Tylko WKT ⭐":     disp = [s for s in disp if s.get("wkt")]
+    if filt_wkt == "Bez WKT":          disp = [s for s in disp if not s.get("wkt")]
 
-# Filtr
-col_f1, col_f2 = st.columns([1, 2])
-with col_f1:
-    filter_status = st.selectbox("Filtr:", ["Wszystkie", "Tylko zdobyte", "Tylko niezdobyte"])
-with col_f2:
-    ranges_available = sorted(set(s["range"] for s in other_peaks))
-    filter_range = st.multiselect("Pasmo:", ranges_available, default=ranges_available)
-
-filtered = [s for s in other_peaks
-            if s["range"] in filter_range
-            and (filter_status == "Wszystkie"
-                 or (filter_status == "Tylko zdobyte" and s.get("date"))
-                 or (filter_status == "Tylko niezdobyte" and not s.get("date")))]
-
-st.caption(f"Wyświetlane: {len(filtered)} szczytów · Zdobyte: {other_done} / {len(other_peaks)}")
-
-cols_other = st.columns(3)
-for i, peak in enumerate(filtered):
-    done_flag = bool(peak.get("date"))
-    card_class = "peak-card done" if done_flag else "peak-card"
-    check = "✅" if done_flag else "⬜"
-    date_str = f'<div class="peak-date">📅 {peak["date"]}</div>' if done_flag else '<div class="peak-date" style="color:#3a6080;">— nie zdobyty —</div>'
-    notes_str = f'<div class="peak-notes">💬 {peak["notes"]}</div>' if peak.get("notes") else ""
-    cols_other[i % 3].markdown(f"""
-    <div class="{card_class}">
-      <div class="peak-name">{check} {peak["name"]}</div>
-      <div style="font-size:0.78rem;color:#5a8ab0;margin-top:1px;">{peak["elevation"]} m · {peak["range"]}</div>
-      {date_str}{notes_str}
+    # Nagłówek tabeli
+    st.markdown("""
+    <div style="display:grid;grid-template-columns:28px 1fr 70px 90px;gap:4px;
+         font-size:0.72rem;color:#5a8ab0;text-transform:uppercase;letter-spacing:0.8px;
+         padding:4px 8px;border-bottom:1px solid #1e3a58;margin-bottom:4px;">
+      <div></div><div>Szczyt</div><div style="text-align:right">Wys.</div><div style="text-align:right">Data</div>
     </div>
     """, unsafe_allow_html=True)
 
-# ── Stopka ────────────────────────────────────────────────────────────────────
+    for s in disp:
+        done = bool(s.get("date"))
+        check = "✅" if done else "⬜"
+        wkt_b = '<span class="wkt-badge">⭐</span>' if s.get("wkt") else ""
+        date_s = f'<span style="color:#3a9a5a">{s["date"]}</span>' if done else '<span style="color:#2a4a68">—</span>'
+        notes_s = f'<div style="font-size:0.75rem;color:#6a9ab8;font-style:italic;padding-left:32px;margin-top:-2px;margin-bottom:4px;">💬 {s["notes"]}</div>' if s.get("notes") else ""
+        bg = "#0a1e0e" if done else "#0a1828"
+        border = "#1a4a22" if done else "#1a2e42"
+        st.markdown(f"""
+        <div style="display:grid;grid-template-columns:28px 1fr 70px 90px;gap:4px;align-items:center;
+             background:{bg};border:1px solid {border};border-radius:7px;
+             padding:6px 8px;margin-bottom:3px;">
+          <div style="font-size:1rem">{check}</div>
+          <div style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']}{wkt_b}</div>
+          <div style="text-align:right;font-size:0.82rem;color:#5a8ab0">{s['elevation']} m</div>
+          <div style="text-align:right;font-size:0.82rem">{date_s}</div>
+        </div>{notes_s}
+        """, unsafe_allow_html=True)
+
 st.divider()
+
+# ── Chronologiczna lista zdobytych ────────────────────────────────────────────
+st.markdown('<div class="mw-heading">📅 Historia wejść — posortowana chronologicznie</div>', unsafe_allow_html=True)
+
+climbed = sorted([s for s in data if s.get("date")], key=lambda x: x["date"], reverse=True)
+
+if not climbed:
+    st.info("Brak zapisanych wejść. Dodaj pierwsze wejście po prawej stronie ➡️")
+else:
+    cols = st.columns(3)
+    for i, s in enumerate(climbed):
+        wkt_b = '<span class="wkt-badge">⭐ WKT</span>' if s.get("wkt") else ""
+        notes_s = f'<div class="entry-notes">💬 {s["notes"]}</div>' if s.get("notes") else ""
+        # Formatuj datę czytelnie
+        try:
+            d = date.fromisoformat(s["date"])
+            date_fmt = d.strftime("%d %b %Y").replace("Jan","sty").replace("Feb","lut")\
+                .replace("Mar","mar").replace("Apr","kwi").replace("May","maj")\
+                .replace("Jun","cze").replace("Jul","lip").replace("Aug","sie")\
+                .replace("Sep","wrz").replace("Oct","paź").replace("Nov","lis").replace("Dec","gru")
+        except Exception:
+            date_fmt = s["date"]
+
+        cols[i % 3].markdown(f"""
+        <div class="entry-card">
+          <div class="entry-rank">#{i+1} · {date_fmt}</div>
+          <div class="entry-name">{s['name']}{wkt_b}</div>
+          <div class="entry-meta">{s['elevation']} m · {s['range']}</div>
+          {notes_s}
+        </div>
+        """, unsafe_allow_html=True)
+
 st.markdown("""
-<div style="text-align:center;font-size:0.75rem;color:#3a6080;padding:8px 0;">
+<div style="text-align:center;font-size:0.72rem;color:#2a4a68;padding:10px 0 4px;">
   hikewithmic · Moje Tatry — Dziennik Szczytów
 </div>
 """, unsafe_allow_html=True)
