@@ -153,8 +153,32 @@
   },
   {
     "name": "Koprowy Wierch (Kôprovský štít)",
-    "elevation": 2363,
-    "range": "Tatry Słowackie",
+    "elevation": 2366,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Świstowy Szczyt (Svišťový štít)",
+    "elevation": 2385,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Wielka Kopa Koprowa (Veľká kopa)",
+    "elevation": 2052,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Dziumbier (Ďumbier)",
+    "elevation": 2043,
+    "range": "Tatry Niżne (SK)",
     "wkt": false,
     "date": null,
     "notes": ""
@@ -357,13 +381,5 @@
     "wkt": false,
     "date": "2025-08-16",
     "notes": "Orla Perć"
-  },
-  {
-    "name": "Skrajny Granat",
-    "elevation": 2225,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
   }
 ]

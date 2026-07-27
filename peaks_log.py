@@ -126,18 +126,128 @@ def check_password():
 
 logged_in = check_password()
 
+# ── Banner ────────────────────────────────────────────────────────────────────
+st.markdown("""
+<div style="width:100%;margin-bottom:18px;border-radius:14px;overflow:hidden;position:relative;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" style="width:100%;display:block;">
+  <defs>
+    <!-- Niebo: noc->świt->dzień -->
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%"   stop-color="#04101e"/>
+      <stop offset="35%"  stop-color="#0a1e3a"/>
+      <stop offset="60%"  stop-color="#7a3010"/>
+      <stop offset="80%"  stop-color="#d06020"/>
+      <stop offset="100%" stop-color="#e8a040"/>
+    </linearGradient>
+    <!-- Pasmo dalekiego tła (najwyższe) -->
+    <linearGradient id="mtn1" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%"   stop-color="#0d1e32"/>
+      <stop offset="35%"  stop-color="#1a2e48"/>
+      <stop offset="60%"  stop-color="#6a2a18"/>
+      <stop offset="80%"  stop-color="#a04828"/>
+      <stop offset="100%" stop-color="#b86030"/>
+    </linearGradient>
+    <!-- Pasmo środkowe -->
+    <linearGradient id="mtn2" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%"   stop-color="#071420"/>
+      <stop offset="35%"  stop-color="#0e1e30"/>
+      <stop offset="60%"  stop-color="#3a1a10"/>
+      <stop offset="80%"  stop-color="#6a3018"/>
+      <stop offset="100%" stop-color="#7a4020"/>
+    </linearGradient>
+    <!-- Pasmo pierwszego planu (ciemne) -->
+    <linearGradient id="mtn3" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%"   stop-color="#020a10"/>
+      <stop offset="50%"  stop-color="#050e18"/>
+      <stop offset="100%" stop-color="#0a1820"/>
+    </linearGradient>
+    <!-- Gwiazdy – blur -->
+    <filter id="glow"><feGaussianBlur stdDeviation="0.8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <!-- Niebo -->
+  <rect width="900" height="200" fill="url(#sky)"/>
+
+  <!-- Gwiazdy (lewa, ciemna strona) -->
+  <g filter="url(#glow)" opacity="0.9">
+    <circle cx="30"  cy="18" r="1.2" fill="white"/>
+    <circle cx="75"  cy="10" r="0.9" fill="white"/>
+    <circle cx="120" cy="22" r="1.1" fill="white"/>
+    <circle cx="55"  cy="38" r="0.7" fill="white"/>
+    <circle cx="95"  cy="30" r="1.0" fill="white"/>
+    <circle cx="145" cy="14" r="0.8" fill="white"/>
+    <circle cx="200" cy="26" r="0.6" fill="white"/>
+    <circle cx="170" cy="42" r="0.9" fill="#ddeeff"/>
+    <circle cx="15"  cy="55" r="0.7" fill="white"/>
+    <circle cx="240" cy="18" r="0.7" fill="white"/>
+    <circle cx="10"  cy="30" r="1.3" fill="#eef8ff"/>
+    <circle cx="60"  cy="62" r="0.6" fill="white"/>
+  </g>
+
+  <!-- Księżyc -->
+  <circle cx="48" cy="28" r="8" fill="#ddeeff" opacity="0.18"/>
+  <circle cx="52" cy="26" r="8" fill="#04101e" opacity="0.95"/>
+
+  <!-- Daleka grań (najwyższa, śnieg) -->
+  <polygon points="0,130 40,85 80,105 130,60 180,90 230,50 280,75 330,40 380,70 420,45 460,80 500,55 540,90 580,65 620,95 660,70 700,100 740,80 780,110 830,75 870,100 900,85 900,200 0,200"
+           fill="url(#mtn1)"/>
+  <!-- Śniegowe czapy na najwyższej grani -->
+  <polygon points="130,60 118,75 142,75" fill="#ddeeff" opacity="0.7"/>
+  <polygon points="230,50 218,67 242,67" fill="#ddeeff" opacity="0.65"/>
+  <polygon points="330,40 318,58 342,58" fill="#ddeeff" opacity="0.75"/>
+  <polygon points="420,45 408,62 432,62" fill="#ddeeff" opacity="0.7"/>
+  <polygon points="500,55 490,70 510,70" fill="#ddeeff" opacity="0.6"/>
+  <polygon points="580,65 570,80 590,80" fill="#ddeeff" opacity="0.5"/>
+
+  <!-- Środkowa grań -->
+  <polygon points="0,155 50,120 110,140 160,105 210,125 260,95 310,118 360,100 410,120 460,105 510,130 560,110 610,140 660,118 710,148 760,125 810,150 860,132 900,155 900,200 0,200"
+           fill="url(#mtn2)"/>
+
+  <!-- Pierwszy plan (ciemny) -->
+  <polygon points="0,175 60,155 120,168 180,148 240,162 300,142 360,158 420,145 480,160 540,150 600,165 660,148 720,168 780,152 840,170 900,155 900,200 0,200"
+           fill="url(#mtn3)"/>
+
+  <!-- Drzewa (lewa strona, ciemna) -->
+  <g fill="#030c14" opacity="0.85">
+    <polygon points="18,175 21,155 24,175"/>
+    <polygon points="28,175 32,152 36,175"/>
+    <polygon points="38,175 42,158 46,175"/>
+    <polygon points="50,175 54,161 58,175"/>
+    <polygon points="8,175  11,162 14,175"/>
+  </g>
+
+  <!-- Tekst -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Georgia,serif" font-size="30" font-weight="700"
+        fill="#e8f4ff" opacity="0.92" letter-spacing="4">Moje Tatry</text>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Georgia,serif" font-size="30" font-weight="700"
+        fill="none" stroke="#0a1e2e" stroke-width="3" stroke-linejoin="round"
+        letter-spacing="4" opacity="0.5">Moje Tatry</text>
+  <text x="50%" y="68%" dominant-baseline="middle" text-anchor="middle"
+        font-family="Arial,sans-serif" font-size="11" font-weight="400"
+        fill="#7aaac8" opacity="0.9" letter-spacing="5">DZIENNIK ZDOBYTYCH SZCZYTÓW</text>
+
+  <!-- IG badge (prawa strona) -->
+  <a href="https://www.instagram.com/hikewithmic/">
+    <rect x="758" y="10" width="132" height="28" rx="7" fill="#000" opacity="0.35"/>
+    <rect x="764" y="14" width="20" height="20" rx="5"
+          fill="none" stroke="#ee2a7b" stroke-width="1.6"/>
+    <circle cx="774" cy="24" r="4.5" fill="none" stroke="#ee2a7b" stroke-width="1.4"/>
+    <circle cx="782" cy="16" r="1.3" fill="#f9ce34"/>
+    <text x="790" y="28" font-family="Arial,sans-serif" font-size="11" font-weight="600"
+          fill="#c8ddf0">@hikewithmic</text>
+  </a>
+</svg>
+</div>
+""", unsafe_allow_html=True)
+
 # ── Nagłówek ──────────────────────────────────────────────────────────────────
 col_h, col_ig = st.columns([4, 1])
 with col_h:
     st.markdown("""
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
-      <svg width="34" height="34" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1"/>
-        <polygon points="19,4 27,17 11,17" fill="#ddeeff" opacity="0.9"/>
-        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#144a5e"/>
-      </svg>
       <div>
-        <div class="mw-title">Moje Tatry</div>
         <div class="mw-sub">DZIENNIK ZDOBYTYCH SZCZYTÓW</div>
       </div>
     </div>
@@ -273,10 +383,10 @@ with col_list:
 
     # Nagłówek tabeli
     st.markdown("""
-    <div style="display:grid;grid-template-columns:28px 1fr 1fr 90px;gap:4px;
+    <div style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;
          font-size:0.72rem;color:#5a8ab0;text-transform:uppercase;letter-spacing:0.8px;
          padding:4px 8px;border-bottom:1px solid #1e3a58;margin-bottom:4px;">
-      <div></div><div>Szczyt</div><div>Notatki</div><div style="text-align:right">Data</div>
+      <div></div><div>Szczyt</div><div>Pasmo</div><div>Notatki</div><div style="text-align:right">Data</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -286,14 +396,16 @@ with col_list:
         wkt_b = '<span class="wkt-badge">⭐</span>' if s.get("wkt") else ""
         date_s = f'<span style="color:#3a9a5a">{s["date"]}</span>' if done else '<span style="color:#2a4a68">—</span>'
         notes_s = f'<span style="font-size:0.78rem;color:#6a9ab8;font-style:italic;">💬 {s["notes"]}</span>' if s.get("notes") else ""
+        range_s = f'<span style="font-size:0.78rem;color:#5a8ab0;">{s["range"]}</span>'
         bg = "#0a1e0e" if done else "#0a1828"
         border = "#1a4a22" if done else "#1a2e42"
         st.markdown(f"""
-        <div style="display:grid;grid-template-columns:28px 1fr 1fr 90px;gap:4px;align-items:center;
+        <div style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;align-items:center;
              background:{bg};border:1px solid {border};border-radius:7px;
              padding:6px 8px;margin-bottom:3px;">
           <div style="font-size:1rem">{check}</div>
           <div style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']}{wkt_b}&nbsp;&nbsp;<span style="color:#5a8ab0;font-weight:400">{s['elevation']} m</span></div>
+          <div>{range_s}</div>
           <div>{notes_s}</div>
           <div style="text-align:right;font-size:0.82rem">{date_s}</div>
         </div>
