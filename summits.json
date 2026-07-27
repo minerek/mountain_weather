@@ -1,6 +1,6 @@
 [
   {
-    "name": "Rysy (SK) ⭐WKT",
+    "name": "Rysy (SK)",
     "elevation": 2503,
     "range": "Tatry Słowackie",
     "wkt": true,
@@ -339,6 +339,30 @@
     "range": "Tatry Zachodnie",
     "wkt": false,
     "type": "masyw",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Zadni Granat",
+    "elevation": 2240,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Pośredni Granat",
+    "elevation": 2234,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Skrajny Granat",
+    "elevation": 2225,
+    "range": "Tatry Polskie",
+    "wkt": false,
     "date": null,
     "notes": ""
   }
