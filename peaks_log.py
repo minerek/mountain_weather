@@ -57,6 +57,31 @@ def save(data):
 
 data = load()
 
+# ── Autoryzacja ───────────────────────────────────────────────────────────────
+def check_password():
+    """Zwraca True jeśli użytkownik podał poprawne hasło."""
+    if st.session_state.get("authenticated"):
+        return True
+    # Hasło pobierane z Streamlit Secrets (nigdy nie ma go w kodzie)
+    try:
+        correct = st.secrets["APP_PASSWORD"]
+    except Exception:
+        # Fallback lokalny — działa gdy nie ma secrets (np. na lokalnym komputerze)
+        correct = "tatry"
+
+    with st.sidebar:
+        st.markdown("### 🔐 Logowanie")
+        pwd = st.text_input("Hasło:", type="password", key="pwd_input")
+        if st.button("Zaloguj", key="login_btn"):
+            if pwd == correct:
+                st.session_state["authenticated"] = True
+                st.rerun()
+            else:
+                st.error("❌ Nieprawidłowe hasło.")
+    return False
+
+logged_in = check_password()
+
 # ── Nagłówek ──────────────────────────────────────────────────────────────────
 col_h, col_ig = st.columns([4, 1])
 with col_h:
@@ -127,45 +152,53 @@ col_list, col_form = st.columns([2, 1], gap="large")
 with col_form:
     st.markdown('<div class="mw-heading">✏️ Dodaj wejście</div>', unsafe_allow_html=True)
 
-    # Sortowanie listy: WKT najpierw, potem wg wysokości
-    sorted_all = sorted(data, key=lambda s: (-int(s.get("wkt", False)), -s["elevation"]))
+    if not logged_in:
+        st.markdown("""
+        <div style="background:#1a2a3a;border:1px solid #2a4a68;border-radius:8px;
+             padding:14px 16px;text-align:center;color:#7aaac8;font-size:0.85rem;">
+          🔐 Zaloguj się przez panel boczny<br>aby dodawać i edytować wejścia.
+        </div>
+        """, unsafe_allow_html=True)
+    else:
+        # Sortowanie listy: WKT najpierw, potem wg wysokości
+        sorted_all = sorted(data, key=lambda s: (-int(s.get("wkt", False)), -s["elevation"]))
 
-    sel_name = st.selectbox(
-        "Wybierz szczyt:",
-        [s["name"] for s in sorted_all],
-        format_func=lambda n: next(
-            ("⭐ " if s["wkt"] else "   ") + f"{s['name']}  ({s['elevation']} m)"
-            for s in sorted_all if s["name"] == n
+        sel_name = st.selectbox(
+            "Wybierz szczyt:",
+            [s["name"] for s in sorted_all],
+            format_func=lambda n: next(
+                ("⭐ " if s["wkt"] else "   ") + f"{s['name']}  ({s['elevation']} m)"
+                for s in sorted_all if s["name"] == n
+            )
         )
-    )
-    sel = next(s for s in data if s["name"] == sel_name)
+        sel = next(s for s in data if s["name"] == sel_name)
 
-    existing_date = date.fromisoformat(sel["date"]) if sel.get("date") else date.today()
-    new_date  = st.date_input("Data wejścia:", value=existing_date,
-                               min_value=date(1990,1,1), max_value=date.today())
-    new_notes = st.text_area("Notatki:", value=sel.get("notes",""),
-                              placeholder="np. trasa, pogoda, towarzystwo...",
-                              height=80)
+        existing_date = date.fromisoformat(sel["date"]) if sel.get("date") else date.today()
+        new_date  = st.date_input("Data wejścia:", value=existing_date,
+                                   min_value=date(1990,1,1), max_value=date.today())
+        new_notes = st.text_area("Notatki:", value=sel.get("notes",""),
+                                  placeholder="np. trasa, pogoda, towarzystwo...",
+                                  height=80)
 
-    if st.button("💾 Zapisz", type="primary", use_container_width=True):
-        for s in data:
-            if s["name"] == sel_name:
-                s["date"]  = new_date.isoformat()
-                s["notes"] = new_notes.strip()
-                break
-        save(data)
-        st.success(f"✅ Zapisano!")
-        st.rerun()
+        if st.button("💾 Zapisz", type="primary", use_container_width=True):
+            for s in data:
+                if s["name"] == sel_name:
+                    s["date"]  = new_date.isoformat()
+                    s["notes"] = new_notes.strip()
+                    break
+            save(data)
+            st.success("✅ Zapisano!")
+            st.rerun()
 
-    if sel.get("date") and st.button("🗑️ Usuń wpis", use_container_width=True):
-        for s in data:
-            if s["name"] == sel_name:
-                s["date"]  = None
-                s["notes"] = ""
-                break
-        save(data)
-        st.info("Wpis usunięty.")
-        st.rerun()
+        if sel.get("date") and st.button("🗑️ Usuń wpis", use_container_width=True):
+            for s in data:
+                if s["name"] == sel_name:
+                    s["date"]  = None
+                    s["notes"] = ""
+                    break
+            save(data)
+            st.info("Wpis usunięty.")
+            st.rerun()
 
     # Podgląd wybranego szczytu
     st.markdown(f"""
