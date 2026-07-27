@@ -1,6 +1,6 @@
 [
   {
-    "name": "Rysy (wierzchołek słowacki) ⭐WKT",
+    "name": "Rysy (SK) ⭐WKT",
     "elevation": 2503,
     "range": "Tatry Słowackie",
     "wkt": true,
@@ -8,7 +8,7 @@
     "notes": ""
   },
   {
-    "name": "Rysy (wierzchołek polski)",
+    "name": "Rysy (PL)",
     "elevation": 2499,
     "range": "Tatry Polskie",
     "wkt": false,

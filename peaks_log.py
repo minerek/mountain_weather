@@ -46,16 +46,58 @@ a:hover{text-decoration:underline!important}
 </style>
 """, unsafe_allow_html=True)
 
-# ── Dane ──────────────────────────────────────────────────────────────────────
+# ── Dane + GitHub persistence ─────────────────────────────────────────────────
+import base64, requests as _req
+
 DATA_FILE = os.path.join(os.path.dirname(__file__), "summits.json")
+_GH_REPO  = "minerek/mountain_weather"
+_GH_PATH  = "summits.json"
 
 def load():
+    """Ładuje dane — najpierw próbuje GitHuba (zawsze aktualne), fallback lokalny."""
+    try:
+        token = st.secrets["GH_TOKEN"]
+        url = f"https://api.github.com/repos/{_GH_REPO}/contents/{_GH_PATH}"
+        r = _req.get(url, headers={"Authorization": f"token {token}"}, timeout=8)
+        if r.status_code == 200:
+            content = base64.b64decode(r.json()["content"]).decode("utf-8")
+            # Zapamiętaj SHA do późniejszego commitu
+            st.session_state["gh_sha"] = r.json()["sha"]
+            return json.loads(content)
+    except Exception:
+        pass
+    # Fallback: plik lokalny (środowisko deweloperskie)
     with open(DATA_FILE, encoding="utf-8") as f:
         return json.load(f)
 
 def save(data):
+    """Zapisuje lokalnie ORAZ pushuje do GitHuba przez API."""
+    content_str = json.dumps(data, ensure_ascii=False, indent=2)
+    # Zapis lokalny (działa w każdym środowisku)
     with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write(content_str)
+    # Push do GitHuba
+    try:
+        token = st.secrets["GH_TOKEN"]
+        sha   = st.session_state.get("gh_sha", "")
+        url   = f"https://api.github.com/repos/{_GH_REPO}/contents/{_GH_PATH}"
+        payload = {
+            "message": "dziennik: aktualizacja summits.json",
+            "content": base64.b64encode(content_str.encode("utf-8")).decode("ascii"),
+            "sha": sha,
+            "branch": "main",
+        }
+        r = _req.put(url, json=payload,
+                     headers={"Authorization": f"token {token}"}, timeout=10)
+        if r.status_code in (200, 201):
+            # Zaktualizuj SHA na nowe
+            st.session_state["gh_sha"] = r.json()["content"]["sha"]
+        else:
+            st.warning(f"⚠️ GitHub sync: {r.status_code} — dane zapisane lokalnie.")
+    except KeyError:
+        pass  # Brak GH_TOKEN — środowisko lokalne, pominięcie push
+    except Exception as e:
+        st.warning(f"⚠️ GitHub sync error: {e}")
 
 data = load()
 
