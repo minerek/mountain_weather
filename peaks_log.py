@@ -200,17 +200,17 @@ with col_form:
             st.info("Wpis usunięty.")
             st.rerun()
 
-    # Podgląd wybranego szczytu
-    st.markdown(f"""
-    <div style="background:#0e2235;border:1px solid #1e3a58;border-radius:8px;padding:10px 13px;margin-top:10px;">
-      <div style="font-size:0.72rem;color:#7aaac8;text-transform:uppercase;letter-spacing:1px;">Wybrany szczyt</div>
-      <div style="font-family:'Cinzel',Georgia,serif;font-size:0.95rem;color:#e8f4ff;margin-top:3px;">
-        {sel['name']}{'<span class="wkt-badge">⭐ WKT</span>' if sel.get('wkt') else ''}
-      </div>
-      <div style="font-size:0.8rem;color:#5a8ab0;margin-top:2px;">{sel['elevation']} m · {sel['range']}</div>
-      {'<div style="font-size:0.8rem;color:#3a9a5a;margin-top:3px;">✅ Zdobyty: ' + sel['date'] + '</div>' if sel.get('date') else '<div style="font-size:0.8rem;color:#3a6080;margin-top:3px;">⬜ Jeszcze nie zdobyty</div>'}
-    </div>
-    """, unsafe_allow_html=True)
+        # Podgląd wybranego szczytu
+        st.markdown(f"""
+        <div style="background:#0e2235;border:1px solid #1e3a58;border-radius:8px;padding:10px 13px;margin-top:10px;">
+          <div style="font-size:0.72rem;color:#7aaac8;text-transform:uppercase;letter-spacing:1px;">Wybrany szczyt</div>
+          <div style="font-family:'Cinzel',Georgia,serif;font-size:0.95rem;color:#e8f4ff;margin-top:3px;">
+            {sel['name']}{'<span class="wkt-badge">⭐ WKT</span>' if sel.get('wkt') else ''}
+          </div>
+          <div style="font-size:0.8rem;color:#5a8ab0;margin-top:2px;">{sel['elevation']} m · {sel['range']}</div>
+          {'<div style="font-size:0.8rem;color:#3a9a5a;margin-top:3px;">✅ Zdobyty: ' + sel["date"] + '</div>' if sel.get('date') else '<div style="font-size:0.8rem;color:#3a6080;margin-top:3px;">⬜ Jeszcze nie zdobyty</div>'}
+        </div>
+        """, unsafe_allow_html=True)
 
 with col_list:
     st.markdown('<div class="mw-heading">📋 Wszystkie szczyty</div>', unsafe_allow_html=True)
