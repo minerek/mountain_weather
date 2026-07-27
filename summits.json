@@ -1,9 +1,17 @@
 [
   {
-    "name": "Rysy",
+    "name": "Rysy (wierzchołek słowacki) ⭐WKT",
+    "elevation": 2503,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Rysy (wierzchołek polski)",
     "elevation": 2499,
     "range": "Tatry Polskie",
-    "wkt": true,
+    "wkt": false,
     "date": null,
     "notes": ""
   },
@@ -305,6 +313,32 @@
     "range": "Tatry Zachodnie",
     "wkt": false,
     "type": "trasa",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Mięguszowiecka Przełęcz pod Chłopkiem",
+    "elevation": 2308,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "type": "przelecz",
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Starorobociański Wierch (Klin)",
+    "elevation": 2176,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Czerwone Wierchy (Krzesanica)",
+    "elevation": 2122,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "type": "masyw",
     "date": null,
     "notes": ""
   }
