@@ -1,0 +1,266 @@
+[
+  {
+    "name": "Rysy",
+    "elevation": 2499,
+    "range": "Tatry Polskie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Gerlach (Gerlachovský štít)",
+    "elevation": 2655,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Łomnica (Lomnický štít)",
+    "elevation": 2634,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Lodowy Szczyt (Ľadový štít)",
+    "elevation": 2627,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Durny Szczyt (Pyšný štít)",
+    "elevation": 2623,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Wysoka (Vysoká)",
+    "elevation": 2560,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kieżmarski Szczyt (Kežmarský štít)",
+    "elevation": 2558,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kończysta (Končistá)",
+    "elevation": 2538,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Baranie Rogi (Baranie rohy)",
+    "elevation": 2526,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Krywań (Kriváň)",
+    "elevation": 2495,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Staroleśny Szczyt (Bradavica)",
+    "elevation": 2476,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Ganek (Gánok)",
+    "elevation": 2462,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Sławkowski Szczyt (Slavkovský štít)",
+    "elevation": 2452,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Pośrednia Grań (Prostredný hrot)",
+    "elevation": 2441,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Mięguszowiecki Szczyt Wielki",
+    "elevation": 2438,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Mała Wysoka (Východná Vysoká)",
+    "elevation": 2429,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kołowy Szczyt (Kolový štít)",
+    "elevation": 2418,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Szatan",
+    "elevation": 2415,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Koprowy Wierch (Kôprovský štít)",
+    "elevation": 2363,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Świnica",
+    "elevation": 2301,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kozi Wierch",
+    "elevation": 2291,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Żabi Koń",
+    "elevation": 2291,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Żabi Szczyt Polski",
+    "elevation": 2259,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Jagnięcy Szczyt (Jahňací štít)",
+    "elevation": 2230,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Szpiglasowy Wierch",
+    "elevation": 2172,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kościelec",
+    "elevation": 2155,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kasprowy Wierch",
+    "elevation": 1987,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Giewont",
+    "elevation": 1894,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Bystra (Bystrá)",
+    "elevation": 2248,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Krzyżne",
+    "elevation": 2112,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Zawrat",
+    "elevation": 2159,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Skrajny Granat",
+    "elevation": 2225,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Hawrań (Havran)",
+    "elevation": 2152,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  }
+]
