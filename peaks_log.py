@@ -43,6 +43,20 @@ body,.stMarkdown,p,li,span{color:#c8ddf0!important}
 .prog-bar-fill{background:linear-gradient(90deg,#2a7a4a,#3aaa6a);height:100%;border-radius:8px}
 a{color:#5a9ecf!important;text-decoration:none!important}
 a:hover{text-decoration:underline!important}
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .tbl-header, .tbl-row {
+    grid-template-columns: 24px 1fr 72px !important;
+  }
+  .col-range, .col-notes { display: none !important; }
+  .tbl-row { padding: 4px 6px !important; }
+  .tbl-name { font-size: 0.78rem !important; }
+  .tbl-date { font-size: 0.72rem !important; }
+  .tbl-header { font-size: 0.65rem !important; padding: 3px 6px !important; }
+  .mw-title { font-size: 1.1rem !important; }
+  .entry-card { padding: 8px 10px !important; }
+  .entry-name { font-size: 0.88rem !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -337,10 +351,10 @@ with col_list:
 
     # Nagłówek tabeli
     st.markdown("""
-    <div style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;
+    <div class="tbl-header" style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;
          font-size:0.72rem;color:#5a8ab0;text-transform:uppercase;letter-spacing:0.8px;
          padding:4px 8px;border-bottom:1px solid #1e3a58;margin-bottom:4px;">
-      <div></div><div>Szczyt</div><div>Pasmo</div><div>Notatki</div><div style="text-align:right">Data</div>
+      <div></div><div>Szczyt</div><div class="col-range">Pasmo</div><div class="col-notes">Notatki</div><div style="text-align:right">Data</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -348,19 +362,19 @@ with col_list:
         done = bool(s.get("date"))
         check = "✅" if done else "⬜"
         wkt_b = '<span class="wkt-badge">⭐</span>' if s.get("wkt") else ""
-        date_s = f'<span style="color:#3a9a5a">{s["date"]}</span>' if done else '<span style="color:#2a4a68">—</span>'
+        date_s = f'<span class="tbl-date" style="color:#3a9a5a">{s["date"]}</span>' if done else '<span class="tbl-date" style="color:#2a4a68">—</span>'
         notes_s = f'<span style="font-size:0.78rem;color:#6a9ab8;font-style:italic;">💬 {s["notes"]}</span>' if s.get("notes") else ""
         range_s = f'<span style="font-size:0.78rem;color:#5a8ab0;">{s["range"]}</span>'
         bg = "#0a1e0e" if done else "#0a1828"
         border = "#1a4a22" if done else "#1a2e42"
         st.markdown(f"""
-        <div style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;align-items:center;
+        <div class="tbl-row" style="display:grid;grid-template-columns:28px 1fr 110px 1fr 90px;gap:4px;align-items:center;
              background:{bg};border:1px solid {border};border-radius:7px;
              padding:6px 8px;margin-bottom:3px;">
           <div style="font-size:1rem">{check}</div>
-          <div style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']}{wkt_b}&nbsp;&nbsp;<span style="color:#5a8ab0;font-weight:400">{s['elevation']} m</span></div>
-          <div>{range_s}</div>
-          <div>{notes_s}</div>
+          <div class="tbl-name" style="font-size:0.88rem;color:#e8f4ff;font-weight:500">{s['name']}{wkt_b}&nbsp;&nbsp;<span style="color:#5a8ab0;font-weight:400">{s['elevation']} m</span></div>
+          <div class="col-range">{range_s}</div>
+          <div class="col-notes">{notes_s}</div>
           <div style="text-align:right;font-size:0.82rem">{date_s}</div>
         </div>
         """, unsafe_allow_html=True)
