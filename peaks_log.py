@@ -127,30 +127,33 @@ def check_password():
 logged_in = check_password()
 
 # ── Banner ────────────────────────────────────────────────────────────────────
-st.markdown("""
-<div style="width:100%;margin-bottom:18px;border-radius:14px;overflow:hidden;background:#071828;">
+components.html("""<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:transparent;">
+<div style="width:100%;border-radius:14px;overflow:hidden;margin-bottom:4px;">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" style="width:100%;display:block;">
 
   <!-- Niebo -->
   <rect width="900" height="160" fill="#071828"/>
 
   <!-- Gwiazdy -->
-  <circle cx="30"  cy="18" r="1.2" fill="#ffffff" opacity="0.7"/>
-  <circle cx="75"  cy="10" r="0.9" fill="#ffffff" opacity="0.6"/>
-  <circle cx="120" cy="22" r="1.1" fill="#ffffff" opacity="0.65"/>
-  <circle cx="55"  cy="35" r="0.7" fill="#ffffff" opacity="0.5"/>
-  <circle cx="95"  cy="28" r="1.0" fill="#ffffff" opacity="0.6"/>
-  <circle cx="145" cy="14" r="0.8" fill="#ffffff" opacity="0.55"/>
-  <circle cx="200" cy="24" r="0.7" fill="#ffffff" opacity="0.45"/>
-  <circle cx="170" cy="40" r="0.9" fill="#ddeeff" opacity="0.5"/>
-  <circle cx="15"  cy="50" r="0.7" fill="#ffffff" opacity="0.55"/>
-  <circle cx="240" cy="16" r="0.7" fill="#ffffff" opacity="0.45"/>
-  <circle cx="10"  cy="30" r="1.3" fill="#eef8ff" opacity="0.7"/>
-  <circle cx="820" cy="12" r="0.9" fill="#ffffff" opacity="0.5"/>
-  <circle cx="860" cy="22" r="0.7" fill="#ffffff" opacity="0.4"/>
-  <circle cx="780" cy="35" r="0.8" fill="#ffffff" opacity="0.45"/>
+  <circle cx="30"  cy="18" r="1.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="75"  cy="10" r="1.1" fill="#ffffff" opacity="0.7"/>
+  <circle cx="120" cy="22" r="1.3" fill="#ffffff" opacity="0.75"/>
+  <circle cx="55"  cy="35" r="0.9" fill="#ffffff" opacity="0.6"/>
+  <circle cx="95"  cy="28" r="1.2" fill="#ffffff" opacity="0.7"/>
+  <circle cx="145" cy="14" r="1.0" fill="#ffffff" opacity="0.65"/>
+  <circle cx="200" cy="24" r="0.9" fill="#ffffff" opacity="0.55"/>
+  <circle cx="170" cy="40" r="1.1" fill="#ddeeff" opacity="0.6"/>
+  <circle cx="15"  cy="50" r="0.9" fill="#ffffff" opacity="0.65"/>
+  <circle cx="240" cy="16" r="0.9" fill="#ffffff" opacity="0.55"/>
+  <circle cx="10"  cy="30" r="1.5" fill="#eef8ff" opacity="0.8"/>
+  <circle cx="820" cy="12" r="1.1" fill="#ffffff" opacity="0.6"/>
+  <circle cx="860" cy="22" r="0.9" fill="#ffffff" opacity="0.5"/>
+  <circle cx="780" cy="35" r="1.0" fill="#ffffff" opacity="0.55"/>
+  <circle cx="700" cy="18" r="0.8" fill="#ffffff" opacity="0.5"/>
+  <circle cx="650" cy="30" r="1.0" fill="#ffffff" opacity="0.45"/>
 
-  <!-- Tylna grań — najwyższe szczyty, jaśniejszy błękit -->
+  <!-- Tylna grań — najwyższe szczyty -->
   <polygon points="
     0,100 30,88 55,95 80,75 110,85 140,58 165,72 195,48 220,65
     250,38 275,55 305,30 330,50 360,22 385,44 415,18 440,40
@@ -158,32 +161,34 @@ st.markdown("""
     685,52 715,78 745,60 775,82 805,65 835,88 865,72 900,90
     900,160 0,160"
     fill="#1a3a5a"/>
-  <!-- Śniegowe czapy tylnej grani -->
-  <polygon points="305,30 296,44 314,44" fill="#ddeeff" opacity="0.55"/>
-  <polygon points="360,22 350,38 370,38" fill="#ddeeff" opacity="0.6"/>
-  <polygon points="415,18 404,35 426,35" fill="#ddeeff" opacity="0.65"/>
-  <polygon points="465,25 456,40 474,40" fill="#ddeeff" opacity="0.55"/>
-  <polygon points="515,32 507,46 523,46" fill="#ddeeff" opacity="0.5"/>
-  <polygon points="250,38 241,53 259,53" fill="#ddeeff" opacity="0.5"/>
 
-  <!-- Środkowa grań — ciemniejsza -->
+  <!-- Śniegowe czapy -->
+  <polygon points="305,30 296,46 314,46" fill="#ddeeff" opacity="0.7"/>
+  <polygon points="360,22 349,40 371,40" fill="#ddeeff" opacity="0.75"/>
+  <polygon points="415,18 403,37 427,37" fill="#ddeeff" opacity="0.8"/>
+  <polygon points="465,25 455,42 475,42" fill="#ddeeff" opacity="0.7"/>
+  <polygon points="515,32 506,48 524,48" fill="#ddeeff" opacity="0.65"/>
+  <polygon points="250,38 240,54 260,54" fill="#ddeeff" opacity="0.65"/>
+  <polygon points="140,58 131,72 149,72" fill="#ddeeff" opacity="0.6"/>
+
+  <!-- Środkowa grań -->
   <polygon points="
     0,120 40,105 75,115 110,98 145,110 180,92 215,106 250,88
     285,102 320,85 355,100 390,80 425,96 460,78 495,94 530,75
     565,90 600,108 635,92 670,112 705,95 740,115 775,100 810,118
     845,104 880,120 900,125 900,160 0,160"
-    fill="#0f2538"/>
+    fill="#0d2034"/>
 
-  <!-- Przedni plan — najciemniejszy -->
+  <!-- Przedni plan -->
   <polygon points="
     0,145 45,132 90,142 135,128 180,140 225,124 270,138 315,126
     360,140 405,128 450,142 495,130 540,144 585,132 630,146 675,134
     720,148 765,136 810,150 855,138 900,145 900,160 0,160"
-    fill="#071828"/>
+    fill="#071420"/>
 
 </svg>
 </div>
-""", unsafe_allow_html=True)
+</body></html>""", height=168, scrolling=False)
 
 # ── Nagłówek ──────────────────────────────────────────────────────────────────
 col_h, col_ig = st.columns([4, 1])
