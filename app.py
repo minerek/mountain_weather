@@ -1177,9 +1177,21 @@ BANNER_HTML = """<!DOCTYPE html>
 </svg>
 </body></html>"""
 
-# ---- IG badge — nad bannerem, górny prawy róg ----
+# ---- IG badge + My Peaks — nad bannerem, górny prawy róg ----
 st.markdown("""
-<div style="display:flex;justify-content:flex-end;margin-bottom:4px;">
+<div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-bottom:4px;">
+  <!-- My Peaks button -->
+  <a href="https://mypeaks.streamlit.app/" target="_blank" style="text-decoration:none;">
+    <div style="display:inline-flex;align-items:center;gap:7px;background:#0e2235;border:1px solid #2a4a68;border-radius:8px;padding:5px 12px;">
+      <svg width="16" height="16" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1.5"/>
+        <polygon points="19,4 27,17 11,17" fill="#ddeeff" opacity="0.9"/>
+        <polygon points="11,17 15,24 3,32 35,32 27,17 23,24" fill="#144a5e"/>
+      </svg>
+      <span style="font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-weight:600;font-size:0.78rem;color:#7aaac8;letter-spacing:0.3px;">My Peaks</span>
+    </div>
+  </a>
+  <!-- IG badge -->
   <a href="https://www.instagram.com/hikewithmic" target="_blank" style="text-decoration:none;">
     <div style="display:inline-flex;align-items:center;gap:8px;background:transparent;padding:5px 0;">
       <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
