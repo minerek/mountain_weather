@@ -672,6 +672,45 @@ _MF_SLUGS = {
     "Trzy Korony":                              "trzy-korony",
 }
 
+# Mapa kolorów szlaków → hex
+_KOLOR_HEX = {
+    "czerwony":  "#d32f2f",
+    "niebieski": "#1565c0",
+    "żółty":     "#f9a825",
+    "zielony":   "#2e7d32",
+    "czarny":    "#212121",
+}
+
+def _znaki_badge(kolor: str) -> str:
+    """Zwraca HTML z SVG-owym symbolem szlaku (biały/kolor/biały) dla jednego koloru."""
+    hex_c = _KOLOR_HEX.get(kolor.lower().strip(), "#888")
+    return (
+        f'<svg width="28" height="16" viewBox="0 0 28 16" xmlns="http://www.w3.org/2000/svg" '
+        f'style="vertical-align:middle;border-radius:2px;display:inline-block;">'
+        f'<rect x="0" y="0" width="28" height="16" fill="white"/>'
+        f'<rect x="0" y="5" width="28" height="6" fill="{hex_c}"/>'
+        f'</svg>'
+    )
+
+def znaki_html(znaki_str: str) -> str:
+    """Konwertuje string znaków np. 'czerwony → żółty' na HTML z symbolami szlaku."""
+    if znaki_str in ("kolejka linowa",):
+        return "🚠 kolejka linowa"
+    if "brak (taternicka)" in znaki_str:
+        return "⚠️ brak szlaku (taternicka)"
+    # Podziel po →
+    parts = [p.strip() for p in znaki_str.replace("→", "→").split("→")]
+    result = ""
+    for j, part in enumerate(parts):
+        part_clean = part.strip()
+        if part_clean in _KOLOR_HEX:
+            result += _znaki_badge(part_clean)
+        else:
+            result += f'<span style="font-size:0.78rem;color:#7aaac8">{part_clean}</span>'
+        if j < len(parts) - 1:
+            result += ' <span style="color:#5a8ab0;font-size:0.8rem">→</span> '
+    return result
+
 def link_mountain_forecast(nazwa, lat, lon, wys):
     """Mountain-forecast.com — dla znanych szczytów po slug, reszta Ventusky."""
     slug = _MF_SLUGS.get(nazwa)
@@ -1635,8 +1674,9 @@ if wspolrzedne_ok and lat:
                     trasa_str += f" → {przez_str}"
                 trasa_str += f" → 🏔️"
                 km_str = f"  {t['km']} km" if t["km"] > 0 else ""
-                meta = f"🕐 {t['czas']}{km_str}  ·  {t['znaki']}"
-                uwagi_str = f"  \n*{t['uwagi']}*" if t["uwagi"] else ""
+                znaki_badge = znaki_html(t['znaki'])
+                meta = f"🕐 {t['czas']}{km_str} &nbsp;·&nbsp; {znaki_badge}"
+                uwagi_str = f"&nbsp; <em style='color:#c8a060'>{t['uwagi']}</em>" if t["uwagi"] else ""
                 st.markdown(
                     f"{i}. {trasa_str}  \n"
                     f"<small style='color:#7aaac8'>{meta}{uwagi_str}</small>",
