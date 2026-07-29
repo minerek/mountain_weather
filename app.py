@@ -390,6 +390,197 @@ SZCZYTY = {
 PASMA = sorted(set(v[3] for v in SZCZYTY.values()))
 
 # ============================================================
+# TRASY NA SZCZYTY
+# Każdy wpis: lista słowników z kluczami:
+#   start  — punkt startowy
+#   przez  — lista mijanych miejsc (może być pusta)
+#   km     — dystans w jedną stronę (float)
+#   czas   — czas podejścia (str, np. "3–4 h")
+#   znaki  — kolor/oznaczenie szlaku
+#   uwagi  — opcjonalne krótkie uwagi (str lub None)
+# ============================================================
+TRASY: dict[str, list[dict]] = {
+
+    # ── POPULARNE POLSKIE ────────────────────────────────────────────────────
+    "Rysy ⭐WKT": [
+        {"start": "Morskie Oko (schronisko)",
+         "przez": ["Czarny Staw pod Rysami"],
+         "km": 4.2, "czas": "3–4 h",
+         "znaki": "czerwony", "uwagi": None},
+    ],
+    "Świnica": [
+        {"start": "Kuźnice",
+         "przez": ["Hala Gąsienicowa", "Zawrat", "Przełęcz pod Świnicą"],
+         "km": 7.5, "czas": "4–5 h",
+         "znaki": "niebieski → czerwony", "uwagi": None},
+        {"start": "Kuźnice",
+         "przez": ["Hala Gąsienicowa", "Murowaniec", "Przełęcz pod Świnicą"],
+         "km": 7.0, "czas": "4–5 h",
+         "znaki": "żółty → czerwony", "uwagi": None},
+    ],
+    "Kościelec": [
+        {"start": "Kuźnice",
+         "przez": ["Hala Gąsienicowa", "Murowaniec", "Czarny Staw Gąsienicowy"],
+         "km": 6.5, "czas": "3,5–4,5 h",
+         "znaki": "żółty → czarny", "uwagi": "Ostatni odcinek ubezpieczone łańcuchami"},
+    ],
+    "Kasprowy Wierch (Kasprový vrch)": [
+        {"start": "Kuźnice",
+         "przez": ["Myślenickie Turnie"],
+         "km": 5.5, "czas": "2,5–3,5 h",
+         "znaki": "niebieski", "uwagi": None},
+        {"start": "Kuźnice",
+         "przez": [],
+         "km": 0.0, "czas": "~20 min",
+         "znaki": "kolejka linowa", "uwagi": "Bilet kolejka: ~45 PLN (2024)"},
+        {"start": "Hala Gąsienicowa (Murowaniec)",
+         "przez": ["Małe Kościelisko"],
+         "km": 4.0, "czas": "2–3 h",
+         "znaki": "czerwony", "uwagi": None},
+    ],
+    "Giewont": [
+        {"start": "Zakopane (Strążyska)",
+         "przez": ["Dolina Strążyska", "Przełęcz w Grzybowcu"],
+         "km": 6.5, "czas": "3–4 h",
+         "znaki": "zielony → czerwony", "uwagi": "Łańcuchy na wierzchołkowym podejściu"},
+        {"start": "Zakopane (Kuźnice)",
+         "przez": ["Kondratowa", "Przełęcz Kondracka"],
+         "km": 7.0, "czas": "3,5–4,5 h",
+         "znaki": "niebieski → czerwony", "uwagi": None},
+    ],
+    "Szpiglasowy Wierch (Hrubý štít)": [
+        {"start": "Morskie Oko (schronisko)",
+         "przez": ["Szpiglasowa Przełęcz"],
+         "km": 3.5, "czas": "2–2,5 h",
+         "znaki": "zielony → niebieski", "uwagi": None},
+    ],
+    "Mięguszowiecki Szczyt Wielki": [
+        {"start": "Morskie Oko (schronisko)",
+         "przez": ["Czarny Staw pod Rysami", "Mięguszowiecka Przełęcz pod Chłopkiem"],
+         "km": 5.5, "czas": "4–5 h",
+         "znaki": "czerwony → brak (taternicka)", "uwagi": "⚠️ Szczyt taternicki — wymagane doświadczenie i sprzęt"},
+    ],
+    "Zawrat": [
+        {"start": "Kuźnice",
+         "przez": ["Hala Gąsienicowa", "Murowaniec", "Czarny Staw Gąsienicowy"],
+         "km": 6.8, "czas": "3,5–4 h",
+         "znaki": "żółty → niebieski", "uwagi": None},
+    ],
+
+    # ── WKT — TATRY SŁOWACKIE ────────────────────────────────────────────────
+    "Gerlach (Gerlachovský štít) ⭐WKT": [
+        {"start": "Tatranská Polianka",
+         "przez": ["Velická dolina", "Sliezsky dom"],
+         "km": 9.0, "czas": "5–7 h",
+         "znaki": "zielony → żółty", "uwagi": "⚠️ Obowiązkowy licencjonowany górski przewodnik UIMLA/IVBV — wymagany przepisami słowackimi"},
+    ],
+    "Łomnica (Lomnický štít) ⭐WKT": [
+        {"start": "Tatranská Lomnica",
+         "przez": [],
+         "km": 0.0, "czas": "20–40 min",
+         "znaki": "kolejka linowa", "uwagi": "Bilet kolejka: ~60–80 EUR (2024); rezerwacja online konieczna"},
+        {"start": "Tatranská Lomnica",
+         "przez": ["Skalnaté pleso"],
+         "km": 10.5, "czas": "5–7 h",
+         "znaki": "czerwony → niebieski", "uwagi": "⚠️ Górna część taternicka — wymagany przewodnik lub doświadczenie"},
+    ],
+    "Lodowy Szczyt (Ľadový štít) ⭐WKT": [
+        {"start": "Tatranská Lomnica / Skalnaté pleso (kolejka)",
+         "przez": ["Ľadová dolina", "Ľadové sedlo"],
+         "km": 6.5, "czas": "4–5 h od Skalnaté pleso",
+         "znaki": "żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+    "Durny Szczyt (Pyšný štít) ⭐WKT": [
+        {"start": "Zamkovského chata",
+         "przez": ["Malá Studená dolina", "Priečne sedlo"],
+         "km": 7.0, "czas": "4–6 h",
+         "znaki": "zielony → żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+    "Wysoka (Vysoká) ⭐WKT": [
+        {"start": "Podbanské",
+         "przez": ["Dolina Zlomísk", "Vyšné Kôprovské sedlo"],
+         "km": 12.0, "czas": "6–8 h",
+         "znaki": "niebieski → żółty", "uwagi": "Długie, wymagające podejście; brak przewodnika obowiązkowego na głównej trasie"},
+    ],
+    "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT": [
+        {"start": "Tatranská Lomnica / Skalnaté pleso (kolejka)",
+         "przez": ["Javorová dolina"],
+         "km": 8.0, "czas": "5–7 h od Skalnaté pleso",
+         "znaki": "niebieski → żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+    "Kończysta (Končistá) ⭐WKT": [
+        {"start": "Štrbské Pleso",
+         "przez": ["Dolina Mengusovská", "Päťkôšky"],
+         "km": 11.5, "czas": "6–8 h",
+         "znaki": "zielony → żółty", "uwagi": None},
+    ],
+    "Baranie Rogi (Baranie rohy) ⭐WKT": [
+        {"start": "Tatranská Lomnica / Skalnaté pleso (kolejka)",
+         "przez": ["Baranie sedlo"],
+         "km": 5.5, "czas": "3–5 h od Skalnaté pleso",
+         "znaki": "żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+    "Krywań (Kriváň) ⭐WKT": [
+        {"start": "Tri studničky (parking/bus)",
+         "przez": ["Dolina Mlynická → zbocze wschodnie"],
+         "km": 7.5, "czas": "4–5 h",
+         "znaki": "zielony → żółty", "uwagi": "Najpopularniejszy WKT bez przewodnika; parking Tri studničky płatny"},
+    ],
+    "Staroleśny Szczyt (Bradavica) ⭐WKT": [
+        {"start": "Biela voda (Tatranská Javorina)",
+         "przez": ["Javorová dolina", "Javorové sedlo"],
+         "km": 10.0, "czas": "5–7 h",
+         "znaki": "zielony → żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+    "Ganek (Gánok) ⭐WKT": [
+        {"start": "Podbanské",
+         "przez": ["Kôprová dolina", "Kôprovské sedlo"],
+         "km": 13.5, "czas": "7–9 h",
+         "znaki": "niebieski → żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA; jeden z najtrudniejszych WKT"},
+    ],
+    "Sławkowski Szczyt (Slavkovský štít) ⭐WKT": [
+        {"start": "Starý Smokovec",
+         "przez": ["Slavkovská dolina", "Slavkovské sedlo"],
+         "km": 8.5, "czas": "4,5–6 h",
+         "znaki": "czerwony", "uwagi": None},
+    ],
+    "Pośrednia Grań (Prostredný hrot) ⭐WKT": [
+        {"start": "Tatranská Lomnica / Skalnaté pleso (kolejka)",
+         "przez": ["Veľká Zmrzlá dolina"],
+         "km": 7.0, "czas": "4–6 h od Skalnaté pleso",
+         "znaki": "żółty", "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
+    ],
+
+    # ── DODATKOWE POPULARNE ──────────────────────────────────────────────────
+    "Babia Góra 👑": [
+        {"start": "Zawoja-Markowa",
+         "przez": ["Hala Śmietanowa", "Diablak"],
+         "km": 6.5, "czas": "3–4 h",
+         "znaki": "czerwony", "uwagi": None},
+        {"start": "Przełęcz Krowiarki",
+         "przez": ["grań"],
+         "km": 5.5, "czas": "2,5–3,5 h",
+         "znaki": "czerwony", "uwagi": None},
+    ],
+    "Turbacz 👑": [
+        {"start": "Nowy Targ / Rabka (droga 49 — leśniczówka Turbacz)",
+         "przez": [],
+         "km": 5.5, "czas": "2–3 h",
+         "znaki": "żółty", "uwagi": "Schronisko PTTK na szczycie"},
+        {"start": "Konina (Poręba Wielka)",
+         "przez": ["Hala Długa"],
+         "km": 6.0, "czas": "2,5–3,5 h",
+         "znaki": "czerwony", "uwagi": None},
+    ],
+    "Skrzyczne 👑": [
+        {"start": "Szczyrk (centrum)",
+         "przez": ["Hala Skrzyczeńska"],
+         "km": 5.0, "czas": "2–3 h",
+         "znaki": "czerwony", "uwagi": "Wyciąg krzesełkowy Szczyrk Mtn Resort — bilet ~50 PLN (2024)"},
+    ],
+}
+
+# ============================================================
 # ZDJĘCIA SZCZYTÓW (Wikimedia Commons — sprawdzone URL-e)
 # ============================================================
 # Tylko zweryfikowane pliki które na pewno istnieją na Wikimedia
@@ -1432,6 +1623,25 @@ if wspolrzedne_ok and lat:
         ln_cols[1].markdown(f"[🌐 Meteoblue]({link_meteoblue(lat, lon, nazwa_wyswietlana)})")
         ln_cols[2].markdown(f"[🇳🇴 Yr.no]({link_yr_web(lat, lon)})")
         ln_cols[3].markdown(f"[💨 Windy]({link_windy(lat, lon)})")
+
+        # ── Trasy na szczyt ────────────────────────────────────────
+        _trasy = TRASY.get(nazwa_wyswietlana)
+        if _trasy:
+            st.markdown("**🥾 Trasy na szczyt:**")
+            for i, t in enumerate(_trasy, 1):
+                przez_str = " → ".join(t["przez"]) if t["przez"] else ""
+                trasa_str = f"**{t['start']}**"
+                if przez_str:
+                    trasa_str += f" → {przez_str}"
+                trasa_str += f" → 🏔️"
+                km_str = f"  {t['km']} km" if t["km"] > 0 else ""
+                meta = f"🕐 {t['czas']}{km_str}  ·  {t['znaki']}"
+                uwagi_str = f"  \n*{t['uwagi']}*" if t["uwagi"] else ""
+                st.markdown(
+                    f"{i}. {trasa_str}  \n"
+                    f"<small style='color:#7aaac8'>{meta}{uwagi_str}</small>",
+                    unsafe_allow_html=True,
+                )
 
 st.divider()
 
