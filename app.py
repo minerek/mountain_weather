@@ -6,6 +6,204 @@ from datetime import datetime, timedelta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# ============================================================
+# TŁUMACZENIA PL / EN
+# ============================================================
+_T = {
+    "PL": {
+        "page_title": "Mountain Weather — Tatry & Beskidy",
+        "subtitle": "TATRY & BESKIDY",
+        "weekend_label": "Prognoza na weekend",
+        "weekend_short": "sob",
+        "weekend_short2": "nd",
+        "rec_heading": "Gdzie pojechać w ten weekend? — Rekomendacja pasma",
+        "rec_btn": "🔎 Szukaj najlepszej pogody",
+        "rec_caption": "Pobiera prognozę dla reprezentatywnego szczytu w każdym paśmie i rankinguje wg warunków (brak burz → mało opadów → słaby wiatr).",
+        "rec_spinner": "Sprawdzam pogodę dla wszystkich pasm… (~9 zapytań, kilka sekund)",
+        "rec_best_label": "🏆 Polecane pasmo na",
+        "rec_place": "Miejsce",
+        "source_heading": "Źródło pogody",
+        "source_mode": "Tryb:",
+        "source_single": "Jedno źródło",
+        "source_compare": "Porównaj wszystkie źródła",
+        "source_mode_help": "Tryb porównania pobiera dane ze wszystkich źródeł i zestawia je na jednym wykresie.",
+        "source_select": "Źródło danych:",
+        "source_select_help": "Wybierz skąd pobierać prognozę pogody.",
+        "source_compare_info": "ℹ️ Dane ze wszystkich 3 źródeł: Open-Meteo, ICON, Yr.no",
+        "range_heading": "Wybierz pasmo i szczyt",
+        "range_select": "Pasma górskie:",
+        "range_help": "Zaznacz jedno lub więcej pasm — lista szczytów zostanie odfiltrowana.",
+        "peak_choice": "Wybór szczytu:",
+        "peak_from_list": "Z listy",
+        "peak_manual": "Wpisz nazwę ręcznie",
+        "peak_select_label": "Szczyt:",
+        "peak_input_label": "Wpisz nazwę szczytu:",
+        "peak_input_placeholder": "np. Kołowy Szczyt, Babia Góra, Gerlach...",
+        "geocode_spinner": "Szukam lokalizacji...",
+        "geocode_ok": "✅ Znaleziono:",
+        "geocode_fail": "❌ Nie znaleziono. Spróbuj innej pisowni lub wybierz z listy.",
+        "altitude_label": "**Wysokość:**",
+        "range_label": "**Pasmo:**",
+        "links_label": "**🔗 Prognozy zewnętrzne (kliknij aby otworzyć):**",
+        "routes_label": "**🥾 Trasy na szczyt:**",
+        "difficulty_label": "⚡ trudność:",
+        "check_btn": "🔍 Sprawdź pogodę na weekend",
+        "hint_manual": "👆 Wpisz nazwę szczytu lub wybierz z listy, następnie kliknij przycisk.",
+        "hint_select": "👆 Wybierz szczyt i kliknij 'Sprawdź pogodę na weekend'",
+        "no_data": "Brak danych dla tego weekendu.",
+        "saturday": "🟦 Sobota",
+        "sunday": "🟪 Niedziela",
+        "temp": "🌡️ Temperatura",
+        "wind_max": "💨 Wiatr max",
+        "gusts": "🌬️ Porywy",
+        "rain": "🌧️ Opady",
+        "snow": "❄️ Śnieg",
+        "isotherm": "Izotermia 0°C:",
+        "hour": "Godzina",
+        "conditions": "Warunki",
+        "feel": "Odcz.°C",
+        "wind_ms": "Wiatr m/s",
+        "gusts_ms": "Porywy m/s",
+        "dir": "Kier.",
+        "rain_mm": "Opady mm",
+        "snow_cm": "Śnieg cm",
+        "clouds": "Chmury %",
+        "rating": "Ocena",
+        "warn_vwind": "⚠️ **Bardzo silny wiatr** — porywy do {g:.0f} m/s! Nie zalecane wyjście na grań.",
+        "warn_wind": "⚠️ **Silny wiatr** — porywy do {g:.0f} m/s.",
+        "warn_storm": "⛈️ **Burza** — ryzyko wyładowań! Zejdź z grzbietu przed burzą.",
+        "warn_rain": "🌧️ **Intensywne opady** — {r:.0f} mm łącznie.",
+        "warn_snow": "❄️ **Śnieg** — {s:.0f} cm. Zabierz raki/czeki.",
+        "warn_ice": "🧊 **Izotermia 0°C poniżej 1500 m** — oblodzenie możliwe.",
+        "ok_conditions": "✅ Warunki bez szczególnych ostrzeżeń",
+        "charts": "### 📈 Wykresy",
+        "chart_temp": "Temperatura (°C)",
+        "chart_wind": "Wiatr i porywy (m/s)",
+        "chart_rain": "Opady (mm)",
+        "source_footer": "Źródło: {s} | Geokodowanie: OpenStreetMap Nominatim",
+        "compare_heading": "### 🔀 Porównanie źródeł pogody",
+        "compare_summary": "#### Podsumowanie weekendu wg źródeł",
+        "compare_col_source": "Źródło",
+        "compare_col_tmin": "Temp min°C",
+        "compare_col_tmax": "Temp max°C",
+        "compare_col_wmax": "Wiatr max m/s",
+        "compare_col_gmax": "Porywy max m/s",
+        "compare_col_rain": "Opady mm",
+        "compare_col_storm": "Burze",
+        "storm_yes": "⛈️ TAK",
+        "storm_no": "—",
+        "storm_heading": "#### ⛈️ Monitorowanie wyładowań atmosferycznych w czasie rzeczywistym",
+        "storm_heading2": "#### ⛈️ Monitorowanie wyładowań atmosferycznych",
+        "storm_caption": "Powyższe linki otwierają mapę wyśrodkowaną na wybrany szczyt.",
+        "storm_caption2": "Linki otwierają mapy wyśrodkowane na wybrany szczyt. Dane burzowe są aktualizowane w czasie rzeczywistym.",
+        "storm_check": "⛈️ **UWAGA — BURZE PROGNOZOWANE:**",
+        "spinner_fetch": "Pobieram z {s}...",
+        "spinner_forecast": "Pobieram prognozę z {s}...",
+        "fetch_error": "Błąd pobierania danych:",
+        "wikimedia_caption": "© Wikimedia Commons",
+        "cond_good": "🌤️ Dobre warunki",
+        "cond_ok": "⛅ Umiarkowane",
+        "cond_bad": "🌧️ Słabe / deszcz",
+        "cond_storm": "⛈️ Burza!",
+    },
+    "EN": {
+        "page_title": "Mountain Weather — Tatras & Beskids",
+        "subtitle": "TATRAS & BESKIDS",
+        "weekend_label": "Weekend forecast",
+        "weekend_short": "Sat",
+        "weekend_short2": "Sun",
+        "rec_heading": "Where to go this weekend? — Range Recommendation",
+        "rec_btn": "🔎 Find best weather",
+        "rec_caption": "Fetches forecast for a representative peak in each range and ranks by conditions (no storms → low rain → low wind).",
+        "rec_spinner": "Checking weather for all ranges… (~9 requests, a few seconds)",
+        "rec_best_label": "🏆 Recommended range for",
+        "rec_place": "Place",
+        "source_heading": "Weather source",
+        "source_mode": "Mode:",
+        "source_single": "Single source",
+        "source_compare": "Compare all sources",
+        "source_mode_help": "Compare mode fetches data from all sources and overlays them on one chart.",
+        "source_select": "Data source:",
+        "source_select_help": "Choose which forecast provider to use.",
+        "source_compare_info": "ℹ️ Data from all 3 sources: Open-Meteo, ICON, Yr.no",
+        "range_heading": "Select range and peak",
+        "range_select": "Mountain ranges:",
+        "range_help": "Select one or more ranges — the peak list will be filtered.",
+        "peak_choice": "Peak selection:",
+        "peak_from_list": "From list",
+        "peak_manual": "Type name manually",
+        "peak_select_label": "Peak:",
+        "peak_input_label": "Enter peak name:",
+        "peak_input_placeholder": "e.g. Gerlach, Babia Góra, Rysy...",
+        "geocode_spinner": "Searching location...",
+        "geocode_ok": "✅ Found:",
+        "geocode_fail": "❌ Not found. Try a different spelling or choose from the list.",
+        "altitude_label": "**Altitude:**",
+        "range_label": "**Range:**",
+        "links_label": "**🔗 External forecasts (click to open):**",
+        "routes_label": "**🥾 Routes to summit:**",
+        "difficulty_label": "⚡ difficulty:",
+        "check_btn": "🔍 Check weekend weather",
+        "hint_manual": "👆 Enter a peak name or choose from the list, then click the button.",
+        "hint_select": "👆 Select a peak and click 'Check weekend weather'",
+        "no_data": "No data for this weekend.",
+        "saturday": "🟦 Saturday",
+        "sunday": "🟪 Sunday",
+        "temp": "🌡️ Temperature",
+        "wind_max": "💨 Max wind",
+        "gusts": "🌬️ Gusts",
+        "rain": "🌧️ Precipitation",
+        "snow": "❄️ Snow",
+        "isotherm": "0°C isotherm:",
+        "hour": "Hour",
+        "conditions": "Conditions",
+        "feel": "Feels°C",
+        "wind_ms": "Wind m/s",
+        "gusts_ms": "Gusts m/s",
+        "dir": "Dir.",
+        "rain_mm": "Rain mm",
+        "snow_cm": "Snow cm",
+        "clouds": "Clouds %",
+        "rating": "Rating",
+        "warn_vwind": "⚠️ **Very strong wind** — gusts up to {g:.0f} m/s! Not recommended on ridges.",
+        "warn_wind": "⚠️ **Strong wind** — gusts up to {g:.0f} m/s.",
+        "warn_storm": "⛈️ **Thunderstorm** — lightning risk! Leave the ridge before the storm.",
+        "warn_rain": "🌧️ **Heavy precipitation** — {r:.0f} mm total.",
+        "warn_snow": "❄️ **Snow** — {s:.0f} cm. Bring crampons/ice axe.",
+        "warn_ice": "🧊 **0°C isotherm below 1500 m** — icing possible.",
+        "ok_conditions": "✅ No significant weather warnings",
+        "charts": "### 📈 Charts",
+        "chart_temp": "Temperature (°C)",
+        "chart_wind": "Wind & gusts (m/s)",
+        "chart_rain": "Precipitation (mm)",
+        "source_footer": "Source: {s} | Geocoding: OpenStreetMap Nominatim",
+        "compare_heading": "### 🔀 Weather source comparison",
+        "compare_summary": "#### Weekend summary by source",
+        "compare_col_source": "Source",
+        "compare_col_tmin": "Temp min°C",
+        "compare_col_tmax": "Temp max°C",
+        "compare_col_wmax": "Wind max m/s",
+        "compare_col_gmax": "Gusts max m/s",
+        "compare_col_rain": "Rain mm",
+        "compare_col_storm": "Storms",
+        "storm_yes": "⛈️ YES",
+        "storm_no": "—",
+        "storm_heading": "#### ⛈️ Live lightning monitoring",
+        "storm_heading2": "#### ⛈️ Lightning monitoring",
+        "storm_caption": "Links open a map centred on the selected peak.",
+        "storm_caption2": "Links open maps centred on the selected peak. Lightning data is updated in real time.",
+        "storm_check": "⛈️ **WARNING — STORMS FORECAST:**",
+        "spinner_fetch": "Fetching from {s}...",
+        "spinner_forecast": "Fetching forecast from {s}...",
+        "fetch_error": "Data fetch error:",
+        "wikimedia_caption": "© Wikimedia Commons",
+        "cond_good": "🌤️ Good conditions",
+        "cond_ok": "⛅ Moderate",
+        "cond_bad": "🌧️ Poor / rain",
+        "cond_storm": "⛈️ Storm!",
+    },
+}
+
 # Favicon jako SVG data-URI — trojkat gorki, te same kolory co banner
 _FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a2a3a'/%3E%3Cpolygon points='16,4 28,26 4,26' fill='%234a7a9b'/%3E%3Cpolygon points='16,4 21,13 11,13' fill='%23ddeeff' opacity='0.9'/%3E%3Cpolygon points='11,13 13,18 4,26 28,26 21,13 19,18' fill='%23144a5e'/%3E%3C/svg%3E"
 
@@ -17,6 +215,12 @@ st.set_page_config(
 
 # ============================================================
 # CUSTOM CSS — wygląd i czytelność
+# ── Język — inicjalizacja session_state ─────────────────────
+if "lang" not in st.session_state:
+    st.session_state["lang"] = "PL"
+lang = st.session_state["lang"]
+L = _T[lang]   # skrót do aktywnego słownika
+
 # ============================================================
 # Zaladuj Google Font Cinzel (serif gorski) przez components.html — st.markdown blokuje @import
 components.html("""<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">""", height=0)
@@ -1153,14 +1357,14 @@ _REPR_PASMA = {
     "Pieniny":          "Trzy Korony",
 }
 
-def _ocen_pasmo_weekend(df, sobota, niedziela):
+def _ocen_pasmo_weekend(df, sobota, niedziela, L):
     """
     Ocenia warunki weekendowe na podstawie danych godzinowych.
     Zwraca dict z score (niższy = lepszy), bool burza, opady_suma, wiatr_max, opis.
     """
     df_w = df[df["czas"].dt.date.isin([sobota, niedziela])].copy()
     if df_w.empty:
-        return {"score": 999, "burza": False, "opady": 0, "wiatr_max": 0, "opis": "Brak danych"}
+        return {"score": 999, "burza": False, "opady": 0, "wiatr_max": 0, "opis": L["no_data"]}
 
     burza = bool(df_w["kod"].isin([95, 96, 99]).any())
     deszcz_h = df_w[df_w["kod"].isin([51,53,55,61,63,65,80,81,82])].shape[0]  # liczba godzin z opadami
@@ -1180,19 +1384,19 @@ def _ocen_pasmo_weekend(df, sobota, niedziela):
 
     # Czytelny opis
     if burza:
-        opis = "⛈️ Burze prognozowane"
+        opis = L["cond_storm"]
     elif opady_suma > 10 or deszcz_h > 5:
-        opis = "🌧️ Intensywne opady"
+        opis = L["cond_bad"]
     elif opady_suma > 3 or deszcz_h > 2:
-        opis = "🌦️ Przelotne deszcze"
+        opis = "🌦️ " + ("Przelotne deszcze" if L is _T["PL"] else "Passing showers")
     elif opady_suma > 0.5:
-        opis = "🌂 Lekkie opady"
+        opis = "🌂 " + ("Lekkie opady" if L is _T["PL"] else "Light rain")
     elif wiatr_max > 18:
-        opis = "💨 Silny wiatr"
+        opis = "💨 " + ("Silny wiatr" if L is _T["PL"] else "Strong wind")
     elif pochmurnych_h > 12:
-        opis = "☁️ Bardzo pochmurnie"
+        opis = "☁️ " + ("Bardzo pochmurnie" if L is _T["PL"] else "Very cloudy")
     else:
-        opis = "🌤️ Dobre warunki"
+        opis = L["cond_good"]
 
     return {
         "score": score,
@@ -1209,7 +1413,7 @@ def _pobierz_repr_pasma(lat, lon):
     """Cache'd wrapper — pobiera Open-Meteo best_match dla repr. szczytu."""
     return pobierz_open_meteo(lat, lon)
 
-def znajdz_najlepsze_pasma(sobota, niedziela):
+def znajdz_najlepsze_pasma(sobota, niedziela, L):
     """
     Pobiera prognozę dla reprezentatywnego szczytu każdego pasma,
     ocenia warunki i zwraca listę pasm posortowaną od najlepszej do najgorszej.
@@ -1221,10 +1425,10 @@ def znajdz_najlepsze_pasma(sobota, niedziela):
         lat, lon, wys, _ = SZCZYTY[nazwa_szczytu]
         try:
             df = _pobierz_repr_pasma(lat, lon)
-            ocena = _ocen_pasmo_weekend(df, sobota, niedziela)
+            ocena = _ocen_pasmo_weekend(df, sobota, niedziela, L)
         except Exception as e:
             ocena = {"score": 999, "burza": False, "opady": 0, "wiatr_max": 0,
-                     "porywy_max": 0, "opis": f"❓ Błąd: {e}", "deszcz_h": 0}
+                     "porywy_max": 0, "opis": f"❓ {e}", "deszcz_h": 0}
         wyniki.append({
             "pasmo": pasmo,
             "szczyt_repr": nazwa_szczytu,
@@ -1238,26 +1442,26 @@ def znajdz_najlepsze_pasma(sobota, niedziela):
 # ============================================================
 # WYŚWIETLANIE PROGNOZY
 # ============================================================
-def wyswietl_prognoze(df, nazwa, lat, lon, wys, sobota, niedziela, zrodlo_nazwa):
+def wyswietl_prognoze(df, nazwa, lat, lon, wys, sobota, niedziela, zrodlo_nazwa, L):
     df_weekend = df[df["czas"].dt.date.isin([sobota, niedziela])].copy()
     if df_weekend.empty:
-        st.warning("Brak danych dla tego weekendu.")
+        st.warning(L["no_data"])
         return
 
     burze = sprawdz_burze_weekend(df, sobota, niedziela)
     if not burze.empty:
         godziny_burz = burze["czas"].dt.strftime("%d.%m %H:%M").tolist()
-        st.error(f"⛈️ **UWAGA — BURZE PROGNOZOWANE:** {', '.join(godziny_burz)}")
+        st.error(f"{L['storm_check']} {', '.join(godziny_burz)}")
         col_b1, col_b2 = st.columns(2)
-        col_b1.markdown(f"🔴 [Sprawdź wyładowania na Blitzortung]({link_blitzortung(lat, lon)})")
-        col_b2.markdown(f"🔴 [Sprawdź wyładowania na LightningMaps]({link_lightningmaps(lat, lon)})")
+        col_b1.markdown(f"🔴 [Blitzortung]({link_blitzortung(lat, lon)})")
+        col_b2.markdown(f"🔴 [LightningMaps]({link_lightningmaps(lat, lon)})")
 
     for dzien in [sobota, niedziela]:
         df_dzien = df_weekend[df_weekend["czas"].dt.date == dzien]
         if df_dzien.empty:
             continue
 
-        nazwa_dnia = "🟦 Sobota" if dzien == sobota else "🟪 Niedziela"
+        nazwa_dnia = L["saturday"] if dzien == sobota else L["sunday"]
         st.markdown(f"### {nazwa_dnia} — {dzien.strftime('%d.%m.%Y')}")
 
         temp_min = df_dzien["temp"].min()
@@ -1268,83 +1472,83 @@ def wyswietl_prognoze(df, nazwa, lat, lon, wys, sobota, niedziela, zrodlo_nazwa)
         snieg_suma = df_dzien["snieg"].sum()
 
         c1, c2, c3, c4, c5 = st.columns(5)
-        c1.metric("🌡️ Temperatura", f"{temp_min:.0f} / {temp_max:.0f}°C", help="Min / Max")
-        c2.metric("💨 Wiatr max", f"{wiatr_max:.1f} m/s")
-        c3.metric("🌬️ Porywy", f"{porywy_max:.1f} m/s")
-        c4.metric("🌧️ Opady", f"{opady_suma:.1f} mm")
-        c5.metric("❄️ Śnieg", f"{snieg_suma:.1f} cm")
+        c1.metric(L["temp"], f"{temp_min:.0f} / {temp_max:.0f}°C", help="Min / Max")
+        c2.metric(L["wind_max"], f"{wiatr_max:.1f} m/s")
+        c3.metric(L["gusts"], f"{porywy_max:.1f} m/s")
+        c4.metric(L["rain"], f"{opady_suma:.1f} mm")
+        c5.metric(L["snow"], f"{snieg_suma:.1f} cm")
 
         if "izot0" in df_dzien.columns and df_dzien["izot0"].max() > 0:
             izot0_min = df_dzien["izot0"].min()
             izot0_max = df_dzien["izot0"].max()
-            st.caption(f"Izotermia 0°C: {izot0_min:.0f}–{izot0_max:.0f} m n.p.m.")
+            st.caption(f"{L['isotherm']} {izot0_min:.0f}–{izot0_max:.0f} m n.p.m.")
 
         # Tabela godzinowa
         tab = df_dzien.copy()
-        tab["Godzina"] = tab["czas"].dt.strftime("%H:%M")
-        tab["Warunki"] = tab["kod"].apply(lambda k: " ".join(get_wmo_info(k)))
-        tab["Ocena"] = tab.apply(lambda r: ocen_warunki(r["wiatr"], r["porywy"], r["opady"], r["snieg"], r["kod"]), axis=1)
-        tab["Kier."] = tab["kierunek"].apply(kierunek_wiatru)
-        cols_show = ["Godzina", "Warunki", "temp", "odczuwalna", "wiatr", "porywy", "Kier.", "opady", "snieg", "zachmurzenie", "Ocena"]
+        tab[L["hour"]] = tab["czas"].dt.strftime("%H:%M")
+        tab[L["conditions"]] = tab["kod"].apply(lambda k: " ".join(get_wmo_info(k)))
+        tab[L["rating"]] = tab.apply(lambda r: ocen_warunki(r["wiatr"], r["porywy"], r["opady"], r["snieg"], r["kod"]), axis=1)
+        tab[L["dir"]] = tab["kierunek"].apply(kierunek_wiatru)
+        cols_show = [L["hour"], L["conditions"], "temp", "odczuwalna", "wiatr", "porywy", L["dir"], "opady", "snieg", "zachmurzenie", L["rating"]]
         tab_display = tab[cols_show].copy()
-        tab_display.columns = ["Godzina", "Warunki", "Temp°C", "Odcz.°C", "Wiatr m/s", "Porywy m/s", "Kier.", "Opady mm", "Śnieg cm", "Chmury %", "Ocena"]
+        tab_display.columns = [L["hour"], L["conditions"], "Temp°C", L["feel"], L["wind_ms"], L["gusts_ms"], L["dir"], L["rain_mm"], L["snow_cm"], L["clouds"], L["rating"]]
         st.dataframe(tab_display, use_container_width=True, hide_index=True)
 
         # Ostrzeżenia
         ost = []
         if wiatr_max > 20:
-            ost.append(f"⚠️ **Bardzo silny wiatr** — porywy do {porywy_max:.0f} m/s! Nie zalecane wyjście na grań.")
+            ost.append(L["warn_vwind"].format(g=porywy_max))
         elif wiatr_max > 12:
-            ost.append(f"⚠️ **Silny wiatr** — porywy do {porywy_max:.0f} m/s.")
+            ost.append(L["warn_wind"].format(g=porywy_max))
         if df_dzien["kod"].isin([95, 96, 99]).any():
-            ost.append("⛈️ **Burza** — ryzyko wyładowań! Zejdź z grzbietu przed burzą.")
+            ost.append(L["warn_storm"])
         if opady_suma > 10:
-            ost.append(f"🌧️ **Intensywne opady** — {opady_suma:.0f} mm łącznie.")
+            ost.append(L["warn_rain"].format(r=opady_suma))
         if snieg_suma > 5:
-            ost.append(f"❄️ **Śnieg** — {snieg_suma:.0f} cm. Zabierz raki/czeki.")
+            ost.append(L["warn_snow"].format(s=snieg_suma))
         if "izot0" in df_dzien.columns and df_dzien["izot0"].max() > 0 and df_dzien["izot0"].min() < 1500:
-            ost.append(f"🧊 **Izotermia 0°C poniżej 1500 m** — oblodzenie możliwe.")
+            ost.append(L["warn_ice"])
 
         if ost:
             for o in ost:
                 st.warning(o)
         else:
-            st.success("✅ Warunki bez szczególnych ostrzeżeń")
+            st.success(L["ok_conditions"])
 
         st.divider()
 
     # Wykres
-    st.markdown("### 📈 Wykresy")
+    st.markdown(L["charts"])
     fig = make_subplots(rows=3, cols=1, shared_xaxes=True,
-                        subplot_titles=("Temperatura (°C)", "Wiatr i porywy (m/s)", "Opady (mm)"),
+                        subplot_titles=(L["chart_temp"], L["chart_wind"], L["chart_rain"]),
                         vertical_spacing=0.08)
     fig.add_trace(go.Scatter(x=df_weekend["czas"], y=df_weekend["temp"],
                              name="Temp", line=dict(color="#e74c3c", width=2)), row=1, col=1)
     fig.add_trace(go.Scatter(x=df_weekend["czas"], y=df_weekend["odczuwalna"],
-                             name="Odczuwalna", line=dict(color="#e74c3c", width=1, dash="dot")), row=1, col=1)
+                             name=L["feel"], line=dict(color="#e74c3c", width=1, dash="dot")), row=1, col=1)
     fig.add_trace(go.Scatter(x=df_weekend["czas"], y=df_weekend["wiatr"],
-                             name="Wiatr", line=dict(color="#3498db", width=2)), row=2, col=1)
+                             name=L["wind_ms"], line=dict(color="#3498db", width=2)), row=2, col=1)
     fig.add_trace(go.Scatter(x=df_weekend["czas"], y=df_weekend["porywy"],
-                             name="Porywy", line=dict(color="#3498db", width=1, dash="dot")), row=2, col=1)
+                             name=L["gusts_ms"], line=dict(color="#3498db", width=1, dash="dot")), row=2, col=1)
     fig.add_hrect(y0=12, y1=100, row=2, col=1, fillcolor="orange", opacity=0.1, line_width=0)
     fig.add_hrect(y0=20, y1=100, row=2, col=1, fillcolor="red", opacity=0.1, line_width=0)
     fig.add_trace(go.Bar(x=df_weekend["czas"], y=df_weekend["opady"],
-                         name="Opady", marker_color="#2ecc71"), row=3, col=1)
+                         name=L["rain_mm"], marker_color="#2ecc71"), row=3, col=1)
     fig.update_layout(height=580, showlegend=True, template="plotly_white")
     st.plotly_chart(fig, use_container_width=True)
-    st.caption(f"Źródło: {zrodlo_nazwa} | Geokodowanie: OpenStreetMap Nominatim")
+    st.caption(L["source_footer"].format(s=zrodlo_nazwa))
 
 
-def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
+def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela, L):
     """Wyświetla porównanie wielu źródeł na jednym wykresie."""
-    st.markdown("### 🔀 Porównanie źródeł pogody")
+    st.markdown(L["compare_heading"])
 
     kolory = {"Open-Meteo (best_match)": "#e74c3c",
               "Open-Meteo ICON": "#e67e22",
               "Yr.no (MET Norway)": "#2980b9"}
 
     fig = make_subplots(rows=3, cols=1, shared_xaxes=True,
-                        subplot_titles=("Temperatura (°C)", "Wiatr max (m/s)", "Opady (mm)"),
+                        subplot_titles=(L["chart_temp"], L["chart_wind"], L["chart_rain"]),
                         vertical_spacing=0.08)
 
     for zrodlo, df in dfs_dict.items():
@@ -1355,29 +1559,29 @@ def wyswietl_porownanie(dfs_dict, nazwa, lat, lon, wys, sobota, niedziela):
         fig.add_trace(go.Scatter(x=df_w["czas"], y=df_w["temp"],
                                  name=f"Temp — {zrodlo}", line=dict(color=kolor, width=2)), row=1, col=1)
         fig.add_trace(go.Scatter(x=df_w["czas"], y=df_w["wiatr"],
-                                 name=f"Wiatr — {zrodlo}", line=dict(color=kolor, width=2, dash="dot")), row=2, col=1)
+                                 name=f"{L['wind_ms']} — {zrodlo}", line=dict(color=kolor, width=2, dash="dot")), row=2, col=1)
         fig.add_trace(go.Bar(x=df_w["czas"], y=df_w["opady"],
-                             name=f"Opady — {zrodlo}", opacity=0.6), row=3, col=1)
+                             name=f"{L['rain_mm']} — {zrodlo}", opacity=0.6), row=3, col=1)
 
     fig.update_layout(height=650, showlegend=True, template="plotly_white",
-                      title=f"Porównanie modeli — {nazwa} ({wys} m n.p.m.)")
+                      title=f"{nazwa} ({wys} m n.p.m.)")
     st.plotly_chart(fig, use_container_width=True)
 
     # Tabela podsumowująca
-    st.markdown("#### Podsumowanie weekendu wg źródeł")
+    st.markdown(L["compare_summary"])
     summary_rows = []
     for zrodlo, df in dfs_dict.items():
         df_w = df[df["czas"].dt.date.isin([sobota, niedziela])].copy()
         if df_w.empty:
             continue
         summary_rows.append({
-            "Źródło": zrodlo,
-            "Temp min°C": f"{df_w['temp'].min():.1f}",
-            "Temp max°C": f"{df_w['temp'].max():.1f}",
-            "Wiatr max m/s": f"{df_w['wiatr'].max():.1f}",
-            "Porywy max m/s": f"{df_w['porywy'].max():.1f}",
-            "Opady mm": f"{df_w['opady'].sum():.1f}",
-            "Burze": "⛈️ TAK" if df_w["kod"].isin([95, 96, 99]).any() else "—",
+            L["compare_col_source"]: zrodlo,
+            L["compare_col_tmin"]: f"{df_w['temp'].min():.1f}",
+            L["compare_col_tmax"]: f"{df_w['temp'].max():.1f}",
+            L["compare_col_wmax"]: f"{df_w['wiatr'].max():.1f}",
+            L["compare_col_gmax"]: f"{df_w['porywy'].max():.1f}",
+            L["compare_col_rain"]: f"{df_w['opady'].sum():.1f}",
+            L["compare_col_storm"]: L["storm_yes"] if df_w["kod"].isin([95, 96, 99]).any() else L["storm_no"],
         })
     if summary_rows:
         st.dataframe(pd.DataFrame(summary_rows), use_container_width=True, hide_index=True)
@@ -1593,10 +1797,25 @@ BANNER_HTML = """<!DOCTYPE html>
 </svg>
 </body></html>"""
 
-# ---- IG badge + My Peaks — nad bannerem, górny prawy róg ----
-st.markdown("""
+# ---- Górny pasek: język + My Peaks + IG badge ----
+_top_left, _top_right = st.columns([1, 4])
+with _top_left:
+    # Przełącznik PL / EN
+    _new_lang = st.radio(
+        "🌐",
+        ["PL", "EN"],
+        index=0 if st.session_state["lang"] == "PL" else 1,
+        horizontal=True,
+        key="lang_radio",
+        label_visibility="collapsed",
+    )
+    if _new_lang != st.session_state["lang"]:
+        st.session_state["lang"] = _new_lang
+        st.rerun()
+
+with _top_right:
+    st.markdown("""
 <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-bottom:4px;">
-  <!-- My Peaks button -->
   <a href="https://mypeaks.streamlit.app/" target="_blank" style="text-decoration:none;">
     <div style="display:inline-flex;align-items:center;gap:7px;background:#0e2235;border:1px solid #2a4a68;border-radius:8px;padding:5px 12px;">
       <svg width="16" height="16" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
@@ -1607,7 +1826,6 @@ st.markdown("""
       <span style="font-family:-apple-system,'Segoe UI',system-ui,sans-serif;font-weight:600;font-size:0.78rem;color:#7aaac8;letter-spacing:0.3px;">My Peaks</span>
     </div>
   </a>
-  <!-- IG badge -->
   <a href="https://www.instagram.com/hikewithmic" target="_blank" style="text-decoration:none;">
     <div style="display:inline-flex;align-items:center;gap:8px;background:transparent;padding:5px 0;">
       <svg width="22" height="22" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
@@ -1646,15 +1864,15 @@ with col_tytul:
       </svg>
       <div>
         <div style="font-family:'Cinzel',Georgia,serif;font-size:1.75rem;font-weight:700;color:#e8f4ff;line-height:1.1;letter-spacing:1px;">Mountain Weather</div>
-        <div style="font-size:0.75rem;color:#7aaac8;letter-spacing:3px;">TATRY &amp; BESKIDY</div>
+        <div style="font-size:0.75rem;color:#7aaac8;letter-spacing:3px;">{L['subtitle']}</div>
       </div>
     </div>
     """, unsafe_allow_html=True)
 with col_weekend:
     st.markdown(f"""
     <div style="background:#243d52;border:1px solid #3a6080;border-radius:10px;padding:10px 16px;text-align:center;margin-top:10px;">
-      <div style="font-size:0.68rem;color:#7aaac8;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px;">Prognoza na weekend</div>
-      <div style="font-size:1.1rem;font-weight:700;color:#e8f4ff;">{sobota.strftime('%d.%m')} sob – {niedziela.strftime('%d.%m')} nd</div>
+      <div style="font-size:0.68rem;color:#7aaac8;text-transform:uppercase;letter-spacing:2px;margin-bottom:3px;">{L['weekend_label']}</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#e8f4ff;">{sobota.strftime('%d.%m')} {L['weekend_short']} – {niedziela.strftime('%d.%m')} {L['weekend_short2']}</div>
     </div>
     """, unsafe_allow_html=True)
 st.divider()
@@ -1669,18 +1887,18 @@ st.markdown("""<div class="mw-heading">
     <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
     <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
   </svg>
-  Gdzie pojechać w ten weekend? — Rekomendacja pasma
+  {L['rec_heading']}
 </div>""", unsafe_allow_html=True)
 
 _col_rec_btn, _col_rec_info = st.columns([1, 3])
 with _col_rec_btn:
-    _do_rec = st.button("🔎 Szukaj najlepszej pogody", help="Sprawdza prognozę dla każdego pasma i poleca te bez burz i deszczu.")
+    _do_rec = st.button(L["rec_btn"], help=L["rec_caption"])
 with _col_rec_info:
-    st.caption("Pobiera prognozę dla reprezentatywnego szczytu w każdym paśmie i rankinguje wg warunków (brak burz → mało opadów → słaby wiatr).")
+    st.caption(L["rec_caption"])
 
 if _do_rec:
-    with st.spinner("Sprawdzam pogodę dla wszystkich pasm… (~9 zapytań, kilka sekund)"):
-        _wyniki_rec = znajdz_najlepsze_pasma(sobota, niedziela)
+    with st.spinner(L["rec_spinner"]):
+        _wyniki_rec = znajdz_najlepsze_pasma(sobota, niedziela, L)
 
     if _wyniki_rec:
         _najlepsze = _wyniki_rec[0]
@@ -1688,7 +1906,7 @@ if _do_rec:
         _medal_kolor = "#2e7d4f" if not _najlepsze["burza"] else "#7a3010"
         st.markdown(f"""
         <div style="background:{_medal_kolor};border-radius:12px;padding:14px 20px;margin-bottom:14px;">
-          <div style="font-size:0.72rem;color:#c0e8c0;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">🏆 Polecane pasmo na {sobota.strftime('%d.%m')}–{niedziela.strftime('%d.%m')}</div>
+          <div style="font-size:0.72rem;color:#c0e8c0;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">{L['rec_best_label']} {sobota.strftime('%d.%m')}–{niedziela.strftime('%d.%m')}</div>
           <div style="font-family:'Cinzel',Georgia,serif;font-size:1.5rem;font-weight:700;color:#ffffff;letter-spacing:1px;">{_najlepsze['pasmo']}</div>
           <div style="font-size:0.9rem;color:#d4f0d4;margin-top:4px;">{_najlepsze['opis']} &nbsp;·&nbsp; Opady: {_najlepsze['opady']} mm &nbsp;·&nbsp; Wiatr max: {_najlepsze['wiatr_max']} m/s</div>
           <div style="font-size:0.78rem;color:#a0c8a0;margin-top:3px;">Reprezentatywny szczyt: {_najlepsze['szczyt_repr'].replace(' ⭐WKT','')}</div>
@@ -1707,7 +1925,7 @@ if _do_rec:
                 _medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(_rank, f"#{_rank}")
                 _cols[_ci].markdown(f"""
                 <div class="rec-card {_css_extra}">
-                  <div class="rec-badge">{_medal} Miejsce {_rank}</div>
+                  <div class="rec-badge">{_medal} {L['rec_place']} {_rank}</div>
                   <div class="rec-name">{_w['pasmo']}</div>
                   <div class="rec-stats">{_w['opis']}</div>
                   <div class="rec-stats">💧 {_w['opady']} mm &nbsp; 💨 {_w['wiatr_max']} m/s (porywy {_w['porywy_max']} m/s)</div>
@@ -1720,42 +1938,42 @@ st.divider()
 # --- Sekcja 1: Wybór źródła ---
 st.markdown("""<div class="mw-heading">
   <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-  Źródło pogody
+  {L['source_heading']}
 </div>""", unsafe_allow_html=True)
 col_z1, col_z2 = st.columns([2, 3])
 with col_z1:
     tryb_zrodla = st.selectbox(
-        "Tryb:",
-        ["Jedno źródło", "Porównaj wszystkie źródła"],
-        help="Tryb porównania pobiera dane ze wszystkich źródeł i zestawia je na jednym wykresie."
+        L["source_mode"],
+        [L["source_single"], L["source_compare"]],
+        help=L["source_mode_help"]
     )
 with col_z2:
-    if tryb_zrodla == "Jedno źródło":
+    if tryb_zrodla == L["source_single"]:
         wybrane_zrodlo = st.selectbox(
-            "Źródło danych:",
+            L["source_select"],
             list(ZRODLA.keys()),
-            help="Wybierz skąd pobierać prognozę pogody."
+            help=L["source_select_help"]
         )
         st.caption(f"ℹ️ {ZRODLA_INFO[wybrane_zrodlo]}")
     else:
-        st.info("ℹ️ Dane ze wszystkich 3 źródeł: Open-Meteo, ICON, Yr.no")
+        st.info(L["source_compare_info"])
 
 st.divider()
 
 # --- Sekcja 2: Filtr pasm + wybór szczytu ---
 st.markdown("""<div class="mw-heading">
   <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="3,20 12,4 21,20"/><polyline points="3,20 21,20"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-  Wybierz pasmo i szczyt
+  {L['range_heading']}
 </div>""", unsafe_allow_html=True)
 
 col_pasma, col_szczyt = st.columns([1, 2])
 
 with col_pasma:
     wybrane_pasma = st.multiselect(
-        "Pasma górskie:",
+        L["range_select"],
         options=PASMA,
         default=["Tatry Polskie", "Tatry Słowackie"],
-        help="Zaznacz jedno lub więcej pasm — lista szczytów zostanie odfiltrowana."
+        help=L["range_help"]
     )
 
 if not wybrane_pasma:
@@ -1767,14 +1985,12 @@ szczyty_przefiltrowane = {
 }
 
 with col_szczyt:
-    tryb = st.radio("Wybór szczytu:", ["Z listy", "Wpisz nazwę ręcznie"], horizontal=True)
+    tryb = st.radio(L["peak_choice"], [L["peak_from_list"], L["peak_manual"]], horizontal=True)
 
-    if tryb == "Z listy":
-        # Grupuj wg pasma dla czytelności
-        # Sortuj alfabetycznie po nazwie; pasmo w nawiasie tylko gdy widocznych pasm > 1
+    if tryb == L["peak_from_list"]:
         opcje = sorted(szczyty_przefiltrowane.keys(), key=lambda n: n.lower())
         wybrany = st.selectbox(
-            "Szczyt:",
+            L["peak_select_label"],
             opcje,
             format_func=lambda n: f"{n}  ({SZCZYTY[n][2]} m) — {SZCZYTY[n][3]}"
         )
@@ -1783,28 +1999,28 @@ with col_szczyt:
         wspolrzedne_ok = True
     else:
         nazwa_wpisana = st.text_input(
-            "Wpisz nazwę szczytu:",
-            placeholder="np. Kołowy Szczyt, Babia Góra, Gerlach..."
+            L["peak_input_label"],
+            placeholder=L["peak_input_placeholder"]
         )
         wspolrzedne_ok = False
         lat = lon = wys = None
         nazwa_wyswietlana = nazwa_wpisana if nazwa_wpisana else ""
 
 # Geokodowanie ręcznej nazwy
-if tryb == "Wpisz nazwę ręcznie" and nazwa_wpisana:
+if tryb == L["peak_manual"] and nazwa_wpisana:
     if nazwa_wpisana in SZCZYTY:
         lat, lon, wys = SZCZYTY[nazwa_wpisana][0], SZCZYTY[nazwa_wpisana][1], SZCZYTY[nazwa_wpisana][2]
         nazwa_wyswietlana = nazwa_wpisana
         wspolrzedne_ok = True
     else:
-        with st.spinner("Szukam lokalizacji..."):
+        with st.spinner(L["geocode_spinner"]):
             lat, lon, display = geokoduj_szczyt(nazwa_wpisana)
         if lat:
             wys = 0
             wspolrzedne_ok = True
-            st.success(f"✅ Znaleziono: {display}")
+            st.success(f"{L['geocode_ok']} {display}")
         else:
-            st.error("❌ Nie znaleziono. Spróbuj innej pisowni lub wybierz z listy.")
+            st.error(L["geocode_fail"])
 
 if wspolrzedne_ok and lat:
     wys_str = f"{wys} m n.p.m." if wys else ""
@@ -1837,10 +2053,10 @@ if wspolrzedne_ok and lat:
           <svg style="vertical-align:-4px;margin-right:6px" width="18" height="18" viewBox="0 0 24 24" fill="#e05050" stroke="#e05050" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff" stroke="none"/></svg>
           {nazwa_wyswietlana}
         </div>""", unsafe_allow_html=True)
-        st.markdown(f"**Wysokość:** {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
+        st.markdown(f"{L['altitude_label']} {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
         if _pasmo:
-            st.markdown(f"**Pasmo:** {_pasmo}")
-        st.markdown("**🔗 Prognozy zewnętrzne (kliknij aby otworzyć):**")
+            st.markdown(f"{L['range_label']} {_pasmo}")
+        st.markdown(L["links_label"])
         ln_cols = st.columns(4)
         _mf_link = link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)
         _mf_label = "🏔️ Mountain‑Forecast" if nazwa_wyswietlana in _MF_SLUGS else "🗺️ Ventusky"
@@ -1852,7 +2068,7 @@ if wspolrzedne_ok and lat:
         # ── Trasy na szczyt ────────────────────────────────────────
         _trasy = TRASY.get(nazwa_wyswietlana)
         if _trasy:
-            st.markdown("**🥾 Trasy na szczyt:**")
+            st.markdown(L["routes_label"])
             for i, t in enumerate(_trasy, 1):
                 przez_str = " → ".join(t["przez"]) if t["przez"] else ""
                 trasa_str = f"**{t['start']}**"
@@ -1866,7 +2082,7 @@ if wspolrzedne_ok and lat:
                 st.markdown(
                     f"{i}. {trasa_str}  \n"
                     f"<small style='color:#7aaac8'>{meta}</small>"
-                    + (f"  \n<small style='color:#a0c8a0'>⚡ trudność: {trudnosc_str}</small>" if trudnosc_str else "")
+                    + (f"  \n<small style='color:#a0c8a0'>{L['difficulty_label']} {trudnosc_str}</small>" if trudnosc_str else "")
                     + (f"  \n<small style='color:#c8a060'>{t['uwagi']}</small>" if t.get("uwagi") else ""),
                     unsafe_allow_html=True,
                 )
@@ -1874,13 +2090,13 @@ if wspolrzedne_ok and lat:
 st.divider()
 
 # --- Przycisk pobierania ---
-if wspolrzedne_ok and st.button("🔍 Sprawdź pogodę na weekend", type="primary"):
-    if tryb_zrodla == "Porównaj wszystkie źródła":
+if wspolrzedne_ok and st.button(L["check_btn"], type="primary"):
+    if tryb_zrodla == L["source_compare"]:
         dfs = {}
         errors = []
         for nazwa_z, fn in ZRODLA.items():
             try:
-                with st.spinner(f"Pobieram z {nazwa_z}..."):
+                with st.spinner(L["spinner_fetch"].format(s=nazwa_z)):
                     dfs[nazwa_z] = fn(lat, lon)
             except Exception as e:
                 errors.append(f"❌ {nazwa_z}: {e}")
@@ -1888,39 +2104,39 @@ if wspolrzedne_ok and st.button("🔍 Sprawdź pogodę na weekend", type="primar
             for e in errors:
                 st.warning(e)
         if dfs:
-            wyswietl_porownanie(dfs, nazwa_wyswietlana, lat, lon, wys or 0, sobota, niedziela)
+            wyswietl_porownanie(dfs, nazwa_wyswietlana, lat, lon, wys or 0, sobota, niedziela, L)
             # Pokaż też ostrzeżenia burzowe z pierwszego dostępnego źródła
             df_ref = list(dfs.values())[0]
             burze = sprawdz_burze_weekend(df_ref, sobota, niedziela)
             if not burze.empty:
                 st.markdown("---")
-                st.markdown("#### ⛈️ Monitorowanie wyładowań atmosferycznych w czasie rzeczywistym")
+                st.markdown(L["storm_heading"])
                 c1, c2 = st.columns(2)
                 c1.markdown(f"🗺️ [Blitzortung.org — mapa wyładowań]({link_blitzortung(lat, lon)})")
                 c2.markdown(f"🗺️ [LightningMaps.org — mapa wyładowań]({link_lightningmaps(lat, lon)})")
-                st.caption("Powyższe linki otwierają mapę wyśrodkowaną na wybrany szczyt.")
+                st.caption(L["storm_caption"])
     else:
         fn = ZRODLA[wybrane_zrodlo]
         try:
-            with st.spinner(f"Pobieram prognozę z {wybrane_zrodlo}..."):
+            with st.spinner(L["spinner_forecast"].format(s=wybrane_zrodlo)):
                 df = fn(lat, lon)
         except Exception as e:
             import traceback
-            st.error(f"Błąd pobierania danych: {e}")
+            st.error(f"{L['fetch_error']} {e}")
             st.code(traceback.format_exc(), language="text")
             st.stop()
-        wyswietl_prognoze(df, nazwa_wyswietlana, lat, lon, wys or 0, sobota, niedziela, wybrane_zrodlo)
+        wyswietl_prognoze(df, nazwa_wyswietlana, lat, lon, wys or 0, sobota, niedziela, wybrane_zrodlo, L)
 
         # Linki do monitorowania burz zawsze widoczne na dole
         st.markdown("---")
-        st.markdown("#### ⛈️ Monitorowanie wyładowań atmosferycznych")
+        st.markdown(L["storm_heading2"])
         c1, c2 = st.columns(2)
         c1.markdown(f"🗺️ [Blitzortung.org — mapa live]({link_blitzortung(lat, lon)})")
         c2.markdown(f"🗺️ [LightningMaps.org — mapa live]({link_lightningmaps(lat, lon)})")
-        st.caption("Linki otwierają mapy wyśrodkowane na wybrany szczyt. Dane burzowe są aktualizowane w czasie rzeczywistym.")
+        st.caption(L["storm_caption2"])
 
 elif not wspolrzedne_ok:
-    if tryb == "Wpisz nazwę ręcznie" and not nazwa_wpisana:
-        st.info("👆 Wpisz nazwę szczytu lub wybierz z listy, następnie kliknij przycisk.")
+    if tryb == L["peak_manual"] and not nazwa_wpisana:
+        st.info(L["hint_manual"])
 else:
-    st.info("👆 Wybierz szczyt i kliknij 'Sprawdź pogodę na weekend'")
+    st.info(L["hint_select"])
