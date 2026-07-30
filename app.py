@@ -296,7 +296,7 @@ SZCZYTY = {
     "Baraniec (Baranec) SK":                      (49.1931, 19.8722, 2185, "Tatry Zachodnie"),
     "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
     "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
-    "Szatan":                                     (49.1633, 20.0525, 2415, "Tatry Słowackie"),
+    "Szatan (Satán)":                             (49.1633, 20.0525, 2421, "Tatry Słowackie"),
     "Bystra Ławka (Bystrá lávka)":                (49.1669, 20.0295, 2300, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":                 (49.1794, 20.0883, 2501, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
@@ -732,7 +732,7 @@ TRASY: dict[str, list[dict]] = {
          "trudnosc": "0+ — stromy trawiasty żleb, brak trudności skalnych",
          "uwagi": "⚠️ Szczyt w rezerwacie ścisłym — wstęp zabroniony"},
     ],
-    "Szatan": [
+    "Szatan (Satán)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Popradzki Staw", "Dolinka Szatania", "Szatani Żleb"],
          "czas": "7:30–8:30 h (tam i z powrotem)",
