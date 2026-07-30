@@ -1784,8 +1784,8 @@ with col_szczyt:
 
     if tryb == "Z listy":
         # Grupuj wg pasma dla czytelności
-        opcje = sorted(szczyty_przefiltrowane.keys(),
-                       key=lambda n: (SZCZYTY[n][3], n))
+        # Sortuj alfabetycznie po nazwie; pasmo w nawiasie tylko gdy widocznych pasm > 1
+        opcje = sorted(szczyty_przefiltrowane.keys(), key=lambda n: n.lower())
         wybrany = st.selectbox(
             "Szczyt:",
             opcje,
