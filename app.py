@@ -105,6 +105,27 @@ _T = {
         "cond_ok": "⛅ Umiarkowane",
         "cond_bad": "🌧️ Słabe / deszcz",
         "cond_storm": "⛈️ Burza!",
+        "src_info_om": "Automatyczny dobór najlepszego modelu (ICON/ECMWF/GFS). Darmowe, bez klucza.",
+        "src_info_icon": "Model ICON Seamless (DWD Niemcy) — najlepszy dla Karpat i Alp, rozdzielczość 2–7 km.",
+        "src_info_yr": "Norweski serwis MET Norway. Doskonały dla gór, używa modelu NWP.",
+        "rec_rain": "Opady",
+        "rec_wind": "Wiatr max",
+        "rec_gusts": "porywy",
+        "rec_ref": "ref",
+        "ranges": {
+            "Tatry Polskie": "Tatry Polskie",
+            "Tatry Słowackie": "Tatry Słowackie",
+            "Beskid Śląski": "Beskid Śląski",
+            "Beskid Żywiecki": "Beskid Żywiecki",
+            "Beskid Wyspowy": "Beskid Wyspowy",
+            "Beskid Sądecki": "Beskid Sądecki",
+            "Beskid Niski": "Beskid Niski",
+            "Gorce": "Gorce",
+            "Pieniny": "Pieniny",
+            "Bieszczady": "Bieszczady",
+        },
+        "route_via": "przez",
+        "route_time": "czas",
     },
     "EN": {
         "page_title": "Mountain Weather — Tatras & Beskids",
@@ -201,6 +222,27 @@ _T = {
         "cond_ok": "⛅ Moderate",
         "cond_bad": "🌧️ Poor / rain",
         "cond_storm": "⛈️ Storm!",
+        "src_info_om": "Auto-selects the best model (ICON/ECMWF/GFS). Free, no API key needed.",
+        "src_info_icon": "ICON Seamless model (DWD Germany) — best for Carpathians & Alps, 2–7 km resolution.",
+        "src_info_yr": "Norwegian MET Norway service. Excellent for mountains, uses NWP model.",
+        "rec_rain": "Rain",
+        "rec_wind": "Wind max",
+        "rec_gusts": "gusts",
+        "rec_ref": "ref",
+        "ranges": {
+            "Tatry Polskie": "Polish Tatras",
+            "Tatry Słowackie": "Slovak Tatras",
+            "Beskid Śląski": "Silesian Beskids",
+            "Beskid Żywiecki": "Żywiec Beskids",
+            "Beskid Wyspowy": "Island Beskids",
+            "Beskid Sądecki": "Sądecki Beskids",
+            "Beskid Niski": "Low Beskids",
+            "Gorce": "Gorce",
+            "Pieniny": "Pieniny",
+            "Bieszczady": "Bieszczady",
+        },
+        "route_via": "via",
+        "route_time": "time",
     },
 }
 
@@ -1316,11 +1358,12 @@ ZRODLA = {
     "Yr.no (MET Norway)": pobierz_yr,
 }
 
-ZRODLA_INFO = {
-    "Open-Meteo (best_match)": "Automatyczny dobór najlepszego modelu (ICON/ECMWF/GFS). Darmowe, bez klucza.",
-    "Open-Meteo ICON": "Model ICON Seamless (DWD Niemcy) — najlepszy dla Karpat i Alp, rozdzielczość 2–7 km.",
-    "Yr.no (MET Norway)": "Norweski serwis meteorologiczny MET Norway. Doskonały dla gór, używa modelu NWP.",
-}
+def _zrodla_info(L):
+    return {
+        "Open-Meteo (best_match)": L["src_info_om"],
+        "Open-Meteo ICON":         L["src_info_icon"],
+        "Yr.no (MET Norway)":      L["src_info_yr"],
+    }
 
 # ============================================================
 # BURZE — sprawdzenie przez Open-Meteo + link do Blitzortung
@@ -1907,9 +1950,9 @@ if _do_rec:
         st.markdown(f"""
         <div style="background:{_medal_kolor};border-radius:12px;padding:14px 20px;margin-bottom:14px;">
           <div style="font-size:0.72rem;color:#c0e8c0;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">{L['rec_best_label']} {sobota.strftime('%d.%m')}–{niedziela.strftime('%d.%m')}</div>
-          <div style="font-family:'Cinzel',Georgia,serif;font-size:1.5rem;font-weight:700;color:#ffffff;letter-spacing:1px;">{_najlepsze['pasmo']}</div>
-          <div style="font-size:0.9rem;color:#d4f0d4;margin-top:4px;">{_najlepsze['opis']} &nbsp;·&nbsp; Opady: {_najlepsze['opady']} mm &nbsp;·&nbsp; Wiatr max: {_najlepsze['wiatr_max']} m/s</div>
-          <div style="font-size:0.78rem;color:#a0c8a0;margin-top:3px;">Reprezentatywny szczyt: {_najlepsze['szczyt_repr'].replace(' ⭐WKT','')}</div>
+          <div style="font-family:'Cinzel',Georgia,serif;font-size:1.5rem;font-weight:700;color:#ffffff;letter-spacing:1px;">{L['ranges'].get(_najlepsze['pasmo'], _najlepsze['pasmo'])}</div>
+          <div style="font-size:0.9rem;color:#d4f0d4;margin-top:4px;">{_najlepsze['opis']} &nbsp;·&nbsp; {L['rec_rain']}: {_najlepsze['opady']} mm &nbsp;·&nbsp; {L['rec_wind']}: {_najlepsze['wiatr_max']} m/s</div>
+          <div style="font-size:0.78rem;color:#a0c8a0;margin-top:3px;">{L['rec_ref']}: {_najlepsze['szczyt_repr'].replace(' ⭐WKT','')}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1926,10 +1969,10 @@ if _do_rec:
                 _cols[_ci].markdown(f"""
                 <div class="rec-card {_css_extra}">
                   <div class="rec-badge">{_medal} {L['rec_place']} {_rank}</div>
-                  <div class="rec-name">{_w['pasmo']}</div>
+                  <div class="rec-name">{L['ranges'].get(_w['pasmo'], _w['pasmo'])}</div>
                   <div class="rec-stats">{_w['opis']}</div>
-                  <div class="rec-stats">💧 {_w['opady']} mm &nbsp; 💨 {_w['wiatr_max']} m/s (porywy {_w['porywy_max']} m/s)</div>
-                  <div class="rec-stats" style="color:#617a8a;font-size:0.75rem;">ref: {_w['szczyt_repr'].replace(' ⭐WKT','')}</div>
+                  <div class="rec-stats">💧 {_w['opady']} mm &nbsp; 💨 {_w['wiatr_max']} m/s ({L['rec_gusts']} {_w['porywy_max']} m/s)</div>
+                  <div class="rec-stats" style="color:#617a8a;font-size:0.75rem;">{L['rec_ref']}: {_w['szczyt_repr'].replace(' ⭐WKT','')}</div>
                 </div>
                 """, unsafe_allow_html=True)
 
@@ -1954,7 +1997,7 @@ with col_z2:
             list(ZRODLA.keys()),
             help=L["source_select_help"]
         )
-        st.caption(f"ℹ️ {ZRODLA_INFO[wybrane_zrodlo]}")
+        st.caption(f"ℹ️ {_zrodla_info(L)[wybrane_zrodlo]}")
     else:
         st.info(L["source_compare_info"])
 
@@ -1972,6 +2015,7 @@ with col_pasma:
     wybrane_pasma = st.multiselect(
         L["range_select"],
         options=PASMA,
+        format_func=lambda p: L["ranges"].get(p, p),
         default=["Tatry Polskie", "Tatry Słowackie"],
         help=L["range_help"]
     )
@@ -1992,7 +2036,7 @@ with col_szczyt:
         wybrany = st.selectbox(
             L["peak_select_label"],
             opcje,
-            format_func=lambda n: f"{n}  ({SZCZYTY[n][2]} m) — {SZCZYTY[n][3]}"
+            format_func=lambda n: f"{n}  ({SZCZYTY[n][2]} m) — {L['ranges'].get(SZCZYTY[n][3], SZCZYTY[n][3])}"
         )
         lat, lon, wys = SZCZYTY[wybrany][0], SZCZYTY[wybrany][1], SZCZYTY[wybrany][2]
         nazwa_wyswietlana = wybrany
@@ -2055,7 +2099,7 @@ if wspolrzedne_ok and lat:
         </div>""", unsafe_allow_html=True)
         st.markdown(f"{L['altitude_label']} {wys_str}  |  `{lat:.4f}°N, {lon:.4f}°E`")
         if _pasmo:
-            st.markdown(f"{L['range_label']} {_pasmo}")
+            st.markdown(f"{L['range_label']} {L['ranges'].get(_pasmo, _pasmo)}")
         st.markdown(L["links_label"])
         ln_cols = st.columns(4)
         _mf_link = link_mountain_forecast(nazwa_wyswietlana, lat, lon, wys or 1000)
@@ -2073,12 +2117,12 @@ if wspolrzedne_ok and lat:
                 przez_str = " → ".join(t["przez"]) if t["przez"] else ""
                 trasa_str = f"**{t['start']}**"
                 if przez_str:
-                    trasa_str += f" → {przez_str}"
+                    trasa_str += f" ({L['route_via']}: {przez_str})"
                 trasa_str += f" → 🏔️"
                 znaki_badge = znaki_html(t['znaki'])
                 trudnosc_str = t.get('trudnosc', '')
                 uwagi_str = f"&nbsp; <em style='color:#c8a060'>{t['uwagi']}</em>" if t.get("uwagi") else ""
-                meta = f"🕐 {t['czas']} &nbsp;·&nbsp; {znaki_badge}"
+                meta = f"🕐 {L['route_time']}: {t['czas']} &nbsp;·&nbsp; {znaki_badge}"
                 st.markdown(
                     f"{i}. {trasa_str}  \n"
                     f"<small style='color:#7aaac8'>{meta}</small>"
