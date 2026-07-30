@@ -291,6 +291,7 @@ SZCZYTY = {
     "Koprowe Ramię (Kôprovské plece)":            (49.1931, 20.0139, 2312, "Tatry Słowackie"),
     "Kołowy Szczyt (Kolový štít)":                (49.2108, 20.1989, 2418, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
+    "Kieżmarski Szczyt (Kežmarský štít)":         (49.1992, 20.2194, 2556, "Tatry Słowackie"),
     "Mały Kieżmarski Szczyt":                     (49.1947, 20.1894, 2513, "Tatry Słowackie"),
     "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
     "Hawrań (Havran)":                            (49.2189, 20.2864, 2152, "Tatry Słowackie"),
@@ -715,6 +716,14 @@ TRASY: dict[str, list[dict]] = {
          "czas": "9:30–10:30 h (tam i z powrotem)",
          "znaki": "żółty → czerwony → brak (poza szlakiem)",
          "trudnosc": "I — miejscami kruchy i stromy żleb, wymagająca orientacja w labiryncie skalnym",
+         "uwagi": None},
+    ],
+    "Kieżmarski Szczyt (Kežmarský štít)": [
+        {"start": "Biała Woda",
+         "przez": ["Zielony Staw Kieżmarski", "Rakuska Przełęcz", "Huncowskie Ubocze", "Wyżnia Kieżmarska Przełęcz"],
+         "czas": "9:00–10:00 h (tam i z powrotem)",
+         "znaki": "żółty → czerwony → brak (ramię szczytowe poza szlakiem)",
+         "trudnosc": "0+ — droga normalna od południa łatwa, omija słynną ekstremalną północną ścianę",
          "uwagi": None},
     ],
     "Mały Kieżmarski Szczyt": [
