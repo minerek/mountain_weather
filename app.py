@@ -1855,7 +1855,7 @@ sobota, niedziela = nastepny_weekend()
 # ---- Tytuł + data weekendu ----
 col_tytul, col_weekend = st.columns([3, 1])
 with col_tytul:
-    st.markdown("""
+    st.markdown(f"""
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px;margin-bottom:4px;">
       <svg width="34" height="34" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
         <polygon points="19,4 35,32 3,32" fill="#4a7a9b" stroke="#5a96c0" stroke-width="1"/>
@@ -1880,7 +1880,7 @@ st.divider()
 # ============================================================
 # --- Sekcja 0: Rekomendacja najlepszego pasma na weekend ---
 # ============================================================
-st.markdown("""<div class="mw-heading">
+st.markdown(f"""<div class="mw-heading">
   <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
     <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
@@ -1936,7 +1936,7 @@ if _do_rec:
 st.divider()
 
 # --- Sekcja 1: Wybór źródła ---
-st.markdown("""<div class="mw-heading">
+st.markdown(f"""<div class="mw-heading">
   <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
   {L['source_heading']}
 </div>""", unsafe_allow_html=True)
@@ -1961,7 +1961,7 @@ with col_z2:
 st.divider()
 
 # --- Sekcja 2: Filtr pasm + wybór szczytu ---
-st.markdown("""<div class="mw-heading">
+st.markdown(f"""<div class="mw-heading">
   <svg style="vertical-align:-3px;margin-right:8px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a96c0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="3,20 12,4 21,20"/><polyline points="3,20 21,20"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
   {L['range_heading']}
 </div>""", unsafe_allow_html=True)
