@@ -207,7 +207,6 @@ SZCZYTY = {
     "Rysy ⭐WKT":                                    (49.1796, 20.0881, 2499, "Tatry Polskie"),
     "Kozi Wierch":                                   (49.2182, 20.0213, 2291, "Tatry Polskie"),
     "Kozie Czuby":                                   (49.2178, 20.0125, 2263, "Tatry Polskie"),
-    "Mały Kozi Wierch":                              (49.2270, 20.0220, 2228, "Tatry Polskie"),
     "Zadni Granat":                                  (49.2248, 20.0294, 2240, "Tatry Polskie"),
     "Pośredni Granat":                               (49.2263, 20.0332, 2234, "Tatry Polskie"),
     "Skrajny Granat":                                (49.2280, 20.0368, 2225, "Tatry Polskie"),
