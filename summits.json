@@ -1,74 +1,11 @@
 [
   {
-    "name": "Rysy (SK)",
-    "elevation": 2503,
+    "name": "Barania Kotlina",
+    "elevation": 2200,
     "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2024-10-26",
-    "notes": "od strony słowackiej"
-  },
-  {
-    "name": "Rysy (PL)",
-    "elevation": 2499,
-    "range": "Tatry Polskie",
     "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Gerlach (Gerlachovský štít)",
-    "elevation": 2655,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Łomnica (Lomnický štít)",
-    "elevation": 2634,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2025-09-21",
-    "notes": ""
-  },
-  {
-    "name": "Lodowy Szczyt (Ľadový štít)",
-    "elevation": 2627,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Durny Szczyt (Pyšný štít)",
-    "elevation": 2623,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Wysoka (Vysoká)",
-    "elevation": 2560,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2025-08-10",
-    "notes": "bez wierzchołków"
-  },
-  {
-    "name": "Kieżmarski Szczyt (Kežmarský štít)",
-    "elevation": 2558,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Kończysta (Končistá)",
-    "elevation": 2538,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2025-07-20",
+    "type": "trasa",
+    "date": "2026-07-25",
     "notes": ""
   },
   {
@@ -80,221 +17,11 @@
     "notes": ""
   },
   {
-    "name": "Krywań (Kriváň)",
-    "elevation": 2495,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2024-09-21",
-    "notes": ""
-  },
-  {
-    "name": "Staroleśny Szczyt (Bradavica)",
-    "elevation": 2476,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Ganek (Gánok)",
-    "elevation": 2462,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Sławkowski Szczyt (Slavkovský štít)",
-    "elevation": 2452,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": "2024-10-20",
-    "notes": ""
-  },
-  {
-    "name": "Pośrednia Grań (Prostredný hrot)",
-    "elevation": 2441,
-    "range": "Tatry Słowackie",
-    "wkt": true,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Mięguszowiecki Szczyt Wielki",
-    "elevation": 2438,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Mała Wysoka (Východná Vysoká)",
-    "elevation": 2429,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Kołowy Szczyt (Kolový štít)",
-    "elevation": 2418,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Szatan (Satán)",
-    "elevation": 2421,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "date": "2025-07-06",
-    "notes": ""
-  },
-  {
-    "name": "Koprowy Wierch (Kôprovský štít)",
-    "elevation": 2366,
-    "range": "Tatry Wysokie (SK)",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Świstowy Szczyt (Svišťový štít)",
-    "elevation": 2385,
-    "range": "Tatry Wysokie (SK)",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Wielka Kopa Koprowa (Veľká kopa)",
-    "elevation": 2052,
-    "range": "Tatry Wysokie (SK)",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Dziumbier (Ďumbier)",
-    "elevation": 2043,
-    "range": "Tatry Niżne (SK)",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Świnica",
-    "elevation": 2301,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2024-08-11",
-    "notes": ""
-  },
-  {
-    "name": "Kozi Wierch",
-    "elevation": 2291,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2023-07-29",
-    "notes": ""
-  },
-  {
-    "name": "Jagnięcy Szczyt (Jahňací štít)",
-    "elevation": 2230,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "date": "2025-06-21",
-    "notes": "pierwszy raz 26.08.2023"
-  },
-  {
-    "name": "Szpiglasowy Wierch",
-    "elevation": 2172,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Kościelec",
-    "elevation": 2155,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2025-06-15",
-    "notes": ""
-  },
-  {
-    "name": "Kasprowy Wierch",
-    "elevation": 1987,
-    "range": "Tatry Zachodnie",
-    "wkt": false,
-    "date": "2024-08-11",
-    "notes": ""
-  },
-  {
-    "name": "Giewont",
-    "elevation": 1894,
-    "range": "Tatry Zachodnie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
     "name": "Bystra (Bystrá)",
     "elevation": 2248,
     "range": "Tatry Zachodnie",
     "wkt": false,
     "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Krzyżne",
-    "elevation": 2112,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2025-08-16",
-    "notes": "Orla Perć"
-  },
-  {
-    "name": "Zawrat",
-    "elevation": 2159,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2025-08-16",
-    "notes": "Orla Perć"
-  },
-  {
-    "name": "Skrajny Granat",
-    "elevation": 2225,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "date": "2025-08-16",
-    "notes": "Orla Perć"
-  },
-  {
-    "name": "Hawrań (Havran)",
-    "elevation": 2152,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "date": null,
-    "notes": ""
-  },
-  {
-    "name": "Orla Perć",
-    "elevation": 2291,
-    "range": "Tatry Polskie",
-    "wkt": false,
-    "type": "trasa",
-    "date": "2025-08-16",
-    "notes": ""
-  },
-  {
-    "name": "Barania Kotlina",
-    "elevation": 2200,
-    "range": "Tatry Słowackie",
-    "wkt": false,
-    "type": "trasa",
-    "date": "2026-07-25",
     "notes": ""
   },
   {
@@ -316,13 +43,157 @@
     "notes": ""
   },
   {
-    "name": "Rohacze (Roháče)",
-    "elevation": 2126,
+    "name": "Czerwone Wierchy (Červené vrchy)",
+    "elevation": 2122,
     "range": "Tatry Zachodnie",
     "wkt": false,
-    "type": "trasa",
-    "date": "2024-09-07",
-    "notes": "Rakoń (Rákoň) – 1878 m, Wołowiec (Volovec) – 2063 m, Rohacz Ostry (Ostrý Roháč) – 2087 m, Rohacz Płaczliwy (Plačlivé) – 2125 m, Trzy Kopy (Tri kopy) – 2136 m, Hruba Kopa (Hrubá kopa) – 2166 m, Baników (Baníkov) – 2178 m"
+    "type": "masyw",
+    "date": "2024-11-11",
+    "notes": "Ciemniak – 2096 m, Krzesanica – 2122 m, Małołączniak – 2096 m, Kopa Kondracka – 2005 m"
+  },
+  {
+    "name": "Durny Szczyt (Pyšný štít)",
+    "elevation": 2623,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Dziumbier (Ďumbier)",
+    "elevation": 2043,
+    "range": "Tatry Niżne (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Ganek (Gánok)",
+    "elevation": 2462,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Gerlach (Gerlachovský štít)",
+    "elevation": 2655,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Giewont",
+    "elevation": 1894,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Hawrań (Havran)",
+    "elevation": 2152,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Jagnięcy Szczyt (Jahňací štít)",
+    "elevation": 2230,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": "2025-06-21",
+    "notes": "pierwszy raz 26.08.2023"
+  },
+  {
+    "name": "Kasprowy Wierch",
+    "elevation": 1987,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "date": "2024-08-11",
+    "notes": ""
+  },
+  {
+    "name": "Kieżmarski Szczyt (Kežmarský štít)",
+    "elevation": 2558,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Koprowy Wierch (Kôprovský štít)",
+    "elevation": 2366,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kozi Wierch",
+    "elevation": 2291,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2023-07-29",
+    "notes": ""
+  },
+  {
+    "name": "Kołowy Szczyt (Kolový štít)",
+    "elevation": 2418,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Kończysta (Končistá)",
+    "elevation": 2538,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2025-07-20",
+    "notes": ""
+  },
+  {
+    "name": "Kościelec",
+    "elevation": 2155,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2025-06-15",
+    "notes": ""
+  },
+  {
+    "name": "Krywań (Kriváň)",
+    "elevation": 2495,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2024-09-21",
+    "notes": ""
+  },
+  {
+    "name": "Krzyżne",
+    "elevation": 2112,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2025-08-16",
+    "notes": "Orla Perć"
+  },
+  {
+    "name": "Lodowy Szczyt (Ľadový štít)",
+    "elevation": 2627,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Mała Wysoka (Východná Vysoká)",
+    "elevation": 2429,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
   },
   {
     "name": "Mięguszowiecka Przełęcz pod Chłopkiem",
@@ -334,6 +205,80 @@
     "notes": ""
   },
   {
+    "name": "Mięguszowiecki Szczyt Wielki",
+    "elevation": 2438,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Orla Perć",
+    "elevation": 2291,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "type": "trasa",
+    "date": "2025-08-16",
+    "notes": ""
+  },
+  {
+    "name": "Pośredni Granat",
+    "elevation": 2234,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2025-08-16",
+    "notes": "Orla Perć"
+  },
+  {
+    "name": "Pośrednia Grań (Prostredný hrot)",
+    "elevation": 2441,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Rohacze (Roháče)",
+    "elevation": 2126,
+    "range": "Tatry Zachodnie",
+    "wkt": false,
+    "type": "trasa",
+    "date": "2024-09-07",
+    "notes": "Rakoń (Rákoň) – 1878 m, Wołowiec (Volovec) – 2063 m, Rohacz Ostry (Ostrý Roháč) – 2087 m, Rohacz Płaczliwy (Plačlivé) – 2125 m, Trzy Kopy (Tri kopy) – 2136 m, Hruba Kopa (Hrubá kopa) – 2166 m, Baników (Baníkov) – 2178 m"
+  },
+  {
+    "name": "Rysy (PL)",
+    "elevation": 2499,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Rysy (SK)",
+    "elevation": 2503,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2024-10-26",
+    "notes": "od strony słowackiej"
+  },
+  {
+    "name": "Skrajny Granat",
+    "elevation": 2225,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2025-08-16",
+    "notes": "Orla Perć"
+  },
+  {
+    "name": "Staroleśny Szczyt (Bradavica)",
+    "elevation": 2476,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": null,
+    "notes": ""
+  },
+  {
     "name": "Starorobociański Wierch (Klin)",
     "elevation": 2176,
     "range": "Tatry Zachodnie",
@@ -342,13 +287,44 @@
     "notes": ""
   },
   {
-    "name": "Czerwone Wierchy (Červené vrchy)",
-    "elevation": 2122,
-    "range": "Tatry Zachodnie",
+    "name": "Szatan (Satán)",
+    "elevation": 2421,
+    "range": "Tatry Słowackie",
     "wkt": false,
-    "type": "masyw",
-    "date": "2024-11-11",
-    "notes": "Ciemniak – 2096 m, Krzesanica – 2122 m, Małołączniak – 2096 m, Kopa Kondracka – 2005 m"
+    "date": "2025-07-06",
+    "notes": ""
+  },
+  {
+    "name": "Szpiglasowy Wierch",
+    "elevation": 2172,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Sławkowski Szczyt (Slavkovský štít)",
+    "elevation": 2452,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2024-10-20",
+    "notes": ""
+  },
+  {
+    "name": "Wielka Kopa Koprowa (Veľká kopa)",
+    "elevation": 2052,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
+  },
+  {
+    "name": "Wysoka (Vysoká)",
+    "elevation": 2560,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2025-08-10",
+    "notes": "bez wierzchołków"
   },
   {
     "name": "Zadni Granat",
@@ -359,11 +335,35 @@
     "notes": "Orla Perć"
   },
   {
-    "name": "Pośredni Granat",
-    "elevation": 2234,
+    "name": "Zawrat",
+    "elevation": 2159,
     "range": "Tatry Polskie",
     "wkt": false,
     "date": "2025-08-16",
     "notes": "Orla Perć"
+  },
+  {
+    "name": "Łomnica (Lomnický štít)",
+    "elevation": 2634,
+    "range": "Tatry Słowackie",
+    "wkt": true,
+    "date": "2025-09-21",
+    "notes": ""
+  },
+  {
+    "name": "Świnica",
+    "elevation": 2301,
+    "range": "Tatry Polskie",
+    "wkt": false,
+    "date": "2024-08-11",
+    "notes": ""
+  },
+  {
+    "name": "Świstowy Szczyt (Svišťový štít)",
+    "elevation": 2385,
+    "range": "Tatry Wysokie (SK)",
+    "wkt": false,
+    "date": null,
+    "notes": ""
   }
 ]
