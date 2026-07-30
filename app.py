@@ -297,7 +297,7 @@ SZCZYTY = {
     "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
     "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
     "Szatan":                                     (49.1633, 20.0525, 2415, "Tatry Słowackie"),
-    "Bystra Ławka (Bystrá lávka)":                (49.1678, 20.0336, 2300, "Tatry Słowackie"),
+    "Bystra Ławka (Bystrá lávka)":                (49.1669, 20.0295, 2300, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":                 (49.1794, 20.0883, 2501, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
