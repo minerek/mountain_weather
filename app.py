@@ -221,7 +221,6 @@ SZCZYTY = {
     "Świnica":                                       (49.2195, 20.0071, 2301, "Tatry Polskie"),
     "Morskie Oko":                                   (49.2014, 20.0708, 1395, "Tatry Polskie"),
     "Czarny Staw pod Rysami":                        (49.1917, 20.0725, 1580, "Tatry Polskie"),
-    "Mały Kościelec":                                (49.2291, 20.0142, 1866, "Tatry Polskie"),
     "Nosal":                                         (49.2765, 19.9896, 1206, "Tatry Polskie"),
     "Sarnia Skała":                                  (49.2638, 19.9405, 1377, "Tatry Polskie"),
     "Wielki Kopieniec":                              (49.2778, 19.9922, 1328, "Tatry Polskie"),
@@ -291,7 +290,6 @@ SZCZYTY = {
     "Koprowe Ramię (Kôprovské plece)":            (49.1931, 20.0139, 2312, "Tatry Słowackie"),
     "Kołowy Szczyt (Kolový štít)":                (49.2108, 20.1989, 2418, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
-    "Mały Kieżmarski Szczyt":                     (49.1947, 20.1894, 2513, "Tatry Słowackie"),
     "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
     "Hawrań (Havran)":                            (49.2189, 20.2864, 2152, "Tatry Słowackie"),
     "Murań (Murán)":                              (49.2158, 20.2761, 2068, "Tatry Słowackie"),
@@ -299,6 +297,7 @@ SZCZYTY = {
     "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
     "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
     "Szatan":                                     (49.1633, 20.0525, 2415, "Tatry Słowackie"),
+    "Bystra Ławka (Bystrá lávka)":                (49.1678, 20.0336, 2300, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":                 (49.1794, 20.0883, 2501, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
@@ -715,14 +714,6 @@ TRASY: dict[str, list[dict]] = {
          "czas": "9:30–10:30 h (tam i z powrotem)",
          "znaki": "żółty → czerwony → brak (poza szlakiem)",
          "trudnosc": "I — miejscami kruchy i stromy żleb, wymagająca orientacja w labiryncie skalnym",
-         "uwagi": None},
-    ],
-    "Mały Kieżmarski Szczyt": [
-        {"start": "Biała Woda",
-         "przez": ["Zielony Staw Kieżmarski", "Rakuska Przełęcz", "Huncowskie Ubocze"],
-         "czas": "9:30–10:30 h (tam i z powrotem)",
-         "znaki": "żółty → czerwony → brak (poza szlakiem)",
-         "trudnosc": "0+ — droga normalna od południa łatwa, omija słynną ekstremalną północną ścianę",
          "uwagi": None},
     ],
     "Mała Wysoka (Východná Vysoká)": [
