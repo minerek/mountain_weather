@@ -301,12 +301,11 @@ SZCZYTY = {
     "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
     "Hawrań (Havran)":                            (49.2189, 20.2864, 2152, "Tatry Słowackie"),
     "Murań (Murán)":                              (49.2158, 20.2761, 2068, "Tatry Słowackie"),
-    "Jagnięcy Szczyt (Baranec)":                  (49.1931, 19.8722, 2185, "Tatry Słowackie"),
+    "Baraniec (Baranec) SK":                      (49.1931, 19.8722, 2185, "Tatry Zachodnie"),
     "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
     "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
     "Szatan":                                     (49.1633, 20.0525, 2415, "Tatry Słowackie"),
     "Rysy (słowackie podejście)":                 (49.1794, 20.0883, 2501, "Tatry Słowackie"),
-    "Mengusovský štít":                           (49.1908, 20.0803, 2438, "Tatry Słowackie"),
     "Popradský štít":                     (49.1828, 20.1567, 2369, "Tatry Słowackie"),
 
     # ---------- BESKID ŚLĄSKI ----------
