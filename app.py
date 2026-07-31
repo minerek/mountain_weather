@@ -524,7 +524,7 @@ SZCZYTY = {
     "Wysoka (Vysoká) ⭐WKT":                      (49.1726, 20.0934, 2560, "Tatry Słowackie"),
     "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT":   (49.1992, 20.2194, 2558, "Tatry Słowackie"),
     "Kończysta (Končistá) ⭐WKT":                 (49.1551, 20.1144, 2538, "Tatry Słowackie"),
-    "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.1980, 20.1983, 2526, "Tatry Słowackie"),
+    "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.2016, 20.1972, 2526, "Tatry Słowackie"),
     "Krywań (Kriváň) ⭐WKT":                      (49.1626, 20.0133, 2495, "Tatry Słowackie"),
     "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.1652, 20.1546, 2476, "Tatry Słowackie"),
     "Ganek (Gánok) ⭐WKT":                        (49.1747, 20.0989, 2462, "Tatry Słowackie"),
@@ -1131,10 +1131,10 @@ def znaki_html(znaki_str: str) -> str:
     if "brak (taternicka)" in znaki_str:
         return "⚠️ brak szlaku (taternicka)"
     # Podziel po →
-    parts = [p.strip() for p in znaki_str.replace("→", "→").split("→")]
+    parts = [p.strip() for p in znaki_str.split("→")]
     result = ""
     for j, part in enumerate(parts):
-        part_clean = part.strip()
+        part_clean = part.strip().lower()
         if part_clean in _KOLOR_HEX:
             result += _znaki_badge(part_clean)
         else:
