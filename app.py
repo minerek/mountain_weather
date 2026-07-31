@@ -126,6 +126,7 @@ _T = {
         },
         "route_via": "przez",
         "route_time": "czas",
+        "route_dist": "dystans",
     },
     "EN": {
         "page_title": "Mountain Weather — Tatras & Beskids",
@@ -243,6 +244,7 @@ _T = {
         },
         "route_via": "via",
         "route_time": "time",
+        "route_dist": "distance",
     },
 }
 
@@ -643,7 +645,7 @@ TRASY: dict[str, list[dict]] = {
     "Rysy ⭐WKT": [
         {"start": "Palenica Białczańska",
          "przez": ["Morskie Oko", "Czarny Staw pod Rysami"],
-         "czas": "9:30–10:30 h (tam i z powrotem)",
+         "czas": "9:30–10:30 h (tam i z powrotem)", "km": "22,5",
          "znaki": "czerwony",
          "trudnosc": "0+ — szlak turystyczny, górna część bardzo stroma, ubezpieczona łańcuchami, duża ekspozycja",
          "uwagi": None},
@@ -651,7 +653,7 @@ TRASY: dict[str, list[dict]] = {
     "Świnica": [
         {"start": "Kuźnice",
          "przez": ["Boczań", "Murowaniec", "Świnicka Przełęcz"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "14,0",
          "znaki": "niebieski → czarny → czerwony",
          "trudnosc": "0+ — liczne łańcuchy, miejsca z dużą ekspozycją",
          "uwagi": None},
@@ -659,7 +661,7 @@ TRASY: dict[str, list[dict]] = {
     "Kościelec": [
         {"start": "Kuźnice",
          "przez": ["Murowaniec", "Czarny Staw Gąsienicowy", "Karb"],
-         "czas": "6:00–6:30 h (tam i z powrotem)",
+         "czas": "6:00–6:30 h (tam i z powrotem)", "km": "12,5",
          "znaki": "niebieski → czarny",
          "trudnosc": "0+ — strome płyty skalne, brak łańcuchów, wymaga użycia rąk",
          "uwagi": None},
@@ -667,13 +669,13 @@ TRASY: dict[str, list[dict]] = {
     "Kozi Wierch": [
         {"start": "Kuźnice",
          "przez": ["Dolina Pięciu Stawów Polskich"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "18,0",
          "znaki": "niebieski → czarny",
          "trudnosc": "0 — szlak turystyczny, stromy, w końcówce kilka ułatwień",
          "uwagi": "Zejście możliwe Orlą Percią (czerwony) do Doliny Pięciu Stawów"},
         {"start": "Kuźnice",
          "przez": ["Dolina Gąsienicowa", "Kozia Przełęcz"],
-         "czas": "8:00–9:00 h (tam i z powrotem)",
+         "czas": "8:00–9:00 h (tam i z powrotem)", "km": "16,0",
          "znaki": "żółty → czerwony (Orla Perć)",
          "trudnosc": "0+ — najtrudniejszy szlak turystyczny w Polsce, drabinki, łańcuchy, przepaście",
          "uwagi": "Zejście szlakiem czarnym do Doliny Pięciu Stawów"},
@@ -681,7 +683,7 @@ TRASY: dict[str, list[dict]] = {
     "Mięguszowiecki Szczyt Wielki": [
         {"start": "Morskie Oko",
          "przez": ["Mnichowy Potok", "Dolinka za Mnichem", "Bańdzioch", "Wyżnia Białczańska Przełęcz"],
-         "czas": "8:00–9:30 h (tam i z powrotem)",
+         "czas": "8:00–9:30 h (tam i z powrotem)", "km": "10,0",
          "znaki": "brak (poza szlakiem od Bańdziocha)",
          "trudnosc": "I — miejsca wspinaczkowe, skomplikowana orientacja, kruchy teren, ogromna ekspozycja. Zejście często wymaga zjazdów na linie",
          "uwagi": None},
@@ -689,7 +691,7 @@ TRASY: dict[str, list[dict]] = {
     "Mięguszowiecki Szczyt Czarny": [
         {"start": "Morskie Oko",
          "przez": ["Czarny Staw pod Rysami", "Mięguszowiecka Przełęcz pod Chłopkiem"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "9,5",
          "znaki": "czerwony → zielony → brak (trawers i grań)",
          "trudnosc": "0+ — szlak zielony na przełęcz ma trudności 0+ z dużą ekspozycją i kilkoma klamrami; krótki odcinek poza szlakiem na szczyt",
          "uwagi": None},
@@ -697,7 +699,7 @@ TRASY: dict[str, list[dict]] = {
     "Cubryna": [
         {"start": "Morskie Oko",
          "przez": ["Dolinka za Mnichem", "Wielka Galeria Cubryńska", "Mała Galeria"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "10,0",
          "znaki": "żółty → brak (poza szlakiem)",
          "trudnosc": "I — trudny orientacyjnie labirynt skalny, strome kruche żleby",
          "uwagi": None},
@@ -705,13 +707,13 @@ TRASY: dict[str, list[dict]] = {
     "Kasprowy Wierch (Kasprový vrch)": [
         {"start": "Kuźnice",
          "przez": ["Myślenickie Turnie"],
-         "czas": "5:00–7:00 h (tam i z powrotem)",
+         "czas": "5:00–7:00 h (tam i z powrotem)", "km": "10,5",
          "znaki": "niebieski",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
         {"start": "Hala Gąsienicowa (Murowaniec)",
          "przez": [],
-         "czas": "4:00–6:00 h (tam i z powrotem)",
+         "czas": "4:00–6:00 h (tam i z powrotem)", "km": "7,0",
          "znaki": "czerwony",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
@@ -719,13 +721,13 @@ TRASY: dict[str, list[dict]] = {
     "Giewont": [
         {"start": "Zakopane (Strążyska)",
          "przez": ["Dolina Strążyska", "Przełęcz w Grzybowcu"],
-         "czas": "6:00–8:00 h (tam i z powrotem)",
+         "czas": "6:00–8:00 h (tam i z powrotem)", "km": "12,0",
          "znaki": "zielony → czerwony",
          "trudnosc": "0+ — łańcuchy na wierzchołkowym podejściu, ekspozycja",
          "uwagi": None},
         {"start": "Kuźnice",
          "przez": ["Kondratowa", "Przełęcz Kondracka"],
-         "czas": "7:00–9:00 h (tam i z powrotem)",
+         "czas": "7:00–9:00 h (tam i z powrotem)", "km": "14,5",
          "znaki": "niebieski → czerwony",
          "trudnosc": "0+ — łańcuchy na wierzchołkowym podejściu",
          "uwagi": None},
@@ -733,7 +735,7 @@ TRASY: dict[str, list[dict]] = {
     "Szpiglasowy Wierch (Hrubý štít)": [
         {"start": "Morskie Oko",
          "przez": ["Szpiglasowa Przełęcz"],
-         "czas": "4:00–5:00 h (tam i z powrotem)",
+         "czas": "4:00–5:00 h (tam i z powrotem)", "km": "7,5",
          "znaki": "zielony → niebieski",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
@@ -743,7 +745,7 @@ TRASY: dict[str, list[dict]] = {
     "Rysy (słowackie podejście)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Popradzki Staw", "Chata pod Rysami"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "15,0",
          "znaki": "czerwony → niebieski → czerwony",
          "trudnosc": "0 — szlak turystyczny, ubezpieczony łańcuchami pod Przełęczą Wagą",
          "uwagi": None},
@@ -751,7 +753,7 @@ TRASY: dict[str, list[dict]] = {
     "Gerlach (Gerlachovský štít) ⭐WKT": [
         {"start": "Tatranská Polianka",
          "przez": ["Velická dolina", "Śląski Dom (Sliezsky dom)", "Wielicka Próba"],
-         "czas": "8:30–10:00 h (tam i z powrotem)",
+         "czas": "8:30–10:00 h (tam i z powrotem)", "km": "16,0",
          "znaki": "zielony → brak (poza szlakiem od Wielickiej Próby)",
          "trudnosc": "I — miejsca wspinaczkowe, duża ekspozycja, klamry i łańcuchy. Zejście przez Batyżowiecką Próbę → szlak żółty/czerwony",
          "uwagi": "⚠️ Obowiązkowy licencjonowany przewodnik UIMLA/IVBV — wymagany przepisami słowackimi"},
@@ -759,7 +761,7 @@ TRASY: dict[str, list[dict]] = {
     "Łomnica (Lomnický štít) ⭐WKT": [
         {"start": "Tatranská Lomnica",
          "przez": ["Łomnicki Staw", "Łomnicka Przełęcz", "Droga Emericyego"],
-         "czas": "9:00–10:30 h (tam i z powrotem)",
+         "czas": "9:00–10:30 h (tam i z powrotem)", "km": "14,0",
          "znaki": "zielony → czerwony → brak (Droga Emericyego poza szlakiem)",
          "trudnosc": "I — strome płyty skalne, ubezpieczenia z łańcuchów i klamer",
          "uwagi": "⚠️ Górna część taternicka — wymagany przewodnik lub doświadczenie"},
@@ -767,7 +769,7 @@ TRASY: dict[str, list[dict]] = {
     "Lodowy Szczyt (Ľadový štít) ⭐WKT": [
         {"start": "Stary Smokovec",
          "przez": ["Hrebienok", "Malá Studená dolina", "Téryho chata", "Lodowa Przełęcz (ramię)", "Lodowy Koń (grań)"],
-         "czas": "11:00–12:00 h (tam i z powrotem)",
+         "czas": "11:00–12:00 h (tam i z powrotem)", "km": "22,0",
          "znaki": "zielony → czerwony → żółty → brak (grań poza szlakiem)",
          "trudnosc": "I — bardzo wąska, powietrzna grań (Lodowy Koń), duże przepaście po obu stronach",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -775,7 +777,7 @@ TRASY: dict[str, list[dict]] = {
     "Durny Szczyt (Pyšný štít) ⭐WKT": [
         {"start": "Stary Smokovec",
          "przez": ["Hrebienok", "Malá Studená dolina", "Téryho chata", "Dolinka Lodowa", "Maćkowa Przełęcz"],
-         "czas": "11:30–13:00 h (tam i z powrotem)",
+         "czas": "11:30–13:00 h (tam i z powrotem)", "km": "22,0",
          "znaki": "zielony → czerwony → brak (poza szlakiem)",
          "trudnosc": "I+ — skomplikowana orientacja, krucha skała, strome kominki i eksponowana grań",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -783,7 +785,7 @@ TRASY: dict[str, list[dict]] = {
     "Wysoka (Vysoká) ⭐WKT": [
         {"start": "Popradzki Staw",
          "przez": ["Dolina Złomisk", "Złomiska Zatoka", "rynna pod Wagą i Pazdury"],
-         "czas": "8:30–9:30 h (tam i z powrotem)",
+         "czas": "8:30–9:30 h (tam i z powrotem)", "km": "12,0",
          "znaki": "niebieski → brak (poza szlakiem)",
          "trudnosc": "I — stromy i kruchy żleb, końcówka ubezpieczona metalowymi klamrami",
          "uwagi": None},
@@ -791,7 +793,7 @@ TRASY: dict[str, list[dict]] = {
     "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT": [
         {"start": "Biała Woda",
          "przez": ["Zielony Staw Kieżmarski", "Rakuska Przełęcz", "Huncowskie Ubocze"],
-         "czas": "9:00–10:00 h (tam i z powrotem)",
+         "czas": "9:00–10:00 h (tam i z powrotem)", "km": "18,0",
          "znaki": "żółty → czerwony → brak (poza szlakiem)",
          "trudnosc": "0+ — najłatwiejszy technicznie z trudnych szczytów, głównie strome trawki, głazy i perć",
          "uwagi": None},
@@ -799,7 +801,7 @@ TRASY: dict[str, list[dict]] = {
     "Kończysta (Končistá) ⭐WKT": [
         {"start": "Štrbské Pleso",
          "przez": ["Dolina Mengusovská", "Päťkôšky"],
-         "czas": "10:00–12:00 h (tam i z powrotem)",
+         "czas": "10:00–12:00 h (tam i z powrotem)", "km": "20,0",
          "znaki": "zielony → żółty",
          "trudnosc": "0+ — długie, kondycyjne podejście, strome trawiaste zbocza",
          "uwagi": None},
@@ -807,7 +809,7 @@ TRASY: dict[str, list[dict]] = {
     "Baranie Rogi (Baranie rohy) ⭐WKT": [
         {"start": "Stary Smokovec",
          "przez": ["Hrebienok", "Malá Studená dolina", "Téryho chata", "Barania Przełęcz"],
-         "czas": "9:00–10:00 h (tam i z powrotem)",
+         "czas": "9:00–10:00 h (tam i z powrotem)", "km": "20,0",
          "znaki": "zielony → czerwony → brak (poza szlakiem)",
          "trudnosc": "0+ — podejście na przełęcz ubezpieczone łańcuchami, od przełęczy łatwy spacer po płytach",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -815,7 +817,7 @@ TRASY: dict[str, list[dict]] = {
     "Krywań (Kriváň) ⭐WKT": [
         {"start": "Trzy Studniczki (Tri studničky)",
          "przez": ["Rozdroże pod Krywaniem"],
-         "czas": "7:00–7:30 h (tam i z powrotem)",
+         "czas": "7:00–7:30 h (tam i z powrotem)", "km": "11,5",
          "znaki": "zielony → niebieski",
          "trudnosc": "0 — szlak turystyczny; w kopule szczytowej strome płyty, bez sztucznych ubezpieczeń",
          "uwagi": "Parking Tri studničky płatny; popularny, często tłoczny latem"},
@@ -823,7 +825,7 @@ TRASY: dict[str, list[dict]] = {
     "Staroleśny Szczyt (Bradavica) ⭐WKT": [
         {"start": "Tatranská Polianka",
          "przez": ["Velická dolina", "Śląski Dom", "Kwietnikowy Żleb", "Klimkowa Przełęcz"],
-         "czas": "10:00–11:30 h (tam i z powrotem)",
+         "czas": "10:00–11:30 h (tam i z powrotem)", "km": "18,0",
          "znaki": "zielony → brak (poza szlakiem)",
          "trudnosc": "II — najtrudniejszy szczyt WKT drogą normalną, duże trudności orientacyjne, pionowe ścianki, zjazdy na linie",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -831,7 +833,7 @@ TRASY: dict[str, list[dict]] = {
     "Ganek (Gánok) ⭐WKT": [
         {"start": "Popradzki Staw",
          "przez": ["Dolinka Rumanowa", "Gankowa Ławka"],
-         "czas": "9:00–10:00 h (tam i z powrotem)",
+         "czas": "9:00–10:00 h (tam i z powrotem)", "km": "13,0",
          "znaki": "niebieski → brak (poza szlakiem)",
          "trudnosc": "I — kruche żleby, strome podejście rynną z dużą ekspozycją",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -839,7 +841,7 @@ TRASY: dict[str, list[dict]] = {
     "Sławkowski Szczyt (Slavkovský štít) ⭐WKT": [
         {"start": "Stary Smokovec",
          "przez": ["Sławkowski Nos"],
-         "czas": "7:30–8:00 h (tam i z powrotem)",
+         "czas": "7:30–8:00 h (tam i z powrotem)", "km": "12,0",
          "znaki": "niebieski",
          "trudnosc": "0 — zwykły kondycyjny szlak turystyczny, miejscami ekspozycja",
          "uwagi": None},
@@ -847,7 +849,7 @@ TRASY: dict[str, list[dict]] = {
     "Pośrednia Grań (Prostredný hrot) ⭐WKT": [
         {"start": "Stary Smokovec",
          "przez": ["Chata Zamkowskiego", "Żleb Stilla", "Ławka Dubkego"],
-         "czas": "11:00–12:00 h (tam i z powrotem)",
+         "czas": "11:00–12:00 h (tam i z powrotem)", "km": "20,0",
          "znaki": "zielony → brak (poza szlakiem)",
          "trudnosc": "I+ — bardzo kruchy żleb, niebezpieczeństwo spadających kamieni, labirynt skalny",
          "uwagi": "⚠️ Wymagany przewodnik tatrzański UIMLA"},
@@ -857,13 +859,13 @@ TRASY: dict[str, list[dict]] = {
     "Babia Góra 👑": [
         {"start": "Zawoja-Markowa",
          "przez": ["Hala Śmietanowa", "Diablak"],
-         "czas": "6:00–8:00 h (tam i z powrotem)",
+         "czas": "6:00–8:00 h (tam i z powrotem)", "km": "13,0",
          "znaki": "czerwony",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
         {"start": "Przełęcz Krowiarki",
          "przez": ["grań główna"],
-         "czas": "5:00–7:00 h (tam i z powrotem)",
+         "czas": "5:00–7:00 h (tam i z powrotem)", "km": "9,0",
          "znaki": "czerwony",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
@@ -871,13 +873,13 @@ TRASY: dict[str, list[dict]] = {
     "Turbacz 👑": [
         {"start": "Leśniczówka Turbacz (droga 49)",
          "przez": [],
-         "czas": "4:00–6:00 h (tam i z powrotem)",
+         "czas": "4:00–6:00 h (tam i z powrotem)", "km": "10,0",
          "znaki": "żółty",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": "Schronisko PTTK na szczycie"},
         {"start": "Konina (Poręba Wielka)",
          "przez": ["Hala Długa"],
-         "czas": "5:00–7:00 h (tam i z powrotem)",
+         "czas": "5:00–7:00 h (tam i z powrotem)", "km": "12,5",
          "znaki": "czerwony",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
@@ -885,7 +887,7 @@ TRASY: dict[str, list[dict]] = {
     "Skrzyczne 👑": [
         {"start": "Szczyrk (centrum)",
          "przez": ["Hala Skrzyczeńska"],
-         "czas": "4:00–6:00 h (tam i z powrotem)",
+         "czas": "4:00–6:00 h (tam i z powrotem)", "km": "8,5",
          "znaki": "czerwony",
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
@@ -893,7 +895,7 @@ TRASY: dict[str, list[dict]] = {
     "Skrajny Granat": [
         {"start": "Kuźnice",
          "przez": ["Murowaniec", "Czarny Staw Gąsienicowy"],
-         "czas": "6:30–7:30 h (tam i z powrotem)",
+         "czas": "6:30–7:30 h (tam i z powrotem)", "km": "14,5",
          "znaki": "niebieski → żółty",
          "trudnosc": "0 — szlak turystyczny, strome podejście zakosami, końcówka lekkie użycie rąk",
          "uwagi": None},
@@ -901,7 +903,7 @@ TRASY: dict[str, list[dict]] = {
     "Zadni Granat": [
         {"start": "Kuźnice",
          "przez": ["Murowaniec", "Czarny Staw Gąsienicowy"],
-         "czas": "6:30–7:30 h (tam i z powrotem)",
+         "czas": "6:30–7:30 h (tam i z powrotem)", "km": "14,5",
          "znaki": "niebieski → żółty → czerwony (Orla Perć)",
          "trudnosc": "0 — szlak turystyczny, proste chodzenie po głazach, brak trudności technicznych",
          "uwagi": "Najłatwiejszy z trzech Granatów"},
@@ -909,7 +911,7 @@ TRASY: dict[str, list[dict]] = {
     "Jagnięcy Szczyt (Jahňací štít)": [
         {"start": "Biała Woda",
          "przez": ["Zielony Staw Kieżmarski", "Dolina Jagnięca"],
-         "czas": "8:30–9:30 h (tam i z powrotem)",
+         "czas": "8:30–9:30 h (tam i z powrotem)", "km": "19,0",
          "znaki": "żółty",
          "trudnosc": "0 — oficjalny szlak turystyczny, kopuła szczytowa stroma i ubezpieczona łańcuchami",
          "uwagi": None},
@@ -917,7 +919,7 @@ TRASY: dict[str, list[dict]] = {
     "Hawrań (Havran)": [
         {"start": "Zdziar",
          "przez": ["Dolina Monkowa", "Szeroka Przełęcz Bielska", "Przełęcz pod Kopą", "Dolina Zadnich Koperszadów", "Żleb Hawrania"],
-         "czas": "8:00–9:30 h (tam i z powrotem)",
+         "czas": "8:00–9:30 h (tam i z powrotem)", "km": "17,0",
          "znaki": "niebieski → czerwony → brak (poza szlakiem)",
          "trudnosc": "0+ — ścieżka pasterska, technicznie łatwa, stroma i trawiasto-krucha",
          "uwagi": "⚠️ Szczyt w rezerwacie ścisłym TANAP — wejście legalne wyłącznie z przewodnikiem IVBV"},
@@ -925,7 +927,7 @@ TRASY: dict[str, list[dict]] = {
     "Zawrat": [
         {"start": "Kuźnice",
          "przez": ["Murowaniec", "Czarny Staw Gąsienicowy"],
-         "czas": "6:30–7:30 h (tam i z powrotem)",
+         "czas": "6:30–7:30 h (tam i z powrotem)", "km": "13,0",
          "znaki": "niebieski",
          "trudnosc": "0+ — od strony Gąsienicowej bardzo stromy, ubezpieczony licznymi łańcuchami i klamrami",
          "uwagi": "Zejście możliwe szlakiem niebieskim do Doliny Pięciu Stawów"},
@@ -933,7 +935,7 @@ TRASY: dict[str, list[dict]] = {
     "Sarnia Skała": [
         {"start": "Zakopane (Dolina Strążyska)",
          "przez": ["Polana Strążyska"],
-         "czas": "2:30–3:00 h (tam i z powrotem)",
+         "czas": "2:30–3:00 h (tam i z powrotem)", "km": "5,5",
          "znaki": "czerwony → czarny",
          "trudnosc": "0 — bardzo łatwy szlak reglowy, końcowe podejście po wygładzonych skałach",
          "uwagi": "Zejście możliwe szlakiem czarnym do Doliny Białego"},
@@ -941,7 +943,7 @@ TRASY: dict[str, list[dict]] = {
     "Koprowy Wierch (Kôprovský štít)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Popradzki Staw", "Dolina Mięguszowiecka", "Wyżnia Koprowa Przełęcz"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "16,0",
          "znaki": "czerwony → niebieski → czerwony",
          "trudnosc": "0 — oficjalny szlak turystyczny, końcówka chodzenie po głazach",
          "uwagi": None},
@@ -949,7 +951,7 @@ TRASY: dict[str, list[dict]] = {
     "Koprowe Ramię (Kôprovské plece)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Popradzki Staw", "Dolina Mięguszowiecka", "Wyżnia Koprowa Przełęcz"],
-         "czas": "7:15–8:15 h (tam i z powrotem)",
+         "czas": "7:15–8:15 h (tam i z powrotem)", "km": "15,5",
          "znaki": "czerwony → niebieski → czerwony",
          "trudnosc": "0 — oficjalny szlak turystyczny (punkt na grani do Koprowego Wierchu)",
          "uwagi": None},
@@ -957,7 +959,7 @@ TRASY: dict[str, list[dict]] = {
     "Kołowy Szczyt (Kolový štít)": [
         {"start": "Biała Woda",
          "przez": ["Zielony Staw Kieżmarski", "Dolina Jagnięca", "Kołowa Przełęcz"],
-         "czas": "9:30–10:30 h (tam i z powrotem)",
+         "czas": "9:30–10:30 h (tam i z powrotem)", "km": "20,5",
          "znaki": "żółty → czerwony → brak (poza szlakiem)",
          "trudnosc": "I — miejscami kruchy i stromy żleb, wymagająca orientacja w labiryncie skalnym",
          "uwagi": None},
@@ -965,13 +967,13 @@ TRASY: dict[str, list[dict]] = {
     "Mała Wysoka (Východná Vysoká)": [
         {"start": "Tatranská Polianka",
          "przez": ["Velická dolina", "Śląski Dom", "Polski Grzebień (przełęcz)"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "15,0",
          "znaki": "zielony → żółty",
          "trudnosc": "0 — oficjalny szlak turystyczny, pod przełęczą kilka łańcuchów, grań szczytowa łatwa",
          "uwagi": None},
         {"start": "Stary Smokovec",
          "przez": ["Śląski Dom", "Dolina Wielicka", "Polski Grzebień"],
-         "czas": "10:20 h (pętla)",
+         "czas": "10:20 h (pętla)", "km": "20,9",
          "znaki": "zielony → żółty → czerwony → zielony",
          "trudnosc": "0 — długa pętla kondycyjna, łącznie 20,9 km, pod Polskim Grzebieniem kilka łańcuchów",
          "uwagi": "Powrót przez Rohatka → Zbojnicka Chata → Dolina Staroleśna → Hrebienok → Stary Smokovec"},
@@ -979,7 +981,7 @@ TRASY: dict[str, list[dict]] = {
     "Murań (Murán)": [
         {"start": "Tatranská Javorina",
          "przez": ["Dolina Jaworowa", "Polana pod Muraniem", "Murański Żleb"],
-         "czas": "5:30–6:30 h (tam i z powrotem)",
+         "czas": "5:30–6:30 h (tam i z powrotem)", "km": "13,0",
          "znaki": "niebieski → brak (poza szlakiem)",
          "trudnosc": "0+ — stromy trawiasty żleb, brak trudności skalnych",
          "uwagi": "⚠️ Szczyt w rezerwacie ścisłym — wstęp zabroniony"},
@@ -987,7 +989,7 @@ TRASY: dict[str, list[dict]] = {
     "Szatan (Satán)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Popradzki Staw", "Dolinka Szatania", "Szatani Żleb"],
-         "czas": "7:30–8:30 h (tam i z powrotem)",
+         "czas": "7:30–8:30 h (tam i z powrotem)", "km": "14,0",
          "znaki": "czerwony → niebieski → brak (poza szlakiem)",
          "trudnosc": "I — bardzo stromy kruchy żleb z ryzykiem lawin kamiennych, końcówka eksponowana",
          "uwagi": None},
@@ -995,7 +997,7 @@ TRASY: dict[str, list[dict]] = {
     "Bystra Ławka (Bystrá lávka)": [
         {"start": "Szczyrbskie Jezioro (Štrbské Pleso)",
          "przez": ["Dolina Młynicka", "Wodospad Skok", "Stawy Capie"],
-         "czas": "6:00–6:30 h (pętla)",
+         "czas": "6:00–6:30 h (pętla)", "km": "11,0",
          "znaki": "żółty",
          "trudnosc": "0+ — pod samą przełęczą stromy ciąg łańcuchów",
          "uwagi": "Pętla: zejście Doliną Furkotną z powrotem do Szczyrbskiego Jeziora"},
@@ -1003,7 +1005,7 @@ TRASY: dict[str, list[dict]] = {
     "Wielki Kopieniec": [
         {"start": "Toporowa Cyrhla",
          "przez": ["Dolina Olczyska", "Polana Kopieniec"],
-         "czas": "2:00–2:30 h (tam i z powrotem)",
+         "czas": "2:00–2:30 h (tam i z powrotem)", "km": "5,0",
          "znaki": "zielony",
          "trudnosc": "0 — bardzo łatwy rekreacyjny szlak spacerowy w Tatrach Reglowych",
          "uwagi": "Zejście możliwe szlakiem zielonym do Jaszczurówki"},
@@ -1011,7 +1013,7 @@ TRASY: dict[str, list[dict]] = {
     "Czarny Staw pod Rysami": [
         {"start": "Palenica Białczańska",
          "przez": ["Morskie Oko"],
-         "czas": "5:00–5:30 h (tam i z powrotem)",
+         "czas": "5:00–5:30 h (tam i z powrotem)", "km": "18,0",
          "znaki": "czerwony",
          "trudnosc": "0 — popularny szlak turystyczny, podejście z wygodnymi kamiennymi stopniami",
          "uwagi": None},
@@ -2270,7 +2272,9 @@ if wspolrzedne_ok and lat:
                 czas_str = _tr_route(t['czas'], lang)
                 uwagi_raw = t.get('uwagi')
                 uwagi_str = _tr_route(uwagi_raw, lang) if uwagi_raw else None
-                meta = f"🕐 {L['route_time']}: {czas_str} &nbsp;·&nbsp; {znaki_badge}"
+                km_raw = t.get('km')
+                km_str = f" &nbsp;·&nbsp; 📏 {L['route_dist']}: {km_raw} km" if km_raw else ""
+                meta = f"🕐 {L['route_time']}: {czas_str}{km_str} &nbsp;·&nbsp; {znaki_badge}"
                 st.markdown(
                     f"{i}. {trasa_str}  \n"
                     f"<small style='color:#7aaac8'>{meta}</small>"
