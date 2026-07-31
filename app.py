@@ -1124,12 +1124,134 @@ def _znaki_badge(kolor: str) -> str:
         f'</svg>'
     )
 
-def znaki_html(znaki_str: str) -> str:
+# Słownik fraz do tłumaczenia w polach tras (PL → EN)
+_ROUTE_PHRASES_EN = {
+    # czas
+    "tam i z powrotem": "round trip",
+    "pętla":            "loop",
+    # znaki — opisy off-trail
+    "brak (poza szlakiem od Bańdziocha)":        "off-trail (from Bańdzioch)",
+    "brak (poza szlakiem od Wielickiej Próby)":  "off-trail (from Wielicka Próba)",
+    "brak (trawers i grań)":                     "off-trail (traverse & ridge)",
+    "brak (grań poza szlakiem)":                 "off-trail (ridge)",
+    "brak (Droga Emericyego poza szlakiem)":     "off-trail (Emericyego Route)",
+    "brak (poza szlakiem)":                      "off-trail",
+    "poza szlakiem":                             "off-trail",
+    # szlaki nazwane
+    "Orla Perć":  "Eagle's Path (Orla Perć)",
+    "orla perć":  "Eagle's Path (Orla Perć)",
+    # trudnosc — powtarzające się frazy
+    "szlak turystyczny":                    "marked trail",
+    "oficjalny szlak turystyczny":          "official marked trail",
+    "popularny szlak turystyczny":          "popular marked trail",
+    "szlak spacerowy":                      "walking path",
+    "szlak reglowy":                        "sub-alpine trail",
+    "bardzo łatwy":                         "very easy",
+    "łatwy":                                "easy",
+    "ubezpieczony łańcuchami":              "secured with chains",
+    "ubezpieczona łańcuchami":              "secured with chains",
+    "ubezpieczone łańcuchami":              "secured with chains",
+    "ubezpieczony licznymi łańcuchami i klamrami": "secured with chains & pegs",
+    "ubezpieczenia z łańcuchów i klamer":   "fixed chains & pegs",
+    "ubezpieczona metalowymi klamrami":     "secured with metal pegs",
+    "górna część bardzo stroma":            "upper section very steep",
+    "kopuła szczytowa stroma":              "summit dome steep",
+    "strome podejście":                     "steep ascent",
+    "strome płyty skalne":                  "steep rock slabs",
+    "strome trawiaste zbocza":              "steep grassy slopes",
+    "stromy trawiasty żleb":                "steep grassy gully",
+    "stromy i kruchy żleb":                 "steep unstable gully",
+    "strome kruche żleby":                  "steep unstable gullies",
+    "bardzo stromy kruchy żleb":            "very steep unstable gully",
+    "bardzo wąska, powietrzna grań":        "very narrow, airy ridge",
+    "kruche żleby":                         "unstable gullies",
+    "kruchy żleb":                          "unstable gully",
+    "krucha skała":                         "loose rock",
+    "kruchy teren":                         "loose terrain",
+    "najtrudniejszy szlak turystyczny w Polsce": "hardest marked trail in Poland",
+    "najtrudniejszy szczyt WKT drogą normalną":  "hardest WKT summit by normal route",
+    "najłatwiejszy technicznie z trudnych szczytów": "technically easiest of the hard peaks",
+    "skomplikowana orientacja":             "complex route-finding",
+    "wymagająca orientacja w labiryncie skalnym": "complex navigation in rocky maze",
+    "bardzo trudny orientacyjnie labirynt skalny": "very complex rocky maze",
+    "trudny orientacyjnie labirynt skalny": "complex rocky maze",
+    "labirynt skalny":                      "rocky maze",
+    "duże trudności orientacyjne":          "difficult route-finding",
+    "miejsca wspinaczkowe":                 "climbing moves required",
+    "miejscami ekspozycja":                 "some exposure",
+    "duża ekspozycja":                      "high exposure",
+    "ogromna ekspozycja":                   "extreme exposure",
+    "duże przepaście po obu stronach":      "large drops on both sides",
+    "pionowe ścianki":                      "vertical walls",
+    "drabinki, łańcuchy, przepaście":       "ladders, chains, drops",
+    "łańcuchy na wierzchołkowym podejściu, ekspozycja": "chains on summit approach, exposure",
+    "łańcuchy na wierzchołkowym podejściu": "chains on summit approach",
+    "liczne łańcuchy, miejsca z dużą ekspozycją": "many chains, exposed sections",
+    "od strony Gąsienicowej bardzo stromy, ubezpieczony licznymi łańcuchami i klamrami": "from Gąsienicowa side: very steep, many chains & pegs",
+    "pod samą przełęczą stromy ciąg łańcuchów": "steep chain section just below the pass",
+    "podejście na przełęcz ubezpieczone łańcuchami, od przełęczy łatwy spacer po płytach": "ascent to pass secured with chains, easy slab walk from pass",
+    "końcówka ubezpieczona metalowymi klamrami": "upper section secured with metal pegs",
+    "końcówka eksponowana":                 "exposed upper section",
+    "końcówka chodzenie po głazach":        "upper section on boulders",
+    "końcówka lekkie użycie rąk":           "light scrambling at top",
+    "pod przełęczą kilka łańcuchów, grań szczytowa łatwa": "few chains below pass, easy summit ridge",
+    "krótki odcinek poza szlakiem na szczyt": "short off-trail section to summit",
+    "bez sztucznych ubezpieczeń":           "no fixed protection",
+    "brak trudności technicznych":          "no technical difficulty",
+    "brak trudności skalnych":              "no rock difficulty",
+    "brak łańcuchów, wymaga użycia rąk":    "no chains, hands needed",
+    "w końcówce kilka ułatwień":            "some aids near the top",
+    "proste chodzenie po głazach":          "straightforward boulder-hopping",
+    "stromy, w końcówce kilka ułatwień":    "steep, some aids near the top",
+    "długie, kondycyjne podejście":         "long, endurance ascent",
+    "ryzykiem lawin kamiennych":            "rockfall risk",
+    "z ryzykiem lawin kamiennych":          "with rockfall risk",
+    "chodzenie po wygładzonych skałach":    "walking on polished rock",
+    "kondycyjny szlak turystyczny":         "endurance trail",
+    "ścieżka pasterska, technicznie łatwa, stroma i trawiasto-krucha": "shepherd's path, technically easy, steep grassy/loose",
+    "wygodnymi kamiennymi stopniami":       "comfortable stone steps",
+    "podejście z wygodnymi kamiennymi stopniami": "ascent with stone steps",
+    "w kopule szczytowej strome płyty, bez sztucznych ubezpieczeń": "steep slabs in summit dome, no fixed protection",
+    "punkt na grani do Koprowego Wierchu":  "point on ridge to Kôprovský štít",
+    "zwykły kondycyjny szlak turystyczny":  "standard endurance trail",
+    "Lodowy Koń":                           "Ice Horse (Lodový kôň)",
+    "Zejście często wymaga zjazdów na linie": "Descent often requires rappelling",
+    "Zejście przez Batyżowiecką Próbę → szlak żółty/czerwony": "Descent via Batyžovská próba → yellow/red trail",
+    "Zejście możliwe Orlą Percią (czerwony) do Doliny Pięciu Stawów": "Descent possible via Eagle's Path (red) to Five Lakes Valley",
+    "Zejście możliwe szlakiem czarnym do Doliny Pięciu Stawów": "Descent possible via black trail to Five Lakes Valley",
+    "Zejście możliwe szlakiem niebieskim do Doliny Pięciu Stawów": "Descent possible via blue trail to Five Lakes Valley",
+    "Zejście możliwe szlakiem zielonym do Jaszczurówki": "Descent possible via green trail to Jaszczurówka",
+    "Zejście szlakiem czarnym do Doliny Pięciu Stawów": "Descent via black trail to Five Lakes Valley",
+    "Zejście możliwe szlakiem czarnym do Doliny Białego": "Descent possible via black trail to Dolina Białego",
+    "Najłatwiejszy z trzech Granatów":      "Easiest of the three Granats",
+    "Schronisko PTTK na szczycie":          "PTTK mountain hut at summit",
+    "Parking Tri studničky płatny; popularny, często tłoczny latem": "Tri studničky car park (paid); popular, often crowded in summer",
+    "Pętla: zejście Doliną Furkotną z powrotem do Szczyrbskiego Jeziora": "Loop: descent via Furkotná valley back to Štrbské Pleso",
+    "⚠️ Obowiązkowy licencjonowany przewodnik UIMLA/IVBV — wymagany przepisami słowackimi": "⚠️ Licensed UIMLA/IVBV guide mandatory — required by Slovak law",
+    "⚠️ Górna część taternicka — wymagany przewodnik lub doświadczenie": "⚠️ Upper section is alpine — guide or experience required",
+    "⚠️ Wymagany przewodnik tatrzański UIMLA": "⚠️ UIMLA mountain guide required",
+    "⚠️ Szczyt w rezerwacie ścisłym TANAP — wejście legalne wyłącznie z przewodnikiem IVBV": "⚠️ Summit in TANAP strict reserve — entry legal only with IVBV guide",
+    "⚠️ Szczyt w rezerwacie ścisłym — wstęp zabroniony": "⚠️ Summit in strict nature reserve — entry prohibited",
+}
+
+# Posortowane klucze od najdluzszych — dlugie frazy muszą byc zastepowane przed krotszymi podciagami
+_ROUTE_PHRASES_EN_SORTED = sorted(_ROUTE_PHRASES_EN.items(), key=lambda x: len(x[0]), reverse=True)
+
+def _tr_route(text: str, lang: str) -> str:
+    """Tłumaczy frazy w opisach tras PL→EN. Dla PL zwraca bez zmian."""
+    if lang == "PL" or not text:
+        return text
+    result = text
+    for pl, en in _ROUTE_PHRASES_EN_SORTED:
+        result = result.replace(pl, en)
+    return result
+
+def znaki_html(znaki_str: str, lang: str = "PL") -> str:
     """Konwertuje string znaków np. 'czerwony → żółty' na HTML z symbolami szlaku."""
     if znaki_str in ("kolejka linowa",):
-        return "🚠 kolejka linowa"
+        return "🚠 " + ("cable car" if lang == "EN" else "kolejka linowa")
     if "brak (taternicka)" in znaki_str:
-        return "⚠️ brak szlaku (taternicka)"
+        return "⚠️ " + ("no trail (alpine)" if lang == "EN" else "brak szlaku (taternicka)")
     # Podziel po →
     parts = [p.strip() for p in znaki_str.split("→")]
     result = ""
@@ -1138,7 +1260,8 @@ def znaki_html(znaki_str: str) -> str:
         if part_clean in _KOLOR_HEX:
             result += _znaki_badge(part_clean)
         else:
-            result += f'<span style="font-size:0.78rem;color:#7aaac8">{part_clean}</span>'
+            translated = _tr_route(part_clean, lang)
+            result += f'<span style="font-size:0.78rem;color:#7aaac8">{translated}</span>'
         if j < len(parts) - 1:
             result += ' <span style="color:#5a8ab0;font-size:0.8rem">→</span> '
     return result
@@ -2119,15 +2242,17 @@ if wspolrzedne_ok and lat:
                 if przez_str:
                     trasa_str += f" ({L['route_via']}: {przez_str})"
                 trasa_str += f" → 🏔️"
-                znaki_badge = znaki_html(t['znaki'])
-                trudnosc_str = t.get('trudnosc', '')
-                uwagi_str = f"&nbsp; <em style='color:#c8a060'>{t['uwagi']}</em>" if t.get("uwagi") else ""
-                meta = f"🕐 {L['route_time']}: {t['czas']} &nbsp;·&nbsp; {znaki_badge}"
+                znaki_badge = znaki_html(t['znaki'], lang)
+                trudnosc_str = _tr_route(t.get('trudnosc', ''), lang)
+                czas_str = _tr_route(t['czas'], lang)
+                uwagi_raw = t.get('uwagi')
+                uwagi_str = _tr_route(uwagi_raw, lang) if uwagi_raw else None
+                meta = f"🕐 {L['route_time']}: {czas_str} &nbsp;·&nbsp; {znaki_badge}"
                 st.markdown(
                     f"{i}. {trasa_str}  \n"
                     f"<small style='color:#7aaac8'>{meta}</small>"
                     + (f"  \n<small style='color:#a0c8a0'>{L['difficulty_label']} {trudnosc_str}</small>" if trudnosc_str else "")
-                    + (f"  \n<small style='color:#c8a060'>{t['uwagi']}</small>" if t.get("uwagi") else ""),
+                    + (f"  \n<small style='color:#c8a060'>{uwagi_str}</small>" if uwagi_str else ""),
                     unsafe_allow_html=True,
                 )
 
