@@ -1,5 +1,14 @@
 [
   {
+    "name": "Rohatka (Prielom)",
+    "elevation": 2293,
+    "range": "Tatry Słowackie",
+    "wkt": false,
+    "type": "przelecz",
+    "date": null,
+    "notes": ""
+  },
+  {
     "name": "Barania Kotlina",
     "elevation": 2200,
     "range": "Tatry Słowackie",
