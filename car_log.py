@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json, os, base64, requests as _req
 from datetime import date
+from pathlib import Path
 
 # ── Config ────────────────────────────────────────────────────────────────────
 _FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23222'/%3E%3Cellipse cx='10' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Cellipse cx='22' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Crect x='3' y='14' width='26' height='9' rx='2' fill='%23444'/%3E%3Cpolygon points='6,14 9,7 23,7 26,14' fill='%23555'/%3E%3Crect x='10' y='8' width='12' height='5' rx='1' fill='%2388aacc'/%3E%3C/svg%3E"
@@ -143,192 +144,14 @@ def check_password():
 
 logged_in = check_password()
 
-# ── Banner ────────────────────────────────────────────────────────────────────
-components.html("""<!DOCTYPE html>
-<html><head>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body style="margin:0;padding:0;background:transparent;">
-<div style="width:100%;border-radius:14px;overflow:hidden;margin-bottom:4px;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 190" style="width:100%;display:block;">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#14181e"/>
-      <stop offset="100%" stop-color="#080a0e"/>
-    </linearGradient>
-    <linearGradient id="car_fade" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.0"/>
-      <stop offset="8%"   stop-color="#ffffff" stop-opacity="0.6"/>
-      <stop offset="65%"  stop-color="#ffffff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
-    </linearGradient>
-    <linearGradient id="wheel_fade" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="80%"  stop-color="#ffffff" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
-    </linearGradient>
-    <linearGradient id="txt_grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="40%"  stop-color="#d0e0f0"/>
-      <stop offset="100%" stop-color="#607080"/>
-    </linearGradient>
-    <linearGradient id="rings_fade" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.65"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"/>
-    </linearGradient>
-    <mask id="car_mask">
-      <rect x="0" y="0" width="590" height="190" fill="url(#car_fade)"/>
-    </mask>
-    <mask id="wheel_mask_l">
-      <rect x="60" y="88" width="130" height="102" fill="url(#wheel_fade)"/>
-    </mask>
-    <mask id="wheel_mask_r">
-      <rect x="330" y="88" width="130" height="102" fill="url(#wheel_fade)"/>
-    </mask>
-    <mask id="rings_mask">
-      <rect x="150" y="148" width="210" height="42" fill="url(#rings_fade)"/>
-    </mask>
-    <filter id="txtglow">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-  </defs>
-
-  <!-- Tło -->
-  <rect width="900" height="190" fill="url(#bg)"/>
-
-  <!-- ═══ KONTUR KAROSERII A3 8PA SPORTBACK ═══ -->
-  <!-- auto przesunięte wyżej: próg na y=100, koła środek y=100, r=30 → dolna krawędź y=130, dużo miejsca -->
-  <g mask="url(#car_mask)" fill="none" stroke="#ffffff" stroke-width="1.5"
-     stroke-linejoin="round" stroke-linecap="round">
-
-    <!-- Główna sylwetka: od zderzaka przedniego do tylnego, góra otwarta (dach osobno) -->
-    <path d="
-      M 22,100
-      Q 22,92  30,88
-      L 48,82
-      Q 56,54  76,40
-      Q 96,28  128,22
-      Q 162,16 205,14
-      Q 250,12 292,14
-      Q 328,16 355,20
-      L 382,24
-      Q 408,28 428,40
-      Q 448,52 458,66
-      Q 464,76 466,84
-      L 474,88
-      Q 482,92  482,100
-    "/>
-    <!-- Próg dolny -->
-    <line x1="22" y1="100" x2="482" y2="100"/>
-    <!-- Zderzak przedni skos -->
-    <path d="M 22,100 Q 18,106 18,112"/>
-    <!-- Zderzak tylny skos -->
-    <path d="M 482,100 Q 486,106 484,112"/>
-
-    <!-- Linia dachu — opadający profil Sportback -->
-    <path d="M 76,40 Q 185,8 292,8 Q 348,8 382,16 Q 415,24 440,44"
-          stroke-width="1.2" opacity="0.55"/>
-
-    <!-- Szyba przednia -->
-    <path d="M 76,40 Q 70,58 68,82 L 112,82 L 120,22 Q 98,20 76,40 Z"/>
-
-    <!-- 3 okna boczne Sportback -->
-    <path d="M 120,22 L 180,20 L 188,82 L 112,82 Z"/>
-    <path d="M 180,20 L 268,18 L 276,82 L 188,82 Z"/>
-    <path d="M 268,18 L 336,20 L 355,22 L 365,82 L 276,82 Z"/>
-    <!-- Szyba tylna — charakterystyczne opadanie Sportback -->
-    <path d="M 355,22 L 382,24 Q 414,30 435,46 Q 450,58 456,82 L 365,82 Z"/>
-
-    <!-- Słupki A B C D -->
-    <line x1="120" y1="22" x2="112" y2="82"/>
-    <line x1="188" y1="82" x2="180" y2="20"/>
-    <line x1="276" y1="82" x2="268" y2="18"/>
-    <line x1="365" y1="82" x2="355" y2="22"/>
-
-    <!-- Lusterko lewe -->
-    <path d="M 68,62 Q 56,58 52,64 L 56,70 Q 62,72 68,68 Z"/>
-
-    <!-- Klamki -->
-    <line x1="152" y1="66" x2="168" y2="66" stroke-width="1.2"/>
-    <line x1="152" y1="69" x2="168" y2="69" stroke-width="1.2"/>
-    <line x1="272" y1="66" x2="288" y2="66" stroke-width="1.2"/>
-    <line x1="272" y1="69" x2="288" y2="69" stroke-width="1.2"/>
-
-    <!-- Reflektor przedni Audi (charakterystyczny kąt) -->
-    <path d="M 28,80 Q 32,72 44,68 L 60,68 L 60,78 Q 46,80 30,88 Z"/>
-    <path d="M 34,70 Q 44,64 58,66" stroke-width="0.9" opacity="0.7"/>
-
-    <!-- Tylny zespół świateł -->
-    <path d="M 464,74 Q 474,72 480,78 L 482,88 Q 476,86 464,80 Z"/>
-
-    <!-- Atrapa / grille (przód dolny) -->
-    <path d="M 26,88 L 58,84" stroke-width="1"/>
-    <path d="M 25,94 L 58,90" stroke-width="1"/>
-
-    <!-- Character line boczna -->
-    <path d="M 32,88 Q 160,76 295,74 Q 390,74 464,80"
-          stroke-width="0.8" opacity="0.35"/>
-
-  </g>
-
-  <!-- ═══ KOŁO PRZEDNIE — środek y=100, r=30, zanika w dół ═══ -->
-  <g mask="url(#wheel_mask_l)" fill="none" stroke="#ffffff" stroke-linecap="round">
-    <circle cx="128" cy="100" r="30" stroke-width="1.5"/>
-    <circle cx="128" cy="100" r="18" stroke-width="1"/>
-    <circle cx="128" cy="100" r="5"  stroke-width="1.2"/>
-    <line x1="128" y1="70"  x2="128" y2="82"  stroke-width="1"/>
-    <line x1="128" y1="118" x2="128" y2="130" stroke-width="1"/>
-    <line x1="98"  y1="100" x2="110" y2="100" stroke-width="1"/>
-    <line x1="146" y1="100" x2="158" y2="100" stroke-width="1"/>
-    <line x1="107" y1="79"  x2="115" y2="87"  stroke-width="1"/>
-    <line x1="141" y1="113" x2="149" y2="121" stroke-width="1"/>
-    <line x1="149" y1="79"  x2="141" y2="87"  stroke-width="1"/>
-    <line x1="115" y1="113" x2="107" y2="121" stroke-width="1"/>
-  </g>
-
-  <!-- ═══ KOŁO TYLNE — środek y=100, r=30, zanika w dół ═══ -->
-  <g mask="url(#wheel_mask_r)" fill="none" stroke="#ffffff" stroke-linecap="round">
-    <circle cx="398" cy="100" r="30" stroke-width="1.5"/>
-    <circle cx="398" cy="100" r="18" stroke-width="1"/>
-    <circle cx="398" cy="100" r="5"  stroke-width="1.2"/>
-    <line x1="398" y1="70"  x2="398" y2="82"  stroke-width="1"/>
-    <line x1="398" y1="118" x2="398" y2="130" stroke-width="1"/>
-    <line x1="368" y1="100" x2="380" y2="100" stroke-width="1"/>
-    <line x1="416" y1="100" x2="428" y2="100" stroke-width="1"/>
-    <line x1="377" y1="79"  x2="385" y2="87"  stroke-width="1"/>
-    <line x1="411" y1="113" x2="419" y2="121" stroke-width="1"/>
-    <line x1="419" y1="79"  x2="411" y2="87"  stroke-width="1"/>
-    <line x1="385" y1="113" x2="377" y2="121" stroke-width="1"/>
-  </g>
-
-  <!-- ═══ 4 PIERŚCIENIE AUDI pod autem — zanikają w dół ═══ -->
-  <g mask="url(#rings_mask)" fill="none" stroke="#ffffff" stroke-width="2.2">
-    <circle cx="175" cy="162" r="14"/>
-    <circle cx="201" cy="162" r="14"/>
-    <circle cx="227" cy="162" r="14"/>
-    <circle cx="253" cy="162" r="14"/>
-  </g>
-
-  <!-- ═══ TEKST PRAWY ═══ -->
-  <line x1="590" y1="18" x2="590" y2="155" stroke="#2a3a4a" stroke-width="1" opacity="0.5"/>
-
-  <text x="610" y="88" font-family="'Barlow Condensed',sans-serif"
-    font-size="68" font-weight="800" fill="url(#txt_grad)"
-    letter-spacing="10" filter="url(#txtglow)">AUDI</text>
-
-  <text x="613" y="118" font-family="'Barlow Condensed',sans-serif"
-    font-size="25" font-weight="600" fill="#3a6a8a" letter-spacing="7">A3 SPORTBACK</text>
-
-  <line x1="613" y1="123" x2="875" y2="123" stroke="#1e3a52" stroke-width="0.8"/>
-
-  <text x="614" y="140" font-family="'Barlow Condensed',sans-serif"
-    font-size="12" font-weight="400" fill="#2a4458"
-    letter-spacing="3">8PA · 1.6 MPI · BSE · 2010 · 102 KM</text>
-
-</svg>
-</div>
-</body></html>""", height=196, scrolling=False)
+# ── Banner — obrazek PNG ──────────────────────────────────────────────────────
+_banner_path = Path(__file__).parent / "audi_banner.png"
+_banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
+st.markdown(
+    f'<img src="data:image/png;base64,{_banner_b64}" '
+    f'style="width:100%;border-radius:12px;margin-bottom:6px;display:block;" />',
+    unsafe_allow_html=True
+)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
