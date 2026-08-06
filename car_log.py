@@ -149,178 +149,208 @@ components.html("""<!DOCTYPE html>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body style="margin:0;padding:0;background:transparent;">
-<div style="width:100%;border-radius:14px;overflow:hidden;margin-bottom:4px;box-shadow:0 4px 32px #000a;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 155" style="width:100%;display:block;">
+<div style="width:100%;border-radius:14px;overflow:hidden;margin-bottom:4px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 160" style="width:100%;display:block;">
   <defs>
-    <!-- Tlo: ciemny metaliczny gradient -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#1a1e24"/>
-      <stop offset="40%"  stop-color="#0e1218"/>
-      <stop offset="100%" stop-color="#080c10"/>
+      <stop offset="0%"   stop-color="#14181e"/>
+      <stop offset="100%" stop-color="#080a0e"/>
     </linearGradient>
-    <!-- Metaliczny gradient na karoserie -->
-    <linearGradient id="body_grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#3a4450"/>
-      <stop offset="30%"  stop-color="#5a6878"/>
-      <stop offset="60%"  stop-color="#2e3840"/>
-      <stop offset="100%" stop-color="#181e26"/>
+    <!-- Gradient zanikania konturu auta (lewo=widoczny, prawo=zanika) -->
+    <linearGradient id="car_fade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="15%"  stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="70%"  stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-    <!-- Metaliczny gradient szyb -->
-    <linearGradient id="glass_grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#1a2e44" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#0a1820" stop-opacity="0.7"/>
+    <!-- Gradient zanikania kół w dół -->
+    <linearGradient id="wheel_fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </linearGradient>
-    <!-- Metaliczny gradient tekstu AUDI A3 -->
+    <!-- Metaliczny gradient tekstu -->
     <linearGradient id="txt_grad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%"   stop-color="#ffffff"/>
-      <stop offset="35%"  stop-color="#c8d8e8"/>
-      <stop offset="65%"  stop-color="#8aaac4"/>
-      <stop offset="100%" stop-color="#4a6a84"/>
+      <stop offset="40%"  stop-color="#d0e0f0"/>
+      <stop offset="100%" stop-color="#607080"/>
     </linearGradient>
-    <!-- Blask reflektora -->
-    <radialGradient id="light_l" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#aaccee" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#aaccee" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="light_r" cx="50%" cy="50%" r="50%">
-      <stop offset="0%"   stop-color="#aaccee" stop-opacity="0.7"/>
-      <stop offset="100%" stop-color="#aaccee" stop-opacity="0"/>
-    </radialGradient>
-    <!-- Cien auta -->
-    <radialGradient id="shadow" cx="50%" cy="30%" r="50%">
-      <stop offset="0%"   stop-color="#000000" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+    <!-- Maska zanikania konturu -->
+    <mask id="car_mask">
+      <rect x="0" y="0" width="560" height="160" fill="url(#car_fade)"/>
+    </mask>
+    <!-- Maska zanikania kół -->
+    <mask id="wheel_mask_l">
+      <rect x="80" y="100" width="120" height="60" fill="url(#wheel_fade)"/>
+    </mask>
+    <mask id="wheel_mask_r">
+      <rect x="340" y="100" width="120" height="60" fill="url(#wheel_fade)"/>
+    </mask>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+    <filter id="txtglow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
-  <!-- Tlo -->
-  <rect width="900" height="155" fill="url(#bg)"/>
+  <!-- Tło -->
+  <rect width="900" height="160" fill="url(#bg)"/>
 
-  <!-- Subtelna linia akcentu na dole -->
-  <rect x="0" y="148" width="900" height="1" fill="#2a3a4a" opacity="0.8"/>
-  <!-- Linia górna -->
-  <rect x="0" y="0" width="900" height="1" fill="#2a3a4a" opacity="0.4"/>
+  <!-- ═══ KONTUR A3 8PA SPORTBACK — tylko linie, bez wypełnienia ═══ -->
+  <g mask="url(#car_mask)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
 
-  <!-- ═══ SYLWETKA AUDI A3 8PA SPORTBACK ═══ -->
-  <!-- Cień pod autem -->
-  <ellipse cx="290" cy="138" rx="230" ry="10" fill="#000" opacity="0.5"/>
+    <!-- Główny kontur karoserii -->
+    <path d="
+      M 30,118
+      L 30,106
+      Q 32,98  42,94
+      L 58,88
+      Q 65,60  85,46
+      Q 105,34 135,28
+      Q 165,22 200,20
+      Q 245,18 285,20
+      Q 320,22 345,26
+      L 375,30
+      Q 400,34 418,44
+      Q 438,56 448,70
+      Q 455,80 458,90
+      L 468,94
+      Q 476,98  478,106
+      L 478,118
+    "/>
 
-  <!-- Karoseria główna — profil A3 Sportback -->
-  <!-- Dolna belka (progi + podwozie) -->
-  <rect x="82" y="112" width="412" height="10" rx="2" fill="#1a2028"/>
+    <!-- Próg — linia dolna -->
+    <line x1="30" y1="118" x2="478" y2="118"/>
 
-  <!-- Koła — obręcze -->
-  <circle cx="148" cy="124" r="22" fill="#0e1218" stroke="#3a4a5a" stroke-width="2.5"/>
-  <circle cx="148" cy="124" r="14" fill="#1a2028" stroke="#2a3a4a" stroke-width="1.5"/>
-  <circle cx="148" cy="124" r="6"  fill="#2a3a4a"/>
-  <!-- Szprychy -->
-  <line x1="148" y1="110" x2="148" y2="138" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="134" y1="124" x2="162" y2="124" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="138" y1="114" x2="158" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="158" y1="114" x2="138" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+    <!-- Szyba przednia — charakterystyczne pochylenie A3 -->
+    <path d="M 85,46 Q 80,64 78,88 L 122,88 L 128,28 Q 108,26 85,46 Z"/>
 
-  <circle cx="422" cy="124" r="22" fill="#0e1218" stroke="#3a4a5a" stroke-width="2.5"/>
-  <circle cx="422" cy="124" r="14" fill="#1a2028" stroke="#2a3a4a" stroke-width="1.5"/>
-  <circle cx="422" cy="124" r="6"  fill="#2a3a4a"/>
-  <line x1="422" y1="110" x2="422" y2="138" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="408" y1="124" x2="436" y2="124" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="412" y1="114" x2="432" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
-  <line x1="432" y1="114" x2="412" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+    <!-- Szyby boczne — 3 okna Sportback 5-drzwiowy -->
+    <!-- Okno 1 (kierowcy) -->
+    <path d="M 128,28 L 185,26 L 192,88 L 122,88 Z"/>
+    <!-- Okno 2 (środkowe) -->
+    <path d="M 185,26 L 268,24 L 275,88 L 192,88 Z"/>
+    <!-- Okno 3 (tylne — charakterystyczny kąt Sportback) -->
+    <path d="M 268,24 L 330,26 L 350,28 L 360,88 L 275,88 Z"/>
+    <!-- Szyba tylna (opada ku tyłowi) -->
+    <path d="M 350,28 L 375,30 Q 408,36 428,52 Q 442,62 448,88 L 360,88 Z"/>
 
-  <!-- Karoseria — główna sylwetka A3 Sportback (widok z boku) -->
-  <path d="
-    M 82,112
-    L 82,100
-    Q 84,92 95,88
-    L 130,82
-    Q 155,46 185,36
-    Q 215,28 255,26
-    Q 295,24 330,26
-    Q 360,28 375,32
-    L 410,36
-    Q 445,42 462,58
-    Q 475,70 478,82
-    L 490,88
-    Q 498,92 500,100
-    L 500,112
-    Z
-  " fill="url(#body_grad)" stroke="#3a4a5a" stroke-width="1"/>
+    <!-- Słupki A/B/C/D -->
+    <line x1="128" y1="28" x2="122" y2="88"/>
+    <line x1="192" y1="88" x2="185" y2="26"/>
+    <line x1="275" y1="88" x2="268" y2="24"/>
+    <line x1="360" y1="88" x2="350" y2="28"/>
 
-  <!-- Zderzak przedni -->
-  <path d="M 82,100 Q 78,104 76,112 L 82,112 Z" fill="#2a3240"/>
-  <!-- Zderzak tylny -->
-  <path d="M 500,100 Q 504,106 504,112 L 500,112 Z" fill="#2a3240"/>
+    <!-- Linia dachu -->
+    <path d="M 85,46 Q 190,14 285,14 Q 340,14 375,22 Q 405,28 428,52" stroke-width="1.2" opacity="0.6"/>
 
-  <!-- Atrapa grille (przód) -->
-  <path d="M 80,96 Q 82,88 90,85 L 82,112 Z" fill="#0e1420" opacity="0.6"/>
-  <!-- Reflektory przednie (charakterystyczne Audi) -->
-  <path d="M 88,86 Q 102,80 118,82 L 118,92 Q 104,90 90,95 Z" fill="#1a2a3a" stroke="#2a4a6a" stroke-width="0.8"/>
-  <ellipse cx="106" cy="88" rx="10" ry="4" fill="url(#light_l)" opacity="0.8"/>
+    <!-- Lusterko boczne -->
+    <path d="M 78,70 Q 68,66 64,72 L 68,78 Q 74,80 80,76 Z"/>
 
-  <!-- Tylne światła -->
-  <path d="M 482,82 Q 496,84 500,90 L 500,100 Q 494,96 482,92 Z" fill="#1a1020" stroke="#4a1a1a" stroke-width="0.8"/>
-  <ellipse cx="492" cy="90" rx="6" ry="5" fill="#cc2222" opacity="0.4"/>
+    <!-- Klamki -->
+    <line x1="158" y1="74" x2="172" y2="74" stroke-width="1.2"/>
+    <line x1="158" y1="77" x2="172" y2="77" stroke-width="1.2"/>
+    <line x1="268" y1="74" x2="282" y2="74" stroke-width="1.2"/>
+    <line x1="268" y1="77" x2="282" y2="77" stroke-width="1.2"/>
 
-  <!-- Szyby — charakterystyczny kształt Sportback -->
-  <!-- Szyba przednia -->
-  <path d="M 185,36 Q 176,60 172,82 L 220,82 L 220,30 Q 205,28 185,36 Z"
-        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.9"/>
-  <!-- Szyba boczna główna -->
-  <path d="M 220,28 L 330,26 L 355,30 L 360,82 L 220,82 Z"
-        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.9"/>
-  <!-- Szyba tylna (sportback — lekko opada) -->
-  <path d="M 360,82 L 358,30 Q 380,28 405,36 Q 430,46 445,62 L 448,82 Z"
-        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.85"/>
+    <!-- Reflektor przedni — charakterystyczny kształt Audi -->
+    <path d="M 38,88 Q 42,80 52,76 L 68,76 L 68,86 Q 56,88 40,96 Z"/>
+    <!-- Dzienny pas światła (DRL) -->
+    <path d="M 44,78 Q 54,72 66,74" stroke-width="1" opacity="0.7"/>
 
-  <!-- Linia dachu — metaliczny highlight -->
-  <path d="M 185,36 Q 255,20 330,22 Q 375,22 410,36"
-        fill="none" stroke="#6a8aa4" stroke-width="1.5" opacity="0.6"/>
+    <!-- Tylny zespół świateł -->
+    <path d="M 460,82 Q 470,80 476,86 L 478,96 Q 472,94 460,90 Z"/>
+    <!-- Linia tylna -->
+    <path d="M 460,90 Q 464,94 466,100 L 478,100" stroke-width="1" opacity="0.6"/>
 
-  <!-- Słupki szyb -->
-  <line x1="220" y1="28" x2="222" y2="82" stroke="#1a2a3a" stroke-width="2"/>
-  <line x1="358" y1="30" x2="360" y2="82" stroke="#1a2a3a" stroke-width="2"/>
+    <!-- Atrapa chłodnicy (przód dół) -->
+    <path d="M 36,100 Q 34,108 32,118" stroke-width="1.2"/>
+    <path d="M 38,96 L 66,92" stroke-width="1"/>
+    <path d="M 38,100 L 66,96" stroke-width="1"/>
 
-  <!-- Logo Audi na masce (4 kółka uproszczone) -->
-  <g transform="translate(108,104)" opacity="0.7">
-    <circle cx="0"  cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
-    <circle cx="9"  cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
-    <circle cx="18" cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
-    <circle cx="27" cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
+    <!-- Zderzak tylny -->
+    <path d="M 478,106 Q 482,112 480,118"/>
+    <path d="M 462,112 L 478,112" stroke-width="1"/>
+
+    <!-- Linia boczna (character line) -->
+    <path d="M 42,94 Q 150,82 285,80 Q 380,80 460,86" stroke-width="0.8" opacity="0.4"/>
+
+  </g>
+
+  <!-- ═══ KOŁA — zanikające w dół ═══ -->
+  <!-- Koło przednie -->
+  <g mask="url(#wheel_mask_l)" fill="none" stroke="#ffffff" stroke-linecap="round">
+    <circle cx="140" cy="118" r="32" stroke-width="1.6"/>
+    <circle cx="140" cy="118" r="20" stroke-width="1"/>
+    <circle cx="140" cy="118" r="6"  stroke-width="1.2"/>
+    <!-- Szprychy 5-ramieniowe -->
+    <line x1="140" y1="86"  x2="140" y2="98"  stroke-width="1"/>
+    <line x1="140" y1="138" x2="140" y2="150" stroke-width="1"/>
+    <line x1="108" y1="118" x2="120" y2="118" stroke-width="1"/>
+    <line x1="160" y1="118" x2="172" y2="118" stroke-width="1"/>
+    <line x1="119" y1="97"  x2="127" y2="105" stroke-width="1"/>
+    <line x1="153" y1="131" x2="161" y2="139" stroke-width="1"/>
+    <line x1="161" y1="97"  x2="153" y2="105" stroke-width="1"/>
+    <line x1="127" y1="131" x2="119" y2="139" stroke-width="1"/>
+  </g>
+
+  <!-- Koło tylne -->
+  <g mask="url(#wheel_mask_r)" fill="none" stroke="#ffffff" stroke-linecap="round">
+    <circle cx="400" cy="118" r="32" stroke-width="1.6"/>
+    <circle cx="400" cy="118" r="20" stroke-width="1"/>
+    <circle cx="400" cy="118" r="6"  stroke-width="1.2"/>
+    <line x1="400" y1="86"  x2="400" y2="98"  stroke-width="1"/>
+    <line x1="400" y1="138" x2="400" y2="150" stroke-width="1"/>
+    <line x1="368" y1="118" x2="380" y2="118" stroke-width="1"/>
+    <line x1="420" y1="118" x2="432" y2="118" stroke-width="1"/>
+    <line x1="379" y1="97"  x2="387" y2="105" stroke-width="1"/>
+    <line x1="413" y1="131" x2="421" y2="139" stroke-width="1"/>
+    <line x1="421" y1="97"  x2="413" y2="105" stroke-width="1"/>
+    <line x1="387" y1="131" x2="379" y2="139" stroke-width="1"/>
+  </g>
+
+  <!-- ═══ 4 PIERŚCIENIE AUDI — zanikające w dół ═══ -->
+  <defs>
+    <linearGradient id="rings_fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+    <mask id="rings_mask">
+      <rect x="30" y="126" width="200" height="34" fill="url(#rings_fade)"/>
+    </mask>
+  </defs>
+  <g mask="url(#rings_mask)" fill="none" stroke="#ffffff" stroke-width="2">
+    <circle cx="70"  cy="140" r="12"/>
+    <circle cx="92"  cy="140" r="12"/>
+    <circle cx="114" cy="140" r="12"/>
+    <circle cx="136" cy="140" r="12"/>
   </g>
 
   <!-- ═══ TEKST PO PRAWEJ ═══ -->
-  <!-- Pionowa linia separatora -->
-  <line x1="570" y1="25" x2="570" y2="130" stroke="#2a3a4a" stroke-width="1" opacity="0.6"/>
+  <!-- Separator -->
+  <line x1="580" y1="20" x2="580" y2="140" stroke="#2a3a4a" stroke-width="1" opacity="0.5"/>
 
-  <!-- AUDI — metaliczny duży napis -->
-  <text x="590" y="72" font-family="'Barlow Condensed',sans-serif"
-    font-size="58" font-weight="800" fill="url(#txt_grad)"
-    letter-spacing="8" filter="url(#softglow)">AUDI</text>
+  <!-- AUDI — duży metaliczny napis z glow -->
+  <text x="600" y="78" font-family="'Barlow Condensed',sans-serif"
+    font-size="64" font-weight="800" fill="url(#txt_grad)"
+    letter-spacing="10" filter="url(#txtglow)">AUDI</text>
 
   <!-- A3 SPORTBACK -->
-  <text x="592" y="100" font-family="'Barlow Condensed',sans-serif"
-    font-size="26" font-weight="600" fill="#4a7a9b"
-    letter-spacing="6">A3 SPORTBACK</text>
+  <text x="603" y="108" font-family="'Barlow Condensed',sans-serif"
+    font-size="24" font-weight="600" fill="#3a6a8a" letter-spacing="7">A3 SPORTBACK</text>
 
-  <!-- Spec -->
-  <text x="593" y="120" font-family="'Barlow Condensed',sans-serif"
-    font-size="13" font-weight="400" fill="#2e4a62"
-    letter-spacing="4">8PA  ·  1.6 MPI  ·  BSE  ·  2010  ·  102 KM</text>
+  <!-- Linia pod A3 -->
+  <line x1="603" y1="113" x2="865" y2="113" stroke="#1e3a52" stroke-width="0.8"/>
 
-  <!-- Cienka linia akcentu pod A3 SPORTBACK -->
-  <line x1="592" y1="104" x2="870" y2="104" stroke="#1e3a5a" stroke-width="0.8" opacity="0.7"/>
+  <!-- Spec drobny -->
+  <text x="604" y="130" font-family="'Barlow Condensed',sans-serif"
+    font-size="12" font-weight="400" fill="#2a4458" letter-spacing="4">8PA · 1.6 MPI · BSE · 2010 · 102 KM</text>
 
 </svg>
 </div>
-</body></html>""", height=162, scrolling=False)
+</body></html>""", height=165, scrolling=False)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
