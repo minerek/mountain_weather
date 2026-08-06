@@ -144,38 +144,183 @@ def check_password():
 logged_in = check_password()
 
 # ── Banner ────────────────────────────────────────────────────────────────────
-components.html("""<!DOCTYPE html><html><body style="margin:0;padding:0;background:transparent;">
-<div style="width:100%;border-radius:12px;overflow:hidden;margin-bottom:2px;">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 140" style="width:100%;display:block;">
+components.html("""<!DOCTYPE html>
+<html><head>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:transparent;">
+<div style="width:100%;border-radius:14px;overflow:hidden;margin-bottom:4px;box-shadow:0 4px 32px #000a;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 155" style="width:100%;display:block;">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0a0e14"/>
-      <stop offset="50%" stop-color="#111820"/>
-      <stop offset="100%" stop-color="#0a0e14"/>
+    <!-- Tlo: ciemny metaliczny gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#1a1e24"/>
+      <stop offset="40%"  stop-color="#0e1218"/>
+      <stop offset="100%" stop-color="#080c10"/>
     </linearGradient>
-    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3a5a7a"/>
-      <stop offset="100%" stop-color="#1a2a3a"/>
+    <!-- Metaliczny gradient na karoserie -->
+    <linearGradient id="body_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#3a4450"/>
+      <stop offset="30%"  stop-color="#5a6878"/>
+      <stop offset="60%"  stop-color="#2e3840"/>
+      <stop offset="100%" stop-color="#181e26"/>
     </linearGradient>
+    <!-- Metaliczny gradient szyb -->
+    <linearGradient id="glass_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#1a2e44" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0a1820" stop-opacity="0.7"/>
+    </linearGradient>
+    <!-- Metaliczny gradient tekstu AUDI A3 -->
+    <linearGradient id="txt_grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff"/>
+      <stop offset="35%"  stop-color="#c8d8e8"/>
+      <stop offset="65%"  stop-color="#8aaac4"/>
+      <stop offset="100%" stop-color="#4a6a84"/>
+    </linearGradient>
+    <!-- Blask reflektora -->
+    <radialGradient id="light_l" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#aaccee" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#aaccee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="light_r" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#aaccee" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#aaccee" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Cien auta -->
+    <radialGradient id="shadow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%"   stop-color="#000000" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
-  <rect width="900" height="140" fill="url(#bg)"/>
-  <!-- Rings Audi -->
-  <circle cx="340" cy="70" r="32" fill="none" stroke="url(#ring)" stroke-width="5" opacity="0.9"/>
-  <circle cx="372" cy="70" r="32" fill="none" stroke="url(#ring)" stroke-width="5" opacity="0.9"/>
-  <circle cx="404" cy="70" r="32" fill="none" stroke="url(#ring)" stroke-width="5" opacity="0.9"/>
-  <circle cx="436" cy="70" r="32" fill="none" stroke="url(#ring)" stroke-width="5" opacity="0.9"/>
-  <!-- Linia pod ringami -->
-  <line x1="0" y1="115" x2="900" y2="115" stroke="#1e2d3d" stroke-width="1"/>
-  <!-- Tekst -->
-  <text x="530" y="60" font-family="Rajdhani,sans-serif" font-size="34" font-weight="700"
-    fill="#e0eeff" letter-spacing="4">AUDI A3</text>
-  <text x="531" y="85" font-family="Rajdhani,sans-serif" font-size="13" font-weight="500"
-    fill="#4a7a9b" letter-spacing="6">SPORTBACK 8PA · 1.6 MPI · BSE</text>
-  <text x="531" y="105" font-family="Rajdhani,sans-serif" font-size="11"
-    fill="#2a4a6a" letter-spacing="3">ROCZNIK 2010 · 102 KM</text>
+
+  <!-- Tlo -->
+  <rect width="900" height="155" fill="url(#bg)"/>
+
+  <!-- Subtelna linia akcentu na dole -->
+  <rect x="0" y="148" width="900" height="1" fill="#2a3a4a" opacity="0.8"/>
+  <!-- Linia górna -->
+  <rect x="0" y="0" width="900" height="1" fill="#2a3a4a" opacity="0.4"/>
+
+  <!-- ═══ SYLWETKA AUDI A3 8PA SPORTBACK ═══ -->
+  <!-- Cień pod autem -->
+  <ellipse cx="290" cy="138" rx="230" ry="10" fill="#000" opacity="0.5"/>
+
+  <!-- Karoseria główna — profil A3 Sportback -->
+  <!-- Dolna belka (progi + podwozie) -->
+  <rect x="82" y="112" width="412" height="10" rx="2" fill="#1a2028"/>
+
+  <!-- Koła — obręcze -->
+  <circle cx="148" cy="124" r="22" fill="#0e1218" stroke="#3a4a5a" stroke-width="2.5"/>
+  <circle cx="148" cy="124" r="14" fill="#1a2028" stroke="#2a3a4a" stroke-width="1.5"/>
+  <circle cx="148" cy="124" r="6"  fill="#2a3a4a"/>
+  <!-- Szprychy -->
+  <line x1="148" y1="110" x2="148" y2="138" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="134" y1="124" x2="162" y2="124" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="138" y1="114" x2="158" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="158" y1="114" x2="138" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+
+  <circle cx="422" cy="124" r="22" fill="#0e1218" stroke="#3a4a5a" stroke-width="2.5"/>
+  <circle cx="422" cy="124" r="14" fill="#1a2028" stroke="#2a3a4a" stroke-width="1.5"/>
+  <circle cx="422" cy="124" r="6"  fill="#2a3a4a"/>
+  <line x1="422" y1="110" x2="422" y2="138" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="408" y1="124" x2="436" y2="124" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="412" y1="114" x2="432" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+  <line x1="432" y1="114" x2="412" y2="134" stroke="#3a4a5a" stroke-width="1.2"/>
+
+  <!-- Karoseria — główna sylwetka A3 Sportback (widok z boku) -->
+  <path d="
+    M 82,112
+    L 82,100
+    Q 84,92 95,88
+    L 130,82
+    Q 155,46 185,36
+    Q 215,28 255,26
+    Q 295,24 330,26
+    Q 360,28 375,32
+    L 410,36
+    Q 445,42 462,58
+    Q 475,70 478,82
+    L 490,88
+    Q 498,92 500,100
+    L 500,112
+    Z
+  " fill="url(#body_grad)" stroke="#3a4a5a" stroke-width="1"/>
+
+  <!-- Zderzak przedni -->
+  <path d="M 82,100 Q 78,104 76,112 L 82,112 Z" fill="#2a3240"/>
+  <!-- Zderzak tylny -->
+  <path d="M 500,100 Q 504,106 504,112 L 500,112 Z" fill="#2a3240"/>
+
+  <!-- Atrapa grille (przód) -->
+  <path d="M 80,96 Q 82,88 90,85 L 82,112 Z" fill="#0e1420" opacity="0.6"/>
+  <!-- Reflektory przednie (charakterystyczne Audi) -->
+  <path d="M 88,86 Q 102,80 118,82 L 118,92 Q 104,90 90,95 Z" fill="#1a2a3a" stroke="#2a4a6a" stroke-width="0.8"/>
+  <ellipse cx="106" cy="88" rx="10" ry="4" fill="url(#light_l)" opacity="0.8"/>
+
+  <!-- Tylne światła -->
+  <path d="M 482,82 Q 496,84 500,90 L 500,100 Q 494,96 482,92 Z" fill="#1a1020" stroke="#4a1a1a" stroke-width="0.8"/>
+  <ellipse cx="492" cy="90" rx="6" ry="5" fill="#cc2222" opacity="0.4"/>
+
+  <!-- Szyby — charakterystyczny kształt Sportback -->
+  <!-- Szyba przednia -->
+  <path d="M 185,36 Q 176,60 172,82 L 220,82 L 220,30 Q 205,28 185,36 Z"
+        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.9"/>
+  <!-- Szyba boczna główna -->
+  <path d="M 220,28 L 330,26 L 355,30 L 360,82 L 220,82 Z"
+        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.9"/>
+  <!-- Szyba tylna (sportback — lekko opada) -->
+  <path d="M 360,82 L 358,30 Q 380,28 405,36 Q 430,46 445,62 L 448,82 Z"
+        fill="url(#glass_grad)" stroke="#1a3a5a" stroke-width="0.8" opacity="0.85"/>
+
+  <!-- Linia dachu — metaliczny highlight -->
+  <path d="M 185,36 Q 255,20 330,22 Q 375,22 410,36"
+        fill="none" stroke="#6a8aa4" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Słupki szyb -->
+  <line x1="220" y1="28" x2="222" y2="82" stroke="#1a2a3a" stroke-width="2"/>
+  <line x1="358" y1="30" x2="360" y2="82" stroke="#1a2a3a" stroke-width="2"/>
+
+  <!-- Logo Audi na masce (4 kółka uproszczone) -->
+  <g transform="translate(108,104)" opacity="0.7">
+    <circle cx="0"  cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
+    <circle cx="9"  cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
+    <circle cx="18" cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
+    <circle cx="27" cy="0" r="5" fill="none" stroke="#8aaac4" stroke-width="1.2"/>
+  </g>
+
+  <!-- ═══ TEKST PO PRAWEJ ═══ -->
+  <!-- Pionowa linia separatora -->
+  <line x1="570" y1="25" x2="570" y2="130" stroke="#2a3a4a" stroke-width="1" opacity="0.6"/>
+
+  <!-- AUDI — metaliczny duży napis -->
+  <text x="590" y="72" font-family="'Barlow Condensed',sans-serif"
+    font-size="58" font-weight="800" fill="url(#txt_grad)"
+    letter-spacing="8" filter="url(#softglow)">AUDI</text>
+
+  <!-- A3 SPORTBACK -->
+  <text x="592" y="100" font-family="'Barlow Condensed',sans-serif"
+    font-size="26" font-weight="600" fill="#4a7a9b"
+    letter-spacing="6">A3 SPORTBACK</text>
+
+  <!-- Spec -->
+  <text x="593" y="120" font-family="'Barlow Condensed',sans-serif"
+    font-size="13" font-weight="400" fill="#2e4a62"
+    letter-spacing="4">8PA  ·  1.6 MPI  ·  BSE  ·  2010  ·  102 KM</text>
+
+  <!-- Cienka linia akcentu pod A3 SPORTBACK -->
+  <line x1="592" y1="104" x2="870" y2="104" stroke="#1e3a5a" stroke-width="0.8" opacity="0.7"/>
+
 </svg>
 </div>
-</body></html>""", height=145, scrolling=False)
+</body></html>""", height=162, scrolling=False)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
