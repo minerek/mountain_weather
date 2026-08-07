@@ -364,6 +364,6 @@ with tab3:
 
 st.markdown("""
 <div style="text-align:center;font-size:0.7rem;color:#1e2d3d;padding:12px 0 4px;border-top:1px solid #1a2030;margin-top:16px;">
-  hikewithmic · Audi A3 8PA — Dziennik Serwisowy v1.2
+  Dziennik Serwisowy
 </div>
 """, unsafe_allow_html=True)
