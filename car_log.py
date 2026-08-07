@@ -174,7 +174,7 @@ _banner_html = f"""
     }}
     .banner-img {{
         width: 100%;
-        height: 440px;
+        height: 390px;
         object-fit: fill;
         display: block;
     }}
