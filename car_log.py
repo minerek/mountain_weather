@@ -165,6 +165,23 @@ logged_in = check_password()
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 st.markdown(
+    f'<style>'
+    f'[data-testid="stMarkdownContainer"] #audi-banner-container {{'
+    f'  margin-top: -50px !important;'
+    f'  margin-bottom: -20px !important;'
+    f'  padding: 0 !important;'
+    f'  width: 100% !important;'
+    f'  display: block !important;'
+    f'}}'
+    f'[data-testid="stMarkdownContainer"] #audi-banner-img {{'
+    f'  width: 100% !important;'
+    f'  height: 150px !important;'
+    f'  object-fit: cover !important;'
+    f'  object-position: center 50% !important;'
+    f'  border-radius: 12px !important;'
+    f'  display: block !important;'
+    f'}}'
+    f'</style>'
     f'<div id="audi-banner-container">'
     f'<img id="audi-banner-img" src="data:image/png;base64,{_banner_b64}" />'
     f'</div>',
