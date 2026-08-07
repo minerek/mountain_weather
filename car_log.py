@@ -148,25 +148,8 @@ logged_in = check_password()
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 st.markdown(
-    f'<style>'
-    f'[data-testid="stMarkdownContainer"] #audi-banner-container {{'
-    f'  margin-top: -50px !important;'
-    f'  margin-bottom: -20px !important;'
-    f'  padding: 0 !important;'
-    f'  width: 100% !important;'
-    f'  display: block !important;'
-    f'}}'
-    f'[data-testid="stMarkdownContainer"] #audi-banner-img {{'
-    f'  width: 100% !important;'
-    f'  height: 150px !important;'
-    f'  object-fit: cover !important;'
-    f'  object-position: center 50% !important;'
-    f'  border-radius: 12px !important;'
-    f'  display: block !important;'
-    f'}}'
-    f'</style>'
-    f'<div id="audi-banner-container">'
-    f'<img id="audi-banner-img" src="data:image/png;base64,{_banner_b64}" />'
+    f'<div style="margin-top: -50px !important; margin-bottom: -20px !important; padding: 0 !important; width: 100% !important; display: block !important; overflow: hidden !important;">'
+    f'  <img src="data:image/png;base64,{_banner_b64}" style="width: 100% !important; height: 160px !important; object-fit: cover !important; object-position: center 50% !important; border-radius: 12px !important; display: block !important; margin: 0 !important; padding: 0 !important;" />'
     f'</div>',
     unsafe_allow_html=True
 )
