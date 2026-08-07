@@ -18,18 +18,21 @@ st.markdown("""
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
-/* Banner */
-.banner-container {
-  margin-top: -35px !important;
-  margin-bottom: -15px !important;
+/* Banner styling */
+#audi-banner-container {
+  margin-top: -50px !important;
+  margin-bottom: -20px !important;
+  padding: 0 !important;
+  width: 100% !important;
+  display: block !important;
 }
-.car-banner {
-  width: 100%;
-  height: 160px !important;
-  object-fit: cover;
-  object-position: center 50%;
-  border-radius: 12px;
-  display: block;
+#audi-banner-img {
+  width: 100% !important;
+  height: 150px !important;
+  object-fit: cover !important;
+  object-position: center 50% !important;
+  border-radius: 12px !important;
+  display: block !important;
 }
 
 /* Czcionka Rajdhani dla nagłówków */
@@ -162,9 +165,8 @@ logged_in = check_password()
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 st.markdown(
-    f'<div style="margin-top: -45px !important; margin-bottom: -25px !important; padding: 0 !important; width: 100% !important;">'
-    f'<img src="data:image/png;base64,{_banner_b64}" '
-    f'style="width: 100% !important; height: 130px !important; object-fit: cover !important; object-position: center 50% !important; border-radius: 12px !important; display: block !important;" />'
+    f'<div id="audi-banner-container">'
+    f'<img id="audi-banner-img" src="data:image/png;base64,{_banner_b64}" />'
     f'</div>',
     unsafe_allow_html=True
 )
