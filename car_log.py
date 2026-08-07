@@ -174,9 +174,10 @@ _banner_html = f"""
     }}
     .banner-img {{
         width: 100%;
-        height: 480px;
+        height: 550px;
         object-fit: fill;
         display: block;
+        transform: translateY(-20px);
     }}
 </style>
 <div class="banner-container">
