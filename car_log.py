@@ -15,6 +15,7 @@ st.markdown("""
 [data-testid="stAppViewContainer"],[data-testid="stApp"]{background:#111418!important}
 [data-testid="stHeader"]{background:transparent!important}
 [data-testid="stAppViewBlockContainer"]{padding-top:10px!important}
+[data-testid="stHtmlBlock"]{margin-top:-25px!important;margin-bottom:-15px!important}
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
@@ -147,12 +148,33 @@ logged_in = check_password()
 # ── Banner — obrazek PNG ──────────────────────────────────────────────────────
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
-st.markdown(
-    f'<div style="margin-top: -50px !important; margin-bottom: -20px !important; padding: 0 !important; width: 100% !important; display: block !important; overflow: hidden !important;">'
-    f'  <img src="data:image/png;base64,{_banner_b64}" style="width: 100% !important; height: 160px !important; object-fit: cover !important; object-position: center 50% !important; border-radius: 12px !important; display: block !important; margin: 0 !important; padding: 0 !important;" />'
-    f'</div>',
-    unsafe_allow_html=True
-)
+
+# Render banner inside an iframe to prevent Streamlit HTML/CSS sanitization
+_banner_html = f"""
+<style>
+    * {{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }}
+    body {{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+    }}
+    .banner-img {{
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        object-position: center 55%;
+        border-radius: 12px;
+        display: block;
+    }}
+</style>
+<img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
+"""
+components.html(_banner_html, height=150)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
