@@ -18,23 +18,6 @@ st.markdown("""
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
-/* Banner styling */
-#audi-banner-container {
-  margin-top: -50px !important;
-  margin-bottom: -20px !important;
-  padding: 0 !important;
-  width: 100% !important;
-  display: block !important;
-}
-#audi-banner-img {
-  width: 100% !important;
-  height: 150px !important;
-  object-fit: cover !important;
-  object-position: center 50% !important;
-  border-radius: 12px !important;
-  display: block !important;
-}
-
 /* Czcionka Rajdhani dla nagłówków */
 .car-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:#e8edf2;letter-spacing:2px;line-height:1.1}
 .car-sub{font-size:0.72rem;color:#6a8099;letter-spacing:4px;font-family:'Rajdhani',sans-serif;text-transform:uppercase}
@@ -366,6 +349,6 @@ with tab3:
 
 st.markdown("""
 <div style="text-align:center;font-size:0.7rem;color:#1e2d3d;padding:12px 0 4px;border-top:1px solid #1a2030;margin-top:16px;">
-  hikewithmic · Audi A3 8PA — Dziennik Serwisowy
+  hikewithmic · Audi A3 8PA — Dziennik Serwisowy v1.2
 </div>
 """, unsafe_allow_html=True)
