@@ -163,15 +163,25 @@ _banner_html = f"""
         overflow: hidden;
         background-color: transparent;
     }}
-    .banner-img {{
+    .banner-container {{
         width: 100%;
         height: 350px;
-        object-fit: fill;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
         border-radius: 12px;
+    }}
+    .banner-img {{
+        width: 100%;
+        height: 440px;
+        object-fit: fill;
         display: block;
     }}
 </style>
-<img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
+<div class="banner-container">
+    <img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
+</div>
 """
 components.html(_banner_html, height=350)
 
