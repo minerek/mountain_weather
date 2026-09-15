@@ -180,7 +180,7 @@ _banner_html = f"""
     <img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
 </div>
 """
-components.html(_banner_html, height=500)
+components.html(_banner_html, height=340)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
