@@ -147,12 +147,16 @@ logged_in = check_password()
 # ── Banner — obrazek PNG ──────────────────────────────────────────────────────
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
-st.markdown(
-    f'<div style="margin:-10px calc(-50vw + 50%) 1rem calc(-50vw + 50%);">'
-    f'<img src="data:image/png;base64,{_banner_b64}" '
-    f'style="width:100vw;display:block;" /></div>',
-    unsafe_allow_html=True
-)
+st.markdown(f"""
+<style>
+div[data-testid="stAppViewBlockContainer"] {{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}}
+</style>
+<img src="data:image/png;base64,{_banner_b64}"
+     style="width:100%;display:block;margin-bottom:1rem;" />
+""", unsafe_allow_html=True)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
