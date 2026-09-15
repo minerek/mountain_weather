@@ -8,15 +8,41 @@ from pathlib import Path
 _FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23222'/%3E%3Cellipse cx='10' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Cellipse cx='22' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Crect x='3' y='14' width='26' height='9' rx='2' fill='%23444'/%3E%3Cpolygon points='6,14 9,7 23,7 26,14' fill='%23555'/%3E%3Crect x='10' y='8' width='12' height='5' rx='1' fill='%2388aacc'/%3E%3C/svg%3E"
 
 st.set_page_config(page_title="Audi A3 — Serwis", page_icon=_FAVICON, layout="wide")
-components.html("""<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">""", height=0)
+components.html("""
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+(function() {
+  function injectStyles() {
+    var d = window.parent.document;
+    if (!d) return;
+    var id = 'audi-banner-fix';
+    if (d.getElementById(id)) return;
+    var s = d.createElement('style');
+    s.id = id;
+    // target Emotion klasa e15ve43o4 + data-testid + .block-container — wszystkie możliwe selektory
+    s.textContent = [
+      '[data-testid="stMainBlockContainer"]',
+      '.block-container',
+      '[class*="e15ve43o4"]'
+    ].join(',') + '{padding-left:0!important;padding-right:0!important;max-width:100%!important}';
+    d.head.appendChild(s);
+  }
+  // Próbuj od razu i po załadowaniu
+  injectStyles();
+  window.parent.addEventListener('load', injectStyles);
+  setTimeout(injectStyles, 500);
+  setTimeout(injectStyles, 1500);
+})();
+</script>
+""", height=0)
 
 st.markdown("""
 <style>
 [data-testid="stAppViewContainer"],[data-testid="stApp"]{background:#111418!important}
 [data-testid="stHeader"]{background:transparent!important}
-[data-testid="stAppViewBlockContainer"]{padding-top:0!important;padding-left:0!important;padding-right:0!important;max-width:100%!important}
-.block-container{padding-left:0!important;padding-right:0!important;max-width:100%!important}
-#banner-section{padding:0!important}
+[data-testid="stAppViewBlockContainer"]{padding-top:0!important;padding-left:0!important;padding-right:0!important}
+[data-testid="stMainBlockContainer"]{padding-left:0!important;padding-right:0!important;padding-top:0!important;max-width:100%!important}
+.block-container{padding-left:0!important;padding-right:0!important;padding-top:0!important;max-width:100%!important}
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
@@ -149,19 +175,43 @@ logged_in = check_password()
 # ── Banner — obrazek PNG ──────────────────────────────────────────────────────
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
-st.markdown(f"""
-<img src="data:image/png;base64,{_banner_b64}"
-     style="width:100%;display:block;margin-bottom:1rem;" />
-""", unsafe_allow_html=True)
-st.markdown("""
-<style>
-section[data-testid="stMain"] > div {{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    max-width: 100% !important;
-}}
-</style>
-""", unsafe_allow_html=True)
+_img_h = 410
+components.html(f"""<!DOCTYPE html>
+<html><head><style>
+*{{margin:0;padding:0;box-sizing:border-box}}
+html,body{{width:100%;height:100%;overflow:hidden;background:#111418}}
+img{{width:100%;height:100%;object-fit:cover;display:block}}
+</style></head>
+<body>
+<img src="data:image/png;base64,{_banner_b64}"/>
+<script>
+(function(){{
+  // Znajdź ten iframe w rodzicu i rozciągnij go na pełną szerokość
+  var iframes = window.parent.document.querySelectorAll('iframe');
+  for(var i=0;i<iframes.length;i++){{
+    try{{
+      if(iframes[i].contentWindow===window){{
+        iframes[i].style.width='100%';
+        iframes[i].style.display='block';
+        // Cofnij padding kontenera tylko dla tego elementu
+        var p=iframes[i].parentElement;
+        while(p){{
+          var testid=p.getAttribute('data-testid');
+          if(testid==='stMainBlockContainer'){{
+            p.style.paddingLeft='0';
+            p.style.paddingRight='0';
+            p.style.maxWidth='100%';
+            break;
+          }}
+          p=p.parentElement;
+        }}
+        break;
+      }}
+    }}catch(e){{}}
+  }}
+}})();
+</script>
+</body></html>""", height=_img_h, scrolling=False)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
