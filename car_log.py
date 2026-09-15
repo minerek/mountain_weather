@@ -180,7 +180,7 @@ components.html(f"""<!DOCTYPE html>
 <html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:100%;height:100%;overflow:hidden;background:#111418}}
-img{{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}}
+img{{width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block}}
 </style></head>
 <body>
 <img src="data:image/png;base64,{_banner_b64}"/>
