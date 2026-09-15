@@ -2163,7 +2163,7 @@ with col_pasma:
         L["range_select"],
         options=PASMA,
         format_func=lambda p: L["ranges"].get(p, p),
-        default=["Tatry Polskie", "Tatry Słowackie"],
+        default=["Tatry Polskie", "Tatry Słowackie", "Tatry Zachodnie", "Tatry Wysokie (SK)", "Tatry Niżne (SK)"],
         help=L["range_help"]
     )
 
