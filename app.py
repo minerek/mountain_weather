@@ -531,7 +531,7 @@ SZCZYTY = {
     "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.1652, 20.1546, 2476, "Tatry Słowackie"),
     "Ganek (Gánok) ⭐WKT":                        (49.174256, 20.103992, 2462, "Tatry Słowackie"),
     "Sławkowski Szczyt (Slavkovský štít) ⭐WKT":  (49.1662, 20.1843, 2452, "Tatry Słowackie"),
-    "Pośrednia Grań (Prostredný hrot) ⭐WKT":     (49.1849, 20.1866, 2441, "Tatry Słowackie"),
+    "Pośrednia Grań (Prostredný hrot) ⭐WKT":     (49.184972, 20.194361, 2441, "Tatry Słowackie"),
     # Pozostałe szczyty słowackie
     "Mała Wysoka (Východná Vysoká)":              (49.1753, 20.1455, 2429, "Tatry Słowackie"),
     "Koprowy Wierch (Kôprovský štít)":            (49.1824, 20.0487, 2363, "Tatry Słowackie"),
