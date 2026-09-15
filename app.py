@@ -476,7 +476,7 @@ SZCZYTY = {
     # ---------- TATRY ZACHODNIE (polskie i słowackie) ----------
     "Bystra (Bystrá)":                               (49.1892, 19.8427, 2248, "Tatry Zachodnie"),
     "Starorobociański Wierch (Klin)":                (49.2003, 19.8142, 2176, "Tatry Zachodnie"),
-    "Wołowiec (Volovec)":                            (49.2118, 19.7628, 2064, "Tatry Zachodnie"),
+    "Wołowiec (Volovec)":                            (49.207869, 19.763428, 2064, "Tatry Zachodnie"),
     "Baraniec (Baranec)":                            (49.1738, 19.7428, 2185, "Tatry Zachodnie"),
     "Banówka (Baníkov)":                             (49.1983, 19.7103, 2178, "Tatry Zachodnie"),
     "Hruba Kopa (Hrubá kopa)":                       (49.2008, 19.7214, 2166, "Tatry Zachodnie"),
