@@ -14,7 +14,9 @@ st.markdown("""
 <style>
 [data-testid="stAppViewContainer"],[data-testid="stApp"]{background:#111418!important}
 [data-testid="stHeader"]{background:transparent!important}
-[data-testid="stAppViewBlockContainer"]{padding-top:10px!important;padding-left:1rem!important;padding-right:1rem!important}
+[data-testid="stAppViewBlockContainer"]{padding-top:0!important;padding-left:0!important;padding-right:0!important;max-width:100%!important}
+.block-container{padding-left:0!important;padding-right:0!important;max-width:100%!important}
+#banner-section{padding:0!important}
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
@@ -148,14 +150,17 @@ logged_in = check_password()
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 st.markdown(f"""
-<style>
-div[data-testid="stAppViewBlockContainer"] {{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}}
-</style>
 <img src="data:image/png;base64,{_banner_b64}"
      style="width:100%;display:block;margin-bottom:1rem;" />
+""", unsafe_allow_html=True)
+st.markdown("""
+<style>
+section[data-testid="stMain"] > div {{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+}}
+</style>
 """, unsafe_allow_html=True)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
