@@ -154,33 +154,28 @@ _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 # Render banner inside an iframe to prevent Streamlit HTML/CSS sanitization
 _banner_html = f"""
 <style>
-    * {{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }}
-    body {{
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: transparent;
-    }}
-    .banner-container {{
-        width: 100%;
-        border-radius: 12px;
-        overflow: hidden;
-    }}
-    .banner-img {{
+    * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+    body {{ margin: 0; padding: 0; overflow: hidden; background: transparent; }}
+    img {{
         width: 100%;
         height: auto;
         display: block;
+        border-radius: 12px;
     }}
 </style>
-<div class="banner-container">
-    <img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
-</div>
+<img id="banner" src="data:image/png;base64,{_banner_b64}" />
+<script>
+    var img = document.getElementById('banner');
+    function resize() {{
+        var h = img.getBoundingClientRect().height;
+        if (h > 0) window.parent.postMessage({{type:'streamlit:setFrameHeight', height: h}}, '*');
+    }}
+    img.onload = resize;
+    window.onresize = resize;
+    resize();
+</script>
 """
-components.html(_banner_html, height=340)
+components.html(_banner_html, height=400)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
