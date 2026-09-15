@@ -2179,7 +2179,7 @@ with col_szczyt:
     tryb = st.radio(L["peak_choice"], [L["peak_from_list"], L["peak_manual"]], horizontal=True)
 
     if tryb == L["peak_from_list"]:
-        opcje = sorted(szczyty_przefiltrowane.keys(), key=lambda n: n.lower())
+        opcje = sorted(szczyty_przefiltrowane.keys(), key=lambda n: (0 if n in WKT else 1, n.lower()))
         wybrany = st.selectbox(
             L["peak_select_label"],
             opcje,
