@@ -175,7 +175,7 @@ logged_in = check_password()
 # ── Banner — obrazek PNG ──────────────────────────────────────────────────────
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
-_img_h = 360
+_img_h = 420
 components.html(f"""<!DOCTYPE html>
 <html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
