@@ -453,7 +453,7 @@ WKT = {
 SZCZYTY = {
     # ---------- TATRY WYSOKIE — WSCHODNIA CZĘŚĆ (Morskie Oko, Rysy, Granaty...) ----------
     "Rysy ⭐WKT":                                    (49.1796, 20.0881, 2499, "Tatry Polskie"),
-    "Kozi Wierch":                                   (49.2182, 20.0213, 2291, "Tatry Polskie"),
+    "Kozi Wierch":                                   (49.218317, 20.028705, 2291, "Tatry Polskie"),
     "Kozie Czuby":                                   (49.2178, 20.0125, 2263, "Tatry Polskie"),
     "Zadni Granat":                                  (49.2248, 20.0294, 2240, "Tatry Polskie"),
     "Pośredni Granat":                               (49.2263, 20.0332, 2234, "Tatry Polskie"),
