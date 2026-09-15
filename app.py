@@ -539,7 +539,7 @@ SZCZYTY = {
     "Kołowy Szczyt (Kolový štít)":                (49.2108, 20.1989, 2418, "Tatry Słowackie"),
     "Szeroka Jaworzyńska (Jahňací štít)":         (49.1908, 20.1714, 2210, "Tatry Słowackie"),
     "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
-    "Hawrań (Havran)":                            (49.2189, 20.2864, 2152, "Tatry Słowackie"),
+    "Hawrań (Havran)":                            (49.24848, 20.19759, 2152, "Tatry Słowackie"),
     "Murań (Murán)":                              (49.2158, 20.2761, 2068, "Tatry Słowackie"),
     "Baraniec (Baranec) SK":                      (49.1931, 19.8722, 2185, "Tatry Zachodnie"),
     "Wołowiec (Volovec)":                         (49.2089, 20.0408, 2064, "Tatry Słowackie"),
