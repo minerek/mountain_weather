@@ -147,9 +147,15 @@ logged_in = check_password()
 # ── Banner — obrazek PNG ──────────────────────────────────────────────────────
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
+st.markdown("""
+<style>
+[data-testid="stAppViewBlockContainer"] { padding-left: 0 !important; padding-right: 0 !important; padding-top: 0 !important; }
+.banner-wrap { margin: -1rem -1rem 1rem -1rem; }
+</style>
+""", unsafe_allow_html=True)
 st.markdown(
-    f'<img src="data:image/png;base64,{_banner_b64}" '
-    f'style="width:100%;border-radius:12px;margin-bottom:6px;display:block;" />',
+    f'<div class="banner-wrap"><img src="data:image/png;base64,{_banner_b64}" '
+    f'style="width:100%;display:block;" /></div>',
     unsafe_allow_html=True
 )
 
