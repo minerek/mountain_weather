@@ -180,16 +180,17 @@ components.html(f"""<!DOCTYPE html>
 <html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:100%;height:100%;overflow:hidden;background:#111418}}
-.banner{{
-  width:100%;height:100%;
-  background-image:url('data:image/png;base64,{_banner_b64}');
-  background-size:100% 115%;
-  background-position:center 55%;
-  background-repeat:no-repeat;
+.wrap{{width:100%;height:100%;overflow:hidden;display:flex;align-items:center;}}
+img{{
+  width:100%;
+  height:auto;
+  display:block;
+  transform:scaleY(0.72);
+  transform-origin:center center;
 }}
 </style></head>
 <body>
-<div class="banner"></div>
+<div class="wrap"><img src="data:image/png;base64,{_banner_b64}"/></div>
 <script>
 (function(){{
   // Znajdź ten iframe w rodzicu i rozciągnij go na pełną szerokość
