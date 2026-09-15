@@ -455,7 +455,7 @@ SZCZYTY = {
     "Rysy ⭐WKT":                                    (49.1796, 20.0881, 2499, "Tatry Polskie"),
     "Kozi Wierch":                                   (49.218317, 20.028705, 2291, "Tatry Polskie"),
     "Kozie Czuby":                                   (49.2178, 20.0125, 2263, "Tatry Polskie"),
-    "Zadni Granat":                                  (49.2248, 20.0294, 2240, "Tatry Polskie"),
+    "Zadni Granat":                                  (49.224431, 20.032458, 2240, "Tatry Polskie"),
     "Pośredni Granat":                               (49.2263, 20.0332, 2234, "Tatry Polskie"),
     "Skrajny Granat":                                (49.2280, 20.0368, 2225, "Tatry Polskie"),
     "Jagnięcy Szczyt (Jahňací štít)":                (49.2197, 20.2082, 2230, "Tatry Słowackie"),
