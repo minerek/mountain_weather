@@ -180,10 +180,16 @@ components.html(f"""<!DOCTYPE html>
 <html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:100%;height:100%;overflow:hidden;background:#111418}}
-img{{width:100%;height:auto;display:block;margin-top:-18%}}
+.banner{{
+  width:100%;height:100%;
+  background-image:url('data:image/png;base64,{_banner_b64}');
+  background-size:cover;
+  background-position:center 55%;
+  background-repeat:no-repeat;
+}}
 </style></head>
 <body>
-<img src="data:image/png;base64,{_banner_b64}"/>
+<div class="banner"></div>
 <script>
 (function(){{
   // Znajdź ten iframe w rodzicu i rozciągnij go na pełną szerokość
