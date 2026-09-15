@@ -541,7 +541,6 @@ SZCZYTY = {
     "Wielki Kieżmarski Szczyt":                   (49.1931, 20.2006, 2556, "Tatry Słowackie"),
     "Hawrań (Havran)":                            (49.24848, 20.19759, 2152, "Tatry Słowackie"),
     "Murań (Murán)":                              (49.2158, 20.2761, 2068, "Tatry Słowackie"),
-    "Baraniec (Baranec) SK":                      (49.1931, 19.8722, 2185, "Tatry Zachodnie"),
     "Solisko":                                    (49.2183, 19.9717, 2093, "Tatry Słowackie"),
     "Szatan (Satán)":                             (49.1633, 20.0525, 2421, "Tatry Słowackie"),
     "Bystra Ławka (Bystrá lávka)":                (49.1669, 20.0295, 2300, "Tatry Słowackie"),
