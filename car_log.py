@@ -183,7 +183,7 @@ html,body{{width:100%;height:100%;overflow:hidden;background:#111418}}
 .banner{{
   width:100%;height:100%;
   background-image:url('data:image/png;base64,{_banner_b64}');
-  background-size:100% 130%;
+  background-size:100% 115%;
   background-position:center 55%;
   background-repeat:no-repeat;
 }}
