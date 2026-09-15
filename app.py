@@ -495,7 +495,7 @@ SZCZYTY = {
     "Beskid (Beskyd)":                               (49.2281, 19.8272, 2012, "Tatry Zachodnie"),
     "Smutny Zwornik (Smutný zvornik)":               (49.2233, 19.8531, 2010, "Tatry Zachodnie"),
     "Siwy Zwornik (Sivá veža)":                      (49.2336, 19.8317, 1965, "Tatry Zachodnie"),
-    "Giewont":                                       (49.2509, 19.9341, 1894, "Tatry Zachodnie"),
+    "Wielki Giewont":                                (49.2509, 19.9341, 1894, "Tatry Zachodnie"),
     "Rakoń (Rákoň)":                                 (49.2197, 19.7634, 1879, "Tatry Zachodnie"),
     "Świstowa Kopa":                                 (49.2489, 19.8811, 1875, "Tatry Zachodnie"),
     "Ornak":                                         (49.2389, 19.8402, 1854, "Tatry Zachodnie"),
@@ -716,7 +716,7 @@ TRASY: dict[str, list[dict]] = {
          "trudnosc": "0 — szlak turystyczny",
          "uwagi": None},
     ],
-    "Giewont": [
+    "Wielki Giewont": [
         {"start": "Zakopane (Strążyska)",
          "przez": ["Dolina Strążyska", "Przełęcz w Grzybowcu"],
          "czas": "6:00–8:00 h (tam i z powrotem)", "km": "12,0",
@@ -1024,7 +1024,7 @@ TRASY: dict[str, list[dict]] = {
 # Tylko zweryfikowane pliki które na pewno istnieją na Wikimedia
 ZDJECIA = {
     "Rysy":                               "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Rysy_-_widok_z_Morskiego_Oka.jpg/640px-Rysy_-_widok_z_Morskiego_Oka.jpg",
-    "Giewont":                            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Giewont_widziany_z_Bystrej.jpg/640px-Giewont_widziany_z_Bystrej.jpg",
+    "Wielki Giewont":                     "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Giewont_widziany_z_Bystrej.jpg/640px-Giewont_widziany_z_Bystrej.jpg",
     "Kasprowy Wierch":                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Kasprowy_Wierch_2.jpg/640px-Kasprowy_Wierch_2.jpg",
     "Morskie Oko":                        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Morskie_Oko_2014.JPG/640px-Morskie_Oko_2014.JPG",
     "Gerlach (Gerlachovský štít)":        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Gerlach_from_Rysy.jpg/640px-Gerlach_from_Rysy.jpg",
@@ -1095,7 +1095,7 @@ def miniatura_mapa_html(lat, lon, nazwa="", zoom=14):
 # Ręczna mapa nazw Mountain-Forecast dla szczytów które są w ich bazie
 _MF_SLUGS = {
     "Rysy ⭐WKT":                               "rysy",
-    "Giewont":                                  "giewont",
+    "Wielki Giewont":                           "giewont",
     "Kasprowy Wierch (Kasprový vrch)":          "kasprowy-wierch",
     "Świnica":                                  "swinica",
     "Kozi Wierch":                              "kozi-wierch",
@@ -1533,7 +1533,7 @@ def link_lightningmaps(lat, lon, zoom=9):
 # Reprezentatywny szczyt dla każdego pasma — wybieramy popularny, niezbyt wysoki punkt
 _REPR_PASMA = {
     "Tatry Polskie":    "Kasprowy Wierch (Kasprový vrch)",
-    "Tatry Zachodnie":  "Giewont",
+    "Tatry Zachodnie":  "Wielki Giewont",
     "Tatry Słowackie":  "Łomnica (Lomnický štít) ⭐WKT",
     "Beskid Śląski":    "Skrzyczne 👑",
     "Beskid Żywiecki":  "Babia Góra 👑",
