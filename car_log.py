@@ -1,13 +1,13 @@
-import streamlit as st
+﻿import streamlit as st
 import streamlit.components.v1 as components
 import json, os, base64, requests as _req
 from datetime import date
 from pathlib import Path
 
-# ── Config ────────────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Config ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 _FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23222'/%3E%3Cellipse cx='10' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Cellipse cx='22' cy='24' rx='3' ry='3' fill='%23999'/%3E%3Crect x='3' y='14' width='26' height='9' rx='2' fill='%23444'/%3E%3Cpolygon points='6,14 9,7 23,7 26,14' fill='%23555'/%3E%3Crect x='10' y='8' width='12' height='5' rx='1' fill='%2388aacc'/%3E%3C/svg%3E"
 
-st.set_page_config(page_title="Audi A3 — Serwis", page_icon=_FAVICON, layout="wide")
+st.set_page_config(page_title="Audi A3 ΓÇö Serwis", page_icon=_FAVICON, layout="wide")
 components.html("""<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">""", height=0)
 
 st.markdown("""
@@ -19,14 +19,14 @@ st.markdown("""
 body,.stMarkdown,p,li,span,div{color:#d0d8e4!important}
 h1,h2,h3{color:#e8edf2!important}
 
-/* Czcionka Rajdhani dla nagłówków */
+/* Czcionka Rajdhani dla nag┼é├│wk├│w */
 .car-title{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:#e8edf2;letter-spacing:2px;line-height:1.1}
 .car-sub{font-size:0.72rem;color:#6a8099;letter-spacing:4px;font-family:'Rajdhani',sans-serif;text-transform:uppercase}
 .section-head{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:600;color:#a0bcd4;
   letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid #1e2d3d;
   padding-bottom:5px;margin-top:1.4rem!important;margin-bottom:0.8rem!important}
 
-/* Karty części */
+/* Karty cz─Ö┼¢ci */
 .part-card{background:#141c26;border:1px solid #1e2d3d;border-radius:8px;padding:12px 15px;margin-bottom:6px}
 .part-cat{font-family:'Rajdhani',sans-serif;font-size:1.0rem;font-weight:700;color:#c8dcea;letter-spacing:1px}
 .part-spec{font-size:0.8rem;color:#6a8099;margin-top:1px}
@@ -76,7 +76,7 @@ hr{border-color:#1e2d3d!important}
 </style>
 """, unsafe_allow_html=True)
 
-# ── GitHub persistence ─────────────────────────────────────────────────────────
+# ΓöÇΓöÇ GitHub persistence ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 DATA_FILE = os.path.join(os.path.dirname(__file__), "car_data.json")
 _GH_REPO  = "minerek/mountain_weather"
 _GH_PATH  = "car_data.json"
@@ -113,109 +113,119 @@ def save(data):
         if r.status_code in (200, 201):
             st.session_state["gh_sha_car"] = r.json()["content"]["sha"]
         else:
-            st.warning(f"⚠️ GitHub sync: {r.status_code}")
+            st.warning(f"ΓÜá∩╕Å GitHub sync: {r.status_code}")
     except KeyError:
         pass
     except Exception as e:
-        st.warning(f"⚠️ GitHub sync error: {e}")
+        st.warning(f"ΓÜá∩╕Å GitHub sync error: {e}")
 
 data = load()
 car  = data["car"]
 parts = data["parts"]
 log  = data["service_log"]
 
-# ── Autoryzacja ───────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Autoryzacja ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 def check_password():
     if st.session_state.get("auth_car"):
         return True
     try:
         correct = st.secrets["APP_PASSWORD"]
-    except KeyError:
-        correct = "tatry"
     except Exception:
         correct = "tatry"
     with st.sidebar:
-        st.markdown("### 🔐 Logowanie")
-        pwd = st.text_input("Hasło:", type="password", key="car_pwd")
+        st.markdown("### ≡ƒöÉ Logowanie")
+        pwd = st.text_input("Has┼éo:", type="password", key="car_pwd")
         if st.button("Zaloguj", key="car_login"):
-            if pwd.strip() == correct.strip():
+            if pwd == correct:
                 st.session_state["auth_car"] = True
                 st.rerun()
             else:
-                st.error("❌ Nieprawidłowe hasło.")
+                st.error("Γ¥î Nieprawid┼éowe has┼éo.")
     return False
 
 logged_in = check_password()
 
-# ── Banner — obrazek PNG ──────────────────────────────────────────────────────
+# ΓöÇΓöÇ Banner ΓÇö obrazek PNG ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 
 # Render banner inside an iframe to prevent Streamlit HTML/CSS sanitization
 _banner_html = f"""
 <style>
-    * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-    body {{ margin: 0; padding: 0; overflow: hidden; background: transparent; }}
-    .banner {{
-        width: 100%;
-        height: 350px;
-        border-radius: 12px;
-        overflow: hidden;
+    * {{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }}
-    .banner img {{
+    body {{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+    }}
+    .banner-container {{
         width: 100%;
         height: 350px;
-        object-fit: cover;
-        object-position: center top;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 12px;
+    }}
+    .banner-img {{
+        width: 100%;
+        height: 550px;
+        object-fit: fill;
         display: block;
+        transform: translateY(-20px);
     }}
 </style>
-<div class="banner">
-    <img src="data:image/png;base64,{_banner_b64}" />
+<div class="banner-container">
+    <img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
 </div>
 """
-components.html(_banner_html, height=355)
+components.html(_banner_html, height=350)
 
-# ── Statystyki ─────────────────────────────────────────────────────────────────
+# ΓöÇΓöÇ Statystyki ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
-last_date = last_svc["date"] if last_svc else "—"
-last_km   = f"{last_svc['km']:,} km".replace(",", " ") if last_svc else "—"
+last_date = last_svc["date"] if last_svc else "ΓÇö"
+last_km   = f"{last_svc['km']:,} km".replace(",", " ") if last_svc else "ΓÇö"
 total_cost = sum(s.get("cost", 0) for s in log)
 
 c1, c2, c3, c4 = st.columns(4)
-c1.metric("🔧 Wpisów serwisowych", len(log))
-c2.metric("📅 Ostatni serwis", last_date)
-c3.metric("🛣️ Przebieg (ostatni)", last_km)
-c4.metric("💰 Łączny koszt serwisów", f"{total_cost:,} zł".replace(",", " ") if total_cost else "—")
+c1.metric("≡ƒöº Wpis├│w serwisowych", len(log))
+c2.metric("≡ƒôà Ostatni serwis", last_date)
+c3.metric("≡ƒ¢ú∩╕Å Przebieg (ostatni)", last_km)
+c4.metric("≡ƒÆ░ ┼ü─àczny koszt serwis├│w", f"{total_cost:,} z┼é".replace(",", " ") if total_cost else "ΓÇö")
 
 st.divider()
 
-# ── Zakładki ──────────────────────────────────────────────────────────────────
-tab1, tab2, tab3 = st.tabs(["🔧 Historia serwisów", "🛒 Baza części i filtrów", "➕ Dodaj wpis"])
+# ΓöÇΓöÇ Zak┼éadki ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+tab1, tab2, tab3 = st.tabs(["≡ƒöº Historia serwis├│w", "≡ƒ¢Æ Baza cz─Ö┼¢ci i filtr├│w", "Γ₧ò Dodaj wpis"])
 
-# ══════════════════════════════════════════════════════════════════════════════
-# TAB 1 — Historia serwisów
-# ══════════════════════════════════════════════════════════════════════════════
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# TAB 1 ΓÇö Historia serwis├│w
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 with tab1:
-    st.markdown('<div class="section-head">Historia serwisów</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">Historia serwis├│w</div>', unsafe_allow_html=True)
 
     if not log:
-        st.info("Brak wpisów serwisowych. Dodaj pierwszy wpis w zakładce ➕")
+        st.info("Brak wpis├│w serwisowych. Dodaj pierwszy wpis w zak┼éadce Γ₧ò")
     else:
         sorted_log = sorted(log, key=lambda x: x["date"], reverse=True)
         for i, s in enumerate(sorted_log):
             is_recent = i == 0
             card_cls  = "svc-card svc-recent" if is_recent else "svc-card"
             items_html = "".join(f'<span class="svc-item">{it}</span>' for it in s.get("items", []))
-            cost_html  = f'<div class="svc-cost">💰 {s["cost"]:,} zł</div>'.replace(",", " ") if s.get("cost") else ""
-            notes_html = f'<div class="svc-notes">📝 {s["notes"]}</div>' if s.get("notes") else ""
+            cost_html  = f'<div class="svc-cost">≡ƒÆ░ {s["cost"]:,} z┼é</div>'.replace(",", " ") if s.get("cost") else ""
+            notes_html = f'<div class="svc-notes">≡ƒô¥ {s["notes"]}</div>' if s.get("notes") else ""
             km_fmt     = f'{s["km"]:,} km'.replace(",", " ") if s.get("km") else ""
             st.markdown(f"""
             <div class="{card_cls}">
               <div style="display:flex;align-items:baseline;gap:4px;">
-                <span class="svc-date">📅 {s["date"]}</span>
-                <span class="svc-km">· {km_fmt}</span>
-                {'<span style="font-size:0.7rem;color:#2a8a5a;margin-left:8px;font-weight:600;">✦ OSTATNI</span>' if is_recent else ''}
+                <span class="svc-date">≡ƒôà {s["date"]}</span>
+                <span class="svc-km">┬╖ {km_fmt}</span>
+                {'<span style="font-size:0.7rem;color:#2a8a5a;margin-left:8px;font-weight:600;">Γ£ª OSTATNI</span>' if is_recent else ''}
               </div>
               <div class="svc-items">{items_html}</div>
               {cost_html}
@@ -223,21 +233,21 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# TAB 2 — Baza części
-# ══════════════════════════════════════════════════════════════════════════════
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# TAB 2 ΓÇö Baza cz─Ö┼¢ci
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 with tab2:
-    st.markdown('<div class="section-head">Baza części — Audi A3 8PA 1.6 MPI BSE</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">Baza cz─Ö┼¢ci ΓÇö Audi A3 8PA 1.6 MPI BSE</div>', unsafe_allow_html=True)
     st.caption("Numery katalogowe Knecht i Mann+Hummel dla Twojego silnika")
 
     for p in parts:
-        knecht_html = f'<span class="part-badge"><span>Knecht</span>{p["knecht"]}</span>' if p.get("knecht") and p["knecht"] != "—" else ""
-        mann_html   = f'<span class="part-badge"><span>Mann</span>{p["mann"]}</span>'     if p.get("mann")   and p["mann"]   != "—" else ""
-        note_html   = f'<div class="part-note">⚠️ {p["notes"]}</div>' if p.get("notes") else ""
+        knecht_html = f'<span class="part-badge"><span>Knecht</span>{p["knecht"]}</span>' if p.get("knecht") and p["knecht"] != "ΓÇö" else ""
+        mann_html   = f'<span class="part-badge"><span>Mann</span>{p["mann"]}</span>'     if p.get("mann")   and p["mann"]   != "ΓÇö" else ""
+        note_html   = f'<div class="part-note">ΓÜá∩╕Å {p["notes"]}</div>' if p.get("notes") else ""
         st.markdown(f"""
         <div class="part-card">
           <div class="part-cat">{p["category"]}</div>
-          <div class="part-spec">{p["spec"]} · {p["ilosc"]}</div>
+          <div class="part-spec">{p["spec"]} ┬╖ {p["ilosc"]}</div>
           <div class="part-nums">{knecht_html}{mann_html}</div>
           {note_html}
         </div>
@@ -245,9 +255,9 @@ with tab2:
 
     if logged_in:
         st.divider()
-        st.markdown('<div class="section-head">Edytuj część</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-head">Edytuj cz─Ö┼¢─ç</div>', unsafe_allow_html=True)
         part_names = [p["category"] for p in parts]
-        sel_part = st.selectbox("Wybierz część:", part_names, key="edit_part")
+        sel_part = st.selectbox("Wybierz cz─Ö┼¢─ç:", part_names, key="edit_part")
         ep = next(p for p in parts if p["category"] == sel_part)
 
         col1, col2 = st.columns(2)
@@ -257,7 +267,7 @@ with tab2:
             new_mann   = st.text_input("Nr Mann:", value=ep.get("mann", ""), key="mann_in")
         new_notes = st.text_input("Uwagi:", value=ep.get("notes", ""), key="part_notes_in")
 
-        if st.button("💾 Zapisz część", key="save_part"):
+        if st.button("≡ƒÆ╛ Zapisz cz─Ö┼¢─ç", key="save_part"):
             for p in data["parts"]:
                 if p["category"] == sel_part:
                     p["knecht"] = new_knecht.strip()
@@ -265,18 +275,18 @@ with tab2:
                     p["notes"]  = new_notes.strip()
                     break
             save(data)
-            st.success("✅ Zapisano!")
+            st.success("Γ£à Zapisano!")
             st.rerun()
 
-# ══════════════════════════════════════════════════════════════════════════════
-# TAB 3 — Dodaj wpis
-# ══════════════════════════════════════════════════════════════════════════════
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+# TAB 3 ΓÇö Dodaj wpis
+# ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
 with tab3:
     if not logged_in:
         st.markdown("""
         <div style="background:#141c26;border:1px solid #1e2d3d;border-radius:8px;
              padding:18px;text-align:center;color:#4a7a9b;font-size:0.9rem;margin-top:10px;">
-          🔐 Zaloguj się przez panel boczny aby dodawać wpisy serwisowe.
+          ≡ƒöÉ Zaloguj si─Ö przez panel boczny aby dodawa─ç wpisy serwisowe.
         </div>
         """, unsafe_allow_html=True)
     else:
@@ -290,23 +300,23 @@ with tab3:
             new_km = st.number_input("Przebieg (km):", min_value=0, max_value=999999,
                                      value=0, step=1000)
 
-        # Lista czynności — checkboxy + własne
-        st.markdown("**Co zostało zrobione?**")
+        # Lista czynno┼¢ci ΓÇö checkboxy + w┼éasne
+        st.markdown("**Co zosta┼éo zrobione?**")
         TYPOWE = [
             "Olej silnikowy + filtr oleju",
             "Filtr powietrza",
             "Filtr kabinowy",
             "Filtr paliwa",
-            "Świece zapłonowe",
-            "Pasek rozrządu (zestaw)",
-            "Płyn hamulcowy",
-            "Klocki przód",
-            "Klocki tył",
-            "Płyn chłodniczy",
-            "Przegląd ogólny",
-            "Opony letnie → zimowe",
-            "Opony zimowe → letnie",
-            "Geometria kół",
+            "┼Üwiece zap┼éonowe",
+            "Pasek rozrz─àdu (zestaw)",
+            "P┼éyn hamulcowy",
+            "Klocki prz├│d",
+            "Klocki ty┼é",
+            "P┼éyn ch┼éodniczy",
+            "Przegl─àd og├│lny",
+            "Opony letnie ΓåÆ zimowe",
+            "Opony zimowe ΓåÆ letnie",
+            "Geometria k├│┼é",
         ]
         cols = st.columns(2)
         selected_items = []
@@ -314,21 +324,21 @@ with tab3:
             if cols[i % 2].checkbox(item, key=f"chk_{i}"):
                 selected_items.append(item)
 
-        custom_items_raw = st.text_input("Inne czynności (oddziel przecinkiem):", placeholder="np. wymiana żarówki, uszczelka pokrywy zaworów")
+        custom_items_raw = st.text_input("Inne czynno┼¢ci (oddziel przecinkiem):", placeholder="np. wymiana ┼╝ar├│wki, uszczelka pokrywy zawor├│w")
         if custom_items_raw.strip():
             selected_items += [x.strip() for x in custom_items_raw.split(",") if x.strip()]
 
         col3, col4 = st.columns(2)
         with col3:
-            new_cost = st.number_input("Koszt (zł):", min_value=0, max_value=99999, value=0, step=50)
+            new_cost = st.number_input("Koszt (z┼é):", min_value=0, max_value=99999, value=0, step=50)
         with col4:
             st.markdown("<br>", unsafe_allow_html=True)
 
-        new_notes = st.text_area("Notatki:", placeholder="np. serwis ASO, wymieniono też filtr DPF, następny serwis za 10 000 km", height=80)
+        new_notes = st.text_area("Notatki:", placeholder="np. serwis ASO, wymieniono te┼╝ filtr DPF, nast─Öpny serwis za 10 000 km", height=80)
 
-        if st.button("💾 Zapisz wpis serwisowy", type="primary", use_container_width=True):
+        if st.button("≡ƒÆ╛ Zapisz wpis serwisowy", type="primary", use_container_width=True):
             if not selected_items:
-                st.error("Zaznacz przynajmniej jedną czynność.")
+                st.error("Zaznacz przynajmniej jedn─à czynno┼¢─ç.")
             else:
                 wpis = {
                     "date":  new_date.isoformat(),
@@ -339,17 +349,17 @@ with tab3:
                 }
                 data["service_log"].append(wpis)
                 save(data)
-                st.success("✅ Wpis zapisany!")
+                st.success("Γ£à Wpis zapisany!")
                 st.rerun()
 
-        # Usuń ostatni wpis
+        # Usu┼ä ostatni wpis
         if log:
             st.divider()
-            if st.button("🗑️ Usuń ostatni wpis", use_container_width=True):
+            if st.button("≡ƒùæ∩╕Å Usu┼ä ostatni wpis", use_container_width=True):
                 newest = sorted(data["service_log"], key=lambda x: x["date"], reverse=True)[0]
                 data["service_log"].remove(newest)
                 save(data)
-                st.info("Ostatni wpis usunięty.")
+                st.info("Ostatni wpis usuni─Öty.")
                 st.rerun()
 
 st.markdown("""
