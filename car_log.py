@@ -156,26 +156,25 @@ _banner_html = f"""
 <style>
     * {{ margin: 0; padding: 0; box-sizing: border-box; }}
     body {{ margin: 0; padding: 0; overflow: hidden; background: transparent; }}
-    img {{
+    .banner {{
         width: 100%;
-        height: auto;
-        display: block;
+        height: 350px;
         border-radius: 12px;
+        overflow: hidden;
+    }}
+    .banner img {{
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
     }}
 </style>
-<img id="banner" src="data:image/png;base64,{_banner_b64}" />
-<script>
-    var img = document.getElementById('banner');
-    function resize() {{
-        var h = img.getBoundingClientRect().height;
-        if (h > 0) window.parent.postMessage({{type:'streamlit:setFrameHeight', height: h}}, '*');
-    }}
-    img.onload = resize;
-    window.onresize = resize;
-    resize();
-</script>
+<div class="banner">
+    <img src="data:image/png;base64,{_banner_b64}" />
+</div>
 """
-components.html(_banner_html, height=400)
+components.html(_banner_html, height=355)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
