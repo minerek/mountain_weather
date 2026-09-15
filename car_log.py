@@ -148,9 +148,9 @@ logged_in = check_password()
 _banner_path = Path(__file__).parent / "audi_banner.png"
 _banner_b64 = base64.b64encode(_banner_path.read_bytes()).decode()
 st.markdown(
-    f'<div style="margin:-10px -1rem 1rem -1rem;">'
+    f'<div style="margin:-10px calc(-50vw + 50%) 1rem calc(-50vw + 50%);">'
     f'<img src="data:image/png;base64,{_banner_b64}" '
-    f'style="width:100%;display:block;" /></div>',
+    f'style="width:100vw;display:block;" /></div>',
     unsafe_allow_html=True
 )
 
