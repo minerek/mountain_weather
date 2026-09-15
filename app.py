@@ -504,7 +504,7 @@ SZCZYTY = {
     "Grześ (Lúčna)":                                 (49.2372, 19.7663, 1653, "Tatry Zachodnie"),
     "Salatín (Salatyński Wierch)":                   (49.2144, 19.6847, 2048, "Tatry Zachodnie"),
     "Mały Salatyn (Malý Salatín)":                   (49.1844, 19.7197, 2046, "Tatry Zachodnie"),
-    "Klin (Malý Baranec)":                           (49.176461, 19.748367, 2044, "Tatry Zachodnie"),
+    "Klin (Malý Baranec)":                           (49.167822, 19.756194, 2044, "Tatry Zachodnie"),
     "Brestová (Brestowa)":                           (49.1953, 19.8058, 1934, "Tatry Zachodnie"),
     "Pachoł (Pachoľa)":                              (49.2100, 19.8100, 2167, "Tatry Zachodnie"),
     "Osobita":                                       (49.2572, 19.7542, 1687, "Tatry Zachodnie"),
