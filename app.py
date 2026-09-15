@@ -528,7 +528,7 @@ SZCZYTY = {
     "Kończysta (Končistá) ⭐WKT":                 (49.15722, 20.11417, 2538, "Tatry Słowackie"),
     "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.2016, 20.1972, 2526, "Tatry Słowackie"),
     "Krywań (Kriváň) ⭐WKT":                      (49.1628333, 20.000045, 2495, "Tatry Słowackie"),
-    "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.1652, 20.1546, 2476, "Tatry Słowackie"),
+    "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.169123, 20.155353, 2476, "Tatry Słowackie"),
     "Ganek (Gánok) ⭐WKT":                        (49.174256, 20.103992, 2462, "Tatry Słowackie"),
     "Sławkowski Szczyt (Slavkovský štít) ⭐WKT":  (49.1662, 20.1843, 2452, "Tatry Słowackie"),
     "Pośrednia Grań (Prostredný hrot) ⭐WKT":     (49.184972, 20.194361, 2441, "Tatry Słowackie"),
