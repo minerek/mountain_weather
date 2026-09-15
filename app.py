@@ -457,7 +457,7 @@ SZCZYTY = {
     "Kozie Czuby":                                   (49.2178, 20.0125, 2263, "Tatry Polskie"),
     "Zadni Granat":                                  (49.224431, 20.032458, 2240, "Tatry Polskie"),
     "Pośredni Granat":                               (49.2263, 20.0332, 2234, "Tatry Polskie"),
-    "Skrajny Granat":                                (49.2280, 20.0368, 2225, "Tatry Polskie"),
+    "Skrajny Granat":                                (49.227444, 20.033503, 2225, "Tatry Polskie"),
     "Jagnięcy Szczyt (Jahňací štít)":                (49.2197, 20.2082, 2230, "Tatry Słowackie"),
     "Mięguszowiecki Szczyt Wielki":                  (49.18703, 20.0592981, 2438, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Czarny":                  (49.1828, 20.0675, 2410, "Tatry Polskie"),
