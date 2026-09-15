@@ -130,13 +130,15 @@ def check_password():
         return True
     try:
         correct = st.secrets["APP_PASSWORD"]
+    except KeyError:
+        correct = "tatry"
     except Exception:
         correct = "tatry"
     with st.sidebar:
         st.markdown("### 🔐 Logowanie")
         pwd = st.text_input("Hasło:", type="password", key="car_pwd")
         if st.button("Zaloguj", key="car_login"):
-            if pwd == correct:
+            if pwd.strip() == correct.strip():
                 st.session_state["auth_car"] = True
                 st.rerun()
             else:
