@@ -522,7 +522,7 @@ SZCZYTY = {
     "Gerlach (Gerlachovský štít) ⭐WKT":          (49.1640, 20.1341, 2655, "Tatry Słowackie"),
     "Łomnica (Lomnický štít) ⭐WKT":              (49.1945, 20.2132, 2634, "Tatry Słowackie"),
     "Lodowy Szczyt (Ľadový štít) ⭐WKT":          (49.1969, 20.1831, 2627, "Tatry Słowackie"),
-    "Durny Szczyt (Pyšný štít) ⭐WKT":            (49.1925, 20.2081, 2623, "Tatry Słowackie"),
+    "Durny Szczyt (Pyšný štít) ⭐WKT":            (49.1974, 20.2084, 2623, "Tatry Słowackie"),
     "Wysoka (Vysoká) ⭐WKT":                      (49.1726, 20.0934, 2560, "Tatry Słowackie"),
     "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT":   (49.1992, 20.2194, 2558, "Tatry Słowackie"),
     "Kończysta (Končistá) ⭐WKT":                 (49.1551, 20.1144, 2538, "Tatry Słowackie"),
