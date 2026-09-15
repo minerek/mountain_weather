@@ -461,7 +461,7 @@ SZCZYTY = {
     "Jagnięcy Szczyt (Jahňací štít)":                (49.2197, 20.2082, 2230, "Tatry Słowackie"),
     "Mięguszowiecki Szczyt Wielki":                  (49.18703, 20.0592981, 2438, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Czarny":                  (49.1893, 20.0653, 2410, "Tatry Polskie"),
-    "Mięguszowiecki Szczyt Pośredni":                (49.1882, 20.0619, 2393, "Tatry Polskie"),
+    "Mięguszowiecki Szczyt Pośredni":                (49.185, 20.0617, 2393, "Tatry Polskie"),
     "Cubryna":                                       (49.1878, 20.0536, 2376, "Tatry Polskie"),
     "Szpiglasowy Wierch (Hrubý štít)":               (49.2015, 20.0417, 2172, "Tatry Polskie"),
     "Kościelec":                                     (49.2247, 20.0152, 2155, "Tatry Polskie"),
