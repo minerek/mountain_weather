@@ -167,7 +167,7 @@ _banner_html = f"""
     }}
     .banner-container {{
         width: 100%;
-        height: 350px;
+        height: 420px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -176,17 +176,17 @@ _banner_html = f"""
     }}
     .banner-img {{
         width: 100%;
-        height: 550px;
-        object-fit: fill;
+        height: 420px;
+        object-fit: contain;
+        object-position: center top;
         display: block;
-        transform: translateY(-20px);
     }}
 </style>
 <div class="banner-container">
     <img class="banner-img" src="data:image/png;base64,{_banner_b64}" />
 </div>
 """
-components.html(_banner_html, height=350)
+components.html(_banner_html, height=420)
 
 # ── Statystyki ─────────────────────────────────────────────────────────────────
 last_svc  = sorted(log, key=lambda x: x["date"], reverse=True)[0] if log else None
