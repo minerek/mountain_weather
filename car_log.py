@@ -131,7 +131,7 @@ def check_password():
     try:
         correct = st.secrets["APP_PASSWORD"]
     except Exception:
-        correct = "audi"
+        correct = "tatry"
     with st.sidebar:
         st.markdown("### 🔐 Logowanie")
         pwd = st.text_input("Hasło:", type="password", key="car_pwd")
