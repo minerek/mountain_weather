@@ -525,7 +525,7 @@ SZCZYTY = {
     "Durny Szczyt (Pyšný štít) ⭐WKT":            (49.1974, 20.2084, 2623, "Tatry Słowackie"),
     "Wysoka (Vysoká) ⭐WKT":                      (49.1726, 20.0934, 2560, "Tatry Słowackie"),
     "Kieżmarski Szczyt (Kežmarský štít) ⭐WKT":   (49.1992, 20.2194, 2558, "Tatry Słowackie"),
-    "Kończysta (Končistá) ⭐WKT":                 (49.1551, 20.1144, 2538, "Tatry Słowackie"),
+    "Kończysta (Končistá) ⭐WKT":                 (49.15722, 20.11417, 2538, "Tatry Słowackie"),
     "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.2016, 20.1972, 2526, "Tatry Słowackie"),
     "Krywań (Kriváň) ⭐WKT":                      (49.1626, 20.0133, 2495, "Tatry Słowackie"),
     "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.1652, 20.1546, 2476, "Tatry Słowackie"),
