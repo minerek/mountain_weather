@@ -459,7 +459,7 @@ SZCZYTY = {
     "Pośredni Granat":                               (49.2263, 20.0332, 2234, "Tatry Polskie"),
     "Skrajny Granat":                                (49.2280, 20.0368, 2225, "Tatry Polskie"),
     "Jagnięcy Szczyt (Jahňací štít)":                (49.2197, 20.2082, 2230, "Tatry Słowackie"),
-    "Mięguszowiecki Szczyt Wielki":                  (49.1798, 20.0617, 2438, "Tatry Polskie"),
+    "Mięguszowiecki Szczyt Wielki":                  (49.18703, 20.0592981, 2438, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Czarny":                  (49.1893, 20.0653, 2410, "Tatry Polskie"),
     "Mięguszowiecki Szczyt Pośredni":                (49.1882, 20.0619, 2393, "Tatry Polskie"),
     "Cubryna":                                       (49.1878, 20.0536, 2376, "Tatry Polskie"),
