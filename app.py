@@ -529,7 +529,7 @@ SZCZYTY = {
     "Baranie Rogi (Baranie rohy) ⭐WKT":          (49.2016, 20.1972, 2526, "Tatry Słowackie"),
     "Krywań (Kriváň) ⭐WKT":                      (49.1626, 20.0133, 2495, "Tatry Słowackie"),
     "Staroleśny Szczyt (Bradavica) ⭐WKT":        (49.1652, 20.1546, 2476, "Tatry Słowackie"),
-    "Ganek (Gánok) ⭐WKT":                        (49.1747, 20.0989, 2462, "Tatry Słowackie"),
+    "Ganek (Gánok) ⭐WKT":                        (49.174256, 20.103992, 2462, "Tatry Słowackie"),
     "Sławkowski Szczyt (Slavkovský štít) ⭐WKT":  (49.1662, 20.1843, 2452, "Tatry Słowackie"),
     "Pośrednia Grań (Prostredný hrot) ⭐WKT":     (49.1849, 20.1866, 2441, "Tatry Słowackie"),
     # Pozostałe szczyty słowackie
